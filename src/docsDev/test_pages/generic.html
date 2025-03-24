@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Site with Custom Framework</title>
+    <link rel="stylesheet" href="../../dist/markup-refine-lib.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="navbar-brand">MySite</div>
+        <div class="group">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="responsive-container">
+        <h1>Welcome to My Sample Site</h1>
+        <p>This site is styled using a custom CSS framework.</p>
+
+        <!-- Information Cards -->
+        <div class="card info">
+            <span class="card__header">Information Card</span>
+            <p>This is an informational card. Use it to display important messages.</p>
+        </div>
+
+        <div class="card positive">
+            <span class="card__header">Success Card</span>
+            <p>Operation completed successfully!</p>
+        </div>
+
+        <div class="card negative">
+            <span class="card__header">Error Card</span>
+            <p>Something went wrong. Please try again.</p>
+        </div>
+
+        <div class="card warning">
+            <span class="card__header">Warning Card</span>
+            <p>Proceed with caution.</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="group group-centered">
+            <button class="positive">Save</button>
+            <button class="negative">Delete</button>
+            <button class="warning">Cancel</button>
+        </div>
+
+        <!-- Form -->
+        <form>
+            <fieldset>
+                <legend>Contact Us</legend>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Your Message"></textarea>
+
+                <input type="submit" value="Send Message">
+                <input type="reset" value="Clear">
+            </fieldset>
+        </form>
+
+        <!-- Styled Pill Tags -->
+        <div class="group">
+            <span class="pill">Tech</span>
+            <span class="pill secondary">Design</span>
+            <span class="pill positive">Success</span>
+            <span class="pill negative">Error</span>
+            <span class="pill warning">Warning</span>
+            <span class="pill info">Info</span>
+            <span class="pill help">Help</span>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MySite. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

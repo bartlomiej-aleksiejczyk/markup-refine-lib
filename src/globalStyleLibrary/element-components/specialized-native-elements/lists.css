@@ -1,0 +1,7 @@
+ul,
+ol {
+  margin: 0.5rem 0;
+  list-style-position: inside; /* Ensure that iframes are responsive */
+
+  padding-left: 20px;
+}

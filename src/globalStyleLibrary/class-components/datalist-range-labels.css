@@ -1,0 +1,16 @@
+/* Datalist Range Labels */
+/* This only works when the number of options is equal to the range input steps */
+.datalist-range-labels {
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1rem;
+  margin: -0.75rem auto 1rem;
+  option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 0;
+  }
+}

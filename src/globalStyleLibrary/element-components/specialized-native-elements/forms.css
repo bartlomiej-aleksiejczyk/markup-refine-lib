@@ -1,0 +1,77 @@
+fieldset {
+  margin: 1rem 0;
+  border-radius: var(--border-radius-medium);
+  border: solid 2px var(--color-secondary-darker);
+}
+
+form {
+  margin: 1rem 0;
+  padding: 1.5rem 2rem;
+  background: var(--color-secondary);
+  box-shadow: 0 2px 5px var(--color-secondary);
+  border-radius: var(--border-radius-large);
+  & button,
+  input[type="submit"],
+  input[type="reset"] {
+    margin: 1rem auto 0.5rem;
+  }
+}
+
+input,
+button,
+select,
+textarea {
+  &:focus {
+    outline: 1px dashed var(--color-primary-lighter);
+  }
+  font-family: inherit;
+  padding: 0.5rem;
+  border: 2px solid var(--color-secondary-darker);
+  border-radius: var(--border-radius-medium);
+  margin: 0rem auto 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  justify-content: center;
+  background-color: var(--color-text-on-primary);
+  color: var(--color-text-primary);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline;
+  margin: 0rem;
+  width: auto;
+}
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+  background-color: var(--color-primary);
+  accent-color: var(--color-primary);
+}
+
+input[type="file"] {
+  background-color: transparent;
+  border: 2px solid var(--color-secondary-darker);
+  border-radius: var(--border-radius-medium);
+  padding: 0.5rem;
+  margin: 0.5rem auto 1rem;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  color: var(--color-text-primary);
+  font-size: medium;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border: 2px solid var(--color-primary-darker);
+  border-radius: var(--border-radius-medium);
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+input[type="file"]::file-selector-button:hover {
+  box-shadow: inset 0 0 0 2px var(--color-primary-darker);
+}

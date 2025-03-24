@@ -1,0 +1,76 @@
+
+/* Table component */
+
+/* Add data-label attribute content before each td on small screens */
+
+table {
+  margin: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  padding: 1rem 0.2rem;
+  margin-bottom: 2rem;
+}
+
+.table-responsive {
+  overflow-x: scroll;
+}
+
+.table- th,
+td {
+  border: 1px solid var(--color-secondary-darker);
+  padding: 0.5rem;
+  text-align: left;
+}
+
+tr {
+  th {
+    border: 1px solid var(--color-secondary-darker);
+    padding: 0.5rem;
+    background-color: var(--color-secondary);
+  }
+}
+
+thead {
+  background-color: var(--color-secondary);
+}
+@media screen and (max-width: 480px) {
+  table,
+  thead,
+  tbody,
+  td,
+  tr {
+    display: block;
+  }
+
+  th {
+    display: none;
+  }
+
+  caption {
+    width: 95%;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    border: 1px solid var(--color-secondary-darker);
+    margin-bottom: 0.5rem;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid var(--color-secondary-darker);
+    position: relative;
+    display: grid;
+  }
+
+  td:before {
+    content: attr(data-label);
+    padding-right: 10px;
+    color: var(--color-text-secondary);
+    text-align: left;
+    font-weight: bold;
+  }
+}

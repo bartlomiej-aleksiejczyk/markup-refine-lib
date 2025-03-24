@@ -1,0 +1,32 @@
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  &.group-spaced-around {
+    justify-content: space-around;
+  }
+  &.group-spaced-between {
+    justify-content: space-between;
+  }
+  &.group-centered {
+    justify-content: center;
+  }
+  &.group-end {
+    justify-content: end;
+  }
+  &.group-fill {
+    flex-grow: 1;
+  }
+  button,
+  input[type="submit"],
+  input[type="reset"] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    width: auto;
+    padding: 0.4rem 0.8rem;
+    margin: 0.2rem 0.2rem 0.2rem 0;
+  }
+}
