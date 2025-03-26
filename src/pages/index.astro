@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <html lang="en">
@@ -6,10 +7,43 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} >
+    <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
+    <style>
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .component-picker {
+      }
+      .component-preview {
+        width: 80vw;
+        height: 70vh;
+      }
+    </style>
   </head>
   <body>
-    <h1>Astro</h1>
+    <div class="main-container">
+      <h1>Component preview</h1>
+      <label for="pet-select">Choose a component:</label>
+
+      <select name="pets" id="pet-select">
+        <option value="">--Please choose an option--</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+      </select>
+
+      <iframe
+        class="component-preview"
+        src="https://www.w3schools.com"
+        title="Selected component display"></iframe>
+    </div>
   </body>
+  <script></script>
 </html>
