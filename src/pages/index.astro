@@ -1,5 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+const rawComponents = await getCollection("rawComponents");
+console.log(rawComponents);
 ---
 
 <html lang="en">
@@ -29,21 +34,40 @@
       <h1>Component preview</h1>
       <label for="pet-select">Choose a component:</label>
 
-      <select name="pets" id="pet-select">
-        <option value="">--Please choose an option--</option>
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option>
-        <option value="hamster">Hamster</option>
-        <option value="parrot">Parrot</option>
-        <option value="spider">Spider</option>
-        <option value="goldfish">Goldfish</option>
+      <select name="component" id="component-select">
+        <option value="about">--Please choose an option--</option>
+
+        {
+          rawComponents.map((component) => (
+            <option value={component.data.url}>{component.id}</option>
+          ))
+        }
       </select>
 
       <iframe
         class="component-preview"
-        src="https://www.w3schools.com"
+        src="about"
+        sandbox="allow-scripts"
         title="Selected component display"></iframe>
     </div>
   </body>
-  <script></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const componentSelect = document.getElementById("component-select");
+      const iframe = document.querySelector(".component-preview");
+
+      const initialValue = componentSelect.value;
+      if (initialValue) {
+        iframe.src = initialValue;
+      }
+
+      componentSelect.addEventListener("change", function (event) {
+        const selectedValue = event.target.value;
+
+        if (selectedValue) {
+          iframe.src = selectedValue;
+        }
+      });
+    });
+  </script>
 </html>
