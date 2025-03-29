@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{{title}}</title>
+    <style>
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .component-preview {
+        width: 80vw;
+        height: 70vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      {{{content}}}
+    </div>
+  </body>
+</html> 

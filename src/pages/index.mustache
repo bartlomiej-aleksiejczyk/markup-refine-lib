@@ -1,0 +1,42 @@
+<h1>Component preview</h1>
+<label for="pet-select">Choose a component:</label>
+
+<select name="component" id="component-select">
+  <option value="about">--Please choose an option--</option>
+  {{#components}}
+    <option value="{{url}}">{{id}}</option>
+  {{/components}}
+</select>
+
+<iframe
+  class="component-preview"
+  src="about"
+  sandbox="allow-scripts"
+  title="Selected component display"></iframe>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const componentSelect = document.getElementById(
+      "component-select"
+    ) as HTMLSelectElement;
+    const iframe = document.querySelector(
+      ".component-preview"
+    ) as HTMLIFrameElement;
+
+    if (!componentSelect || !iframe) return;
+
+    const initialValue = componentSelect.value;
+    if (initialValue) {
+      iframe.src = initialValue;
+    }
+
+    componentSelect.addEventListener("change", function (event) {
+      const target = event.target as HTMLSelectElement;
+      const selectedValue = target.value;
+
+      if (selectedValue) {
+        iframe.src = selectedValue;
+      }
+    });
+  });
+</script> 

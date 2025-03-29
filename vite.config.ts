@@ -2,24 +2,33 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import mustachePlugin from './src/plugins/mustache-plugin';
+import path from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [
+    svelte(),
+    mustachePlugin({
+      templatesDir: path.resolve(__dirname, 'src/templates'),
+      pagesDir: path.resolve(__dirname, 'src/pages'),
+      baseTemplate: 'base.mustache',
+    }),
+  ],
   build: {
-    manifest: true,
-    outDir: resolve(__dirname, "dist"),
-    cssCodeSplit: true,
-    lib: {
-      entry: [
-        resolve(__dirname, "src", "allComponents.ts"),
-        resolve(__dirname, "src", "class_light_style_library.ts"),
-        resolve(__dirname, "src", "class_style_library.ts"),
-      ],
-      name: "OfflineNotesClientComponents",
-      formats: ["es"],
+    outDir: 'dist',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
+    },
+  },
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
     },
   },
 });
