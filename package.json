@@ -5,16 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node src/build/build.js",
+    "build": "vite build && node src/build/build-docs.js",
+    "build:lib": "vite build",
+    "build:docs": "node src/build/build-docs.js",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tsconfig/svelte": "^5.0.4",
-    "@types/mustache": "^4.2.2",
     "@types/node": "^22.13.13",
-    "mustache": "^4.2.0",
+    "liquidjs": "^10.21.0",
     "svelte": "^5.20.2",
     "svelte-check": "^4.1.4",
     "typescript": "~5.7.2",

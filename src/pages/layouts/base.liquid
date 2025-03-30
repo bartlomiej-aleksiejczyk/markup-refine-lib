@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} - {{ title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            {% for item in navigation %}
+                <a href="{{ item.url }}" {% if item.url == current_url %}class="active"{% endif %}>
+                    {{ item.title }}
+                </a>
+            {% endfor %}
+        </nav>
+    </header>
+
+    <main>
+        {% if title %}
+            <h1>{{ title }}</h1>
+        {% endif %}
+        
+        {{ content }}
+    </main>
+
+    <footer>
+        <p>&copy; {{ site.title }} - All rights reserved</p>
+    </footer>
+
+    <script type="module" src="/assets/main.js"></script>
+</body>
+</html> 

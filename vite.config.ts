@@ -2,8 +2,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
-import mustachePlugin from './src/plugins/mustache-plugin';
-import path from 'path';
+import liquidPlugin from './src/build/plugins/vite-plugin-liquid';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
@@ -11,24 +10,34 @@ console.log(__dirname);
 export default defineConfig({
   plugins: [
     svelte(),
-    mustachePlugin({
-      templatesDir: path.resolve(__dirname, 'src/templates'),
-      pagesDir: path.resolve(__dirname, 'src/pages'),
-      baseTemplate: 'base.mustache',
-    }),
+    liquidPlugin(),
   ],
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-      },
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'MarkupRefineLib',
+      fileName: (format) => `markup-refine-lib.${format}.js`,
+      formats: ['es', 'umd']
     },
+    rollupOptions: {
+      external: ['svelte'],
+      output: {
+        globals: {
+          svelte: 'Svelte'
+        }
+      }
+    }
   },
   css: {
     modules: {
       localsConvention: 'camelCase',
     },
   },
+  server: {
+    watch: {
+      usePolling: true
+    }
+  }
 });

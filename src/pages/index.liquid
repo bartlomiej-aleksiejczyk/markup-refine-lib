@@ -1,0 +1,21 @@
+{% layout "base.liquid" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h2>Welcome to {{ site.title }}</h2>
+    <p>{{ site.description }}</p>
+    <p>Version: {{ site.version }}</p>
+</div>
+
+<section class="features">
+    <h3>Features</h3>
+    <ul>
+        <li>Modern template engine with LiquidJS</li>
+        <li>Hot Module Replacement (HMR)</li>
+        <li>Layout system</li>
+        <li>Global context support</li>
+    </ul>
+</section>
+{% endblock %} 
