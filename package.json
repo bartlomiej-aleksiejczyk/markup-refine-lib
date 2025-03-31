@@ -4,18 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && node src/build/build-docs.js",
-    "build:lib": "vite build",
-    "build:docs": "node src/build/build-docs.js",
+    "dev": "node src/build/buildDev.js & vite",
+    "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
+    "astro-dev": "astro dev",
+    "astro-build": "astro build",
+    "astro-preview": "astro preview"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tsconfig/svelte": "^5.0.4",
     "@types/node": "^22.13.13",
-    "liquidjs": "^10.21.0",
+    "astro": "^5.5.5",
+    "mustache": "^4.2.0",
     "svelte": "^5.20.2",
     "svelte-check": "^4.1.4",
     "typescript": "~5.7.2",

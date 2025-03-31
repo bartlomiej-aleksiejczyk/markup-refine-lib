@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../astro_components/layouts/BaseLayout.astro";
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+const rawComponents = await getCollection("rawComponents");
+---
+
+<BaseLayout title="Component Preview">
+  <div class="main-container">
+    <h1>Component preview</h1>
+    <label for="pet-select">Choose a component:</label>
+
+    <select name="component" id="component-select">
+      <option value="about">--Please choose an option--</option>
+
+      {
+        rawComponents.map((component) => (
+          <option value={component.data.url}>{component.id}</option>
+        ))
+      }
+    </select>
+
+    <iframe
+      class="component-preview"
+      src="about"
+      sandbox="allow-scripts"
+      title="Selected component display"></iframe>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const componentSelect = document.getElementById("component-select");
+      const iframe = document.querySelector(".component-preview");
+
+      const initialValue = componentSelect.value;
+      if (initialValue) {
+        iframe.src = initialValue;
+      }
+
+      componentSelect.addEventListener("change", function (event) {
+        const selectedValue = event.target.value;
+
+        if (selectedValue) {
+          iframe.src = selectedValue;
+        }
+      });
+    });
+  </script>
+  <style>
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .component-picker {
+    }
+    .component-preview {
+      width: 80vw;
+      height: 70vh;
+    }
+  </style>
+</BaseLayout>
