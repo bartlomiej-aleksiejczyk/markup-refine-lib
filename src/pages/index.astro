@@ -12,7 +12,7 @@ const rawComponents = await getCollection("rawComponents");
     <label for="pet-select">Choose a component:</label>
 
     <select name="component" id="component-select">
-      <option value="about">--Please choose an option--</option>
+      <option value="rawComponents/about">--Please choose an option--</option>
 
       {
         rawComponents.map((component) => (
@@ -56,6 +56,8 @@ const rawComponents = await getCollection("rawComponents");
     .component-picker {
     }
     .component-preview {
+      resize: both;
+      overflow: auto;
       width: 80vw;
       height: 70vh;
     }

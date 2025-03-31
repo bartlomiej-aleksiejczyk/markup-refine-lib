@@ -1,0 +1,177 @@
+---
+import LibraryStyleLayout from "../../astro_components/layouts/LibraryStyleLayout.astro";
+---
+
+<LibraryStyleLayout>
+  <style>
+    .open-sans {
+      font-family: "Open Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-variation-settings: "wdth" 100;
+    }
+
+    .cabin {
+      font-family: "Cabin", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-variation-settings: "wdth" 100;
+    }
+    .verdana {
+      font-family: "Verdana", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-variation-settings: "wdth" 100;
+    }
+    .lato {
+      font-family: "Lato", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .noto-sans {
+      font-family: "Noto Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-variation-settings: "wdth" 100;
+    }
+
+    :root {
+      --mdl-primary-topbar-height: 5rem;
+      --mdl-secondary-topbar-height: 3rem;
+      --mdl-primary-sidebar-width: 20rem;
+    }
+
+    .mdl-primary-topbar {
+      background-color: rgb(85, 85, 85);
+      width: 100vw;
+      height: var(--mdl-primary-topbar-height);
+      position: fixed;
+      z-index: 1001;
+      top: 0;
+      left: 0;
+    }
+    .mdl-secondary-topbar {
+      background-color: rgb(133, 133, 133);
+      top: var(--mdl-primary-topbar-height);
+      left: var(--mdl-primary-sidebar-width);
+      height: var(--mdl-secondary-topbar-height);
+      width: calc(100vw - var(--mdl-primary-sidebar-width));
+      position: fixed;
+      z-index: 1001;
+      overflow: auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .mdl-primary-sidebar {
+      background-color: rgba(54, 54, 54, 100);
+      top: var(--mdl-primary-topbar-height);
+      height: calc(100% - var(--mdl-primary-topbar-height));
+      width: var(--mdl-primary-sidebar-width);
+      left: 0;
+      position: fixed;
+      z-index: 1001;
+    }
+
+    .mdl-main-content-toolbar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(calc(-1 / 2 * var(--mdl-primary-sidebar-width)));
+      margin-left: calc(var(--mdl-primary-sidebar-width) + 1rem);
+      margin-top: calc(
+        var(--mdl-primary-topbar-height) + var(--mdl-secondary-topbar-height) +
+          1rem
+      );
+    }
+    p,
+    span {
+      max-width: 70ch;
+    }
+    @media (max-width: 1300px) {
+      .mdl-main-content-toolbar {
+        transform: none;
+      }
+    }
+    @media (max-width: 576px) {
+      .mdl-secondary-topbar {
+        left: 0;
+        width: 100vw;
+      }
+      .mdl-primary-sidebar {
+        display: none;
+      }
+      .mdl-main-content-toolbar {
+        margin-left: auto;
+      }
+    }
+  </style>
+
+  <header>
+    <div id="mdl-toolbars-container">
+      <div class="mdl-primary-topbar"></div>
+      <div class="mdl-secondary-topbar"></div>
+      <div class="mdl-primary-sidebar"></div>
+    </div>
+  </header>
+
+  <main class="mdl-main-content-toolbar">
+    <h3>verdana</h3>
+    <p class="verdana">
+      lI1LO Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </p>
+    <h3>cabin</h3>
+    <p class="cabin">
+      lI1LO Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </p>
+    <h3>Open sans</h3>
+    <p class="open-sans">
+      lI1LO Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </p>
+    <h3>Lato</h3>
+    <p class="lato">
+      lI1LO Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </p>
+    <h3>noto-sans</h3>
+    <p class="noto-sans">
+      lI1LO0 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </p>
+  </main>
+</LibraryStyleLayout>
