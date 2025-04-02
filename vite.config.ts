@@ -14,9 +14,10 @@ export default defineConfig({
     cssCodeSplit: true,
     lib: {
       entry: [
-        resolve(__dirname, "src", "allComponents.ts"),
-        resolve(__dirname, "src", "class_light_style_library.ts"),
-        resolve(__dirname, "src", "class_style_library.ts"),
+        resolve(__dirname, "src", "webComponents.ts"),
+        resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib.css"),
+        resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-scoped.scss"),
+
       ],
       name: "OfflineNotesClientComponents",
       formats: ["es"],

@@ -12,9 +12,8 @@
     var(--stt-primary-topbar-height) + var(--stt-secondary-topbar-height) + 1rem
   );
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .stt-navigation-main-content {
     margin-left: auto;
-    margin-top: auto;
   }
 }

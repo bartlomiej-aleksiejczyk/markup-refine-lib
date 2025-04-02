@@ -1,0 +1,23 @@
+@use "sass:meta";
+/* Importing Global Styles */
+@use "markup-refine-lib-variables" as *;
+
+/* Importing Class Components */
+@use "class-components/card" as *;
+@use "class-components/datalist-range-labels" as *;
+@use "class-components/group" as *;
+@use "class-components/pill" as *;
+@use "class-components/responsive-container" as *;
+@use "class-components/navbar" as *;
+@use "class-components/asci-image" as *;
+@use "class-components/button" as *;
+@use "class-components/table" as *;
+@use "class-components/table-responsive" as *;
+@use "class-components/tree-list-container" as *;
+@use "class-components/breadcrumbs" as *;
+
+.markup-scope {
+  /* Scoped Native Elements and Reset */
+  @include meta.load-css("element-components/native-elements");
+  @include meta.load-css("markup-refine-lib-reset");
+}
