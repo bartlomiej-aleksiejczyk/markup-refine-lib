@@ -52,6 +52,7 @@ async function releaseNewVersion(versionType = "patch", customMessage = "") {
     const documentationContext = path.join(
       process.cwd(),
       "src/",
+      "astro",
       "libraryInfo.json"
     );
 

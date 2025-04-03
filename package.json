@@ -1,7 +1,7 @@
 {
   "name": "markup-refine-lib",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "node src/build/buildDev.js & vite",
@@ -10,7 +10,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "astro:dev": "astro dev",
     "astro:build": "astro build",
-    "astro:preview": "astro preview"
+    "astro:preview": "astro preview",
+    "release": "node src/build/releaseNewVersion.js"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
