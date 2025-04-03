@@ -52,7 +52,7 @@ async function releaseNewVersion(versionType = "patch", customMessage = "") {
     const documentationContext = path.join(
       process.cwd(),
       "src/",
-      "content.config.js"
+      "libraryInfo.json"
     );
 
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
@@ -90,15 +90,15 @@ async function releaseNewVersion(versionType = "patch", customMessage = "") {
     }
     const readmeContent = fs.readFileSync(readmePath, "utf8");
     const updatedReadmeContent = readmeContent.replace(
-      /markup-refine-lib\.css@\d+\.\d+\.\d+/,
-      `markup-refine-lib.css@${packageJson.version}`
+      /markup-refine-lib@\d+\.\d+\.\d+/g,
+      `markup-refine-lib@${packageJson.version}`
     );
     fs.writeFileSync(readmePath, updatedReadmeContent);
 
     const documentationContent = fs.readFileSync(documentationContext, "utf8");
-    const updatedDocumentationContent = documentationContent.replace(
-      /markup-refine-lib\.css@\d+\.\d+\.\d+/g,
-      `markup-refine-lib.css@${packageJson.version}`
+    const updatedDocumentationContent = documentationContent.replaceAll(
+      /markup-refine-lib@\d+\.\d+\.\d+/g,
+      `markup-refine-lib@${packageJson.version}`
     );
     fs.writeFileSync(documentationContext, updatedDocumentationContent);
 
@@ -123,6 +123,16 @@ async function releaseNewVersion(versionType = "patch", customMessage = "") {
     console.log("Version released successfully:", packageJson.version);
   } catch (error) {
     console.error("Failed to release version:", error);
+  }
+  try {
+    await execShellCommand("npm run astro:build");
+    await execShellCommand("git add docs/\*");
+    await execShellCommand(
+      `git commit -am "docs: update docs for the new version"`
+    );
+    await execShellCommand("git push origin main");
+  } catch (error) {
+    console.error("Failed to generate the docs:", error);
   }
 }
 

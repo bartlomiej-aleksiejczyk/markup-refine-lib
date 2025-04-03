@@ -1,9 +1,3 @@
-@import "specialized-native-elements/forms.css";
-@import "specialized-native-elements/headings.css";
-@import "specialized-native-elements/links.css";
-@import "specialized-native-elements/lists.css";
-@import "specialized-native-elements/formatted-texts.css";
-
 main {
   padding: 1rem;
 }

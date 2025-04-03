@@ -14,16 +14,20 @@ export default defineConfig({
     cssCodeSplit: true,
     lib: {
       entry: [
-        resolve(__dirname, "src", "webComponents.ts"),
+        resolve(__dirname, "src", "webComponents" ,"markupRefineLibWebComponents.ts"),
         resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib.css"),
+        resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-variables.css"),
+        resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-reset.css"),
+        resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-class-components.css"),
+        resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-classless.css"),
         resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-scoped.scss"),
-
       ],
       name: "OfflineNotesClientComponents",
       formats: ["es"],
     },
   },
   server: {
+    cors: true,
     watch: {
       usePolling: true
     }

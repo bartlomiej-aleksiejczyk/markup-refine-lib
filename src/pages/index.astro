@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../astroComponents/layouts/BaseLayout.astro";
+import BaseLayout from "../astro/layouts/BaseLayout.astro";
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
 const rawComponents = await getCollection("rawComponents");
@@ -24,7 +24,8 @@ const rawComponents = await getCollection("rawComponents");
     <iframe
       class="component-preview"
       src="about"
-      sandbox="allow-scripts"
+      allow-scripts
+      allow-same-origin
       title="Selected component display"></iframe>
   </div>
   <script>

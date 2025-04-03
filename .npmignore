@@ -27,7 +27,7 @@ docs
 
 # NPM ignore
 .vscode
-src/astroComponents
+src/astro
 src/pages
 src/content.config.js
 astro.config.mjs
