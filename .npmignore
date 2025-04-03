@@ -34,3 +34,5 @@ src/content.config.js
 astro.config.mjs
 src/build/
 .gitignore
+dist/.vite/
+!NOTICE
