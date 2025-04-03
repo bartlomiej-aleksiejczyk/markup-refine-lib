@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../astro/layouts/BaseLayout.astro";
+import LibraryStyleLayout from "../astro/layouts/LibraryStyleLayout.astro";
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
 const rawComponents = await getCollection("rawComponents");
 ---
 
-<BaseLayout>
+<LibraryStyleLayout>
   <main class="responsive-container">
     <section id="introduction">
       <h1>Introduction to markup-refine-lib.css</h1>
@@ -296,4 +296,4 @@ const rawComponents = await getCollection("rawComponents");
       <small>markup-refine-lib.css - released under MIT license</small>
     </footer>
   </main>
-</BaseLayout>
+</LibraryStyleLayout>
