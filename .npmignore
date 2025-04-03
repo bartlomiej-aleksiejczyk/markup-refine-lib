@@ -26,8 +26,12 @@ docs
 .astro
 
 # NPM ignore
-.vscode
-src/astro
-src/pages
+.vscode/
+.astro/
+docs/
+src/astro/
+src/pages/
 src/content.config.js
 astro.config.mjs
+src/build/
+.gitignore
