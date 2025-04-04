@@ -1,21 +1,17 @@
-
-/* Table component */
-
-/* Add data-label attribute content before each td on small screens */
-
 table {
   margin: auto;
+  display: block;
   max-width: 100%;
   border-collapse: collapse;
-  padding: 1rem 0.2rem;
+  padding: 1rem 0.2rem 0;
   margin-bottom: 2rem;
-}
-
-.table-responsive {
   overflow-x: scroll;
 }
-
-.table- th,
+tr:hover {
+  background-color: var(--color-background-light-contrast);
+  transition: background-color 0.2s ease-in-out;
+}
+th,
 td {
   border: 1px solid var(--color-secondary-darker);
   padding: 0.5rem;
@@ -23,6 +19,7 @@ td {
 }
 
 tr {
+  background-color: var(--color-main-text-area);
   th {
     border: 1px solid var(--color-secondary-darker);
     padding: 0.5rem;

@@ -1,0 +1,95 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+---
+
+<LibraryStyleLayout>
+  <main class="responsive-container py-6">
+    <h1 class="text-2xl font-bold mb-4">📋 Dynamic Data Table</h1>
+
+    <div>
+      <table class="table-responsive">
+        <thead class="bg-gray-100 sticky top-0 z-10">
+          <tr>
+            <th class="p-3 border-b">ID</th>
+            <th class="p-3 border-b">Name</th>
+            <th class="p-3 border-b">Category</th>
+            <th class="p-3 border-b">Status</th>
+            <th class="p-3 border-b">Description</th>
+            <th class="p-3 border-b">Price</th>
+            <th class="p-3 border-b">Stock</th>
+            <th class="p-3 border-b">SKU</th>
+            <th class="p-3 border-b">Supplier</th>
+            <th class="p-3 border-b">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3">1</td>
+            <td class="p-3">Laptop Pro X</td>
+            <td class="p-3">Electronics</td>
+            <td class="p-3 text-green-600">Available</td>
+            <td class="p-3"
+              >A high-performance laptop suitable for developers and gamers.</td
+            >
+            <td class="p-3">$1,299.99</td>
+            <td class="p-3">34</td>
+            <td class="p-3">LPX-899</td>
+            <td class="p-3">TechSource</td>
+            <td class="p-3">4.8⭐</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3">2</td>
+            <td class="p-3">Ergonomic Chair Deluxe</td>
+            <td class="p-3">Furniture</td>
+            <td class="p-3 text-yellow-600">Low Stock</td>
+            <td class="p-3"
+              >Comfortable, adjustable office chair with lumbar support and mesh
+              back.</td
+            >
+            <td class="p-3">$199.50</td>
+            <td class="p-3">5</td>
+            <td class="p-3">CH-ERGO-002</td>
+            <td class="p-3">FurniPlus</td>
+            <td class="p-3">4.2⭐</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3">3</td>
+            <td class="p-3">Multi-function Printer 9000</td>
+            <td class="p-3">Office Equipment</td>
+            <td class="p-3 text-red-600">Out of Stock</td>
+            <td class="p-3"
+              >All-in-one printer with wireless printing, scanning, and cloud
+              support.</td
+            >
+            <td class="p-3">$449.00</td>
+            <td class="p-3">0</td>
+            <td class="p-3"
+              >MFP-9000Xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</td
+            >
+            <td class="p-3">PrintLab</td>
+            <td class="p-3">3.9⭐</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3">4</td>
+            <td class="p-3">Desk Lamp Touch</td>
+            <td class="p-3">Lighting</td>
+            <td class="p-3 text-blue-500">Pre-Order</td>
+            <td class="p-3"
+              >Minimalist LED lamp with touch controls and USB charging port.</td
+            >
+            <td class="p-3">$45.75</td>
+            <td class="p-3">N/A</td>
+            <td class="p-3">LAMP-201</td>
+            <td class="p-3">BrightHome</td>
+            <td class="p-3">4.5⭐</td>
+          </tr>
+          <!-- You can continue adding more rows dynamically here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="text-center text-xs text-gray-400 mt-8">
+    &copy; 2025 MySite. All rights reserved.
+  </footer>
+</LibraryStyleLayout>

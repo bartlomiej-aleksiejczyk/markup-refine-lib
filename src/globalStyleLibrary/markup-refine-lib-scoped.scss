@@ -17,4 +17,7 @@
   @include meta.load-css(
     "element-components/specialized-native-elements/formatted-texts.css"
   );
+  @include meta.load-css(
+    "element-components/specialized-native-elements/table.css"
+  );
 }

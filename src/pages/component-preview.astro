@@ -1,19 +1,17 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../astro/layouts/BaseLayout.astro";
-// Get all entries from a collection.
-// Requires the name of the collection as an argument.
+
 const rawComponents = await getCollection("rawComponents");
 ---
 
 <BaseLayout title="Component Preview">
   <div class="main-container">
     <h1>Component preview</h1>
-    <label for="pet-select">Choose a component:</label>
+    <label for="component-select">Choose a component:</label>
 
     <select name="component" id="component-select">
-      <option value="rawComponents/about">--Please choose an option--</option>
-
+      <option value="">--Please choose an option--</option>
       {
         rawComponents.map((component) => (
           <option value={component.data.url}>{component.id}</option>
@@ -23,30 +21,34 @@ const rawComponents = await getCollection("rawComponents");
 
     <iframe
       class="component-preview"
-      src="about"
+      src=""
       allow-scripts
       allow-same-origin
       title="Selected component display"></iframe>
   </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const componentSelect = document.getElementById("component-select");
       const iframe = document.querySelector(".component-preview");
 
-      const initialValue = componentSelect.value;
-      if (initialValue) {
-        iframe.src = initialValue;
+      // Load saved selection from localStorage
+      const savedComponent = localStorage.getItem("selectedComponent");
+      if (savedComponent) {
+        componentSelect.value = savedComponent;
+        iframe.src = savedComponent;
       }
 
       componentSelect.addEventListener("change", function (event) {
         const selectedValue = event.target.value;
-
         if (selectedValue) {
           iframe.src = selectedValue;
+          localStorage.setItem("selectedComponent", selectedValue);
         }
       });
     });
   </script>
+
   <style>
     .main-container {
       display: flex;
@@ -54,8 +56,7 @@ const rawComponents = await getCollection("rawComponents");
       align-items: center;
       gap: 1rem;
     }
-    .component-picker {
-    }
+
     .component-preview {
       resize: both;
       overflow: auto;
