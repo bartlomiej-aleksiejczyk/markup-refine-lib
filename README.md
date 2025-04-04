@@ -9,9 +9,9 @@
 To integrate markup-refine-lib into your project, add the following link to the `<head>` section of your HTML file:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.3.0/dist/markup-refine-lib.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.3.0/dist/webComponents.css" />
-<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.3.0/dist/webComponents.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.3.1/dist/markup-refine-lib.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.3.1/dist/webComponents.css" />
+<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.3.1/dist/webComponents.js"></script>
 ```
 
 This link points to the latest stable version hosted on the jsDelivr CDN, ensuring you are always using the most up-to-date version of the library.
