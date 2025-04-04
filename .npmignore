@@ -30,6 +30,7 @@ docs
 docs/
 src/astro/
 src/pages/
+src/site.config.js
 src/content.config.js
 astro.config.mjs
 src/build/
