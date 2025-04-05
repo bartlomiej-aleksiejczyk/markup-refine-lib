@@ -1,14 +1,14 @@
 table {
   margin: auto;
-  display: block;
   max-width: 100%;
   border-collapse: collapse;
   padding: 1rem 0.2rem 0;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   overflow-x: scroll;
+  text-align: center;
 }
 tr:hover {
-  background-color: var(--color-background-light-contrast);
+  background-color: var(--color-main-text-area-darker);
   transition: background-color 0.2s ease-in-out;
 }
 th,
@@ -30,37 +30,17 @@ tr {
 thead {
   background-color: var(--color-secondary);
 }
+tbody {
+  margin: 0 auto;
+}
 @media screen and (max-width: 480px) {
-  table,
-  thead,
-  tbody,
-  td,
-  tr {
-    display: block;
-  }
-
-  th {
-    display: none;
-  }
-
   caption {
     width: 95%;
-  }
-
-  thead tr {
-    display: none;
   }
 
   tr {
     border: 1px solid var(--color-secondary-darker);
     margin-bottom: 0.5rem;
-  }
-
-  td {
-    border: none;
-    border-bottom: 1px solid var(--color-secondary-darker);
-    position: relative;
-    display: grid;
   }
 
   td:before {

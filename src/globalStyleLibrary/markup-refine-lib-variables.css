@@ -35,6 +35,7 @@
   --color-help: hsl(260, 69%, 87%);
   --color-help-darker: hsl(257, 48%, 64%);
 
+  --color-main-text-area-darker: hsl(0, 0%, 97%);
   --color-main-text-area: hsl(0, 0%, 100%);
   --color-main-text: hsl(0, 0%, 0%);
 
@@ -88,6 +89,7 @@
     --color-help: hsl(250, 25%, 42%);
     --color-help-darker: hsl(255, 26%, 27%);
 
+    --color-main-text-area-darker: hsl(0, 0%, 12%);
     --color-main-text-area: hsl(0, 0%, 15%);
     --color-main-text: hsl(0, 0%, 100%);
   }

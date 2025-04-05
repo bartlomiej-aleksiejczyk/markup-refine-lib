@@ -3,10 +3,10 @@ import { defineCollection } from "astro:content";
 import { file } from "astro/loaders";
 import { BASE } from "./site.config.js"; // ✅ Import shared base
 
-const rawComponents = defineCollection({
+const websiteComponents = defineCollection({
   loader: () => {
     const data = Object.keys(
-      import.meta.glob("./pages/rawComponents/*.astro", { eager: true })
+      import.meta.glob("./pages/website-components/*.astro", { eager: true })
     );
 
     return data.map((path) => {
@@ -22,4 +22,4 @@ const libraryLinks = defineCollection({
   loader: file("src/astro/libraryInfo.json"),
 });
 
-export const collections = { rawComponents, libraryLinks };
+export const collections = { websiteComponents, libraryLinks };

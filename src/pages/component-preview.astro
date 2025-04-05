@@ -2,10 +2,10 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../astro/layouts/BaseLayout.astro";
 
-const rawComponents = await getCollection("rawComponents");
+const websitecomponents = await getCollection("websiteComponents");
 ---
 
-<BaseLayout title="Component Preview">
+<BaseLayout>
   <div class="main-container">
     <h1>Component preview</h1>
     <label for="component-select">Choose a component:</label>
@@ -13,7 +13,7 @@ const rawComponents = await getCollection("rawComponents");
     <select name="component" id="component-select">
       <option value="">--Please choose an option--</option>
       {
-        rawComponents.map((component) => (
+        websitecomponents.map((component) => (
           <option value={component.data.url}>{component.id}</option>
         ))
       }
