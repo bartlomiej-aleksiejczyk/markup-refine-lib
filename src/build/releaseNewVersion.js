@@ -45,7 +45,7 @@ async function releaseNewVersion(versionType = "patch", customMessage = "") {
     }
 
     await execShellCommand("npm run build");
-    await execShellCommand("git add dist/\*");
+    await execShellCommand("git add dist/*");
     const packageJsonPath = path.join(process.cwd(), "package.json");
     const packageLockJsonPath = path.join(process.cwd(), "package-lock.json");
     const readmePath = path.join(process.cwd(), "README.md");
@@ -127,7 +127,14 @@ async function releaseNewVersion(versionType = "patch", customMessage = "") {
   }
   try {
     await execShellCommand("npm run astro:build");
-    await execShellCommand("git add docs/\*");
+    const nojekyllPath = path.join(process.cwd(), "docs", ".nojekyll");
+    try {
+      fs.writeFileSync(nojekyllPath, "");
+      console.log(".nojekyll file created in docs/");
+    } catch (err) {
+      console.error("Failed to write .nojekyll file:", err);
+    }
+    await execShellCommand("git add docs/*");
     await execShellCommand(
       `git commit -am "docs: update docs for the new version"`
     );
