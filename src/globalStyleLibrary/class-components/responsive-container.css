@@ -9,6 +9,11 @@
   min-height: 70%;
 }
 
+@media (max-width: 1600px) {
+  .responsive-container {
+    max-width: 65%;
+  }
+}
 @media (max-width: 1250px) {
   .responsive-container {
     max-width: 75%;
