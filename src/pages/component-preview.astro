@@ -9,15 +9,19 @@ const websitecomponents = await getCollection("websiteComponents");
   <div class="main-container">
     <h1>Component preview</h1>
     <label for="component-select">Choose a component:</label>
-
-    <select name="component" id="component-select">
-      <option value="">--Please choose an option--</option>
-      {
-        websitecomponents.map((component) => (
-          <option value={component.data.url}>{component.id}</option>
-        ))
-      }
-    </select>
+    <div>
+      <select name="component" id="component-select">
+        <option value="">--Please choose an option--</option>
+        {
+          websitecomponents.map((component) => (
+            <option value={component.data.url}>{component.id}</option>
+          ))
+        }
+      </select>
+      <a id="components-link" href="https://example.com" target="_blank"
+        >Visit Selected</a
+      >
+    </div>
 
     <iframe
       class="component-preview"
@@ -31,18 +35,20 @@ const websitecomponents = await getCollection("websiteComponents");
     document.addEventListener("DOMContentLoaded", function () {
       const componentSelect = document.getElementById("component-select");
       const iframe = document.querySelector(".component-preview");
+      const link = document.querySelector("#components-link");
 
-      // Load saved selection from localStorage
       const savedComponent = localStorage.getItem("selectedComponent");
       if (savedComponent) {
         componentSelect.value = savedComponent;
         iframe.src = savedComponent;
+        link.href = savedComponent;
       }
 
       componentSelect.addEventListener("change", function (event) {
         const selectedValue = event.target.value;
         if (selectedValue) {
           iframe.src = selectedValue;
+          link.href = selectedValue;
           localStorage.setItem("selectedComponent", selectedValue);
         }
       });

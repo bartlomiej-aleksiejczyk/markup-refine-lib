@@ -41,15 +41,33 @@ class SideTopTopNavigation extends HTMLElement {
   }
 
   render() {
+    const root = document.documentElement;
+    const styles = getComputedStyle(root);
+
     const primaryTopbarColor =
-      this.getAttribute("primary-topbar-color") || "rgb(85, 85, 85)";
+      this.getAttribute("primary-topbar-color") ||
+      styles.getPropertyValue("--color-secondary-darker").trim() ||
+      "hsl(0, 0%, 71%)";
+
     const secondaryTopbarColor =
-      this.getAttribute("secondary-topbar-color") || "rgb(133, 133, 133)";
+      this.getAttribute("secondary-topbar-color") ||
+      styles.getPropertyValue("--color-secondary-lighter").trim() ||
+      "hsl(0, 0%, 94%)";
+
     const primarySidebarColor =
-      this.getAttribute("primary-sidebar-color") || "rgb(54, 54, 54)";
-    const iconColor = this.getAttribute("icon-color") || "rgb(211, 211, 211)";
+      this.getAttribute("primary-sidebar-color") ||
+      styles.getPropertyValue("--color-secondary").trim() ||
+      "hsl(0, 0%, 87%)";
+
+    const iconColor =
+      this.getAttribute("icon-color") ||
+      styles.getPropertyValue("--color-text-secondary").trim() ||
+      "hsl(0, 0%, 33%)";
+
     const iconColorHighlight =
-      this.getAttribute("icon-color-highlight") || "rgb(255, 255, 255)";
+      this.getAttribute("icon-color-highlight") ||
+      styles.getPropertyValue("--color-text-primary").trim() ||
+      "hsl(0, 0%, 20%)";
 
     const primaryTopbarUsed =
       this.querySelector('[slot="primary-topbar"]') !== null;

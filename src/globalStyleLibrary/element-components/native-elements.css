@@ -9,7 +9,7 @@ body {
   color: var(--color-text-primary);
   font-family:
     "Verdana",
-    "Noto Sans" sans-serif;
+    "Noto Sans", sans-serif;
   line-height: 1.6;
 }
 

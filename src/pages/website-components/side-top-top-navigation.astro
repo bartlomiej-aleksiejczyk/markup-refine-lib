@@ -1,0 +1,59 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import "../../webComponents/sideTopTopNavigation/sideTopTopNavigation.css";
+---
+
+<LibraryStyleLayout>
+  <script src="../../webComponents/sideTopTopNavigation/sideTopTopNavigation.js"
+  ></script>
+  <side-top-top-navigation>
+    <div slot="primary-topbar">Primary Topbar</div>
+    <div slot="secondary-topbar">Secondary Topbar</div>
+    <div slot="sidebar">Sidebar content</div>
+  </side-top-top-navigation>
+
+  <main class="stt-navigation-main-content responsive-container">
+    <h1>Side Top Top Navigation</h1>
+    <p>
+      This component provides fully responsive navigation bars using a Web
+      Component:
+    </p>
+
+    <h2>Usage</h2>
+    <p>
+      To use this component, add the following code and insert your own HTML
+      into the topbar's slots:
+    </p>
+
+    <pre>
+      <code>
+        &lt;side-top-top-navigation&gt;
+          &lt;div slot=&quot;primary-topbar&quot;&gt;Primary Topbar&lt;/div&gt;
+          &lt;div slot=&quot;secondary-topbar&quot;&gt;Secondary Topbar&lt;/div&gt;
+          &lt;div slot=&quot;sidebar&quot;&gt;Sidebar content&lt;/div&gt;
+        &lt;/side-top-top-navigation&gt;
+      </code>
+    </pre>
+
+    <p><b>Info:</b> You need to add your own styles to the topbar content.</p>
+
+    <p>
+      The second thing you need is to adjust your website layout by adding the
+      class <code>stt-navigation-main-content</code>:
+    </p>
+
+    <pre>
+      <code>
+        &lt;main class=&quot;stt-navigation-main-content responsive-container&quot;&gt;
+          ...your content
+        &lt;/main&gt;
+      </code>
+    </pre>
+
+    <p>
+      <b>Info:</b> As you can see, you can combine the layout class with the <code
+        >responsive-container</code
+      > class to improve page responsiveness.
+    </p>
+  </main>
+</LibraryStyleLayout>

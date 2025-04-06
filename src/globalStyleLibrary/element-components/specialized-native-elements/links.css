@@ -1,6 +1,5 @@
 a {
   color: var(--color-link);
-  text-decoration: none;
   transition: color 0.3s ease;
 }
 
