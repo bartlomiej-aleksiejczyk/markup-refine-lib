@@ -1,4 +1,4 @@
-class l extends HTMLElement {
+class p extends HTMLElement {
   constructor() {
     super(), this.attachShadow({ mode: "open" });
   }
@@ -6,28 +6,28 @@ class l extends HTMLElement {
     this.render(), this.setupEventListeners();
   }
   setupEventListeners() {
-    const e = this.shadowRoot.querySelector("#sidebar-toggle"), o = this.shadowRoot.querySelector("#dismiss-button"), r = this.shadowRoot.querySelector(".primary-sidebar"), t = this.shadowRoot.querySelector(".overlay");
-    e && r && t && e.addEventListener("click", () => {
+    const o = this.shadowRoot.querySelector("#sidebar-toggle"), e = this.shadowRoot.querySelector("#dismiss-button"), r = this.shadowRoot.querySelector(".primary-sidebar"), t = this.shadowRoot.querySelector(".overlay");
+    o && r && t && o.addEventListener("click", () => {
       r.classList.toggle("drawer-open"), t.classList.add("visible"), document.body.style.overflowY = "hidden";
-    }), o && r && t && o.addEventListener("click", () => {
+    }), e && r && t && e.addEventListener("click", () => {
       r.classList.remove("drawer-open"), t.classList.remove("visible"), document.body.style.overflowY = "visible";
     }), t && r && t.addEventListener("click", () => {
       r.classList.remove("drawer-open"), t.classList.remove("visible"), document.body.style.overflowY = "visible";
     });
   }
   render() {
-    const e = this.getAttribute("primary-topbar-color") || "rgb(85, 85, 85)", o = this.getAttribute("secondary-topbar-color") || "rgb(133, 133, 133)", r = this.getAttribute("primary-sidebar-color") || "rgb(54, 54, 54)", t = this.getAttribute("icon-color") || "rgb(211, 211, 211)", i = this.getAttribute("icon-color-highlight") || "rgb(255, 255, 255)", a = this.querySelector('[slot="primary-topbar"]') !== null, s = this.querySelector('[slot="secondary-topbar"]') !== null, n = a ? "" : "hidden", d = s ? "" : "hidden";
+    const o = document.documentElement, e = getComputedStyle(o), r = this.getAttribute("primary-topbar-color") || e.getPropertyValue("--color-secondary-darker").trim() || "hsl(0, 0%, 71%)", t = this.getAttribute("secondary-topbar-color") || e.getPropertyValue("--color-secondary-lighter").trim() || "hsl(0, 0%, 94%)", a = this.getAttribute("primary-sidebar-color") || e.getPropertyValue("--color-secondary").trim() || "hsl(0, 0%, 87%)", i = this.getAttribute("icon-color") || e.getPropertyValue("--color-text-secondary").trim() || "hsl(0, 0%, 33%)", s = this.getAttribute("icon-color-highlight") || e.getPropertyValue("--color-text-primary").trim() || "hsl(0, 0%, 20%)", n = this.querySelector('[slot="primary-topbar"]') !== null, l = this.querySelector('[slot="secondary-topbar"]') !== null, d = n ? "" : "hidden", c = l ? "" : "hidden";
     this.shadowRoot.innerHTML = `
       <style>
         :host {
           --primary-topbar-height: 5rem;
           --secondary-topbar-height: 3rem;
           --primary-sidebar-width: 20rem;
-          --icon-color: #${t};
+          --icon-color: #${i};
         }
 
         .primary-topbar {
-          background-color: ${e};
+          background-color: ${r};
           width: 100vw;
           height: var(--primary-topbar-height);
           position: fixed;
@@ -38,7 +38,7 @@ class l extends HTMLElement {
         }
 
         .secondary-topbar {
-          background-color: ${o};
+          background-color: ${t};
           top: var(--primary-topbar-height);
           left: var(--primary-sidebar-width);
           height: var(--secondary-topbar-height);
@@ -49,7 +49,7 @@ class l extends HTMLElement {
         }
 
         .primary-sidebar {
-          background-color: ${r};
+          background-color: ${a};
           top: var(--primary-topbar-height);
           height: calc(100% - var(--primary-topbar-height));
           width: var(--primary-sidebar-width);
@@ -84,12 +84,12 @@ class l extends HTMLElement {
           align-items: center;        
         }
         .button svg path {
-          fill: ${t};
+          fill: ${i};
           transition: fill 0.3s ease;
         }
 
         .button:hover svg path {
-          fill: ${i};
+          fill: ${s};
         }
 
         #dismiss-button {
@@ -168,10 +168,10 @@ class l extends HTMLElement {
             -->
               <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" ><path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"/></svg>            
             </button>
-            <slot name="primary-topbar" class="${n}"></slot>
+            <slot name="primary-topbar" class="${d}"></slot>
 
             </div>
-          <div class="secondary-topbar ${d}">
+          <div class="secondary-topbar ${c}">
 
             <slot name="secondary-topbar"></slot>
           </div>
@@ -196,4 +196,4 @@ class l extends HTMLElement {
     `;
   }
 }
-customElements.define("side-top-top-navigation", l);
+customElements.define("side-top-top-navigation", p);
