@@ -7,8 +7,11 @@ class SideTopTopNavigation extends HTMLElement {
   connectedCallback() {
     this.render();
     this.setupEventListeners();
+    this.revealComponent();
   }
-
+  revealComponent() {
+    this.style.display = "block";
+  }
   setupEventListeners() {
     const drawerToggle = this.shadowRoot.querySelector("#sidebar-toggle");
     const dismissButton = this.shadowRoot.querySelector("#dismiss-button");

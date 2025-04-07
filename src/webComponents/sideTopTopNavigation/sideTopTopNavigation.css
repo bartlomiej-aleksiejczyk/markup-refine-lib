@@ -3,6 +3,9 @@
   --stt-secondary-topbar-height: 3rem;
   --stt-primary-sidebar-width: 20rem;
 }
+side-top-top-navigation {
+  display: none;
+}
 .stt-navigation-main-content {
   margin-left: calc(var(--stt-primary-sidebar-width) + 1rem);
   margin-top: calc(
