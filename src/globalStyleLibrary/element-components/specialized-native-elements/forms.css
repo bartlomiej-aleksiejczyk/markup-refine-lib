@@ -23,16 +23,19 @@ textarea {
   &:focus {
     outline: 1px dashed var(--color-primary-lighter);
   }
+  &:disabled {
+    background-color: var(--color-secondary);
+  }
   font-family: inherit;
   padding: 0.5rem;
-  border: 2px solid var(--color-secondary);
+  border: 2px solid var(--color-secondary-darker);
   border-radius: var(--border-radius-medium);
   margin: 0rem auto 1.5rem;
   width: 100%;
   max-width: 100%;
   display: block;
   justify-content: center;
-  background-color: var(--color-main-text-area-darker);
+  background-color: var(--color-background);
   color: var(--color-text-primary);
 }
 
