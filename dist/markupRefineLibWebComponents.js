@@ -3,7 +3,10 @@ class p extends HTMLElement {
     super(), this.attachShadow({ mode: "open" });
   }
   connectedCallback() {
-    this.render(), this.setupEventListeners();
+    this.render(), this.setupEventListeners(), this.revealComponent();
+  }
+  revealComponent() {
+    this.style.display = "block";
   }
   setupEventListeners() {
     const o = this.shadowRoot.querySelector("#sidebar-toggle"), e = this.shadowRoot.querySelector("#dismiss-button"), r = this.shadowRoot.querySelector(".primary-sidebar"), t = this.shadowRoot.querySelector(".overlay");
