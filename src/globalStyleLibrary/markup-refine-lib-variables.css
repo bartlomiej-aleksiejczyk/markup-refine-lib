@@ -75,7 +75,7 @@
     --color-background-light-contrast: hsl(0, 0%, 16%);
 
     --color-positive-darker: hsl(120, 20%, 50%);
-    --color-positive: hsl(120, 33%, 1%);
+    --color-positive: hsl(120, 33%, 30%);
 
     --color-negative-darker: hsl(0, 20%, 50%);
     --color-negative: hsl(0, 33%, 30%);
