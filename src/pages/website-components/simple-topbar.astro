@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+---
+
+<LibraryStyleLayout>
+  <header class="navbar">
+    <div class="navbar-brand">MySite</div>
+    <div class="group">
+      <a href="">Home</a>
+      <a href="">About Us</a>
+      <a href="">Contact</a>
+    </div>
+  </header>
+
+  <main class="responsive-container">
+    <h2>Simple Topbar Component</h2>
+    <p>
+      For simple cases, class <code>navbar</code> can be used to style the top bar.
+    </p>
+
+    <p>
+      To improve apperance of topbar element classes: <code>navbar-brand</code> and
+      <code>group</code> can be used.
+    </p>
+
+    <pre><code>
+    &lt;header class=&quot;navbar&quot;&gt;
+        &lt;div class=&quot;navbar-brand&quot;&gt;MySite&lt;/div&gt;
+        &lt;div class=&quot;group&quot;&gt;
+          &lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;
+          &lt;a href=&quot;&quot;&gt;About Us&lt;/a&gt;
+          &lt;a href=&quot;&quot;&gt;Contact&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+    </code></pre>
+  </main>
+</LibraryStyleLayout>
