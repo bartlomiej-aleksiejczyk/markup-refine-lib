@@ -7,7 +7,7 @@ fieldset {
 form {
   margin: 1rem 0;
   padding: 1.5rem 2rem;
-  background: var(--color-secondary-lighter);
+  background: var(--color-background-light-contrast);
   border-radius: var(--border-radius-large);
   & button,
   input[type="submit"],
@@ -32,7 +32,7 @@ textarea {
   max-width: 100%;
   display: block;
   justify-content: center;
-  background-color: var(--color-text-on-primary);
+  background-color: var(--color-main-text-area-darker);
   color: var(--color-text-primary);
 }
 
