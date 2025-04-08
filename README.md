@@ -7,7 +7,8 @@
 ## How to Use
 
 To integrate markup-refine-lib into your project, add the following link to the `<head>` section of your HTML file:
-
+`
+### Usage in html:
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/markup-refine-lib.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/webComponents.css" />
@@ -18,6 +19,41 @@ This link points to the latest stable version hosted on the jsDelivr CDN, ensuri
 
 More detailed instructions and usage examples can be found on the [documentation page](https://bartlomiej-aleksiejczyk.github.io/markup-refine-lib/).
 
+### Usage via npm:
+
+You can also import the library using npm:
+```shell
+npm i markup-refine-lib
+```
+
+Then, import the necessary files in your project:
+```js
+import "markup-refine-lib/dist/markup-refine.css";
+import "markup-refine-lib/dist/markupRefineLibWebComponents.css";
+import "markup-refine-lib/dist/markupRefineLibWebComponents.js";
+```
+### Selective usage:
+
+If you only need specific features from the library, you can selectively import just the parts you need.
+
+Using html:
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/markup-refine-lib-reset.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/markup-refine-lib-class-components.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/markup-refine-lib-variables.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/markup-refine-lib-scoped.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/webComponents.css" />
+<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.4.1/dist/webComponents.js"></script>
+```
+Using npm:
+```js
+import "markup-refine-lib/dist/markup-refine-reset.css";
+import "markup-refine-lib/dist/markup-refine-variables.css";
+import "markup-refine-lib/dist/markup-refine-class-components.css";
+import "markup-refine-lib/dist/markup-refine-scoped.css";
+import "markup-refine-lib/dist/markupRefineLibWebComponents.css";
+import "markup-refine-lib/dist/markupRefineLibWebComponents.js";
+```
 ## Local Development
 
 To devlop markup-refine-lib, follow these steps:
