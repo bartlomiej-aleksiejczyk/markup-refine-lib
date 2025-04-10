@@ -7,9 +7,7 @@ body {
   padding: 0;
   background-color: var(--color-background);
   color: var(--color-text-primary);
-  font-family:
-    "Verdana",
-    "Noto Sans", sans-serif;
+  font-family: "Verdana", "Noto Sans", sans-serif;
   line-height: 1.6;
 }
 
@@ -105,7 +103,8 @@ iframe {
 audio,
 video,
 map {
-  width: 100%;
+  display: block;
+  margin: 0 auto;
   border: none;
   border-radius: var(--border-radius-large);
 }
