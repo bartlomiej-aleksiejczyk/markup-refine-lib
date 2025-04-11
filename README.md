@@ -29,8 +29,8 @@ npm i markup-refine-lib
 Then, import the necessary files in your project:
 ```js
 import "markup-refine-lib/dist/markup-refine.css";
-import "markup-refine-lib/dist/markupRefineLibWebComponents.css";
-import "markup-refine-lib/dist/markupRefineLibWebComponents.js";
+import "markup-refine-lib/dist/markup-refine-lib-web-components.css";
+import "markup-refine-lib/dist/markup-refine-lib-web-components.js";
 ```
 ### Selective usage:
 
@@ -51,8 +51,8 @@ import "markup-refine-lib/dist/markup-refine-reset.css";
 import "markup-refine-lib/dist/markup-refine-variables.css";
 import "markup-refine-lib/dist/markup-refine-class-components.css";
 import "markup-refine-lib/dist/markup-refine-scoped.css";
-import "markup-refine-lib/dist/markupRefineLibWebComponents.css";
-import "markup-refine-lib/dist/markupRefineLibWebComponents.js";
+import "markup-refine-lib/dist/markup-refine-lib-web-components.css";
+import "markup-refine-lib/dist/markup-refine-lib-web-components.js";
 ```
 ## Local Development
 

@@ -14,7 +14,7 @@ export default defineConfig({
     cssCodeSplit: true,
     lib: {
       entry: [
-        resolve(__dirname, "src", "webComponents" ,"markupRefineLibWebComponents.ts"),
+        resolve(__dirname, "src", "webComponents" ,"markup-refine-lib-web-components.ts"),
         resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib.css"),
         resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-variables.css"),
         resolve(__dirname, "src", "globalStyleLibrary" ,"markup-refine-lib-reset.css"),
