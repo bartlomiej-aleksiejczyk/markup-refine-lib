@@ -189,7 +189,7 @@ class SideTopTopNavigation extends HTMLElement {
           }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
           .primary-sidebar{
             transition: transform 0.3s ease-in-out;
             height: 100vh;
