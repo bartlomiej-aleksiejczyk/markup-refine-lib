@@ -3,6 +3,23 @@
   --stt-secondary-topbar-height: 3rem;
   --stt-primary-sidebar-width: 20rem;
 }
+
+.stt-primary-sidebar {
+  height: calc(100vh - var(--stt-primary-topbar-height));
+  width: var(--stt-primary-sidebar-width);
+  overflow: auto;
+}
+.stt-primary-topbar {
+  height: var(--stt-primary-topbar-height);
+  width: 100vw;
+  overflow: auto;
+}
+.stt-secondary-topbar {
+  height: var(--stt-secondary-topbar-height);
+  width: calc(100vw - var(--primary-sidebar-width));
+  overflow: auto;
+}
+
 side-top-top-navigation {
   display: none;
 }
@@ -21,5 +38,8 @@ side-top-top-navigation {
 @media (max-width: 992px) {
   .stt-navigation-main-content {
     margin-left: auto;
+  }
+  .stt-primary-sidebar {
+    height: 100vh;
   }
 }
