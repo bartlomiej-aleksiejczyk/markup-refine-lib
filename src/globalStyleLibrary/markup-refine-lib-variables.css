@@ -3,6 +3,7 @@
   /* Global Colors */
 
   --color-link: hsl(200, 100%, 30%);
+  --color-link-visited: hsl(234, 50%, 30%);
   --color-link-hover: hsl(210, 100%, 20%);
 
   --color-primary: hsl(0, 0%, 41%);
@@ -57,6 +58,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-link: hsl(200, 60%, 50%);
+    --color-link-visited: hsl(234, 50%, 60%);
     --color-link-hover: hsl(213, 100%, 70%);
 
     --color-primary: hsl(0, 0%, 31%);

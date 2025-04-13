@@ -8,3 +8,6 @@ a:focus {
   color: var(--color-link-hover);
   text-decoration: underline;
 }
+a:visited {
+  color: var(--color-link-visited);
+}
