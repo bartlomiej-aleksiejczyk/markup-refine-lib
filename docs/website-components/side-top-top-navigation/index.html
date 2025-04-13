@@ -1,25 +1,41 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/index.CdemZlRm.css">
-<style>:root{--stt-primary-topbar-height: 5rem;--stt-secondary-topbar-height: 3rem;--stt-primary-sidebar-width: 20rem}side-top-top-navigation{display:none}.stt-navigation-main-content{margin-left:calc(var(--stt-primary-sidebar-width) + 1rem);margin-top:calc(var(--stt-primary-topbar-height) + var(--stt-secondary-topbar-height) + 1rem)}.stt-navigation-main-content,.responsive-container{margin-right:calc(var(--stt-primary-sidebar-width) + 1rem)}@media (max-width: 1800px){.stt-navigation-main-content,.responsive-container{max-width:65%}}@media (max-width: 1700px){.stt-navigation-main-content,.responsive-container{max-width:75%}}@media (max-width: 1400px){.stt-navigation-main-content,.responsive-container{margin-right:auto}}@media (max-width: 768px){.stt-navigation-main-content{margin-left:auto}}
-</style></head> <body>  <script type="module" src="/markup-refine-lib/_astro/side-top-top-navigation.astro_astro_type_script_index_0_lang.CkmwAc68.js"></script> <side-top-top-navigation> <div slot="primary-topbar">Primary Topbar</div> <div slot="secondary-topbar">Secondary Topbar</div> <div slot="sidebar">Sidebar content</div> </side-top-top-navigation> <main class="stt-navigation-main-content responsive-container"> <h1>Side Top Top Navigation</h1> <p>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/index.Bd1-DMoU.css">
+<style>:root{--stt-primary-topbar-height: 5rem;--stt-secondary-topbar-height: 3rem;--stt-primary-sidebar-width: 20rem}.stt-primary-sidebar{height:calc(100vh - var(--stt-primary-topbar-height));width:var(--stt-primary-sidebar-width);overflow:auto}.stt-primary-topbar{height:var(--stt-primary-topbar-height);width:100vw;overflow:auto}.stt-secondary-topbar{height:var(--stt-secondary-topbar-height);width:calc(100vw - var(--primary-sidebar-width));overflow:auto}side-top-top-navigation{display:none}.stt-navigation-main-content{margin-top:calc(var(--stt-primary-topbar-height) + var(--stt-secondary-topbar-height) + 1rem)}@media (max-width: 1700px){.stt-navigation-main-content,.responsive-container{margin-left:calc(var(--stt-primary-sidebar-width))}}@media (max-width: 992px){.stt-navigation-main-content{margin-left:auto}.stt-primary-sidebar{height:100vh}}
+</style></head> <body>  <script type="module" src="/markup-refine-lib/_astro/side-top-top-navigation.astro_astro_type_script_index_0_lang.DJkm-9V0.js"></script> <side-top-top-navigation> <div slot="primary-topbar">Primary Topbar</div> <div slot="secondary-topbar" class="stt-secondary-topbar">
+Secondary Topbar
+</div> <div slot="sidebar" class="stt-primary-sidebar" style="display: flex;   flex-direction: column; justify-content: center;"> <h3 style="text-align: center;">Any content</h3> </div> </side-top-top-navigation> <main class="stt-navigation-main-content responsive-container"> <h1>Side Top Top Navigation</h1> <p>
 This component provides fully responsive navigation bars using a Web
       Component:
 </p> <h2>Usage</h2> <p>
 To use this component, add the following code and insert your own HTML
       into the topbar's slots:
-</p> <pre>      <code>
-        &lt;side-top-top-navigation&gt;
-          &lt;div slot=&quot;primary-topbar&quot;&gt;Primary Topbar&lt;/div&gt;
-          &lt;div slot=&quot;secondary-topbar&quot;&gt;Secondary Topbar&lt;/div&gt;
-          &lt;div slot=&quot;sidebar&quot;&gt;Sidebar content&lt;/div&gt;
-        &lt;/side-top-top-navigation&gt;
-      </code>
+</p> <pre>      <code>&lt;side-top-top-navigation&gt;
+  &lt;div slot=&quot;primary-topbar&quot;&gt;Primary Topbar&lt;/div&gt;
+  &lt;div slot=&quot;secondary-topbar&quot;&gt;Secondary Topbar&lt;/div&gt;
+  &lt;div slot=&quot;sidebar&quot;&gt;Sidebar content&lt;/div&gt;
+&lt;/side-top-top-navigation&gt;</code>
     </pre> <p><b>Info:</b> You need to add your own styles to the topbar content.</p> <p>
 The second thing you need is to adjust your website layout by adding the
       class <code>stt-navigation-main-content</code>:
-</p> <pre>      <code>
-        &lt;main class=&quot;stt-navigation-main-content responsive-container&quot;&gt;
-          ...your content
-        &lt;/main&gt;
-      </code>
+</p> <pre><code>&lt;main class=&quot;stt-navigation-main-content responsive-container&quot;&gt;
+...your content
+&lt;/main&gt;
+</code>
     </pre> <p> <b>Info:</b> As you can see, you can combine the layout class with the <code>responsive-container</code> class to improve page responsiveness.
-</p> </main>   </body></html>
+</p> <h3>Styling</h3> <p>
+To ease the styling of topbar content, you can use the following classes
+      on the topbar's section content: <code>stt-primary-sidebar</code>, <code>stt-primary-topbar</code>, <code>stt-secondary-topbar</code> </p> <p>These classes set the dimensions of each topbar section.</p> <h2>Full usage example:</h2> <pre>      <code>&lt;side-top-top-navigation&gt;
+      &lt;div slot=&quot;primary-topbar&quot;&gt;Primary Topbar&lt;/div&gt;
+      &lt;div slot=&quot;secondary-topbar&quot; class=&quot;stt-secondary-topbar&quot;&gt;
+        Secondary Topbar
+      &lt;/div&gt;
+      &lt;div
+        slot=&quot;sidebar&quot;
+        class=&quot;stt-primary-sidebar&quot;
+        style=&quot;display: flex; flex-direction: column; justify-content: center;&quot;
+      &gt;
+        &lt;h3 style=&quot;text-align: center;&quot;&gt;Any content&lt;/h3&gt;
+      &lt;/div&gt;
+    &lt;/side-top-top-navigation&gt;
+    &lt;main class=&quot;stt-navigation-main-content responsive-container&quot;&gt;
+    &lt;/main&gt;</code>
+    </pre> </main>   </body></html>
