@@ -3,67 +3,97 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 ---
 
 <LibraryStyleLayout>
-  <div data-mdl-component="side-top-top-navigation">
-    <header>
-      <div class="nav-component">
-        <header class="stt-component">
-          <div class="stt-toolbar-container">
-            <div class="primary-topbar">
-              <button data-stt-action="toggle" class="button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="40px"
-                  viewBox="0 -960 960 960"
-                  width="40px"
-                >
-                  <path
-                    d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"
-                  ></path>
-                </svg>
-              </button>
-              <div class="stt-primary-topbar-slot">Primary Topbar</div>
-            </div>
-
-            <div class="secondary-topbar">
-              <div class="stt-secondary-topbar-slot">Secondary Topbar</div>
-            </div>
-
-            <div class="stt-sidebar" data-stt-element="sidebar">
-              <button data-stt-action="dismiss" class="button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="40px"
-                  viewBox="0 -960 960 960"
-                  width="40px"
-                >
-                  <path
-                    d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
-                  ></path>
-                </svg>
-              </button>
-              <div class="stt-sidebar-content">
-                <h3 style="text-align: center;">Any content</h3>
-              </div>
-            </div>
-
-            <div class="stt-overlay" data-stt-element="overlay"></div>
-          </div>
-        </header>
+  <header class="stt-component">
+    <div class="stt-toolbar-container">
+      <div class="primary-topbar">
+        <button data-stt-action="toggle" class="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+          >
+            <path
+              d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"
+            ></path>
+          </svg>
+        </button>
+        <div class="stt-primary-topbar-slot">Primary Topbar</div>
       </div>
-    </header>
 
-    <main class="responsive-container stt-navigation-main-content">
-      <h2>Copyable Snippet</h2>
+      <div class="secondary-topbar">
+        <div class="stt-secondary-topbar-slot">Secondary Topbar</div>
+      </div>
 
-      <p>
-        Use the <code>data-copyable-snippet</code> attribute on any <code
-          >&lt;pre&gt;</code
-        > element that wraps a <code>&lt;code&gt;</code> block to enable automatic
-        copy functionality. A copy button will be injected automatically if not already
-        present.
-      </p>
+      <div class="stt-sidebar" data-stt-element="sidebar">
+        <button data-stt-action="dismiss" class="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+          >
+            <path
+              d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+            ></path>
+          </svg>
+        </button>
+        <div class="stt-sidebar-content">
+          <h3 style="text-align: center;">Any content</h3>
+        </div>
+      </div>
 
-      <h3>Example usa</h3>
-    </main>
-  </div>
+      <div class="stt-overlay" data-stt-element="overlay"></div>
+    </div>
+  </header>
+
+  <main class="responsive-container stt-navigation-main-content">
+    <h2>Copyable Snippet</h2>
+
+    <p>
+      Use the <code>data-copyable-snippet</code> attribute on any <code
+        >&lt;pre&gt;</code
+      > element that wraps a <code>&lt;code&gt;</code> block to enable automatic
+      copy functionality. A copy button will be injected automatically if not already
+      present.
+    </p>
+
+    <h3>Example usa</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+    </p>
+  </main>
 </LibraryStyleLayout>

@@ -3,7 +3,10 @@
   --stt-secondary-topbar-height: 3rem;
   --stt-primary-sidebar-width: 20rem;
 }
-
+.stt-component {
+  top: 0;
+  position: sticky;
+}
 /* Topbars & Sidebar Layout */
 .stt-primary-sidebar {
   height: calc(100vh - var(--stt-primary-topbar-height));
@@ -27,7 +30,6 @@
 /* Sidebar positioning */
 .primary-topbar {
   background-color: var(--color-secondary-darker);
-  position: sticky;
   width: 100vw;
   height: var(--stt-primary-topbar-height);
   z-index: 1001;
@@ -37,7 +39,6 @@
 
 .secondary-topbar {
   background-color: var(--color-secondary-lighter);
-  position: sticky;
   left: var(--stt-primary-sidebar-width);
   height: 3rem;
   width: calc(100vw - var(--stt-primary-sidebar-width));
