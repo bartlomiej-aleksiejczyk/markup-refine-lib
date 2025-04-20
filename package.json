@@ -18,7 +18,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
-    "astro:dev": "astro dev",
+    "astro:dev": "astro dev --host",
     "astro:build": "astro build",
     "astro:preview": "astro preview",
     "release": "node src/build/releaseNewVersion.js"

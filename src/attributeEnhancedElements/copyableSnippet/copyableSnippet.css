@@ -1,0 +1,22 @@
+.copyable-snippet-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+button.copyable-snippet-button:hover {
+  box-shadow: none;
+  border: none;
+  opacity: 1;
+}
+button.copyable-snippet-button:focus {
+  outline: none;
+}

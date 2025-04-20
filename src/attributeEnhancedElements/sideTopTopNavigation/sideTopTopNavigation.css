@@ -130,8 +130,7 @@
 
 /* Responsive logic */
 @media (max-width: 1700px) {
-  .stt-navigation-main-content,
-  .responsive-container {
+  .stt-navigation-main-content.responsive-container {
     margin-left: var(--stt-primary-sidebar-width);
   }
 }

@@ -26,13 +26,8 @@ code {
   border-radius: var(--border-radius-large);
 }
 
-code pre {
-  margin: 0;
-  max-width: 100%;
-  max-width: 100%;
-}
-
 pre code {
+  position: relative;
   display: block;
   margin: 0rem;
   white-space: pre;
