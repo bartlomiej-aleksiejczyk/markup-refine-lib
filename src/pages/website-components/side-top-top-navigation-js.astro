@@ -1,0 +1,62 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+---
+
+<LibraryStyleLayout>
+  <script src="../../attributeEnhancedElements/attributeEnhancedElements.js"
+  ></script>
+  <div data-mdl-component="side-top-top-navigation">
+    <header>
+      <div id="toolbars-container">
+        <div class="primary-topbar">
+          <button id="sidebar-toggle" class="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="40px"
+              viewBox="0 -960 960 960"
+              width="40px"
+            >
+              <path
+                d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"
+              ></path>
+            </svg>
+          </button>
+          <div data-mdl-slot="primary-topbar">Primary Topbar</div>
+        </div>
+
+        <div class="secondary-topbar">
+          <div data-mdl-slot="secondary-topbar">Secondary Topbar</div>
+        </div>
+
+        <div class="primary-sidebar">
+          <button id="dismiss-button" class="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="40px"
+              viewBox="0 -960 960 960"
+              width="40px"
+            >
+              <path
+                d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+              ></path>
+            </svg>
+          </button>
+          <div
+            data-mdl-slot="sidebar"
+            style="display: flex; flex-direction: column; justify-content: center;"
+          >
+            <h3 style="text-align: center;">Any content</h3>
+          </div>
+        </div>
+
+        <div class="overlay"></div>
+      </div>
+    </header>
+
+    <main class="main-content-toolbar">
+      <div data-mdl-slot="content">
+        <!-- Main content here -->
+      </div>
+    </main>
+  </div>
+</LibraryStyleLayout>
