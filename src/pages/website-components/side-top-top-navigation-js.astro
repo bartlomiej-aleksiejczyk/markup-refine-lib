@@ -49,25 +49,21 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
             <div class="stt-overlay" data-stt-element="overlay"></div>
           </div>
         </header>
-
-        <main class="stt-main-content">
-          <div class="stt-main-slot">
-            <!-- Main content here -->
-          </div>
-        </main>
       </div>
     </header>
 
-    <main class="nav-main-content">
-      <div class="nav-main-slot">
-        <!-- Main content here -->
-      </div>
+    <main class="responsive-container stt-navigation-main-content">
+      <h2>Copyable Snippet</h2>
+
+      <p>
+        Use the <code>data-copyable-snippet</code> attribute on any <code
+          >&lt;pre&gt;</code
+        > element that wraps a <code>&lt;code&gt;</code> block to enable automatic
+        copy functionality. A copy button will be injected automatically if not already
+        present.
+      </p>
+
+      <h3>Example usa</h3>
     </main>
   </div>
 </LibraryStyleLayout>
-
-<main class="main-content-toolbar">
-  <div data-mdl-slot="content">
-    <!-- Main content here -->
-  </div>
-</main>

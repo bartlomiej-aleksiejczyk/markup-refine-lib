@@ -1,5 +1,5 @@
 :root {
-  --stt-primary-topbar-height: 5rem;
+  --stt-primary-topbar-height: 4rem;
   --stt-secondary-topbar-height: 3rem;
   --stt-primary-sidebar-width: 20rem;
 }
@@ -8,6 +8,7 @@
 .stt-primary-sidebar {
   height: calc(100vh - var(--stt-primary-topbar-height));
   width: var(--stt-primary-sidebar-width);
+  top: 0;
   overflow: auto;
 }
 
@@ -23,17 +24,12 @@
   overflow: auto;
 }
 
-.stt-navigation-main-content {
-  margin-top: calc(
-    var(--stt-primary-topbar-height) + var(--stt-secondary-topbar-height) + 1rem
-  );
-}
-
 /* Sidebar positioning */
 .primary-topbar {
   background-color: var(--color-secondary-darker);
+  position: sticky;
   width: 100vw;
-  height: 5rem;
+  height: var(--stt-primary-topbar-height);
   z-index: 1001;
   top: 0;
   left: 0;
@@ -41,7 +37,7 @@
 
 .secondary-topbar {
   background-color: var(--color-secondary-lighter);
-  position: relative;
+  position: sticky;
   left: var(--stt-primary-sidebar-width);
   height: 3rem;
   width: calc(100vw - var(--stt-primary-sidebar-width));
@@ -124,10 +120,9 @@
 [data-stt-action="toggle"] {
   display: none;
   position: absolute;
-  top: calc((5rem - 3.25rem) / 2);
+  top: calc((var(--stt-primary-topbar-height) - 3.5rem) / 2);
   left: 0.75rem;
 }
-
 /* Responsive logic */
 @media (max-width: 1700px) {
   .stt-navigation-main-content.responsive-container {
@@ -142,6 +137,10 @@
 }
 
 @media (max-width: 992px) {
+  .stt-navigation-main-content.responsive-container {
+    margin-left: auto;
+  }
+
   .primary-sidebar,
   .stt-sidebar {
     transition: transform 0.3s ease-in-out;
