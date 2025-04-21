@@ -10,13 +10,11 @@ export function initSideTopTopNavigation() {
   function openSidebar() {
     sidebar.classList.add("stt-drawer-open");
     overlay.classList.add("stt-overlay-visible");
-    document.body.style.overflowY = "hidden";
   }
 
   function closeSidebar() {
     sidebar.classList.remove("stt-drawer-open");
     overlay.classList.remove("stt-overlay-visible");
-    document.body.style.overflowY = "visible";
   }
 
   drawerToggle?.addEventListener("click", openSidebar);

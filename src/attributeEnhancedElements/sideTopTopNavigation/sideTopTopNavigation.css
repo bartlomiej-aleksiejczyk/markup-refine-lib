@@ -39,7 +39,7 @@
 
 .secondary-topbar {
   background-color: var(--color-secondary-lighter);
-  left: var(--stt-primary-sidebar-width);
+  margin-left: var(--stt-primary-sidebar-width);
   height: 3rem;
   width: calc(100vw - var(--stt-primary-sidebar-width));
   z-index: 1001;
@@ -72,21 +72,9 @@
   display: none;
 }
 
-.stt-overlay.stt-overlay-visible {
-  display: block;
-  position: fixed;
-  overflow-y: hidden;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1002;
-}
-
 /* Button base */
 .stt-component {
-  .button {
+  .stt-button {
     width: 3.5rem;
     height: 3.5rem;
     background: transparent;
@@ -94,14 +82,17 @@
     justify-content: center;
     align-items: center;
   }
-  .button:hover {
+  .stt-button:hover {
     box-shadow: none;
   }
-  .button svg path {
+  .stt-button:focus {
+    outline: none;
+  }
+  .stt-button svg path {
     fill: var(--color-text-secondary);
     transition: fill 0.3s ease;
   }
-  .button:hover svg path {
+  .stt-button:hover svg path {
     fill: var(--color-text-primary);
   }
   .hidden {
@@ -138,6 +129,22 @@
 }
 
 @media (max-width: 992px) {
+  body:has(.stt-overlay.stt-overlay) {
+    overflow: hidden;
+  }
+
+  .stt-overlay.stt-overlay-visible {
+    display: block;
+    position: fixed;
+    overflow-y: hidden;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+  }
+
   .stt-navigation-main-content.responsive-container {
     margin-left: auto;
   }
@@ -158,7 +165,7 @@
   }
 
   .secondary-topbar {
-    left: 0;
+    margin-left: 0;
     width: 100vw;
   }
 
