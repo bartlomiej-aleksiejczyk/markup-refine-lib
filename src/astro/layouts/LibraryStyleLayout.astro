@@ -6,14 +6,14 @@ interface Props {}
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style is:global>
+      @import "../../globalStyleLibrary/markup-refine-lib.css";
+    </style>
   </head>
   <body>
     <slot />
+    <script
+      src="../../attributeComponents/markup-refine-lib-attribute-components.ts"
+    ></script>
   </body>
-  <style is:global>
-    @import "../../globalStyleLibrary/markup-refine-lib.css";
-  </style>
-  <script
-    src="../../attributeComponents/markup-refine-lib-attribute-components.ts"
-  ></script>
 </html>
