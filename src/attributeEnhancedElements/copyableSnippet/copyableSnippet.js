@@ -7,7 +7,7 @@ export function initCopyableSnippet() {
       btn.className = "copyable-snippet-button";
       btn.setAttribute("aria-label", "Copy");
       btn.textContent = "📋";
-      code.appendChild(btn);
+      pre.appendChild(btn);
     }
   });
 
@@ -22,7 +22,7 @@ export function initCopyableSnippet() {
     const code = pre.querySelector("code");
     if (!code) return;
 
-    const text = code.firstChild?.nodeValue.trim();
+    const text = code.textContent;
     if (!text) return;
 
     const original = btn.textContent;
