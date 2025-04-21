@@ -31,8 +31,12 @@ export function initCopyableSnippet() {
       navigator.clipboard
         .writeText(text)
         .then(() => {
+          btn.disabled = true;
           btn.textContent = "✅";
-          setTimeout(() => (btn.textContent = original), 1000);
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.disabled = false;
+          }, 1000);
         })
         .catch(() => fallbackCopy(text, btn, original));
     } else {

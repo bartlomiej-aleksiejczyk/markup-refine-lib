@@ -1,4 +1,5 @@
-.copyable-snippet-button {
+button.copyable-snippet-button {
+  background-color: transparent;
   position: absolute;
   top: 0;
   right: 0;
@@ -13,10 +14,12 @@
 }
 
 button.copyable-snippet-button:hover {
+  background-color: transparent;
   box-shadow: none;
   border: none;
   opacity: 1;
 }
 button.copyable-snippet-button:focus {
   outline: none;
+  background-color: transparent;
 }
