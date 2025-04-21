@@ -10,9 +10,9 @@ To integrate markup-refine-lib into your project, add the following link to the 
 `
 ### Usage in html:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/markup-refine-lib.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/webComponents.css" />
-<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/webComponents.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/markup-refine-lib.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/webComponents.css" />
+<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/webComponents.js"></script>
 ```
 
 This link points to the latest stable version hosted on the jsDelivr CDN, ensuring you are always using the most up-to-date version of the library.
@@ -38,12 +38,12 @@ If you only need specific features from the library, you can selectively import 
 
 Using html:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/markup-refine-lib-reset.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/markup-refine-lib-class-components.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/markup-refine-lib-variables.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/markup-refine-lib-scoped.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/webComponents.css" />
-<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.2/dist/webComponents.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/markup-refine-lib-reset.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/markup-refine-lib-class-components.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/markup-refine-lib-variables.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/markup-refine-lib-scoped.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/webComponents.css" />
+<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.5.3/dist/webComponents.js"></script>
 ```
 Using npm:
 ```js
