@@ -29,7 +29,7 @@
 
 /* Sidebar positioning */
 .primary-topbar {
-  background-color: var(--color-secondary-darker);
+  background-color: var(--color-primary);
   width: 100vw;
   height: var(--stt-primary-topbar-height);
   z-index: 1001;
@@ -176,4 +176,11 @@
   [data-stt-action="toggle"] {
     display: block;
   }
+}
+[data-stt-action="toggle"].stt-button svg path {
+  fill: var(--color-text-on-primary-darker);
+  transition: fill 0.3s ease;
+}
+[data-stt-action="toggle"].stt-button:hover svg path {
+  fill: var(--color-text-on-primary);
 }

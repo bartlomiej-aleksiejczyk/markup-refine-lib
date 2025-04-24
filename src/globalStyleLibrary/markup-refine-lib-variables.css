@@ -17,6 +17,7 @@
   --color-text-primary: hsl(0, 0%, 20%);
   --color-text-secondary: hsl(0, 0%, 33%);
   --color-text-on-primary: hsl(0, 0%, 100%);
+  --color-text-on-primary-darker: hsl(0, 0%, 90%);
 
   --color-background: hsl(0, 0%, 100%);
   --color-background-light-contrast: hsl(0, 0%, 94%);
@@ -72,6 +73,7 @@
     --color-text-primary: hsl(0, 0%, 87%);
     --color-text-secondary: hsl(0, 0%, 73%);
     --color-text-on-primary: hsl(0, 0%, 83%);
+    --color-text-on-primary-darker: hsl(0, 0%, 73%);
 
     --color-background: hsl(0, 0%, 19%);
     --color-background-light-contrast: hsl(0, 0%, 16%);
