@@ -6,9 +6,10 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/oxanium/v19/RrQQboN_4yJ0JmiMe2zE0YBB.woff2)
     format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: "Oxanium";
@@ -17,9 +18,10 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/oxanium/v19/RrQQboN_4yJ0JmiMe2LE0Q.woff2)
     format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 .navbar-headline {
@@ -52,7 +54,7 @@
     color: var(--color-text-on-primary);
     text-decoration: none;
   }
-  a:visited {
+  a a:visited {
     color: var(--color-text-on-primary);
   }
   * {
@@ -74,11 +76,15 @@
   background-color: transparent;
   display: flex;
   max-width: 15rem;
-  margin: 0;
+  margin: 0 1rem 0 0;
   justify-content: start;
   cursor: pointer;
   color: var(--color-text-on-primary-darker);
   border: solid 2px var(--color-text-on-primary-darker);
+  .text {
+    width: auto;
+    padding: 0;
+  }
   &:hover {
     color: var(--color-text-on-primary);
     border: solid 2px var(--color-text-on-primary);
@@ -94,12 +100,19 @@
 }
 .navbar-title {
   color: var(--color-text-on-primary);
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   display: inline;
   margin-left: 4rem;
   text-align: center;
   a {
     color: var(--color-text-on-primary);
     text-decoration: none;
+  }
+}
+@media (max-width: 992px) {
+  .search-area {
+    span {
+      display: none;
+    }
   }
 }

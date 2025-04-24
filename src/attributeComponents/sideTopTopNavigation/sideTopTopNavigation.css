@@ -184,3 +184,19 @@
 [data-stt-action="toggle"].stt-button:hover svg path {
   fill: var(--color-text-on-primary);
 }
+.primary-topbar-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1rem;
+  align-items: center;
+}
+.secondary-topbar-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 1rem;
+  margin: auto 2rem;
+  align-items: center;
+  height: 100%;
+}
