@@ -52,6 +52,7 @@
   top: var(--stt-primary-topbar-height);
   height: calc(100% - var(--stt-primary-topbar-height));
   width: var(--stt-primary-sidebar-width);
+  overflow-x: hidden;
   left: 0;
   position: fixed;
   z-index: 1003;

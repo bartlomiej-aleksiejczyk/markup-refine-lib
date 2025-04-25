@@ -56,7 +56,35 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
           </svg>
         </button>
         <div class="stt-sidebar-content">
-          <h3 style="text-align: center;">Any content</h3>
+          <h2>Collapsible Unordered List of Links (Native HTML)</h2>
+
+          <ul class="clickable-item-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li>
+              <details>
+                <summary><a>Services</a></summary>
+                <ul>
+                  <li>
+                    <a href="#"
+                      >Web
+                      Developmentcccccccccccccccccccccccccccccccccccccccccccccc</a>
+                  </li>
+                  <li><a href="#">Mobile Apps</a></li>
+                  <li>
+                    <details>
+                      <summary>Consulting</summary>
+                      <ul>
+                        <li><a href="#">Strategy</a></li>
+                        <li><a href="#">Marketing</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="#">Contact</a></li>
+          </ul>
         </div>
       </div>
 

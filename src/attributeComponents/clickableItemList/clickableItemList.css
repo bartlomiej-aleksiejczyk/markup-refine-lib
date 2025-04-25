@@ -1,0 +1,19 @@
+.clickable-item-list {
+  details {
+    display: inline;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  summary {
+    padding: 0.1rem;
+  }
+  li {
+    padding: 0.1rem;
+
+    list-style-type: none;
+  }
+  a {
+    padding: 0.1rem;
+    white-space: nowrap;
+  }
+}
