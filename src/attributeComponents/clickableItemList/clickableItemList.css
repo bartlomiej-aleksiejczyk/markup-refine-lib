@@ -1,4 +1,7 @@
 .clickable-item-list {
+  ul {
+    margin: 0;
+  }
   details {
     display: inline;
     padding: 0;
@@ -6,14 +9,26 @@
   }
   summary {
     padding: 0.1rem;
+    color: var(--color-text-secondary);
   }
   li {
     padding: 0.1rem;
-
     list-style-type: none;
   }
   a {
-    padding: 0.1rem;
+    padding: 0.1rem 0.4rem;
     white-space: nowrap;
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    &:hover {
+      outline: solid 2px var(--color-text-secondary);
+      border-radius: 4px;
+    }
+    &:visited {
+      color: var(--color-text-secondary);
+    }
+  }
+  details[open] summary {
+    margin-bottom: 0;
   }
 }
