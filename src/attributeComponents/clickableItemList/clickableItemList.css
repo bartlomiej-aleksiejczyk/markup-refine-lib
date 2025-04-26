@@ -1,9 +1,12 @@
 .clickable-item-list {
+  position: relative;
+  padding-left: 0.5rem;
   ul {
     margin: 0;
   }
   details {
-    display: inline;
+    display: inline-block;
+    width: 100%;
     padding: 0;
     margin-bottom: 0;
   }
@@ -12,17 +15,21 @@
     color: var(--color-text-secondary);
   }
   li {
+    width: 100%;
     padding: 0.1rem;
     list-style-type: none;
   }
   a {
+    width: 100%;
+    display: inline-block;
     padding: 0.1rem 0.4rem;
     white-space: nowrap;
     text-decoration: none;
     color: var(--color-text-secondary);
     &:hover {
-      outline: solid 2px var(--color-text-secondary);
-      border-radius: 4px;
+      /* outline: solid 2px var(--color-text-secondary);
+      border-radius: 4px; */
+      text-decoration: underline;
     }
     &:visited {
       color: var(--color-text-secondary);
@@ -30,5 +37,26 @@
   }
   details[open] summary {
     margin-bottom: 0;
+  }
+
+  details summary {
+    list-style: none;
+    &::after {
+      content: "◀";
+      border-radius: 1em;
+      font-weight: bold;
+      padding: 0 15px;
+      margin-inline-start: 5px;
+      position: absolute;
+      right: 0rem;
+    }
+  }
+  details[open] > summary::after {
+    transform: rotate(-90deg);
+    transition: transform 0.1s ease-in-out;
+  }
+  details summary::-webkit-details-marker {
+    margin-left: 5rem;
+    display: none;
   }
 }

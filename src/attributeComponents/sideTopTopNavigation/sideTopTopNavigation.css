@@ -201,3 +201,12 @@
   align-items: center;
   height: 100%;
 }
+.stt-sidebar {
+  hr {
+    border: none;
+    height: 2px;
+    background-color: var(--color-secondary-darker);
+    box-shadow: none;
+    margin: 0.5rem 1rem;
+  }
+}
