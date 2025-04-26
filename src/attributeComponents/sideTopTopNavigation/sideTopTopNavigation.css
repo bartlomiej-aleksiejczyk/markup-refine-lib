@@ -104,10 +104,6 @@
 /* Action buttons */
 [data-stt-action="dismiss"] {
   display: none;
-  margin-right: 0.75rem;
-  margin-top: 0.75rem;
-  position: absolute;
-  right: 0;
 }
 
 [data-stt-action="toggle"] {
@@ -208,5 +204,23 @@
     background-color: var(--color-secondary-darker);
     box-shadow: none;
     margin: 0.5rem 1rem;
+  }
+}
+.stt-sidebar-top {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  [data-stt-action="dismiss"] {
+    flex-grow: 0;
+    margin: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0.5rem;
   }
 }

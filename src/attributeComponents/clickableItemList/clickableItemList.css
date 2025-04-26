@@ -49,10 +49,11 @@
       margin-inline-start: 5px;
       position: absolute;
       right: 0rem;
+      transition: transform 0.1s ease-in-out;
     }
   }
   details[open] > summary::after {
-    transform: rotate(-90deg);
+    transform: translateY(25%) rotate(-90deg);
     transition: transform 0.1s ease-in-out;
   }
   details summary::-webkit-details-marker {
