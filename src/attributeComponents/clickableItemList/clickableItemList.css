@@ -14,8 +14,10 @@
     padding: 0.1rem;
     color: var(--color-text-secondary);
   }
-  li {
+  summary li {
     width: 100%;
+  }
+  li {
     padding: 0.1rem;
     list-style-type: none;
   }
@@ -27,8 +29,6 @@
     text-decoration: none;
     color: var(--color-text-secondary);
     &:hover {
-      /* outline: solid 2px var(--color-text-secondary);
-      border-radius: 4px; */
       text-decoration: underline;
     }
     &:visited {
@@ -59,5 +59,34 @@
   details summary::-webkit-details-marker {
     margin-left: 5rem;
     display: none;
+  }
+  details ul {
+    li {
+      padding: 0;
+    }
+    a {
+      padding: 0 0.4rem;
+    }
+  }
+  details ul a {
+    &::before {
+      content: "";
+      margin-left: -0.5rem;
+      border-left: 2px solid var(--color-text-secondary);
+      float: left;
+      height: 1.6rem;
+    }
+    &:hover {
+      color: var(--color-link-visited);
+      &::before {
+        border-color: var(--color-link-visited);
+      }
+    }
+  }
+  .selected {
+    color: var(--color-link-visited);
+    &::before {
+      border-color: var(--color-link-visited);
+    }
   }
 }
