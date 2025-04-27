@@ -27,7 +27,9 @@ function r() {
     if (!c) return;
     const s = t.textContent;
     navigator.clipboard && window.isSecureContext ? navigator.clipboard.writeText(c).then(() => {
-      t.textContent = "✅", setTimeout(() => t.textContent = s, 1e3);
+      t.disabled = !0, t.textContent = "✅", setTimeout(() => {
+        t.textContent = s, t.disabled = !1;
+      }, 1e3);
     }).catch(() => a(c, t, s)) : a(c, t, s);
   });
   function a(n, t, o) {
