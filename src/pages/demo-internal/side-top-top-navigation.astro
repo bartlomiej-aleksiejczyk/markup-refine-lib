@@ -1,18 +1,9 @@
 ---
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
-import { base } from "astro:config/client";
 ---
 
 <LibraryStyleLayout>
-  <main class="responsive-container stt-navigation-main-content">
-    <h1>Side Top Top Navigation</h1>
-    <p>
-      This component provides fully responsive navigation bars using css classes
-      and attibutes
-    </p>
-    <h2>Usage</h2>
-    <pre
-      data-copyable-snippet><code>{` <header class="stt-component">
+  <header class="stt-component">
     <div class="stt-toolbar-container">
       <div class="stt-primary-topbar">
         <button data-stt-action="toggle" class="stt-button">
@@ -103,8 +94,54 @@ import { base } from "astro:config/client";
       <div class="stt-overlay" data-stt-element="overlay"></div>
     </div>
   </header>
-`}</code></pre>
-    <h2>Rendered snippet with sample text:</h2>
-    <iframe src=`${base}demo-internal/side-top-top-navigation`></iframe>
+
+  <main class="responsive-container stt-navigation-main-content">
+    <h2>Copyable Snippet</h2>
+
+    <p>
+      Use the <code>data-copyable-snippet</code> attribute on any <code
+        >&lt;pre&gt;</code
+      > element that wraps a <code>&lt;code&gt;</code> block to enable automatic
+      copy functionality. A copy button will be injected automatically if not already
+      present.
+    </p>
+
+    <h3>Example usa</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+    </p>
   </main>
 </LibraryStyleLayout>

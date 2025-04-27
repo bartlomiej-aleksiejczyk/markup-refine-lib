@@ -15,12 +15,6 @@
   overflow: auto;
 }
 
-.stt-primary-topbar {
-  height: var(--stt-primary-topbar-height);
-  width: 100vw;
-  overflow: auto;
-}
-
 .stt-secondary-topbar {
   height: var(--stt-secondary-topbar-height);
   width: calc(100vw - var(--stt-primary-sidebar-width));
@@ -28,7 +22,7 @@
 }
 
 /* Sidebar positioning */
-.primary-topbar {
+.stt-primary-topbar {
   background-color: var(--color-primary);
   width: 100vw;
   height: var(--stt-primary-topbar-height);
@@ -180,7 +174,7 @@
 [data-stt-action="toggle"].stt-button:hover svg path {
   fill: var(--color-text-on-primary);
 }
-.primary-topbar-content {
+.stt-primary-topbar-content {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
