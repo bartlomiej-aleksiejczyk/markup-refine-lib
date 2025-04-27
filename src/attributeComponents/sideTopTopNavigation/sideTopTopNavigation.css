@@ -37,7 +37,7 @@
   left: 0;
 }
 
-.secondary-topbar {
+.stt-secondary-topbar {
   background-color: var(--color-secondary-lighter);
   margin-left: var(--stt-primary-sidebar-width);
   height: 3rem;
@@ -46,8 +46,7 @@
   overflow: auto;
 }
 
-.primary-sidebar,
-.stt-sidebar {
+.stt-primary-sidebar {
   background-color: var(--color-secondary);
   top: var(--stt-primary-topbar-height);
   height: calc(100% - var(--stt-primary-topbar-height));
@@ -126,7 +125,7 @@
 }
 
 @media (max-width: 992px) {
-  body:has(.stt-overlay.stt-overlay) {
+  body:has(.stt-overlay-visible) {
     overflow: hidden;
   }
 
@@ -147,21 +146,21 @@
   }
 
   .primary-sidebar,
-  .stt-sidebar {
+  .stt-primary-sidebar {
     transition: transform 0.3s ease-in-out;
     height: 100vh;
     top: 0;
   }
 
-  .stt-sidebar.stt-drawer-open {
+  .stt-primary-sidebar.stt-drawer-open {
     transform: translateX(0);
   }
 
-  .stt-sidebar:not(.stt-drawer-open) {
+  .stt-primary-sidebar:not(.stt-drawer-open) {
     transform: translateX(-100%);
   }
 
-  .secondary-topbar {
+  .stt-secondary-topbar {
     margin-left: 0;
     width: 100vw;
   }
@@ -197,7 +196,7 @@
   align-items: center;
   height: 100%;
 }
-.stt-sidebar {
+.stt-primary-sidebar {
   hr {
     border: none;
     height: 2px;
@@ -206,7 +205,7 @@
     margin: 0.5rem 1rem;
   }
 }
-.stt-sidebar-top {
+.stt-primary-sidebar-top {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -221,6 +220,16 @@
   h4,
   h5,
   h6 {
-    margin: 0.5rem;
+    margin: 0.5rem 1rem;
+  }
+}
+.stt-secondary-topbar {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: auto 1rem;
   }
 }
