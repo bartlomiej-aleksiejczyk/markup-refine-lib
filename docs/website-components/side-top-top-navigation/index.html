@@ -1,41 +1,95 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.ff5P9R7d.css">
-<style>:root{--stt-primary-topbar-height: 5rem;--stt-secondary-topbar-height: 3rem;--stt-primary-sidebar-width: 20rem}.stt-primary-sidebar{height:calc(100vh - var(--stt-primary-topbar-height));width:var(--stt-primary-sidebar-width);overflow:auto}.stt-primary-topbar{height:var(--stt-primary-topbar-height);width:100vw;overflow:auto}.stt-secondary-topbar{height:var(--stt-secondary-topbar-height);width:calc(100vw - var(--primary-sidebar-width));overflow:auto}side-top-top-navigation{display:none}
-</style></head> <body>  <script type="module" src="/markup-refine-lib/_astro/side-top-top-navigation.astro_astro_type_script_index_0_lang.DJkm-9V0.js"></script> <side-top-top-navigation> <div slot="primary-topbar">Primary Topbar</div> <div slot="secondary-topbar" class="stt-secondary-topbar">
-Secondary Topbar
-</div> <div slot="sidebar" class="stt-primary-sidebar" style="display: flex;   flex-direction: column; justify-content: center;"> <h3 style="text-align: center;">Any content</h3> </div> </side-top-top-navigation> <main class="stt-navigation-main-content responsive-container"> <h1>Side Top Top Navigation</h1> <p>
-This component provides fully responsive navigation bars using a Web
-      Component:
-</p> <h2>Usage</h2> <p>
-To use this component, add the following code and insert your own HTML
-      into the topbar's slots:
-</p> <pre>      <code>&lt;side-top-top-navigation&gt;
-  &lt;div slot=&quot;primary-topbar&quot;&gt;Primary Topbar&lt;/div&gt;
-  &lt;div slot=&quot;secondary-topbar&quot;&gt;Secondary Topbar&lt;/div&gt;
-  &lt;div slot=&quot;sidebar&quot;&gt;Sidebar content&lt;/div&gt;
-&lt;/side-top-top-navigation&gt;</code>
-    </pre> <p><b>Info:</b> You need to add your own styles to the topbar content.</p> <p>
-The second thing you need is to adjust your website layout by adding the
-      class <code>stt-navigation-main-content</code>:
-</p> <pre><code>&lt;main class=&quot;stt-navigation-main-content responsive-container&quot;&gt;
-...your content
-&lt;/main&gt;
-</code>
-    </pre> <p> <b>Info:</b> As you can see, you can combine the layout class with the <code>responsive-container</code> class to improve page responsiveness.
-</p> <h3>Styling</h3> <p>
-To ease the styling of topbar content, you can use the following classes
-      on the topbar's section content: <code>stt-primary-sidebar</code>, <code>stt-primary-topbar</code>, <code>stt-secondary-topbar</code> </p> <p>These classes set the dimensions of each topbar section.</p> <h2>Full usage example:</h2> <pre>      <code>&lt;side-top-top-navigation&gt;
-      &lt;div slot=&quot;primary-topbar&quot;&gt;Primary Topbar&lt;/div&gt;
-      &lt;div slot=&quot;secondary-topbar&quot; class=&quot;stt-secondary-topbar&quot;&gt;
-        Secondary Topbar
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.DHyEF4kS.css"></head> <body>  <main class="responsive-container stt-navigation-main-content"> <h1>Side Top Top Navigation</h1> <p>
+This component provides fully responsive navigation bars using css classes
+      and attibutes
+</p> <h2>Usage</h2> <pre data-copyable-snippet><code> &lt;header class=&quot;stt-component&quot;&gt;
+    &lt;div class=&quot;stt-toolbar-container&quot;&gt;
+      &lt;div class=&quot;stt-primary-topbar&quot;&gt;
+        &lt;button data-stt-action=&quot;toggle&quot; class=&quot;stt-button&quot;&gt;
+          &lt;svg
+            xmlns=&quot;http://www.w3.org/2000/svg&quot;
+            height=&quot;40px&quot;
+            viewBox=&quot;0 -960 960 960&quot;
+            width=&quot;40px&quot;
+          &gt;
+            &lt;path
+              d=&quot;M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z&quot;
+            &gt;&lt;/path&gt;
+          &lt;/svg&gt;
+        &lt;/button&gt;
+        &lt;div class=&quot;stt-primary-topbar-content&quot;&gt;
+          &lt;h1 class=&quot;navbar-title&quot;&gt;SamplePage&lt;/h1&gt;
+          &lt;button class=&quot;search-area&quot;&gt;
+            &lt;svg
+              xmlns=&quot;http://www.w3.org/2000/svg&quot;
+              height=&quot;24px&quot;
+              viewBox=&quot;0 -960 960 960&quot;
+              width=&quot;24px&quot;
+              fill=&quot;currentColor&quot;
+              &gt;&lt;path
+                d=&quot;M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z&quot;
+              &gt;&lt;/path&gt;&lt;/svg
+            &gt;
+            &lt;span class=&quot;text&quot;&gt;Search...&lt;/span&gt;&lt;/button
+          &gt;
+        &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div
-        slot=&quot;sidebar&quot;
-        class=&quot;stt-primary-sidebar&quot;
-        style=&quot;display: flex; flex-direction: column; justify-content: center;&quot;
-      &gt;
-        &lt;h3 style=&quot;text-align: center;&quot;&gt;Any content&lt;/h3&gt;
+
+      &lt;div class=&quot;stt-secondary-topbar&quot;&gt;
+        &lt;div class=&quot;secondary-topbar-content&quot;&gt;
+          &lt;h3&gt;Downloading data at: 40%&lt;/h3&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
-    &lt;/side-top-top-navigation&gt;
-    &lt;main class=&quot;stt-navigation-main-content responsive-container&quot;&gt;
-    &lt;/main&gt;</code>
-    </pre> </main>  <script type="module">function i(){const s=document.querySelector(".stt-component");if(!s)return;const n=s.querySelector('[data-stt-action="toggle"]'),t=s.querySelector('[data-stt-action="dismiss"]'),o=s.querySelector('[data-stt-element="sidebar"]'),e=s.querySelector('[data-stt-element="overlay"]');function c(){o.classList.add("stt-drawer-open"),e.classList.add("stt-overlay-visible")}function a(){o.classList.remove("stt-drawer-open"),e.classList.remove("stt-overlay-visible")}n?.addEventListener("click",c),t?.addEventListener("click",a),e?.addEventListener("click",a)}function r(){document.querySelectorAll("[data-copyable-snippet]").forEach(n=>{if(n.querySelector("code")&&!n.querySelector(".copyable-snippet-button")){const o=document.createElement("button");o.className="copyable-snippet-button",o.setAttribute("aria-label","Copy"),o.textContent="📋",n.appendChild(o)}}),document.addEventListener("click",n=>{const t=n.target.closest(".copyable-snippet-button");if(!t)return;const o=t.closest("[data-copyable-snippet]");if(!o)return;const e=o.querySelector("code");if(!e)return;const c=e.textContent;if(!c)return;const a=t.textContent;navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(c).then(()=>{t.textContent="✅",setTimeout(()=>t.textContent=a,1e3)}).catch(()=>s(c,t,a)):s(c,t,a)});function s(n,t,o){const e=document.createElement("textarea");e.value=n,e.style.position="fixed",e.style.opacity="0",document.body.appendChild(e),e.select();try{document.execCommand("copy")?t.textContent="✅":t.textContent="❌"}catch(c){console.warn("Fallback copy failed:",c),t.textContent="❌"}document.body.removeChild(e),setTimeout(()=>t.textContent=o,1e3)}}document.addEventListener("DOMContentLoaded",()=>{i(),r()});</script> </body> </html>
+
+      &lt;div class=&quot;stt-primary-sidebar&quot; data-stt-element=&quot;sidebar&quot;&gt;
+        &lt;div class=&quot;stt-primary-sidebar-top&quot;&gt;
+          &lt;h2&gt;Collapsible&lt;/h2&gt;
+
+          &lt;button data-stt-action=&quot;dismiss&quot; class=&quot;stt-button&quot;&gt;
+            &lt;svg
+              xmlns=&quot;http://www.w3.org/2000/svg&quot;
+              height=&quot;40px&quot;
+              viewBox=&quot;0 -960 960 960&quot;
+              width=&quot;40px&quot;
+            &gt;
+              &lt;path
+                d=&quot;m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z&quot;
+              &gt;&lt;/path&gt;
+            &lt;/svg&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt;
+          &lt;hr /&gt;
+          &lt;ul class=&quot;clickable-item-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;
+              &lt;details&gt;
+                &lt;summary&gt;&lt;a&gt;Services&lt;/a&gt;&lt;/summary&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;
+                    &lt;a href=&quot;#&quot;&gt;Web &lt;/a&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Mobile Apps&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;details&gt;
+                      &lt;summary&gt;Consulting&lt;/summary&gt;
+                      &lt;ul&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Strategy&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Marketing&lt;/a&gt;&lt;/li&gt;
+                      &lt;/ul&gt;
+                    &lt;/details&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/details&gt;
+            &lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+          &lt;hr /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;stt-overlay&quot; data-stt-element=&quot;overlay&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+</code></pre> <h2>Rendered snippet with sample text:</h2> <iframe src="/markup-refine-lib/demo-internal/side-top-top-navigation"></iframe> </main>  <script type="module">function i(){const s=document.querySelector(".stt-component");if(!s)return;const n=s.querySelector('[data-stt-action="toggle"]'),t=s.querySelector('[data-stt-action="dismiss"]'),o=s.querySelector('[data-stt-element="sidebar"]'),e=s.querySelector('[data-stt-element="overlay"]');function c(){o.classList.add("stt-drawer-open"),e.classList.add("stt-overlay-visible")}function a(){o.classList.remove("stt-drawer-open"),e.classList.remove("stt-overlay-visible")}n?.addEventListener("click",c),t?.addEventListener("click",a),e?.addEventListener("click",a)}function r(){document.querySelectorAll("[data-copyable-snippet]").forEach(n=>{if(n.querySelector("code")&&!n.querySelector(".copyable-snippet-button")){const o=document.createElement("button");o.className="copyable-snippet-button",o.setAttribute("aria-label","Copy"),o.textContent="📋",n.appendChild(o)}}),document.addEventListener("click",n=>{const t=n.target.closest(".copyable-snippet-button");if(!t)return;const o=t.closest("[data-copyable-snippet]");if(!o)return;const e=o.querySelector("code");if(!e)return;const c=e.textContent;if(!c)return;const a=t.textContent;navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(c).then(()=>{t.disabled=!0,t.textContent="✅",setTimeout(()=>{t.textContent=a,t.disabled=!1},1e3)}).catch(()=>s(c,t,a)):s(c,t,a)});function s(n,t,o){const e=document.createElement("textarea");e.value=n,e.style.position="fixed",e.style.opacity="0",document.body.appendChild(e),e.select();try{document.execCommand("copy")?t.textContent="✅":t.textContent="❌"}catch(c){console.warn("Fallback copy failed:",c),t.textContent="❌"}document.body.removeChild(e),setTimeout(()=>t.textContent=o,1e3)}}document.addEventListener("DOMContentLoaded",()=>{i(),r()});</script> </body> </html>
