@@ -64,11 +64,13 @@
     li {
       padding: 0;
     }
-    a {
+    a,
+    details {
       padding: 0 0.4rem;
     }
   }
-  details ul a {
+  details ul a,
+  details ul details {
     &::before {
       content: "";
       margin-left: -0.5rem;
