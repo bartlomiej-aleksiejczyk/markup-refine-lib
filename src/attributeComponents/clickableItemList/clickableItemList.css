@@ -13,6 +13,9 @@
   summary {
     padding: 0.1rem;
     color: var(--color-text-secondary);
+    a:hover {
+      color: var(--color-link-visited);
+    }
   }
   summary li {
     width: 100%;
@@ -30,6 +33,7 @@
     color: var(--color-text-secondary);
     &:hover {
       text-decoration: underline;
+      color: var(--color-link-visited);
     }
     &:visited {
       color: var(--color-text-secondary);
