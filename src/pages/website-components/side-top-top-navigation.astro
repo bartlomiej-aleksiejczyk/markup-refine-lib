@@ -11,7 +11,48 @@ import { base } from "astro:config/client";
       and attibutes
     </p>
     <h2>Base blocs:</h2>
-    <h2>Usage</h2>
+    <p>
+      To use the basic side-top-top navigation layout, you need the following
+      structure:
+    </p>
+    <pre
+      data-copyable-snippet><code>{`<header class="stt-component">
+  <div class="stt-toolbar-container">
+    <div class="stt-primary-topbar">
+      <button data-stt-action="toggle" class="stt-button">
+      </button>
+      <div class="stt-primary-topbar-content">
+        <h1 class="navbar-title">SamplePage</h1>
+        <button class="search-area"></button
+        >
+      </div>
+    </div>
+    <div class="stt-secondary-topbar">
+    </div>
+    <div class="stt-primary-sidebar" data-stt-element="sidebar">
+      <div class="stt-primary-sidebar-top">  
+        <button data-stt-action="dismiss" class="stt-button">
+        </button>
+      </div>
+    </div>
+    <div class="stt-overlay" data-stt-element="overlay"></div>
+  </div>
+</header>
+<main class="responsive-container stt-navigation-main-content">
+</main>
+  `}</code></pre>
+    <p>
+      This creates an empty layout to be filled with content—buttons, icons, a
+      logo, a search box, and internal navigation bars structures (e.g., using
+      Flexbox for layout).
+    </p>
+    <h2>Navbars' content and structure</h2>
+    <p>
+      Several utility classes are provided to help with general-purpose navbar
+      layouts:
+    </p>
+
+    <h2>Full Usage Example:</h2>
     <pre
       data-copyable-snippet><code>{` <header class="stt-component">
     <div class="stt-toolbar-container">
