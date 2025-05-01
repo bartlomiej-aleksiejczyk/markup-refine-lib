@@ -51,10 +51,65 @@ import { base } from "astro:config/client";
       Several utility classes are provided to help with general-purpose navbar
       layouts:
     </p>
-
-    <h2>Full Usage Example:</h2>
+    <p>To populate the primary sidebar you can use this template:</p>
     <pre
-      data-copyable-snippet><code>{` <header class="stt-component">
+      data-copyable-snippet><code>{`<div class="stt-primary-sidebar-top">
+  <h2>Collapsible</h2>
+  <button data-stt-action="dismiss" class="stt-button">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="40px"
+      viewBox="0 -960 960 960"
+      width="40px"
+    >
+      <path
+        d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+      ></path>
+    </svg>
+  </button>
+</div>
+
+<div>
+  <hr />
+    <!--Your sidebar content-->
+  <hr />
+</div>`}</code></pre>
+    <p>
+      To display items in the sidebar you can use the <code
+        >clickable-item-list</code
+      > class in the following structure:
+    </p>
+    <pre
+      data-copyable-snippet><code>{`<ul class="clickable-item-list">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">About</a></li>
+  <li>
+    <details>
+      <summary><a>Services</a></summary>
+      <ul>
+        <li>
+          <a href="#">Web </a>
+        </li>
+        <li><a href="#">Mobile Apps</a></li>
+        <li>
+          <details>
+            <summary>Consulting</summary>
+            <ul>
+              <li><a href="#">Strategy</a></li>
+              <li><a href="#">Marketing</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </details>
+  </li>
+  <li><a href="#">Contact</a></li>
+</ul>
+`}</code></pre>
+    <p>
+      <h2>Full Usage Example:</h2>
+      <pre
+        data-copyable-snippet><code>{` <header class="stt-component">
     <div class="stt-toolbar-container">
       <div class="stt-primary-topbar">
         <button data-stt-action="toggle" class="stt-button">
@@ -146,7 +201,8 @@ import { base } from "astro:config/client";
     </div>
   </header>
 `}</code></pre>
-    <h2>Rendered snippet with sample text:</h2>
-    <iframe src=`${base}demo-internal/side-top-top-navigation`></iframe>
+      <h2>Rendered snippet with sample text:</h2>
+      <iframe src=`${base}demo-internal/side-top-top-navigation`></iframe>
+    </p>
   </main>
 </LibraryStyleLayout>
