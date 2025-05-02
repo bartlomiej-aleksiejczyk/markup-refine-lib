@@ -1,19 +1,27 @@
 .clickable-item-list {
   position: relative;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
   ul {
     margin: 0;
   }
   details {
+    background-color: inherit;
     display: inline-block;
     width: 100%;
     padding: 0;
     margin-bottom: 0;
+    border-radius: 0;
+    li {
+      padding: 0.1rem;
+    }
+  }
+  details[open] {
+    background-color: var(--color-secondary);
   }
   summary {
     padding: 0.1rem;
     color: var(--color-text-secondary);
-    a:hover {
+    &:hover {
       color: var(--color-link-visited);
     }
   }
@@ -21,9 +29,16 @@
     width: 100%;
   }
   li {
-    padding: 0.1rem;
+    padding: 0.1rem 0 0.1rem 0.1rem;
     list-style-type: none;
+    &:hover {
+      background-color: var(--color-background-light-contrast);
+    }
+    &:has(details) {
+      padding: 0.1rem;
+    }
   }
+
   a {
     width: 100%;
     display: inline-block;
@@ -31,12 +46,12 @@
     white-space: nowrap;
     text-decoration: none;
     color: var(--color-text-secondary);
+    &:visited {
+      color: var(--color-text-secondary);
+    }
     &:hover {
       text-decoration: underline;
       color: var(--color-link-visited);
-    }
-    &:visited {
-      color: var(--color-text-secondary);
     }
   }
   details[open] summary {
@@ -66,11 +81,14 @@
   }
   details ul {
     li {
-      padding: 0;
+      padding: 0 0.1rem 0 0;
     }
     a,
     details {
       padding: 0 0.4rem;
+    }
+    details[open] {
+      padding: 0 0.4rem 0.3rem 0.4rem;
     }
   }
   details ul a,
