@@ -1,4 +1,5 @@
 .clickable-item-list {
+  color: var(--color-text-on-secondary);
   position: relative;
   padding: 0 0.5rem;
   ul {
@@ -23,7 +24,7 @@
     padding: 0.1rem;
     color: var(--color-text-secondary);
     &:hover {
-      color: var(--color-link-visited);
+      color: var(--color-text-on-secondary);
     }
   }
   summary li {
@@ -32,9 +33,9 @@
   li {
     padding: 0;
     list-style-type: none;
+    transition: background-color 0.2s ease-in-out;
     &:hover {
-      transition: background-color 0.2s ease-in-out;
-      background-color: var(--color-background-light-contrast);
+      background-color: var(--color-secondary-darker);
     }
   }
 
@@ -50,7 +51,7 @@
     }
     &:hover {
       text-decoration: underline;
-      color: var(--color-link-visited);
+      color: var(--color-text-on-secondary);
     }
   }
   details[open] summary {
@@ -108,16 +109,17 @@
       height: 1.7rem;
     }
     &:hover {
-      color: var(--color-link-visited);
+      color: var(--color-text-on-secondary);
       &::before {
-        border-color: var(--color-link-visited);
+        border-color: var(--color-text-on-secondary);
       }
     }
   }
   .selected {
-    color: var(--color-link-visited);
+    color: var(--color-text-on-secondary);
+    background-color: var(--color-secondary-darker);
     &::before {
-      border-color: var(--color-link-visited);
+      border-color: var(--color-text-on-secondary);
     }
   }
 }
