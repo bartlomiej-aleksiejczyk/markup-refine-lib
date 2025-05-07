@@ -35,7 +35,7 @@
     list-style-type: none;
     transition: background-color 0.2s ease-in-out;
     &:hover {
-      background-color: var(--color-secondary-darker);
+      background-color: var(--color-secondary-lighter);
     }
   }
 
@@ -99,8 +99,23 @@
   details summary + ul {
     margin-top: 0.3rem;
   }
-  details ul a,
-  details ul details {
+  details ul details summary {
+    &::before {
+      content: "";
+      margin-left: -0.6rem;
+      margin-top: -1px;
+      border-left: 2px solid var(--color-text-secondary);
+      float: left;
+      height: 1.7rem;
+    }
+    &:hover {
+      color: var(--color-text-on-secondary);
+      &::before {
+        border-color: var(--color-text-on-secondary);
+      }
+    }
+  }
+  details ul a {
     &::before {
       content: "";
       margin-left: -0.5rem;
@@ -117,7 +132,7 @@
   }
   .selected {
     color: var(--color-text-on-secondary);
-    background-color: var(--color-secondary-darker);
+    background-color: var(--color-secondary-lighter);
     &::before {
       border-color: var(--color-text-on-secondary);
     }
