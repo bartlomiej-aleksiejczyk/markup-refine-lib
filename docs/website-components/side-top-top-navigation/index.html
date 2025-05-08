@@ -1,7 +1,88 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.CYrDqLeC.css"></head> <body>  <main class="responsive-container stt-navigation-main-content"> <h1>Side Top Top Navigation</h1> <p>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.DI9n2_jc.css"></head> <body>  <main class="responsive-container stt-navigation-main-content"> <h1>Side Top Top Navigation</h1> <p>
 This component provides fully responsive navigation bars using css classes
       and attibutes
-</p> <h2>Usage</h2> <pre data-copyable-snippet><code> &lt;header class=&quot;stt-component&quot;&gt;
+</p> <h2>Base blocs:</h2> <p>
+To use the basic side-top-top navigation layout, you need the following
+      structure:
+</p> <pre data-copyable-snippet><code>&lt;header class=&quot;stt-component&quot;&gt;
+  &lt;div class=&quot;stt-toolbar-container&quot;&gt;
+    &lt;div class=&quot;stt-primary-topbar&quot;&gt;
+      &lt;button data-stt-action=&quot;toggle&quot; class=&quot;stt-button&quot;&gt;
+      &lt;/button&gt;
+      &lt;div class=&quot;stt-primary-topbar-content&quot;&gt;
+        &lt;h1 class=&quot;navbar-title&quot;&gt;SamplePage&lt;/h1&gt;
+        &lt;button class=&quot;search-area&quot;&gt;&lt;/button
+        &gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;stt-secondary-topbar&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;stt-primary-sidebar&quot; data-stt-element=&quot;sidebar&quot;&gt;
+      &lt;div class=&quot;stt-primary-sidebar-top&quot;&gt;  
+        &lt;button data-stt-action=&quot;dismiss&quot; class=&quot;stt-button&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;stt-overlay&quot; data-stt-element=&quot;overlay&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+&lt;main class=&quot;responsive-container stt-navigation-main-content&quot;&gt;
+&lt;/main&gt;
+  </code></pre> <p>
+This creates an empty layout to be filled with content—buttons, icons, a
+      logo, a search box, and internal navigation bars structures (e.g., using
+      Flexbox for layout).
+</p> <h2>Navbars' content and structure</h2> <p>
+Several utility classes are provided to help with general-purpose navbar
+      layouts:
+</p> <p>To populate the primary sidebar you can use this template:</p> <pre data-copyable-snippet><code>&lt;div class=&quot;stt-primary-sidebar-top&quot;&gt;
+  &lt;h2&gt;Collapsible&lt;/h2&gt;
+  &lt;button data-stt-action=&quot;dismiss&quot; class=&quot;stt-button&quot;&gt;
+    &lt;svg
+      xmlns=&quot;http://www.w3.org/2000/svg&quot;
+      height=&quot;40px&quot;
+      viewBox=&quot;0 -960 960 960&quot;
+      width=&quot;40px&quot;
+    &gt;
+      &lt;path
+        d=&quot;m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z&quot;
+      &gt;&lt;/path&gt;
+    &lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;hr /&gt;
+    &lt;!--Your sidebar content--&gt;
+  &lt;hr /&gt;
+&lt;/div&gt;</code></pre> <p>
+To display items in the sidebar you can use the <code>clickable-item-list</code> class in the following structure:
+</p> <pre data-copyable-snippet><code>&lt;ul class=&quot;clickable-item-list&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;details&gt;
+      &lt;summary&gt;&lt;a&gt;Services&lt;/a&gt;&lt;/summary&gt;
+      &lt;ul&gt;
+        &lt;li&gt;
+          &lt;a href=&quot;#&quot;&gt;Web &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Mobile Apps&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;
+          &lt;details&gt;
+            &lt;summary&gt;Consulting&lt;/summary&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Strategy&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Marketing&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/details&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/details&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre> <p></p><h2>Full Usage Example:</h2> <pre data-copyable-snippet><code> &lt;header class=&quot;stt-component&quot;&gt;
     &lt;div class=&quot;stt-toolbar-container&quot;&gt;
       &lt;div class=&quot;stt-primary-topbar&quot;&gt;
         &lt;button data-stt-action=&quot;toggle&quot; class=&quot;stt-button&quot;&gt;
@@ -92,4 +173,5 @@ This component provides fully responsive navigation bars using css classes
       &lt;div class=&quot;stt-overlay&quot; data-stt-element=&quot;overlay&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
   &lt;/header&gt;
-</code></pre> <h2>Rendered snippet with sample text:</h2> <iframe src="/markup-refine-lib/demo-internal/side-top-top-navigation"></iframe> </main>  <script type="module">function i(){const s=document.querySelector(".stt-component");if(!s)return;const n=s.querySelector('[data-stt-action="toggle"]'),t=s.querySelector('[data-stt-action="dismiss"]'),o=s.querySelector('[data-stt-element="sidebar"]'),e=s.querySelector('[data-stt-element="overlay"]');function c(){o.classList.add("stt-drawer-open"),e.classList.add("stt-overlay-visible")}function a(){o.classList.remove("stt-drawer-open"),e.classList.remove("stt-overlay-visible")}n?.addEventListener("click",c),t?.addEventListener("click",a),e?.addEventListener("click",a)}function r(){document.querySelectorAll("[data-copyable-snippet]").forEach(n=>{if(n.querySelector("code")&&!n.querySelector(".copyable-snippet-button")){const o=document.createElement("button");o.className="copyable-snippet-button",o.setAttribute("aria-label","Copy"),o.textContent="📋",n.appendChild(o)}}),document.addEventListener("click",n=>{const t=n.target.closest(".copyable-snippet-button");if(!t)return;const o=t.closest("[data-copyable-snippet]");if(!o)return;const e=o.querySelector("code");if(!e)return;const c=e.textContent;if(!c)return;const a=t.textContent;navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(c).then(()=>{t.disabled=!0,t.textContent="✅",setTimeout(()=>{t.textContent=a,t.disabled=!1},1e3)}).catch(()=>s(c,t,a)):s(c,t,a)});function s(n,t,o){const e=document.createElement("textarea");e.value=n,e.style.position="fixed",e.style.opacity="0",document.body.appendChild(e),e.select();try{document.execCommand("copy")?t.textContent="✅":t.textContent="❌"}catch(c){console.warn("Fallback copy failed:",c),t.textContent="❌"}document.body.removeChild(e),setTimeout(()=>t.textContent=o,1e3)}}document.addEventListener("DOMContentLoaded",()=>{i(),r()});</script> </body> </html>
+</code></pre> <h2>Rendered snippet with sample text:</h2> <p>
+It's also accesible <a href="/markup-refine-lib/demo-internal/side-top-top-navigation">here</a> </p> <iframe src="/markup-refine-lib/demo-internal/side-top-top-navigation"></iframe> </main>  <script type="module">function i(){const s=document.querySelector(".stt-component");if(!s)return;const n=s.querySelector('[data-stt-action="toggle"]'),t=s.querySelector('[data-stt-action="dismiss"]'),o=s.querySelector('[data-stt-element="sidebar"]'),e=s.querySelector('[data-stt-element="overlay"]');function c(){o.classList.add("stt-drawer-open"),e.classList.add("stt-overlay-visible")}function a(){o.classList.remove("stt-drawer-open"),e.classList.remove("stt-overlay-visible")}n?.addEventListener("click",c),t?.addEventListener("click",a),e?.addEventListener("click",a)}function r(){document.querySelectorAll("[data-copyable-snippet]").forEach(n=>{if(n.querySelector("code")&&!n.querySelector(".copyable-snippet-button")){const o=document.createElement("button");o.className="copyable-snippet-button",o.setAttribute("aria-label","Copy"),o.textContent="📋",n.appendChild(o)}}),document.addEventListener("click",n=>{const t=n.target.closest(".copyable-snippet-button");if(!t)return;const o=t.closest("[data-copyable-snippet]");if(!o)return;const e=o.querySelector("code");if(!e)return;const c=e.textContent;if(!c)return;const a=t.textContent;navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(c).then(()=>{t.disabled=!0,t.textContent="✅",setTimeout(()=>{t.textContent=a,t.disabled=!1},1e3)}).catch(()=>s(c,t,a)):s(c,t,a)});function s(n,t,o){const e=document.createElement("textarea");e.value=n,e.style.position="fixed",e.style.opacity="0",document.body.appendChild(e),e.select();try{document.execCommand("copy")?t.textContent="✅":t.textContent="❌"}catch(c){console.warn("Fallback copy failed:",c),t.textContent="❌"}document.body.removeChild(e),setTimeout(()=>t.textContent=o,1e3)}}document.addEventListener("DOMContentLoaded",()=>{i(),r()});</script> </body> </html> 
