@@ -103,7 +103,7 @@
     &::before {
       content: "";
       margin-left: -0.6rem;
-      margin-top: -1px;
+      margin-top: -2px;
       border-left: 2px solid var(--color-text-secondary);
       float: left;
       height: 1.7rem;
