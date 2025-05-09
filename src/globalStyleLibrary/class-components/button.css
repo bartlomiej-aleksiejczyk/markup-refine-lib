@@ -6,7 +6,6 @@ input[type="reset"] {
   padding: 0.8rem 1rem;
   font-weight: bold;
   font-size: large;
-  letter-spacing: 0.1em;
   transition: all 0.3s ease;
   border-radius: var(--border-radius-medium);
   border: solid 2px var(--color-primary-darker);

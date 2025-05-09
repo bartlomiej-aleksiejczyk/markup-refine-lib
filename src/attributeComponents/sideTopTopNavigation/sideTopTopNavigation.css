@@ -29,6 +29,17 @@
   z-index: 1001;
   top: 0;
   left: 0;
+  .search-area {
+    max-width: 15rem;
+    display: flex;
+  }
+  @media (max-width: 640px) {
+    .search-area {
+      span {
+        display: none;
+      }
+    }
+  }
 }
 
 .stt-secondary-topbar {

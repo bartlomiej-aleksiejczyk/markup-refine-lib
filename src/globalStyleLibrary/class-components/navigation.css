@@ -75,7 +75,6 @@
 :not(#\9).search-area {
   background-color: transparent;
   display: flex;
-  max-width: 15rem;
   margin: 0 1rem 0 0;
   justify-content: start;
   cursor: pointer;
@@ -107,12 +106,5 @@
   a {
     color: var(--color-text-on-primary);
     text-decoration: none;
-  }
-}
-@media (max-width: 992px) {
-  .search-area {
-    span {
-      display: none;
-    }
   }
 }
