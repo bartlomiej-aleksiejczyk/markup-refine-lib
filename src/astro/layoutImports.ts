@@ -1,2 +1,2 @@
 import "../globalStyleLibrary/markup-refine-lib.css";
-import "../attributeComponents/markup-refine-lib-attribute-components.ts";
+import "../library/components/markup-refine-lib-attribute-components";

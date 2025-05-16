@@ -1,10 +1,10 @@
 import { initSideTopTopNavigation } from "./sideTopTopNavigation/sideTopTopNavigation";
-import "./sideTopTopNavigation/sideTopTopNavigation.css";
+import "../components/sideTopTopNavigation/sideTopTopNavigation.css";
 
 import { initCopyableSnippet } from "./copyableSnippet/copyableSnippet";
-import "./copyableSnippet/copyableSnippet.css";
+import "../components/copyableSnippet/copyableSnippet.css";
 
-import "./clickableItemList/clickableItemList.css"
+import "../components/clickableItemList/clickableItemList.css"
 
 document.addEventListener("DOMContentLoaded", () => {
   initSideTopTopNavigation();

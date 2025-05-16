@@ -1,3 +1,8 @@
+.floating-element {
+  margin: 0 1rem;
+  float: right;
+  max-width: 40ch;
+}
 .group {
   display: flex;
   flex-wrap: wrap;
@@ -29,4 +34,7 @@
     padding: 0.4rem 0.8rem;
     margin: 0.2rem 0.2rem 0.2rem 0;
   }
+}
+.inline-display {
+  display: inline;
 }
