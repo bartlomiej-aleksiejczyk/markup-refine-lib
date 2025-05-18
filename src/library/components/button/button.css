@@ -1,14 +1,6 @@
 button,
 input[type="submit"],
 input[type="reset"] {
-  background-color: var(--color-primary-lighter);
-  color: var(--color-text-on-primary);
-  padding: 0.8rem 1rem;
-  font-weight: bold;
-  font-size: large;
-  transition: all 0.3s ease;
-  border-radius: var(--border-radius-medium);
-  border: solid 2px var(--color-primary-darker);
   &.outlined {
     color: var(--color-text-primary);
     background-color: transparent;

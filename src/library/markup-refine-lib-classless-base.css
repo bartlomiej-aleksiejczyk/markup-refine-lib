@@ -1,0 +1,10 @@
+@import "globals/reset.css";
+@import "globals/variables.css";
+@import "globals/native-elements.css";
+@import "globals/specialized-native-elements/button.css";
+@import "globals/specialized-native-elements/forms.css";
+@import "globals/specialized-native-elements/headings.css";
+@import "globals/specialized-native-elements/links.css";
+@import "globals/specialized-native-elements/lists.css";
+@import "globals/specialized-native-elements/formatted-texts.css";
+@import "globals/specialized-native-elements/table.css";

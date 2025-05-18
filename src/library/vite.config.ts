@@ -48,19 +48,19 @@ export default defineConfig({
           __dirname,
           "src",
           "globalStyleLibrary",
-          "markup-refine-lib-class-components.css"
+          "navbar-brand-components.css"
         ),
         resolve(
           __dirname,
           "src",
           "globalStyleLibrary",
-          "markup-refine-lib-classless-base.css"
+          "navbar-brandless-base.css"
         ),
         resolve(
           __dirname,
           "src",
           "globalStyleLibrary",
-          "markup-refine-lib-classless-base-scoped.scss"
+          "markup-refine-lib-scoped.scss"
         ),
       ],
       name: "OfflineNotesClientComponents",

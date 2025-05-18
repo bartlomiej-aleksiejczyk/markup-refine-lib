@@ -1,9 +1,2 @@
-/* Importing Global and Reset Styles */
-@import "markup-refine-lib-variables.css";
-@import "markup-refine-lib-reset.css";
-
-/* Importing Class Components */
+@import "markup-refine-lib-classless-base.css";
 @import "markup-refine-lib-class-components.css";
-
-/* Importing Native Components */
-@import "markup-refine-lib-classless.css";

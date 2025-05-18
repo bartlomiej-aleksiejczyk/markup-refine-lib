@@ -1,2 +1,2 @@
-import "../globalStyleLibrary/markup-refine-lib.css";
-import "../library/components/markup-refine-lib-attribute-components";
+import "../library/markup-refine-lib.css";
+import "../library/markup-refine-lib-javascript-attribute-components";

@@ -1,0 +1,16 @@
+@use "sass:meta";
+
+@include meta.load-css("globals/reset.css");
+@include meta.load-css("globals/variables.css");
+.mdl-scope {
+  @include meta.load-css("globals/native-elements.css");
+  @include meta.load-css("globals/specialized-native-elements/button.css");
+  @include meta.load-css("globals/specialized-native-elements/forms.css");
+  @include meta.load-css("globals/specialized-native-elements/headings.css");
+  @include meta.load-css("globals/specialized-native-elements/links.css");
+  @include meta.load-css("globals/specialized-native-elements/lists.css");
+  @include meta.load-css(
+    "globals/specialized-native-elements/formatted-texts.css"
+  );
+  @include meta.load-css("globals/specialized-native-elements/table.css");
+}
