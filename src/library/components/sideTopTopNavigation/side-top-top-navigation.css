@@ -6,6 +6,7 @@
 .stt-component {
   top: 0;
   position: sticky;
+  z-index: 1001;
 }
 /* Topbars & Sidebar Layout */
 .stt-primary-sidebar {
@@ -26,7 +27,6 @@
   background-color: var(--color-primary);
   width: 100vw;
   height: var(--stt-primary-topbar-height);
-  z-index: 1001;
   top: 0;
   left: 0;
   .search-area {
@@ -47,7 +47,6 @@
   margin-left: var(--stt-primary-sidebar-width);
   height: 3rem;
   width: calc(100vw - var(--stt-primary-sidebar-width));
-  z-index: 1001;
   overflow: auto;
 }
 

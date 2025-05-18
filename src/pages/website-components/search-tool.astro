@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+---
+
+<LibraryStyleLayout>
+  <main class="responsive-container">
+    <h1>Search tool tool</h1>
+    <p>
+      For simple cases, class <code>navbar</code> can be used to style the top bar.
+    </p>
+
+    <p>
+      To improve apperance of topbar element classes: <code>navbar-brand</code> and
+      <code>group</code> can be used.
+    </p>
+    <h2>Example usage:</h2>
+    <pre><code>{`<button data-search-tool
+        data-mode="static"
+        data-static-url="/static/search-index.json"
+        data-dynamic-url="/api/search?q=">
+  🔍 Search
+</button>`}
+    </code></pre>
+    <h2>Rendered snippet:</h2>
+    <button
+      data-search-tool
+      data-mode="static"
+      data-static-url="/static/search-index.json"
+      data-dynamic-url="/api/search?q="
+    >
+      🔍 Search
+    </button>
+  </main>
+</LibraryStyleLayout>
