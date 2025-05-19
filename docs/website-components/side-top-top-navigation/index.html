@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.DI9n2_jc.css"></head> <body>  <main class="responsive-container stt-navigation-main-content"> <h1>Side Top Top Navigation</h1> <p>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.B96lsOlW.css"></head> <body>  <main class="responsive-container stt-navigation-main-content"> <h1>Side Top Top Navigation</h1> <p>
 This component provides fully responsive navigation bars using css classes
       and attibutes
 </p> <h2>Base blocs:</h2> <p>
@@ -174,4 +174,25 @@ To display items in the sidebar you can use the <code>clickable-item-list</code>
     &lt;/div&gt;
   &lt;/header&gt;
 </code></pre> <h2>Rendered snippet with sample text:</h2> <p>
-It's also accesible <a href="/markup-refine-lib/demo-internal/side-top-top-navigation">here</a> </p> <iframe src="/markup-refine-lib/demo-internal/side-top-top-navigation"></iframe> </main>  <script type="module">function i(){const s=document.querySelector(".stt-component");if(!s)return;const n=s.querySelector('[data-stt-action="toggle"]'),t=s.querySelector('[data-stt-action="dismiss"]'),o=s.querySelector('[data-stt-element="sidebar"]'),e=s.querySelector('[data-stt-element="overlay"]');function c(){o.classList.add("stt-drawer-open"),e.classList.add("stt-overlay-visible")}function a(){o.classList.remove("stt-drawer-open"),e.classList.remove("stt-overlay-visible")}n?.addEventListener("click",c),t?.addEventListener("click",a),e?.addEventListener("click",a)}function r(){document.querySelectorAll("[data-copyable-snippet]").forEach(n=>{if(n.querySelector("code")&&!n.querySelector(".copyable-snippet-button")){const o=document.createElement("button");o.className="copyable-snippet-button",o.setAttribute("aria-label","Copy"),o.textContent="📋",n.appendChild(o)}}),document.addEventListener("click",n=>{const t=n.target.closest(".copyable-snippet-button");if(!t)return;const o=t.closest("[data-copyable-snippet]");if(!o)return;const e=o.querySelector("code");if(!e)return;const c=e.textContent;if(!c)return;const a=t.textContent;navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(c).then(()=>{t.disabled=!0,t.textContent="✅",setTimeout(()=>{t.textContent=a,t.disabled=!1},1e3)}).catch(()=>s(c,t,a)):s(c,t,a)});function s(n,t,o){const e=document.createElement("textarea");e.value=n,e.style.position="fixed",e.style.opacity="0",document.body.appendChild(e),e.select();try{document.execCommand("copy")?t.textContent="✅":t.textContent="❌"}catch(c){console.warn("Fallback copy failed:",c),t.textContent="❌"}document.body.removeChild(e),setTimeout(()=>t.textContent=o,1e3)}}document.addEventListener("DOMContentLoaded",()=>{i(),r()});</script> </body> </html> 
+It's also accesible <a href="/markup-refine-lib/demo-internal/side-top-top-navigation">here</a> </p> <iframe src="/markup-refine-lib/demo-internal/side-top-top-navigation"></iframe> </main> <h2>Using topbar as standalone component</h2> <pre><code>  &lt;header class=&quot;stt-component&quot;&gt;
+  &lt;div class=&quot;stt-toolbar-container&quot;&gt;
+    &lt;div class=&quot;stt-primary-topbar&quot;&gt;
+      &lt;div class=&quot;stt-primary-topbar-content&quot;&gt;
+        &lt;h1 class=&quot;navbar-title&quot;&gt;SamplePage&lt;/h1&gt;
+        &lt;button class=&quot;search-area&quot;&gt;
+          &lt;svg
+            xmlns=&quot;http://www.w3.org/2000/svg&quot;
+            height=&quot;24px&quot;
+            viewBox=&quot;0 -960 960 960&quot;
+            width=&quot;24px&quot;
+            fill=&quot;currentColor&quot;
+            &gt;&lt;path
+              d=&quot;M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z&quot;
+            &gt;&lt;/path&gt;&lt;/svg
+          &gt;
+          &lt;span class=&quot;text&quot;&gt;Search...&lt;/span&gt;&lt;/button
+        &gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;&gt;</code></pre>  <script type="module" src="/markup-refine-lib/_astro/LibraryStyleLayout.astro_astro_type_script_index_0_lang.BiuEJNqC.js"></script> </body> </html>
