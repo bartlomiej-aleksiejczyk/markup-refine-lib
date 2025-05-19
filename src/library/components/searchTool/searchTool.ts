@@ -1,3 +1,6 @@
+import Fuse from "fuse.js";
+import { searchInDataset } from "./searchInDataset";
+
 export function initSearchTool() {
   const triggers = document.querySelectorAll("[data-search-tool]");
   for (const btn of triggers) {
@@ -5,6 +8,7 @@ export function initSearchTool() {
       const mode = btn.getAttribute("data-mode");
       const staticUrl = btn.getAttribute("data-static-url");
       const dynamicUrl = btn.getAttribute("data-dynamic-url");
+      const exactMatch = btn.hasAttribute("data-exact-match");
 
       const { overlay, modal, input, results, spinner, message, dismissBtn } =
         createSearchModalElements();
@@ -12,15 +16,27 @@ export function initSearchTool() {
       document.body.appendChild(modal);
       input.focus();
 
-      let dataset = [];
+      let fuse = null;
+      let dataset = null;
 
       if (mode === "static") {
         spinner.style.display = "block";
         try {
           const res = await fetch(staticUrl);
           dataset = await res.json();
+
+          fuse = new Fuse(dataset, {
+            includeScore: true,
+            includeMatches: true,
+            distance: 10000,
+            threshold: 0.4,
+            keys: [
+              { name: "title", weight: 0.7 },
+              { name: "content", weight: 0.3 },
+            ],
+          });
         } catch (err) {
-          message.textContent = "⚠️ Failed to load search data.";
+          message.textContent = "⚠️ Failed to load search index.";
           console.error("Static fetch failed:", err);
         } finally {
           spinner.style.display = "none";
@@ -28,7 +44,7 @@ export function initSearchTool() {
       }
 
       input.oninput = async function () {
-        const query = input.value.trim().toLowerCase();
+        const query = input.value.trim();
         results.innerHTML = "";
         message.textContent = "";
         spinner.style.display = "block";
@@ -38,16 +54,19 @@ export function initSearchTool() {
           return;
         }
 
-        if (mode === "static") {
-          const filtered = dataset.filter((item) =>
-            item.name.toLowerCase().includes(query)
-          );
-          filtered.forEach((item) => appendResult(results, item.name));
-          if (filtered.length === 0) {
+        if (mode === "static" && fuse) {
+          const searchResults = fuse.search(query);
+          if (searchResults.length === 0) {
             message.textContent = "No results found.";
+          } else {
+            searchResults.forEach((result) => {
+              appendResult(results, result.item, result.matches, result.score);
+            });
           }
           spinner.style.display = "none";
-        } else if (mode === "dynamic") {
+        }
+
+        if (mode === "dynamic") {
           try {
             const res = await fetch(dynamicUrl + encodeURIComponent(query));
             const dynamicResults = await res.json();
@@ -55,7 +74,7 @@ export function initSearchTool() {
               message.textContent = "No results found.";
             } else {
               dynamicResults.forEach((item) =>
-                appendResult(results, item.name)
+                appendResult(results, item.title || item.name)
               );
             }
           } catch (err) {
@@ -118,11 +137,107 @@ export function initSearchTool() {
     return { overlay, modal, input, results, spinner, message, dismissBtn };
   }
 
-  function appendResult(container, text) {
+  function appendResult(container, item, matches = [], score = null) {
     const li = document.createElement("li");
     li.className = "search-tool-result";
-    li.textContent = text;
+
+    const wrapper = item.url
+      ? document.createElement("a")
+      : document.createElement("div");
+
+    if (item.url) {
+      wrapper.href = item.url;
+      wrapper.target = "_blank";
+      wrapper.className = "search-tool-result-link";
+    }
+
+    const titleEl = document.createElement("strong");
+    const contentEl = document.createElement("div");
+
+    const titleMatch = matches.find((m) => m.key === "title");
+    const contentMatch = matches.find((m) => m.key === "content");
+
+    renderHighlightedText(titleEl, item.title || "", titleMatch?.indices || []);
+
+    const truncated = truncateToMatch(
+      item.content || "",
+      contentMatch?.indices || [],
+      200
+    );
+    renderHighlightedText(contentEl, truncated.text, truncated.adjustedIndices);
+
+    wrapper.appendChild(titleEl);
+    wrapper.appendChild(contentEl);
+
+    if (score !== null) {
+      const scoreEl = document.createElement("div");
+      scoreEl.style.fontSize = "0.8em";
+      scoreEl.style.color = "gray";
+      scoreEl.textContent = `Score: ${(score * 100).toFixed(1)}%`;
+      wrapper.appendChild(scoreEl);
+    }
+
+    li.appendChild(wrapper);
     container.appendChild(li);
+  }
+
+  function truncateToMatch(text, indices, maxLen) {
+    if (text.length <= maxLen || indices.length === 0) {
+      return {
+        text: text.slice(0, maxLen),
+        adjustedIndices: indices.filter(([s, e]) => s < maxLen),
+      };
+    }
+
+    // 🔥 Get the match with the longest length
+    const [matchStart, matchEnd] = indices.reduce((longest, current) => {
+      const [s1, e1] = longest;
+      const [s2, e2] = current;
+      return e2 - s2 > e1 - s1 ? current : longest;
+    });
+
+    const matchCenter = Math.floor((matchStart + matchEnd) / 2);
+    const start = Math.max(0, matchCenter - Math.floor(maxLen / 2));
+    const end = Math.min(text.length, start + maxLen);
+    const sliced = text.slice(start, end);
+
+    // Only keep the adjusted longest match
+    const adjustedStart = matchStart - start;
+    const adjustedEnd = matchEnd - start;
+
+    const adjustedIndices =
+      adjustedStart >= 0 && adjustedEnd < sliced.length
+        ? [[adjustedStart, adjustedEnd]]
+        : [];
+
+    return { text: sliced, adjustedIndices };
+  }
+
+  function renderHighlightedText(parent, text, indices) {
+    let lastIndex = 0;
+
+    for (const [start, end] of indices) {
+      if (end - start + 1 < 2) continue; // Skip 1-char matches
+
+      // Append plain text before match
+      if (lastIndex < start) {
+        const span = document.createTextNode(text.slice(lastIndex, start));
+        parent.appendChild(span);
+      }
+
+      // Append <mark> with matched text
+      const mark = document.createElement("mark");
+      mark.textContent = text.slice(start, end + 1);
+      parent.appendChild(mark);
+
+      lastIndex = end + 1;
+    }
+
+    // Append remaining text after last match
+    if (lastIndex < text.length) {
+      const span = document.createTextNode(text.slice(lastIndex));
+      parent.appendChild(span);
+    }
   }
 
   function closeModal(modal, overlay) {

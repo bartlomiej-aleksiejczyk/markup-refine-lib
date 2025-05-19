@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import { base } from "astro:config/client";
+
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
 ---
@@ -19,7 +21,7 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
     <h2>Example usage:</h2>
     <pre><code>{`<button data-search-tool
         data-mode="static"
-        data-static-url="/static/search-index.json"
+        data-static-url="${base}demo-internal/offline-search-index.json"
         data-dynamic-url="/api/search?q=">
   🔍 Search
 </button>`}
@@ -28,7 +30,7 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
     <button
       data-search-tool
       data-mode="static"
-      data-static-url="/static/search-index.json"
+      data-static-url=`${base}demo-internal/offline-search-index.json`
       data-dynamic-url="/api/search?q="
     >
       🔍 Search

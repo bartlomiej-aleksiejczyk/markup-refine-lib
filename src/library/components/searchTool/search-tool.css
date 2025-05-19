@@ -63,3 +63,16 @@
   font-size: 0.9em;
   color: #888;
 }
+
+:not(#\9).search-tool-result-link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.search-tool-result-link:hover strong {
+  text-decoration: underline;
+}
+
+.search-tool-result-link strong {
+  color: var(--color-text-primary);
+}
