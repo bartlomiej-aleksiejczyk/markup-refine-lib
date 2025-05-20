@@ -48,18 +48,6 @@ input[type="reset"] {
       background-color: transparent;
     }
   }
-
-  &:hover {
-    box-shadow: inset 0 0 0 2px var(--color-secondary-darker);
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-  &:focus {
-    outline-offset: -0.25rem;
-    outline: 1px dashed var(--color-text-on-primary);
-  }
-
   &.secondary {
     outline-color: var(--color-secondary-darker);
     border-color: var(--color-secondary);

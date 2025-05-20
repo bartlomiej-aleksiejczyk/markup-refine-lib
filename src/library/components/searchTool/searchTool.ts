@@ -28,6 +28,7 @@ export function initSearchTool() {
           fuse = new Fuse(dataset, {
             includeScore: true,
             includeMatches: true,
+            useExtendedSearch: true,
             distance: 10000,
             threshold: 0.4,
             keys: [

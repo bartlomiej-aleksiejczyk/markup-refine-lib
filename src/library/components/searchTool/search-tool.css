@@ -4,36 +4,46 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--color-overlay);
   z-index: 9998;
 }
 
 .search-tool-modal {
-  position: fixed;
   top: 20%;
   left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  padding: 1em;
+  transform: translate(-50%);
+  background: var(--color-background);
+  padding: 0.5rem 1em;
   border-radius: 8px;
-  width: 400px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: var(--max-container-width);
+  max-height: 70%;
   z-index: 9999;
   position: fixed;
+  display: flex;
+  flex-direction: column;
 }
 
 .search-tool-dismiss {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
   background: transparent;
   border: none;
-  padding: 4px;
+  margin: -0.5rem -0.75rem 0 0;
+  align-self: end;
+  outline: none;
+}
+:not(#\	).search-tool-dismiss {
+  &:hover {
+    box-shadow: none;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 .search-tool-input {
   width: 100%;
+  font-size: 1.1rem;
   padding: 0.5em;
   margin-bottom: 0.5em;
 }
@@ -42,18 +52,18 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 200px;
+  max-height: 600px;
   overflow-y: auto;
 }
 
 .search-tool-result {
   padding: 4px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-background-light-contrast);
 }
 
 .search-tool-message {
   padding: 0.5em;
-  color: #b00;
+  color: var(--color-negative-darker);
   font-style: italic;
 }
 
@@ -61,7 +71,7 @@
   text-align: center;
   margin: 0.5em 0;
   font-size: 0.9em;
-  color: #888;
+  color: var(--color-text-primary);
 }
 
 :not(#\9).search-tool-result-link {
@@ -75,4 +85,26 @@
 
 .search-tool-result-link strong {
   color: var(--color-text-primary);
+}
+@media (max-width: 1700px) {
+  .search-tool-modal {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .search-tool-modal {
+    width: 70%;
+  }
+}
+
+@media (max-width: 992px) {
+  .search-tool-modal {
+    width: 80%;
+  }
+}
+@media (max-width: 768px) {
+  .search-tool-modal {
+    width: 95%;
+  }
 }

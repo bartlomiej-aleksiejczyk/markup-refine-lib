@@ -6,6 +6,7 @@ h5,
 h6 {
   color: var(--color-text-secondary);
   margin-bottom: 0.3rem;
+  font-family: Georgia, "Liberation Serif", serif;
 }
 
 h1 {

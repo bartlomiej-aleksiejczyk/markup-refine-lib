@@ -9,4 +9,15 @@ input[type="reset"] {
   transition: all 0.3s ease;
   border-radius: var(--border-radius-medium);
   border: solid 2px var(--color-primary-darker);
+  font-size: 1.3rem;
+  &:hover {
+    box-shadow: inset 0 0 0 2px var(--color-primary-darker);
+  }
+  &:active {
+    transform: translateY(2px);
+  }
+  &:focus {
+    outline-offset: -0.25rem;
+    outline: 1px dashed var(--color-text-on-primary);
+  }
 }

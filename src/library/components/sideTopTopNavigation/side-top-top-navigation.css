@@ -141,7 +141,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--color-overlay);
     z-index: 1002;
   }
 
