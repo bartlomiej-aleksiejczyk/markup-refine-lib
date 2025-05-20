@@ -14,6 +14,17 @@ form {
   input[type="reset"] {
     margin: 1rem auto 0.5rem;
   }
+  button,
+  input[type="submit"],
+  input[type="reset"] {
+    &:hover {
+      box-shadow: inset 0 0 0 2px var(--color-primary);
+    }
+    &:focus {
+      outline-offset: -0.25rem;
+      outline: 1px dashed var(--color-text-on-primary);
+    }
+  }
 }
 
 input,
@@ -36,6 +47,10 @@ textarea {
   justify-content: center;
   background-color: var(--color-background);
   color: var(--color-text-primary);
+}
+
+button:hover {
+  box-shadow: inset 0 0 0 2px var(--color-secondary-darker);
 }
 
 input[type="checkbox"],

@@ -29,6 +29,7 @@ export function initSearchTool() {
             includeScore: true,
             includeMatches: true,
             useExtendedSearch: true,
+            minMatchCharLength: 2,
             distance: 10000,
             threshold: 0.4,
             keys: [
