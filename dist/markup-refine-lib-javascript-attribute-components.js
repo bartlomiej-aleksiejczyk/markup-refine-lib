@@ -58,7 +58,7 @@ function se(s) {
 function pe(s) {
   return se(s) && s !== null;
 }
-function B(s) {
+function x(s) {
   return s != null;
 }
 function P(s) {
@@ -112,13 +112,13 @@ function K(s) {
 function Me(s, e) {
   let t = [], n = !1;
   const r = (i, c, o) => {
-    if (B(i))
+    if (x(i))
       if (!c[o])
         t.push(i);
       else {
         let u = c[o];
         const l = i[u];
-        if (!B(l))
+        if (!x(l))
           return;
         if (o === c.length - 1 && (S(l) || te(l) || fe(l)))
           t.push(de(l));
@@ -141,7 +141,7 @@ const Fe = {
   findAllMatches: !1,
   // Minimum number of characters that must be matched before a result is considered a match
   minMatchCharLength: 1
-}, Be = {
+}, xe = {
   // When `true`, the algorithm continues searching to the end of the input even if a perfect
   // match is found before the end of the same input.
   isCaseSensitive: !1,
@@ -155,7 +155,7 @@ const Fe = {
   shouldSort: !0,
   // Default sort function: sort by ascending score, ascending index
   sortFn: (s, e) => s.score === e.score ? s.idx < e.idx ? -1 : 1 : s.score < e.score ? -1 : 1
-}, xe = {
+}, Be = {
   // Approximately where in the text is the pattern expected to be found?
   location: 0,
   // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match
@@ -185,9 +185,9 @@ const Fe = {
   fieldNormWeight: 1
 };
 var f = {
-  ...Be,
-  ...Fe,
   ...xe,
+  ...Fe,
+  ...Be,
   ...De
 };
 const Se = /[^ ]+/g;
@@ -249,7 +249,7 @@ class Y {
     return this.records.length;
   }
   _addString(e, t) {
-    if (!B(e) || P(e))
+    if (!x(e) || P(e))
       return;
     let n = {
       v: e,
@@ -262,13 +262,13 @@ class Y {
     let n = { i: t, $: {} };
     this.keys.forEach((r, i) => {
       let c = r.getFn ? r.getFn(e) : this.getFn(e, r.path);
-      if (B(c)) {
+      if (x(c)) {
         if (b(c)) {
           let o = [];
           const u = [{ nestedArrIndex: -1, value: c }];
           for (; u.length; ) {
             const { nestedArrIndex: l, value: a } = u.pop();
-            if (B(a))
+            if (x(a))
               if (S(a) && !P(a)) {
                 let h = {
                   v: a,
@@ -375,9 +375,9 @@ function Ie(s, e, t, {
     M = I;
     let V = Math.max(1, d - I + 1), j = c ? h : Math.min(d + I, h) + a, k = Array(j + 2);
     k[j + 1] = (1 << F) - 1;
-    for (let x = j; x >= V; x -= 1) {
-      let R = x - 1, Q = t[s.charAt(R)];
-      if (m && (C[R] = +!!Q), k[x] = (k[x + 1] << 1 | 1) & Q, F && (k[x] |= (y[x + 1] | y[x]) << 1 | 1 | y[x + 1]), k[x] & D && (E = O(e, {
+    for (let B = j; B >= V; B -= 1) {
+      let R = B - 1, Q = t[s.charAt(R)];
+      if (m && (C[R] = +!!Q), k[B] = (k[B + 1] << 1 | 1) & Q, F && (k[B] |= (y[B + 1] | y[B]) << 1 | 1 | y[B + 1]), k[B] & D && (E = O(e, {
         errors: F,
         currentLocation: R,
         expectedLocation: d,
@@ -878,8 +878,8 @@ function Ue(s, { ignoreFieldNorm: e = f.ignoreFieldNorm }) {
 }
 function Ye(s, e) {
   const t = s.matches;
-  e.matches = [], B(t) && t.forEach((n) => {
-    if (!B(n.indices) || !n.indices.length)
+  e.matches = [], x(t) && t.forEach((n) => {
+    if (!x(n.indices) || !n.indices.length)
       return;
     const { indices: r, value: i } = n;
     let c = {
@@ -920,7 +920,7 @@ class N {
     });
   }
   add(e) {
-    B(e) && (this._docs.push(e), this._myIndex.add(e));
+    x(e) && (this._docs.push(e), this._myIndex.add(e));
   }
   remove(e = () => !1) {
     const t = [];
@@ -953,7 +953,7 @@ class N {
   _searchStringList(e) {
     const t = H(e, this.options), { records: n } = this._myIndex, r = [];
     return n.forEach(({ v: i, i: c, n: o }) => {
-      if (!B(i))
+      if (!x(i))
         return;
       const { isMatch: u, score: l, indices: a } = t.searchIn(i);
       u && r.push({
@@ -990,7 +990,7 @@ class N {
       return a;
     }, r = this._myIndex.records, i = {}, c = [];
     return r.forEach(({ $: o, i: u }) => {
-      if (B(o)) {
+      if (x(o)) {
         let l = n(t, o, u);
         l.length && (i[u] || (i[u] = { idx: u, item: o, matches: [] }, c.push(i[u])), l.forEach(({ matches: a }) => {
           i[u].matches.push(...a);
@@ -1001,7 +1001,7 @@ class N {
   _searchObjectList(e) {
     const t = H(e, this.options), { keys: n, records: r } = this._myIndex, i = [];
     return r.forEach(({ $: c, i: o }) => {
-      if (!B(c))
+      if (!x(c))
         return;
       let u = [];
       n.forEach((l, a) => {
@@ -1020,12 +1020,12 @@ class N {
     }), i;
   }
   _findMatches({ key: e, value: t, searcher: n }) {
-    if (!B(t))
+    if (!x(t))
       return [];
     let r = [];
     if (b(t))
       t.forEach(({ v: i, i: c, n: o }) => {
-        if (!B(i))
+        if (!x(i))
           return;
         const { isMatch: u, score: l, indices: a } = n.searchIn(i);
         u && r.push({
@@ -1065,6 +1065,8 @@ function Je() {
           y = await (await fetch(u)).json(), A = new N(y, {
             includeScore: !0,
             includeMatches: !0,
+            useExtendedSearch: !0,
+            minMatchCharLength: 2,
             distance: 1e4,
             threshold: 0.4,
             keys: [

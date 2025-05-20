@@ -1,9 +1,9 @@
 {
   "headerLinks": [
     {
-      "classlessLibrary": "<link rel=\"stylesheet\" href=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.3\/dist\/markup-refine-lib.min.css\" \/>\r\n",
-      "webComponentsJs": "<script src=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.3\/dist\/webComponents.js\"><\/script>",
-      "webComponentsCss": "<link rel=\"stylesheet\" href=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.3\/dist\/webComponents.css\" \/>"
+      "classlessLibrary": "<link rel=\"stylesheet\" href=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.4\/dist\/markup-refine-lib.min.css\" \/>\r\n",
+      "webComponentsJs": "<script src=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.4\/dist\/webComponents.js\"><\/script>",
+      "webComponentsCss": "<link rel=\"stylesheet\" href=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.4\/dist\/webComponents.css\" \/>"
     }
   ]
 }

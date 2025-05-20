@@ -1,5 +1,6 @@
 ---
 interface Props {}
+import { base } from "astro:config/client";
 ---
 
 <html lang="en">
@@ -12,8 +13,13 @@ interface Props {}
       <div class="stt-toolbar-container">
         <div class="stt-primary-topbar">
           <div class="stt-primary-topbar-content">
-            <h1 class="navbar-title">SamplePage</h1>
-            <button class="search-area">
+            <h1 class="navbar-title">MarkupRefineLib</h1>
+            <button
+              class="search-area"
+              data-search-tool
+              data-mode="static"
+              data-static-url=`${base}search-index.json`
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"

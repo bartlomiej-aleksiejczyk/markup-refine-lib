@@ -1,7 +1,15 @@
-const fs = require("fs/promises");
-const path = require("path");
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+import { JSDOM } from "jsdom"; // ✅ Add this to use DOMParser-like functionality
 
-// Recursively walks through a directory and finds all .html files
+// Fix __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/**
+ * Recursively walk a directory and collect all .html files
+ */
 async function walkDir(dir, fileList = []) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
 
@@ -17,45 +25,52 @@ async function walkDir(dir, fileList = []) {
   return fileList;
 }
 
-// Basic HTML parsing using regex (not suitable for complex HTML but fine here)
-function extractTitleAndContent(html) {
-  const getTagContent = (tag) => {
-    const regex = new RegExp(`<${tag}[^>]*>(.*?)</${tag}>`, "is");
-    const match = html.match(regex);
-    return match ? match[1].replace(/<[^>]*>/g, "").trim() : "";
-  };
+/**
+ * Extract title and <main> content using jsdom
+ */
+function extractTitleAndMain(html) {
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
 
   const title =
-    getTagContent("h1") ||
-    getTagContent("title") ||
-    getTagContent("h2") ||
+    document.querySelector("h1")?.textContent?.trim() ||
+    document.querySelector("title")?.textContent?.trim() ||
+    document.querySelector("h2")?.textContent?.trim() ||
     "Untitled";
 
-  const body = getTagContent("body").replace(/\s+/g, " ").trim();
+  const main =
+    document.querySelector("main")?.textContent?.replace(/\s+/g, " ").trim() ||
+    "";
 
-  return { title, content: body };
+  return { title, content: main };
 }
 
-async function extractFromHtml(filePath, basePath) {
+/**
+ * Build index entry from HTML file
+ */
+async function extractFromHtml(filePath, basePath, urlPrefix) {
   const html = await fs.readFile(filePath, "utf-8");
-  const { title, content } = extractTitleAndContent(html);
+  const { title, content } = extractTitleAndMain(html);
 
   const relativeUrl =
-    "/" + path.relative(basePath, filePath).replace(/\\/g, "/");
+    urlPrefix + "/" + path.relative(basePath, filePath).replace(/\\/g, "/");
   return {
     title,
     content,
-    url: relativeUrl.replace(/index\.html$/, ""), // clean URLs
+    url: relativeUrl.replace(/index\.html$/, ""),
   };
 }
 
-async function createSearchIndex(rootPath, basePath = rootPath) {
+/**
+ * Generate index array from all HTML files
+ */
+async function buildSearchIndex(rootPath, basePath = rootPath, urlPrefix = "") {
   const htmlFiles = await walkDir(rootPath);
   const index = [];
 
   for (let i = 0; i < htmlFiles.length; i++) {
     try {
-      const item = await extractFromHtml(htmlFiles[i], basePath);
+      const item = await extractFromHtml(htmlFiles[i], basePath, urlPrefix);
       index.push({ id: i + 1, ...item });
     } catch (err) {
       console.warn(`Failed to process ${htmlFiles[i]}:`, err.message);
@@ -65,10 +80,16 @@ async function createSearchIndex(rootPath, basePath = rootPath) {
   return index;
 }
 
-// Example usage
-export async function createSearchIndex(rootDir, globalPrefix) {
-  const rootPath = path.resolve(__dirname, rootDir); // change as needed
-  const index = await createSearchIndex(rootPath);
-  await fs.writeFile("search-index.json", JSON.stringify(index, null, 2));
-  console.log("Search index written to search-index.json");
+/**
+ * Main export: create and write search index to file
+ */
+export async function createSearchIndex(
+  rootDir = "../../docs",
+  outputFile = "docs/search-index.json",
+  urlPrefix = "/markup-refine-lib"
+) {
+  const rootPath = path.resolve(__dirname, rootDir);
+  const index = await buildSearchIndex(rootPath, rootPath, urlPrefix);
+  await fs.writeFile(outputFile, JSON.stringify(index, null, 2));
+  console.log(`Search index written to ${outputFile}`);
 }

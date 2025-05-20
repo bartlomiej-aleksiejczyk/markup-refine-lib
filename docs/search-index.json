@@ -1,0 +1,266 @@
+[
+  {
+    "id": 1,
+    "title": "About",
+    "content": "",
+    "url": "/markup-refine-lib/about/"
+  },
+  {
+    "id": 2,
+    "title": "Component preview",
+    "content": "",
+    "url": "/markup-refine-lib/component-preview/"
+  },
+  {
+    "id": 3,
+    "title": "SamplePage",
+    "content": "Copyable Snippet Use the data-copyable-snippet attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present. Lorem <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.",
+    "url": "/markup-refine-lib/demo-internal/side-top-top-navigation/"
+  },
+  {
+    "id": 4,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/demo-internal/test/"
+  },
+  {
+    "id": 5,
+    "title": "SamplePage",
+    "content": "Copyable Snippet Use the data-copyable-snippet attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present. Lorem <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.",
+    "url": "/markup-refine-lib/demo-internal/top-navigation/"
+  },
+  {
+    "id": 6,
+    "title": "Introduction to markup-refine-lib.css",
+    "content": "Introduction to markup-refine-lib.css markup-refine-lib.css is a lightweight CSS library that aims to provide a simple way to style HTML with an emphasis on a native HTML look. What's more, markup-refine-lib.css is fully responsive, just like the native styling of HTML. Demonstration To see how to use markup-refine-lib in your website's you can preview usage under: components preview section To start using markup-refine-lib.css, simply add the following code to your website's HTML. <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib.css@0.9.5/dist/markup-refine-lib.min.css\" /> By default, all elements will take up the available space. To prevent excessive stretching, use the class: responsive-container <div class=\"responsive-container\"> ...your html content </div> Examples and Usage Form Elements Sample Form Name Password Gender Female Male undisclosed Subscribe Do Not Subscribe Message Submit Typography Main Heading Subheading This is a paragraph demonstrating bold , italic , and underlined text. Keyboard Shortcut: Ctrl + Alt + Delete Images Small Image Medium Image Big Image Tables Sample Data Table ID Name Job Date 1 John Doe Junior PHP Developer 2021-01-02 2 Jane Smith Lead Architect 2020-12-19 3 Jack Doe Designer 2022-08-09 Asci image _ /\\ | | / \\ __ _ _ _ __ ___ _____| |__ ___ ___ ___ / /\\ \\ / _` | | | |/ _` \\ \\ /\\ / / _ \\ '_ \\ / __/ __/ __| / ____ \\ (_| | |_| | (_| |\\ V V / __/ |_) | (__\\__ \\__ \\ /_/ \\_\\__, |\\__,_|\\__,_| \\_/\\_/ \\___|_.__(_)___|___/___/ | | |_| Tree list Fruits Apple Banana Cherry Vegetables Carrot Broccoli Spinach Dairy Milk Cheese Yogurt Food Fruits Apple Banana Cherry Vegetables Carrot Broccoli Spinach Dairy Milk Cheese Yogurt Fruits Apple Banana Cherry Fruits Apple Banana Cherry Breadcrumbs Home Category Sub-Category Sample Item Extended Breadcrumbs Home Category Sub-Category Sample Item Extra Level Deeper Item markup-refine-lib.css - released under MIT license",
+    "url": "/markup-refine-lib/"
+  },
+  {
+    "id": 7,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/usage/coloring/"
+  },
+  {
+    "id": 8,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/usage/images/"
+  },
+  {
+    "id": 9,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/usage/scoped-mode/"
+  },
+  {
+    "id": 10,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/dashboard/"
+  },
+  {
+    "id": 11,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/discussion-forum/"
+  },
+  {
+    "id": 12,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/file-hosting-service/"
+  },
+  {
+    "id": 13,
+    "title": "Gallery",
+    "content": "Gallery Take a look at some of our favorite projects and memories! Project 1 - Innovative Design Project 2 - Modern Interface Project 3 - Creative Solution",
+    "url": "/markup-refine-lib/website-archetypes/gallery/"
+  },
+  {
+    "id": 14,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/internet-encyclopedia/"
+  },
+  {
+    "id": 15,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/mixed-media-platform/"
+  },
+  {
+    "id": 16,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/service-website/"
+  },
+  {
+    "id": 17,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/video-platform/"
+  },
+  {
+    "id": 18,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/wiki/"
+  },
+  {
+    "id": 19,
+    "title": "About Us",
+    "content": "About Us Welcome to MySite! We are a team of passionate developers and designers committed to building innovative solutions that empower users. Our focus is on delivering high-quality, user-friendly applications that make a difference. Our Mission To create seamless digital experiences that enrich the lives of our users. Our Vision To be a leader in innovative technology solutions and user experience. “Innovation distinguishes between a leader and a follower.” — Steve Jobs",
+    "url": "/markup-refine-lib/website-components/about/"
+  },
+  {
+    "id": 20,
+    "title": "📦 Inventory Dashboard",
+    "content": "📦 Inventory Dashboard # 🔤 Name 📂 Type 📊 Status 💰 Cost 1 Laptop Electronics Available $999 2 Headphones Accessories Low Stock $79 3 Smart",
+    "url": "/markup-refine-lib/website-components/abstract-table/"
+  },
+  {
+    "id": 21,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/breadcrumbs/"
+  },
+  {
+    "id": 22,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/card/"
+  },
+  {
+    "id": 23,
+    "title": "Clickable Item List",
+    "content": "Clickable Item List To use the Clickable Item List, add clickable-item-list class to your unordered list root element. This list also handles collapsing via details Full Usage Example: <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Rendered snippet: Home About Services Web Mobile Apps Consulting Strategy Marketing Contact",
+    "url": "/markup-refine-lib/website-components/clickable-item-list/"
+  },
+  {
+    "id": 24,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/code-and-preformatted-text/"
+  },
+  {
+    "id": 25,
+    "title": "Contact Us",
+    "content": "Contact Us We would love to hear from you! Please fill out the form below and we will get back to you as soon as possible. Contact Form Name: Email: Message:",
+    "url": "/markup-refine-lib/website-components/contact/"
+  },
+  {
+    "id": 26,
+    "title": "Copyable Snippet",
+    "content": "Copyable Snippet Use the data-copyable-snippet attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present. Example usage: <pre data-copyable-snippet> <code> npm install my-package </code> </pre> Rendered snippet: npm install my-package When the copy button is clicked, the visible text inside the <code> block (excluding the button itself) will be copied to the clipboard. If the Clipboard API is not available (e.g. in insecure contexts), a fallback method will be used.",
+    "url": "/markup-refine-lib/website-components/copyable-snippet/"
+  },
+  {
+    "id": 27,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/details/"
+  },
+  {
+    "id": 28,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/figures/"
+  },
+  {
+    "id": 29,
+    "title": "Uploaded Files",
+    "content": "Uploaded Files Documents Report.pdf Invoice.docx Presentation.pptx Images photo1.jpg photo2.png logo.svg Videos intro.mp4 demo.mov presentation.avi",
+    "url": "/markup-refine-lib/website-components/files/"
+  },
+  {
+    "id": 30,
+    "title": "Floating Elements",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/floating-elements/"
+  },
+  {
+    "id": 31,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/forms/"
+  },
+  {
+    "id": 32,
+    "title": "Welcome to My Sample Site",
+    "content": "Welcome to My Sample Site This site is styled using a custom CSS framework. Information Card This is an informational card. Use it to display important messages. Success Card Operation completed successfully! Error Card Something went wrong. Please try again. Warning Card Proceed with caution. Save Delete Cancel Contact Us Name: Email: Message: Tech Design Success Error Warning Info Help",
+    "url": "/markup-refine-lib/website-components/generic/"
+  },
+  {
+    "id": 33,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/group/"
+  },
+  {
+    "id": 34,
+    "title": "Product List",
+    "content": "Product List Product 1 Amazing product with top-notch features. Product 2 Reliable and efficient solution for your needs. Product 3 Warning: Limited stock available! Product 4 Out of stock. Check back soon!",
+    "url": "/markup-refine-lib/website-components/list/"
+  },
+  {
+    "id": 35,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/navigation-bars/"
+  },
+  {
+    "id": 36,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/pill/"
+  },
+  {
+    "id": 37,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/popovers-and-dialogs/"
+  },
+  {
+    "id": 38,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/responsive-container/"
+  },
+  {
+    "id": 39,
+    "title": "Copyable Snippet",
+    "content": "Copyable Snippet Use search-area compopnent for styling search area. Example usage: <button class=\"search-area\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\" width=\"24px\" fill=\"currentColor\" ><path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\" ></path></svg > <span class=\"text\">Search...</span></button > Rendered snippet: Search...",
+    "url": "/markup-refine-lib/website-components/search-button/"
+  },
+  {
+    "id": 40,
+    "title": "Search tool tool",
+    "content": "Search tool tool For simple cases, class navbar can be used to style the top bar. To improve apperance of topbar element classes: navbar-brand and group can be used. Example usage: <button data-search-tool data-mode=\"static\" data-static-url=\"/markup-refine-lib/demo-internal/offline-search-index.json\" data-dynamic-url=\"/api/search?q=\"> 🔍 Search </button> Rendered snippet: 🔍 Search",
+    "url": "/markup-refine-lib/website-components/search-tool/"
+  },
+  {
+    "id": 41,
+    "title": "Side Top Top Navigation",
+    "content": "Side Top Top Navigation This component provides fully responsive navigation bars using css classes and attibutes Base blocs: To use the basic side-top-top navigation layout, you need the following structure: <header class=\"stt-component\"> <div class=\"stt-toolbar-container\"> <div class=\"stt-primary-topbar\"> <button data-stt-action=\"toggle\" class=\"stt-button\"> </button> <div class=\"stt-primary-topbar-content\"> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"></button > </div> </div> <div class=\"stt-secondary-topbar\"> </div> <div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <button data-stt-action=\"dismiss\" class=\"stt-button\"> </button> </div> </div> <div class=\"stt-overlay\" data-stt-element=\"overlay\"></div> </div> </header> <main class=\"responsive-container stt-navigation-main-content\"> </main> This creates an empty layout to be filled with content—buttons, icons, a logo, a search box, and internal navigation bars structures (e.g., using Flexbox for layout). Navbars' content and structure Several utility classes are provided to help with general-purpose navbar layouts: To populate the primary sidebar you can use this template: <div class=\"stt-primary-sidebar-top\"> <h2>Collapsible</h2> <button data-stt-action=\"dismiss\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\" > <path d=\"m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z\" ></path> </svg> </button> </div> <div> <hr /> <!--Your sidebar content--> <hr /> </div> To display items in the sidebar you can use the clickable-item-list class in the following structure: <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Full Usage Example: <header class=\"stt-component\"> <div class=\"stt-toolbar-container\"> <div class=\"stt-primary-topbar\"> <button data-stt-action=\"toggle\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\" > <path d=\"M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z\" ></path> </svg> </button> <div class=\"stt-primary-topbar-content\"> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\" width=\"24px\" fill=\"currentColor\" ><path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\" ></path></svg > <span class=\"text\">Search...</span></button > </div> </div> <div class=\"stt-secondary-topbar\"> <div class=\"secondary-topbar-content\"> <h3>Downloading data at: 40%</h3> </div> </div> <div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <h2>Collapsible</h2> <button data-stt-action=\"dismiss\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\" > <path d=\"m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z\" ></path> </svg> </button> </div> <div> <hr /> <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> <hr /> </div> </div> <div class=\"stt-overlay\" data-stt-element=\"overlay\"></div> </div> </header> Rendered snippet with sample text: It's also accesible here",
+    "url": "/markup-refine-lib/website-components/side-top-top-navigation/"
+  },
+  {
+    "id": 42,
+    "title": "Table Display",
+    "content": "Table Display Tables are styled in a classless way by default. ID Item Name Category Status Price 1 Laptop Electronics Available $999 2 Headphones Accessories Low Stock $79 3 Smartphone Mobile Out of Stock $699 4 Camera Photography Pre-Order $499 Handling Large Tables For large tables, use a scrollable container to maintain layout and readability: Wrap the table in a figure tag like this: <figure > <table> ... </table> </figure> ID Name Category Status Description Price Stock SKU Supplier Rating 1 Laptop Pro X Electronics Available A high-performance laptop suitable for developers and gamers. $1,299.99 34 LPX-899 TechSource 4.8⭐ 2 Ergonomic Chair Deluxe Furniture Low Stock Comfortable, adjustable office chair with lumbar support and mesh back. $199.50 5 CH-ERGO-002 FurniPlus 4.2⭐ 3 Multi-function Printer 9000 Office Equipment Out of Stock All-in-one printer with wireless printing, scanning, and cloud support. $449.00 0 MFP-9000Xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff PrintLab 3.9⭐ 4 Desk Lamp Touch Lighting Pre-Order Minimalist LED lamp with touch controls and USB charging port. $45.75 N/A LAMP-201 BrightHome 4.5⭐",
+    "url": "/markup-refine-lib/website-components/table/"
+  },
+  {
+    "id": 43,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/tabs/"
+  },
+  {
+    "id": 44,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/tree-list-container/"
+  }
+]
