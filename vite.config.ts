@@ -17,49 +17,28 @@ export default defineConfig({
         resolve(
           __dirname,
           "src",
-          "attributeComponents",
-          "markup-refine-lib-attribute-components.ts"
+          "library",
+          "markup-refine-lib-javascript-attribute-components.ts"
         ),
         resolve(
           __dirname,
           "src",
-          "webComponents",
-          "markup-refine-lib-web-components.ts"
+          "library",
+          "markup-refine-lib-classless-base.css"
         ),
+        resolve(__dirname, "src", "library", "markup-refine-lib.css"),
+        resolve(__dirname, "src", "library", "markup-refine-lib-variables.css"),
+        resolve(__dirname, "src", "library", "markup-refine-lib-reset.css"),
         resolve(
           __dirname,
           "src",
-          "globalStyleLibrary",
-          "markup-refine-lib.css"
-        ),
-        resolve(
-          __dirname,
-          "src",
-          "globalStyleLibrary",
-          "markup-refine-lib-variables.css"
-        ),
-        resolve(
-          __dirname,
-          "src",
-          "globalStyleLibrary",
-          "markup-refine-lib-reset.css"
-        ),
-        resolve(
-          __dirname,
-          "src",
-          "globalStyleLibrary",
+          "library",
           "markup-refine-lib-class-components.css"
         ),
         resolve(
           __dirname,
           "src",
-          "globalStyleLibrary",
-          "markup-refine-lib-classless-base.css"
-        ),
-        resolve(
-          __dirname,
-          "src",
-          "globalStyleLibrary",
+          "library",
           "markup-refine-lib-classless-base-scoped.scss"
         ),
       ],
