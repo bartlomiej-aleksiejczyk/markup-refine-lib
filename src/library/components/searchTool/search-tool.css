@@ -1,3 +1,6 @@
+body:has(.search-tool-overlay) {
+  overflow: hidden;
+}
 .search-tool-overlay {
   position: fixed;
   top: 0;
