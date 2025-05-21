@@ -40,7 +40,15 @@ import { base } from "astro:config/client";
 </ul>
 `}</code></pre>
     <h2>Rendered snippet:</h2>
-    <ul class="clickable-item-list">
+    <input
+      type="text"
+      data-clickable-item-list-filter
+      placeholder="Filter menu..."
+    />
+    <ul
+      class="clickable-item-list"
+      data-clickable-item-list-selected-link-detector
+    >
       <li><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
       <li>
