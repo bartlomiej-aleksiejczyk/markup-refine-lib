@@ -1,82 +1,152 @@
-function le() {
+function he() {
+  de(), fe();
+}
+function de() {
+  document.querySelectorAll(
+    "input[data-clickable-item-list-filter]"
+  ).forEach((e) => {
+    const t = e.parentElement.querySelector(".clickable-item-list") || e.nextElementSibling;
+    if (!t || !t.classList.contains("clickable-item-list")) {
+      console.warn("No clickable-item-list found near filter input");
+      return;
+    }
+    e.addEventListener("input", () => {
+      const r = e.value.trim().toLowerCase(), n = [], i = [];
+      for (i.push({ ul: t, parentLi: null }); i.length; ) {
+        const { ul: o, parentLi: c } = i.pop(), u = Array.from(o.children).filter((l) => l.tagName === "LI");
+        for (const l of u) {
+          n.push({ li: l, parentLi: c });
+          const a = l.querySelector(":scope > ul");
+          a && i.push({ ul: a, parentLi: l });
+        }
+      }
+      for (const o of n) {
+        const c = o.li.textContent.toLowerCase();
+        o.selfMatches = r === "" || c.includes(r), o.childrenMatch = !1;
+      }
+      for (let o = n.length - 1; o >= 0; o--) {
+        const c = n[o], l = c.li.querySelector(":scope > ul");
+        if (l) {
+          const a = Array.from(l.children).filter(
+            (h) => h.tagName === "LI"
+          );
+          c.childrenMatch = a.some((h) => {
+            const d = n.find((f) => f.li === h);
+            return d && (d.selfMatches || d.childrenMatch);
+          });
+        }
+        if (c.parentLi) {
+          const a = n.find((h) => h.li === c.parentLi);
+          a && (c.selfMatches || c.childrenMatch) && (a.childrenMatch = !0);
+        }
+      }
+      for (const o of n) {
+        const c = o.li, u = c.querySelector(":scope > ul"), l = c.querySelector("details"), a = o.selfMatches || o.childrenMatch;
+        c.style.display = a ? "" : "none", l && (a ? l.open = !0 : l.open = !1), o.selfMatches && u && Array.from(u.children).filter(
+          (d) => d.tagName === "LI"
+        ).forEach((d) => {
+          d.style.display = "";
+        });
+      }
+    });
+  });
+}
+function fe() {
+  const s = window.location.origin + window.location.pathname;
+  document.querySelectorAll(
+    "ul[data-clickable-item-list-autoselector]"
+  ).forEach((t) => {
+    t.querySelectorAll("a[href]").forEach((n) => {
+      const i = new URL(
+        n.getAttribute("href"),
+        window.location.origin + window.location.pathname
+      ).href, o = s.endsWith("/") ? s.slice(0, -1) : s, c = i.endsWith("/") ? i.slice(0, -1) : i;
+      if (o === c) {
+        const u = n.closest("li");
+        u && t.contains(u) && u.classList.add("selected");
+      }
+    });
+  });
+}
+function pe() {
   document.querySelectorAll("[data-copyable-snippet]").forEach((e) => {
     if (e.querySelector("code") && !e.querySelector(".copyable-snippet-button")) {
-      const n = document.createElement("button");
-      n.className = "copyable-snippet-button", n.setAttribute("aria-label", "Copy"), n.textContent = "📋", e.appendChild(n);
+      const r = document.createElement("button");
+      r.className = "copyable-snippet-button", r.setAttribute("aria-label", "Copy"), r.textContent = "📋", e.appendChild(r);
     }
   }), document.addEventListener("click", (e) => {
     const t = e.target.closest(".copyable-snippet-button");
     if (!t) return;
-    const n = t.closest("[data-copyable-snippet]");
-    if (!n) return;
-    const r = n.querySelector("code");
+    const r = t.closest("[data-copyable-snippet]");
     if (!r) return;
-    const i = r.textContent;
+    const n = r.querySelector("code");
+    if (!n) return;
+    const i = n.textContent;
     if (!i) return;
-    const c = t.textContent;
+    const o = t.textContent;
     navigator.clipboard && window.isSecureContext ? navigator.clipboard.writeText(i).then(() => {
       t.disabled = !0, t.textContent = "✅", setTimeout(() => {
-        t.textContent = c, t.disabled = !1;
+        t.textContent = o, t.disabled = !1;
       }, 1e3);
-    }).catch(() => s(i, t, c)) : s(i, t, c);
+    }).catch(() => s(i, t, o)) : s(i, t, o);
   });
-  function s(e, t, n) {
-    const r = document.createElement("textarea");
-    r.value = e, r.style.position = "fixed", r.style.opacity = "0", document.body.appendChild(r), r.select();
+  function s(e, t, r) {
+    const n = document.createElement("textarea");
+    n.value = e, n.style.position = "fixed", n.style.opacity = "0", document.body.appendChild(n), n.select();
     try {
       document.execCommand("copy") ? t.textContent = "✅" : t.textContent = "❌";
     } catch (i) {
       console.warn("Fallback copy failed:", i), t.textContent = "❌";
     }
-    document.body.removeChild(r), setTimeout(() => t.textContent = n, 1e3);
+    document.body.removeChild(n), setTimeout(() => t.textContent = r, 1e3);
   }
 }
-function b(s) {
-  return Array.isArray ? Array.isArray(s) : ne(s) === "[object Array]";
+function L(s) {
+  return Array.isArray ? Array.isArray(s) : re(s) === "[object Array]";
 }
-function he(s) {
+function ge(s) {
   if (typeof s == "string")
     return s;
   let e = s + "";
   return e == "0" && 1 / s == -1 / 0 ? "-0" : e;
 }
-function de(s) {
-  return s == null ? "" : he(s);
+function me(s) {
+  return s == null ? "" : ge(s);
 }
-function S(s) {
+function w(s) {
   return typeof s == "string";
 }
-function te(s) {
+function se(s) {
   return typeof s == "number";
 }
-function fe(s) {
-  return s === !0 || s === !1 || pe(s) && ne(s) == "[object Boolean]";
+function Ae(s) {
+  return s === !0 || s === !1 || ye(s) && re(s) == "[object Boolean]";
 }
-function se(s) {
+function ne(s) {
   return typeof s == "object";
 }
-function pe(s) {
-  return se(s) && s !== null;
+function ye(s) {
+  return ne(s) && s !== null;
 }
-function x(s) {
+function D(s) {
   return s != null;
 }
 function P(s) {
   return !s.trim().length;
 }
-function ne(s) {
+function re(s) {
   return s == null ? s === void 0 ? "[object Undefined]" : "[object Null]" : Object.prototype.toString.call(s);
 }
-const ge = "Incorrect 'index' type", me = (s) => `Invalid value for key ${s}`, Ae = (s) => `Pattern length exceeds max of ${s}.`, Ce = (s) => `Missing ${s} property in key`, Ee = (s) => `Property 'weight' in key '${s}' must be a positive integer`, J = Object.prototype.hasOwnProperty;
-class ye {
+const Ce = "Incorrect 'index' type", Ee = (s) => `Invalid value for key ${s}`, Me = (s) => `Pattern length exceeds max of ${s}.`, xe = (s) => `Missing ${s} property in key`, Fe = (s) => `Property 'weight' in key '${s}' must be a positive integer`, Q = Object.prototype.hasOwnProperty;
+class Be {
   constructor(e) {
     this._keys = [], this._keyMap = {};
     let t = 0;
-    e.forEach((n) => {
-      let r = re(n);
-      this._keys.push(r), this._keyMap[r.id] = r, t += r.weight;
-    }), this._keys.forEach((n) => {
-      n.weight /= t;
+    e.forEach((r) => {
+      let n = ie(r);
+      this._keys.push(n), this._keyMap[n.id] = n, t += n.weight;
+    }), this._keys.forEach((r) => {
+      r.weight /= t;
     });
   }
   get(e) {
@@ -89,49 +159,49 @@ class ye {
     return JSON.stringify(this._keys);
   }
 }
-function re(s) {
-  let e = null, t = null, n = null, r = 1, i = null;
-  if (S(s) || b(s))
-    n = s, e = X(s), t = K(s);
+function ie(s) {
+  let e = null, t = null, r = null, n = 1, i = null;
+  if (w(s) || L(s))
+    r = s, e = J(s), t = z(s);
   else {
-    if (!J.call(s, "name"))
-      throw new Error(Ce("name"));
-    const c = s.name;
-    if (n = c, J.call(s, "weight") && (r = s.weight, r <= 0))
-      throw new Error(Ee(c));
-    e = X(c), t = K(c), i = s.getFn;
+    if (!Q.call(s, "name"))
+      throw new Error(xe("name"));
+    const o = s.name;
+    if (r = o, Q.call(s, "weight") && (n = s.weight, n <= 0))
+      throw new Error(Fe(o));
+    e = J(o), t = z(o), i = s.getFn;
   }
-  return { path: e, id: t, weight: r, src: n, getFn: i };
+  return { path: e, id: t, weight: n, src: r, getFn: i };
 }
-function X(s) {
-  return b(s) ? s : s.split(".");
+function J(s) {
+  return L(s) ? s : s.split(".");
 }
-function K(s) {
-  return b(s) ? s.join(".") : s;
+function z(s) {
+  return L(s) ? s.join(".") : s;
 }
-function Me(s, e) {
-  let t = [], n = !1;
-  const r = (i, c, o) => {
-    if (x(i))
-      if (!c[o])
+function De(s, e) {
+  let t = [], r = !1;
+  const n = (i, o, c) => {
+    if (D(i))
+      if (!o[c])
         t.push(i);
       else {
-        let u = c[o];
+        let u = o[c];
         const l = i[u];
-        if (!x(l))
+        if (!D(l))
           return;
-        if (o === c.length - 1 && (S(l) || te(l) || fe(l)))
-          t.push(de(l));
-        else if (b(l)) {
-          n = !0;
+        if (c === o.length - 1 && (w(l) || se(l) || Ae(l)))
+          t.push(me(l));
+        else if (L(l)) {
+          r = !0;
           for (let a = 0, h = l.length; a < h; a += 1)
-            r(l[a], c, o + 1);
-        } else c.length && r(l, c, o + 1);
+            n(l[a], o, c + 1);
+        } else o.length && n(l, o, c + 1);
       }
   };
-  return r(s, S(e) ? e.split(".") : e, 0), n ? t : t[0];
+  return n(s, w(e) ? e.split(".") : e, 0), r ? t : t[0];
 }
-const Fe = {
+const Se = {
   // Whether the matches should be included in the result set. When `true`, each record in the result
   // set will include the indices of the matched characters.
   // These can consequently be used for highlighting purposes.
@@ -141,7 +211,7 @@ const Fe = {
   findAllMatches: !1,
   // Minimum number of characters that must be matched before a result is considered a match
   minMatchCharLength: 1
-}, xe = {
+}, be = {
   // When `true`, the algorithm continues searching to the end of the input even if a perfect
   // match is found before the end of the same input.
   isCaseSensitive: !1,
@@ -155,7 +225,7 @@ const Fe = {
   shouldSort: !0,
   // Default sort function: sort by ascending score, ascending index
   sortFn: (s, e) => s.score === e.score ? s.idx < e.idx ? -1 : 1 : s.score < e.score ? -1 : 1
-}, Be = {
+}, we = {
   // Approximately where in the text is the pattern expected to be found?
   location: 0,
   // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match
@@ -167,12 +237,12 @@ const Fe = {
   // the exact location specified, a threshold of '1000' would require a perfect match
   // to be within 800 characters of the fuzzy location to be found using a 0.8 threshold.
   distance: 100
-}, De = {
+}, Le = {
   // When `true`, it enables the use of unix-like search commands
   useExtendedSearch: !1,
   // The get function to use when fetching an object's properties.
   // The default will search nested paths *ie foo.bar.baz*
-  getFn: Me,
+  getFn: De,
   // When `true`, search will ignore `location` and `distance`, so it won't matter
   // where in the string the pattern appears.
   // More info: https://fusejs.io/concepts/scoring-theory.html#fuzziness-score
@@ -184,34 +254,34 @@ const Fe = {
   // The weight to determine how much field length norm effects scoring.
   fieldNormWeight: 1
 };
-var f = {
-  ...xe,
-  ...Fe,
-  ...Be,
-  ...De
+var p = {
+  ...be,
+  ...Se,
+  ...we,
+  ...Le
 };
-const Se = /[^ ]+/g;
-function be(s = 1, e = 3) {
-  const t = /* @__PURE__ */ new Map(), n = Math.pow(10, e);
+const Ie = /[^ ]+/g;
+function ke(s = 1, e = 3) {
+  const t = /* @__PURE__ */ new Map(), r = Math.pow(10, e);
   return {
-    get(r) {
-      const i = r.match(Se).length;
+    get(n) {
+      const i = n.match(Ie).length;
       if (t.has(i))
         return t.get(i);
-      const c = 1 / Math.pow(i, 0.5 * s), o = parseFloat(Math.round(c * n) / n);
-      return t.set(i, o), o;
+      const o = 1 / Math.pow(i, 0.5 * s), c = parseFloat(Math.round(o * r) / r);
+      return t.set(i, c), c;
     },
     clear() {
       t.clear();
     }
   };
 }
-class Y {
+class G {
   constructor({
-    getFn: e = f.getFn,
-    fieldNormWeight: t = f.fieldNormWeight
+    getFn: e = p.getFn,
+    fieldNormWeight: t = p.fieldNormWeight
   } = {}) {
-    this.norm = be(t, 3), this.getFn = e, this.isCreated = !1, this.setIndexRecords();
+    this.norm = ke(t, 3), this.getFn = e, this.isCreated = !1, this.setIndexRecords();
   }
   setSources(e = []) {
     this.docs = e;
@@ -220,12 +290,12 @@ class Y {
     this.records = e;
   }
   setKeys(e = []) {
-    this.keys = e, this._keysMap = {}, e.forEach((t, n) => {
-      this._keysMap[t.id] = n;
+    this.keys = e, this._keysMap = {}, e.forEach((t, r) => {
+      this._keysMap[t.id] = r;
     });
   }
   create() {
-    this.isCreated || !this.docs.length || (this.isCreated = !0, S(this.docs[0]) ? this.docs.forEach((e, t) => {
+    this.isCreated || !this.docs.length || (this.isCreated = !0, w(this.docs[0]) ? this.docs.forEach((e, t) => {
       this._addString(e, t);
     }) : this.docs.forEach((e, t) => {
       this._addObject(e, t);
@@ -234,12 +304,12 @@ class Y {
   // Adds a doc to the end of the index
   add(e) {
     const t = this.size();
-    S(e) ? this._addString(e, t) : this._addObject(e, t);
+    w(e) ? this._addString(e, t) : this._addObject(e, t);
   }
   // Removes the doc at the specified index of the index
   removeAt(e) {
     this.records.splice(e, 1);
-    for (let t = e, n = this.size(); t < n; t += 1)
+    for (let t = e, r = this.size(); t < r; t += 1)
       this.records[t].i -= 1;
   }
   getValueForItemAtKeyId(e, t) {
@@ -249,50 +319,50 @@ class Y {
     return this.records.length;
   }
   _addString(e, t) {
-    if (!x(e) || P(e))
+    if (!D(e) || P(e))
       return;
-    let n = {
+    let r = {
       v: e,
       i: t,
       n: this.norm.get(e)
     };
-    this.records.push(n);
+    this.records.push(r);
   }
   _addObject(e, t) {
-    let n = { i: t, $: {} };
-    this.keys.forEach((r, i) => {
-      let c = r.getFn ? r.getFn(e) : this.getFn(e, r.path);
-      if (x(c)) {
-        if (b(c)) {
-          let o = [];
-          const u = [{ nestedArrIndex: -1, value: c }];
+    let r = { i: t, $: {} };
+    this.keys.forEach((n, i) => {
+      let o = n.getFn ? n.getFn(e) : this.getFn(e, n.path);
+      if (D(o)) {
+        if (L(o)) {
+          let c = [];
+          const u = [{ nestedArrIndex: -1, value: o }];
           for (; u.length; ) {
             const { nestedArrIndex: l, value: a } = u.pop();
-            if (x(a))
-              if (S(a) && !P(a)) {
+            if (D(a))
+              if (w(a) && !P(a)) {
                 let h = {
                   v: a,
                   i: l,
                   n: this.norm.get(a)
                 };
-                o.push(h);
-              } else b(a) && a.forEach((h, d) => {
+                c.push(h);
+              } else L(a) && a.forEach((h, d) => {
                 u.push({
                   nestedArrIndex: d,
                   value: h
                 });
               });
           }
-          n.$[i] = o;
-        } else if (S(c) && !P(c)) {
-          let o = {
-            v: c,
-            n: this.norm.get(c)
+          r.$[i] = c;
+        } else if (w(o) && !P(o)) {
+          let c = {
+            v: o,
+            n: this.norm.get(o)
           };
-          n.$[i] = o;
+          r.$[i] = c;
         }
       }
-    }), this.records.push(n);
+    }), this.records.push(r);
   }
   toJSON() {
     return {
@@ -301,222 +371,222 @@ class Y {
     };
   }
 }
-function ce(s, e, { getFn: t = f.getFn, fieldNormWeight: n = f.fieldNormWeight } = {}) {
-  const r = new Y({ getFn: t, fieldNormWeight: n });
-  return r.setKeys(s.map(re)), r.setSources(e), r.create(), r;
+function ce(s, e, { getFn: t = p.getFn, fieldNormWeight: r = p.fieldNormWeight } = {}) {
+  const n = new G({ getFn: t, fieldNormWeight: r });
+  return n.setKeys(s.map(ie)), n.setSources(e), n.create(), n;
 }
-function we(s, { getFn: e = f.getFn, fieldNormWeight: t = f.fieldNormWeight } = {}) {
-  const { keys: n, records: r } = s, i = new Y({ getFn: e, fieldNormWeight: t });
-  return i.setKeys(n), i.setIndexRecords(r), i;
+function ve(s, { getFn: e = p.getFn, fieldNormWeight: t = p.fieldNormWeight } = {}) {
+  const { keys: r, records: n } = s, i = new G({ getFn: e, fieldNormWeight: t });
+  return i.setKeys(r), i.setIndexRecords(n), i;
 }
-function O(s, {
+function T(s, {
   errors: e = 0,
   currentLocation: t = 0,
-  expectedLocation: n = 0,
-  distance: r = f.distance,
-  ignoreLocation: i = f.ignoreLocation
+  expectedLocation: r = 0,
+  distance: n = p.distance,
+  ignoreLocation: i = p.ignoreLocation
 } = {}) {
-  const c = e / s.length;
+  const o = e / s.length;
   if (i)
-    return c;
-  const o = Math.abs(n - t);
-  return r ? c + o / r : o ? 1 : c;
+    return o;
+  const c = Math.abs(r - t);
+  return n ? o + c / n : c ? 1 : o;
 }
-function _e(s = [], e = f.minMatchCharLength) {
-  let t = [], n = -1, r = -1, i = 0;
-  for (let c = s.length; i < c; i += 1) {
-    let o = s[i];
-    o && n === -1 ? n = i : !o && n !== -1 && (r = i - 1, r - n + 1 >= e && t.push([n, r]), n = -1);
+function _e(s = [], e = p.minMatchCharLength) {
+  let t = [], r = -1, n = -1, i = 0;
+  for (let o = s.length; i < o; i += 1) {
+    let c = s[i];
+    c && r === -1 ? r = i : !c && r !== -1 && (n = i - 1, n - r + 1 >= e && t.push([r, n]), r = -1);
   }
-  return s[i - 1] && i - n >= e && t.push([n, i - 1]), t;
+  return s[i - 1] && i - r >= e && t.push([r, i - 1]), t;
 }
-const L = 32;
-function Ie(s, e, t, {
-  location: n = f.location,
-  distance: r = f.distance,
-  threshold: i = f.threshold,
-  findAllMatches: c = f.findAllMatches,
-  minMatchCharLength: o = f.minMatchCharLength,
-  includeMatches: u = f.includeMatches,
-  ignoreLocation: l = f.ignoreLocation
+const v = 32;
+function Ne(s, e, t, {
+  location: r = p.location,
+  distance: n = p.distance,
+  threshold: i = p.threshold,
+  findAllMatches: o = p.findAllMatches,
+  minMatchCharLength: c = p.minMatchCharLength,
+  includeMatches: u = p.includeMatches,
+  ignoreLocation: l = p.ignoreLocation
 } = {}) {
-  if (e.length > L)
-    throw new Error(Ae(L));
-  const a = e.length, h = s.length, d = Math.max(0, Math.min(n, h));
-  let p = i, g = d;
-  const m = o > 1 || u, C = m ? Array(h) : [];
-  let A;
-  for (; (A = s.indexOf(e, g)) > -1; ) {
-    let F = O(e, {
-      currentLocation: A,
+  if (e.length > v)
+    throw new Error(Me(v));
+  const a = e.length, h = s.length, d = Math.max(0, Math.min(r, h));
+  let f = i, g = d;
+  const A = c > 1 || u, m = A ? Array(h) : [];
+  let x;
+  for (; (x = s.indexOf(e, g)) > -1; ) {
+    let E = T(e, {
+      currentLocation: x,
       expectedLocation: d,
-      distance: r,
+      distance: n,
       ignoreLocation: l
     });
-    if (p = Math.min(F, p), g = A + a, m) {
-      let _ = 0;
-      for (; _ < a; )
-        C[A + _] = 1, _ += 1;
+    if (f = Math.min(E, f), g = x + a, A) {
+      let B = 0;
+      for (; B < a; )
+        m[x + B] = 1, B += 1;
     }
   }
   g = -1;
-  let y = [], E = 1, M = a + h;
-  const D = 1 << a - 1;
-  for (let F = 0; F < a; F += 1) {
-    let _ = 0, I = M;
-    for (; _ < I; )
-      O(e, {
-        errors: F,
+  let y = [], M = 1, C = a + h;
+  const S = 1 << a - 1;
+  for (let E = 0; E < a; E += 1) {
+    let B = 0, I = C;
+    for (; B < I; )
+      T(e, {
+        errors: E,
         currentLocation: d + I,
         expectedLocation: d,
-        distance: r,
+        distance: n,
         ignoreLocation: l
-      }) <= p ? _ = I : M = I, I = Math.floor((M - _) / 2 + _);
-    M = I;
-    let V = Math.max(1, d - I + 1), j = c ? h : Math.min(d + I, h) + a, k = Array(j + 2);
-    k[j + 1] = (1 << F) - 1;
-    for (let B = j; B >= V; B -= 1) {
-      let R = B - 1, Q = t[s.charAt(R)];
-      if (m && (C[R] = +!!Q), k[B] = (k[B + 1] << 1 | 1) & Q, F && (k[B] |= (y[B + 1] | y[B]) << 1 | 1 | y[B + 1]), k[B] & D && (E = O(e, {
-        errors: F,
+      }) <= f ? B = I : C = I, I = Math.floor((C - B) / 2 + B);
+    C = I;
+    let Y = Math.max(1, d - I + 1), j = o ? h : Math.min(d + I, h) + a, _ = Array(j + 2);
+    _[j + 1] = (1 << E) - 1;
+    for (let b = j; b >= Y; b -= 1) {
+      let R = b - 1, V = t[s.charAt(R)];
+      if (A && (m[R] = +!!V), _[b] = (_[b + 1] << 1 | 1) & V, E && (_[b] |= (y[b + 1] | y[b]) << 1 | 1 | y[b + 1]), _[b] & S && (M = T(e, {
+        errors: E,
         currentLocation: R,
         expectedLocation: d,
-        distance: r,
+        distance: n,
         ignoreLocation: l
-      }), E <= p)) {
-        if (p = E, g = R, g <= d)
+      }), M <= f)) {
+        if (f = M, g = R, g <= d)
           break;
-        V = Math.max(1, 2 * d - g);
+        Y = Math.max(1, 2 * d - g);
       }
     }
-    if (O(e, {
-      errors: F + 1,
+    if (T(e, {
+      errors: E + 1,
       currentLocation: d,
       expectedLocation: d,
-      distance: r,
+      distance: n,
       ignoreLocation: l
-    }) > p)
+    }) > f)
       break;
-    y = k;
+    y = _;
   }
-  const w = {
+  const F = {
     isMatch: g >= 0,
     // Count exact matches (those with a score of 0) to be "almost" exact
-    score: Math.max(1e-3, E)
+    score: Math.max(1e-3, M)
   };
-  if (m) {
-    const F = _e(C, o);
-    F.length ? u && (w.indices = F) : w.isMatch = !1;
+  if (A) {
+    const E = _e(m, c);
+    E.length ? u && (F.indices = E) : F.isMatch = !1;
   }
-  return w;
+  return F;
 }
-function ve(s) {
+function Re(s) {
   let e = {};
-  for (let t = 0, n = s.length; t < n; t += 1) {
-    const r = s.charAt(t);
-    e[r] = (e[r] || 0) | 1 << n - t - 1;
+  for (let t = 0, r = s.length; t < r; t += 1) {
+    const n = s.charAt(t);
+    e[n] = (e[n] || 0) | 1 << r - t - 1;
   }
   return e;
 }
 const $ = String.prototype.normalize ? (s) => s.normalize("NFD").replace(/[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]/g, "") : (s) => s;
-class ie {
+class oe {
   constructor(e, {
-    location: t = f.location,
-    threshold: n = f.threshold,
-    distance: r = f.distance,
-    includeMatches: i = f.includeMatches,
-    findAllMatches: c = f.findAllMatches,
-    minMatchCharLength: o = f.minMatchCharLength,
-    isCaseSensitive: u = f.isCaseSensitive,
-    ignoreDiacritics: l = f.ignoreDiacritics,
-    ignoreLocation: a = f.ignoreLocation
+    location: t = p.location,
+    threshold: r = p.threshold,
+    distance: n = p.distance,
+    includeMatches: i = p.includeMatches,
+    findAllMatches: o = p.findAllMatches,
+    minMatchCharLength: c = p.minMatchCharLength,
+    isCaseSensitive: u = p.isCaseSensitive,
+    ignoreDiacritics: l = p.ignoreDiacritics,
+    ignoreLocation: a = p.ignoreLocation
   } = {}) {
     if (this.options = {
       location: t,
-      threshold: n,
-      distance: r,
+      threshold: r,
+      distance: n,
       includeMatches: i,
-      findAllMatches: c,
-      minMatchCharLength: o,
+      findAllMatches: o,
+      minMatchCharLength: c,
       isCaseSensitive: u,
       ignoreDiacritics: l,
       ignoreLocation: a
     }, e = u ? e : e.toLowerCase(), e = l ? $(e) : e, this.pattern = e, this.chunks = [], !this.pattern.length)
       return;
-    const h = (p, g) => {
+    const h = (f, g) => {
       this.chunks.push({
-        pattern: p,
-        alphabet: ve(p),
+        pattern: f,
+        alphabet: Re(f),
         startIndex: g
       });
     }, d = this.pattern.length;
-    if (d > L) {
-      let p = 0;
-      const g = d % L, m = d - g;
-      for (; p < m; )
-        h(this.pattern.substr(p, L), p), p += L;
+    if (d > v) {
+      let f = 0;
+      const g = d % v, A = d - g;
+      for (; f < A; )
+        h(this.pattern.substr(f, v), f), f += v;
       if (g) {
-        const C = d - L;
-        h(this.pattern.substr(C), C);
+        const m = d - v;
+        h(this.pattern.substr(m), m);
       }
     } else
       h(this.pattern, 0);
   }
   searchIn(e) {
-    const { isCaseSensitive: t, ignoreDiacritics: n, includeMatches: r } = this.options;
-    if (e = t ? e : e.toLowerCase(), e = n ? $(e) : e, this.pattern === e) {
-      let m = {
+    const { isCaseSensitive: t, ignoreDiacritics: r, includeMatches: n } = this.options;
+    if (e = t ? e : e.toLowerCase(), e = r ? $(e) : e, this.pattern === e) {
+      let A = {
         isMatch: !0,
         score: 0
       };
-      return r && (m.indices = [[0, e.length - 1]]), m;
+      return n && (A.indices = [[0, e.length - 1]]), A;
     }
     const {
       location: i,
-      distance: c,
-      threshold: o,
+      distance: o,
+      threshold: c,
       findAllMatches: u,
       minMatchCharLength: l,
       ignoreLocation: a
     } = this.options;
-    let h = [], d = 0, p = !1;
-    this.chunks.forEach(({ pattern: m, alphabet: C, startIndex: A }) => {
-      const { isMatch: y, score: E, indices: M } = Ie(e, m, C, {
-        location: i + A,
-        distance: c,
-        threshold: o,
+    let h = [], d = 0, f = !1;
+    this.chunks.forEach(({ pattern: A, alphabet: m, startIndex: x }) => {
+      const { isMatch: y, score: M, indices: C } = Ne(e, A, m, {
+        location: i + x,
+        distance: o,
+        threshold: c,
         findAllMatches: u,
         minMatchCharLength: l,
-        includeMatches: r,
+        includeMatches: n,
         ignoreLocation: a
       });
-      y && (p = !0), d += E, y && M && (h = [...h, ...M]);
+      y && (f = !0), d += M, y && C && (h = [...h, ...C]);
     });
     let g = {
-      isMatch: p,
-      score: p ? d / this.chunks.length : 1
+      isMatch: f,
+      score: f ? d / this.chunks.length : 1
     };
-    return p && r && (g.indices = h), g;
+    return f && n && (g.indices = h), g;
   }
 }
-class v {
+class k {
   constructor(e) {
     this.pattern = e;
   }
   static isMultiMatch(e) {
-    return Z(e, this.multiRegex);
+    return X(e, this.multiRegex);
   }
   static isSingleMatch(e) {
-    return Z(e, this.singleRegex);
+    return X(e, this.singleRegex);
   }
   search() {
   }
 }
-function Z(s, e) {
+function X(s, e) {
   const t = s.match(e);
   return t ? t[1] : null;
 }
-class Le extends v {
+class Te extends k {
   constructor(e) {
     super(e);
   }
@@ -538,7 +608,7 @@ class Le extends v {
     };
   }
 }
-class ke extends v {
+class $e extends k {
   constructor(e) {
     super(e);
   }
@@ -552,15 +622,15 @@ class ke extends v {
     return /^!(.*)$/;
   }
   search(e) {
-    const n = e.indexOf(this.pattern) === -1;
+    const r = e.indexOf(this.pattern) === -1;
     return {
-      isMatch: n,
-      score: n ? 0 : 1,
+      isMatch: r,
+      score: r ? 0 : 1,
       indices: [0, e.length - 1]
     };
   }
 }
-class Ne extends v {
+class Oe extends k {
   constructor(e) {
     super(e);
   }
@@ -582,7 +652,7 @@ class Ne extends v {
     };
   }
 }
-class Re extends v {
+class je extends k {
   constructor(e) {
     super(e);
   }
@@ -604,7 +674,7 @@ class Re extends v {
     };
   }
 }
-class Oe extends v {
+class Pe extends k {
   constructor(e) {
     super(e);
   }
@@ -626,7 +696,7 @@ class Oe extends v {
     };
   }
 }
-class $e extends v {
+class ze extends k {
   constructor(e) {
     super(e);
   }
@@ -648,25 +718,25 @@ class $e extends v {
     };
   }
 }
-class oe extends v {
+class ue extends k {
   constructor(e, {
-    location: t = f.location,
-    threshold: n = f.threshold,
-    distance: r = f.distance,
-    includeMatches: i = f.includeMatches,
-    findAllMatches: c = f.findAllMatches,
-    minMatchCharLength: o = f.minMatchCharLength,
-    isCaseSensitive: u = f.isCaseSensitive,
-    ignoreDiacritics: l = f.ignoreDiacritics,
-    ignoreLocation: a = f.ignoreLocation
+    location: t = p.location,
+    threshold: r = p.threshold,
+    distance: n = p.distance,
+    includeMatches: i = p.includeMatches,
+    findAllMatches: o = p.findAllMatches,
+    minMatchCharLength: c = p.minMatchCharLength,
+    isCaseSensitive: u = p.isCaseSensitive,
+    ignoreDiacritics: l = p.ignoreDiacritics,
+    ignoreLocation: a = p.ignoreLocation
   } = {}) {
-    super(e), this._bitapSearch = new ie(e, {
+    super(e), this._bitapSearch = new oe(e, {
       location: t,
-      threshold: n,
-      distance: r,
+      threshold: r,
+      distance: n,
       includeMatches: i,
-      findAllMatches: c,
-      minMatchCharLength: o,
+      findAllMatches: o,
+      minMatchCharLength: c,
       isCaseSensitive: u,
       ignoreDiacritics: l,
       ignoreLocation: a
@@ -685,7 +755,7 @@ class oe extends v {
     return this._bitapSearch.searchIn(e);
   }
 }
-class ue extends v {
+class le extends k {
   constructor(e) {
     super(e);
   }
@@ -699,76 +769,76 @@ class ue extends v {
     return /^'(.*)$/;
   }
   search(e) {
-    let t = 0, n;
-    const r = [], i = this.pattern.length;
-    for (; (n = e.indexOf(this.pattern, t)) > -1; )
-      t = n + i, r.push([n, t - 1]);
-    const c = !!r.length;
+    let t = 0, r;
+    const n = [], i = this.pattern.length;
+    for (; (r = e.indexOf(this.pattern, t)) > -1; )
+      t = r + i, n.push([r, t - 1]);
+    const o = !!n.length;
     return {
-      isMatch: c,
-      score: c ? 0 : 1,
-      indices: r
+      isMatch: o,
+      score: o ? 0 : 1,
+      indices: n
     };
   }
 }
-const z = [
-  Le,
-  ue,
-  Ne,
-  Re,
-  $e,
+const K = [
+  Te,
+  le,
   Oe,
-  ke,
-  oe
-], q = z.length, Te = / +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/, je = "|";
-function Pe(s, e = {}) {
-  return s.split(je).map((t) => {
-    let n = t.trim().split(Te).filter((i) => i && !!i.trim()), r = [];
-    for (let i = 0, c = n.length; i < c; i += 1) {
-      const o = n[i];
+  je,
+  ze,
+  Pe,
+  $e,
+  ue
+], Z = K.length, Ke = / +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/, We = "|";
+function Ue(s, e = {}) {
+  return s.split(We).map((t) => {
+    let r = t.trim().split(Ke).filter((i) => i && !!i.trim()), n = [];
+    for (let i = 0, o = r.length; i < o; i += 1) {
+      const c = r[i];
       let u = !1, l = -1;
-      for (; !u && ++l < q; ) {
-        const a = z[l];
-        let h = a.isMultiMatch(o);
-        h && (r.push(new a(h, e)), u = !0);
+      for (; !u && ++l < Z; ) {
+        const a = K[l];
+        let h = a.isMultiMatch(c);
+        h && (n.push(new a(h, e)), u = !0);
       }
       if (!u)
-        for (l = -1; ++l < q; ) {
-          const a = z[l];
-          let h = a.isSingleMatch(o);
+        for (l = -1; ++l < Z; ) {
+          const a = K[l];
+          let h = a.isSingleMatch(c);
           if (h) {
-            r.push(new a(h, e));
+            n.push(new a(h, e));
             break;
           }
         }
     }
-    return r;
+    return n;
   });
 }
-const Ke = /* @__PURE__ */ new Set([oe.type, ue.type]);
-class ze {
+const He = /* @__PURE__ */ new Set([ue.type, le.type]);
+class qe {
   constructor(e, {
-    isCaseSensitive: t = f.isCaseSensitive,
-    ignoreDiacritics: n = f.ignoreDiacritics,
-    includeMatches: r = f.includeMatches,
-    minMatchCharLength: i = f.minMatchCharLength,
-    ignoreLocation: c = f.ignoreLocation,
-    findAllMatches: o = f.findAllMatches,
-    location: u = f.location,
-    threshold: l = f.threshold,
-    distance: a = f.distance
+    isCaseSensitive: t = p.isCaseSensitive,
+    ignoreDiacritics: r = p.ignoreDiacritics,
+    includeMatches: n = p.includeMatches,
+    minMatchCharLength: i = p.minMatchCharLength,
+    ignoreLocation: o = p.ignoreLocation,
+    findAllMatches: c = p.findAllMatches,
+    location: u = p.location,
+    threshold: l = p.threshold,
+    distance: a = p.distance
   } = {}) {
     this.query = null, this.options = {
       isCaseSensitive: t,
-      ignoreDiacritics: n,
-      includeMatches: r,
+      ignoreDiacritics: r,
+      includeMatches: n,
       minMatchCharLength: i,
-      findAllMatches: o,
-      ignoreLocation: c,
+      findAllMatches: c,
+      ignoreLocation: o,
       location: u,
       threshold: l,
       distance: a
-    }, e = t ? e : e.toLowerCase(), e = n ? $(e) : e, this.pattern = e, this.query = Pe(this.pattern, this.options);
+    }, e = t ? e : e.toLowerCase(), e = r ? $(e) : e, this.pattern = e, this.query = Ue(this.pattern, this.options);
   }
   static condition(e, t) {
     return t.useExtendedSearch;
@@ -780,30 +850,30 @@ class ze {
         isMatch: !1,
         score: 1
       };
-    const { includeMatches: n, isCaseSensitive: r, ignoreDiacritics: i } = this.options;
-    e = r ? e : e.toLowerCase(), e = i ? $(e) : e;
-    let c = 0, o = [], u = 0;
+    const { includeMatches: r, isCaseSensitive: n, ignoreDiacritics: i } = this.options;
+    e = n ? e : e.toLowerCase(), e = i ? $(e) : e;
+    let o = 0, c = [], u = 0;
     for (let l = 0, a = t.length; l < a; l += 1) {
       const h = t[l];
-      o.length = 0, c = 0;
-      for (let d = 0, p = h.length; d < p; d += 1) {
-        const g = h[d], { isMatch: m, indices: C, score: A } = g.search(e);
-        if (m) {
-          if (c += 1, u += A, n) {
+      c.length = 0, o = 0;
+      for (let d = 0, f = h.length; d < f; d += 1) {
+        const g = h[d], { isMatch: A, indices: m, score: x } = g.search(e);
+        if (A) {
+          if (o += 1, u += x, r) {
             const y = g.constructor.type;
-            Ke.has(y) ? o = [...o, ...C] : o.push(C);
+            He.has(y) ? c = [...c, ...m] : c.push(m);
           }
         } else {
-          u = 0, c = 0, o.length = 0;
+          u = 0, o = 0, c.length = 0;
           break;
         }
       }
-      if (c) {
+      if (o) {
         let d = {
           isMatch: !0,
-          score: u / c
+          score: u / o
         };
-        return n && (d.indices = o), d;
+        return r && (d.indices = c), d;
       }
     }
     return {
@@ -813,120 +883,120 @@ class ze {
   }
 }
 const W = [];
-function We(...s) {
+function Ge(...s) {
   W.push(...s);
 }
-function H(s, e) {
-  for (let t = 0, n = W.length; t < n; t += 1) {
-    let r = W[t];
-    if (r.condition(s, e))
-      return new r(s, e);
+function U(s, e) {
+  for (let t = 0, r = W.length; t < r; t += 1) {
+    let n = W[t];
+    if (n.condition(s, e))
+      return new n(s, e);
   }
-  return new ie(s, e);
+  return new oe(s, e);
 }
-const T = {
+const O = {
   AND: "$and",
   OR: "$or"
-}, G = {
+}, H = {
   PATH: "$path",
   PATTERN: "$val"
-}, U = (s) => !!(s[T.AND] || s[T.OR]), He = (s) => !!s[G.PATH], Ge = (s) => !b(s) && se(s) && !U(s), ee = (s) => ({
-  [T.AND]: Object.keys(s).map((e) => ({
+}, q = (s) => !!(s[O.AND] || s[O.OR]), Ye = (s) => !!s[H.PATH], Ve = (s) => !L(s) && ne(s) && !q(s), ee = (s) => ({
+  [O.AND]: Object.keys(s).map((e) => ({
     [e]: s[e]
   }))
 });
 function ae(s, e, { auto: t = !0 } = {}) {
-  const n = (r) => {
-    let i = Object.keys(r);
-    const c = He(r);
-    if (!c && i.length > 1 && !U(r))
-      return n(ee(r));
-    if (Ge(r)) {
-      const u = c ? r[G.PATH] : i[0], l = c ? r[G.PATTERN] : r[u];
-      if (!S(l))
-        throw new Error(me(u));
+  const r = (n) => {
+    let i = Object.keys(n);
+    const o = Ye(n);
+    if (!o && i.length > 1 && !q(n))
+      return r(ee(n));
+    if (Ve(n)) {
+      const u = o ? n[H.PATH] : i[0], l = o ? n[H.PATTERN] : n[u];
+      if (!w(l))
+        throw new Error(Ee(u));
       const a = {
-        keyId: K(u),
+        keyId: z(u),
         pattern: l
       };
-      return t && (a.searcher = H(l, e)), a;
+      return t && (a.searcher = U(l, e)), a;
     }
-    let o = {
+    let c = {
       children: [],
       operator: i[0]
     };
     return i.forEach((u) => {
-      const l = r[u];
-      b(l) && l.forEach((a) => {
-        o.children.push(n(a));
+      const l = n[u];
+      L(l) && l.forEach((a) => {
+        c.children.push(r(a));
       });
-    }), o;
+    }), c;
   };
-  return U(s) || (s = ee(s)), n(s);
+  return q(s) || (s = ee(s)), r(s);
 }
-function Ue(s, { ignoreFieldNorm: e = f.ignoreFieldNorm }) {
+function Qe(s, { ignoreFieldNorm: e = p.ignoreFieldNorm }) {
   s.forEach((t) => {
-    let n = 1;
-    t.matches.forEach(({ key: r, norm: i, score: c }) => {
-      const o = r ? r.weight : null;
-      n *= Math.pow(
-        c === 0 && o ? Number.EPSILON : c,
-        (o || 1) * (e ? 1 : i)
+    let r = 1;
+    t.matches.forEach(({ key: n, norm: i, score: o }) => {
+      const c = n ? n.weight : null;
+      r *= Math.pow(
+        o === 0 && c ? Number.EPSILON : o,
+        (c || 1) * (e ? 1 : i)
       );
-    }), t.score = n;
+    }), t.score = r;
   });
 }
-function Ye(s, e) {
+function Je(s, e) {
   const t = s.matches;
-  e.matches = [], x(t) && t.forEach((n) => {
-    if (!x(n.indices) || !n.indices.length)
+  e.matches = [], D(t) && t.forEach((r) => {
+    if (!D(r.indices) || !r.indices.length)
       return;
-    const { indices: r, value: i } = n;
-    let c = {
-      indices: r,
+    const { indices: n, value: i } = r;
+    let o = {
+      indices: n,
       value: i
     };
-    n.key && (c.key = n.key.src), n.idx > -1 && (c.refIndex = n.idx), e.matches.push(c);
+    r.key && (o.key = r.key.src), r.idx > -1 && (o.refIndex = r.idx), e.matches.push(o);
   });
 }
-function Ve(s, e) {
+function Xe(s, e) {
   e.score = s.score;
 }
-function Qe(s, e, {
-  includeMatches: t = f.includeMatches,
-  includeScore: n = f.includeScore
+function Ze(s, e, {
+  includeMatches: t = p.includeMatches,
+  includeScore: r = p.includeScore
 } = {}) {
-  const r = [];
-  return t && r.push(Ye), n && r.push(Ve), s.map((i) => {
-    const { idx: c } = i, o = {
-      item: e[c],
-      refIndex: c
+  const n = [];
+  return t && n.push(Je), r && n.push(Xe), s.map((i) => {
+    const { idx: o } = i, c = {
+      item: e[o],
+      refIndex: o
     };
-    return r.length && r.forEach((u) => {
-      u(i, o);
-    }), o;
+    return n.length && n.forEach((u) => {
+      u(i, c);
+    }), c;
   });
 }
 class N {
-  constructor(e, t = {}, n) {
-    this.options = { ...f, ...t }, this.options.useExtendedSearch, this._keyStore = new ye(this.options.keys), this.setCollection(e, n);
+  constructor(e, t = {}, r) {
+    this.options = { ...p, ...t }, this.options.useExtendedSearch, this._keyStore = new Be(this.options.keys), this.setCollection(e, r);
   }
   setCollection(e, t) {
-    if (this._docs = e, t && !(t instanceof Y))
-      throw new Error(ge);
+    if (this._docs = e, t && !(t instanceof G))
+      throw new Error(Ce);
     this._myIndex = t || ce(this.options.keys, this._docs, {
       getFn: this.options.getFn,
       fieldNormWeight: this.options.fieldNormWeight
     });
   }
   add(e) {
-    x(e) && (this._docs.push(e), this._myIndex.add(e));
+    D(e) && (this._docs.push(e), this._myIndex.add(e));
   }
   remove(e = () => !1) {
     const t = [];
-    for (let n = 0, r = this._docs.length; n < r; n += 1) {
-      const i = this._docs[n];
-      e(i, n) && (this.removeAt(n), n -= 1, r -= 1, t.push(i));
+    for (let r = 0, n = this._docs.length; r < n; r += 1) {
+      const i = this._docs[r];
+      e(i, r) && (this.removeAt(r), r -= 1, n -= 1, t.push(i));
     }
     return t;
   }
@@ -938,132 +1008,140 @@ class N {
   }
   search(e, { limit: t = -1 } = {}) {
     const {
-      includeMatches: n,
-      includeScore: r,
+      includeMatches: r,
+      includeScore: n,
       shouldSort: i,
-      sortFn: c,
-      ignoreFieldNorm: o
+      sortFn: o,
+      ignoreFieldNorm: c
     } = this.options;
-    let u = S(e) ? S(this._docs[0]) ? this._searchStringList(e) : this._searchObjectList(e) : this._searchLogical(e);
-    return Ue(u, { ignoreFieldNorm: o }), i && u.sort(c), te(t) && t > -1 && (u = u.slice(0, t)), Qe(u, this._docs, {
-      includeMatches: n,
-      includeScore: r
+    let u = w(e) ? w(this._docs[0]) ? this._searchStringList(e) : this._searchObjectList(e) : this._searchLogical(e);
+    return Qe(u, { ignoreFieldNorm: c }), i && u.sort(o), se(t) && t > -1 && (u = u.slice(0, t)), Ze(u, this._docs, {
+      includeMatches: r,
+      includeScore: n
     });
   }
   _searchStringList(e) {
-    const t = H(e, this.options), { records: n } = this._myIndex, r = [];
-    return n.forEach(({ v: i, i: c, n: o }) => {
-      if (!x(i))
+    const t = U(e, this.options), { records: r } = this._myIndex, n = [];
+    return r.forEach(({ v: i, i: o, n: c }) => {
+      if (!D(i))
         return;
       const { isMatch: u, score: l, indices: a } = t.searchIn(i);
-      u && r.push({
+      u && n.push({
         item: i,
-        idx: c,
-        matches: [{ score: l, value: i, norm: o, indices: a }]
+        idx: o,
+        matches: [{ score: l, value: i, norm: c, indices: a }]
       });
-    }), r;
+    }), n;
   }
   _searchLogical(e) {
-    const t = ae(e, this.options), n = (o, u, l) => {
-      if (!o.children) {
-        const { keyId: h, searcher: d } = o, p = this._findMatches({
+    const t = ae(e, this.options), r = (c, u, l) => {
+      if (!c.children) {
+        const { keyId: h, searcher: d } = c, f = this._findMatches({
           key: this._keyStore.get(h),
           value: this._myIndex.getValueForItemAtKeyId(u, h),
           searcher: d
         });
-        return p && p.length ? [
+        return f && f.length ? [
           {
             idx: l,
             item: u,
-            matches: p
+            matches: f
           }
         ] : [];
       }
       const a = [];
-      for (let h = 0, d = o.children.length; h < d; h += 1) {
-        const p = o.children[h], g = n(p, u, l);
+      for (let h = 0, d = c.children.length; h < d; h += 1) {
+        const f = c.children[h], g = r(f, u, l);
         if (g.length)
           a.push(...g);
-        else if (o.operator === T.AND)
+        else if (c.operator === O.AND)
           return [];
       }
       return a;
-    }, r = this._myIndex.records, i = {}, c = [];
-    return r.forEach(({ $: o, i: u }) => {
-      if (x(o)) {
-        let l = n(t, o, u);
-        l.length && (i[u] || (i[u] = { idx: u, item: o, matches: [] }, c.push(i[u])), l.forEach(({ matches: a }) => {
+    }, n = this._myIndex.records, i = {}, o = [];
+    return n.forEach(({ $: c, i: u }) => {
+      if (D(c)) {
+        let l = r(t, c, u);
+        l.length && (i[u] || (i[u] = { idx: u, item: c, matches: [] }, o.push(i[u])), l.forEach(({ matches: a }) => {
           i[u].matches.push(...a);
         }));
       }
-    }), c;
+    }), o;
   }
   _searchObjectList(e) {
-    const t = H(e, this.options), { keys: n, records: r } = this._myIndex, i = [];
-    return r.forEach(({ $: c, i: o }) => {
-      if (!x(c))
+    const t = U(e, this.options), { keys: r, records: n } = this._myIndex, i = [];
+    return n.forEach(({ $: o, i: c }) => {
+      if (!D(o))
         return;
       let u = [];
-      n.forEach((l, a) => {
+      r.forEach((l, a) => {
         u.push(
           ...this._findMatches({
             key: l,
-            value: c[a],
+            value: o[a],
             searcher: t
           })
         );
       }), u.length && i.push({
-        idx: o,
-        item: c,
+        idx: c,
+        item: o,
         matches: u
       });
     }), i;
   }
-  _findMatches({ key: e, value: t, searcher: n }) {
-    if (!x(t))
+  _findMatches({ key: e, value: t, searcher: r }) {
+    if (!D(t))
       return [];
-    let r = [];
-    if (b(t))
-      t.forEach(({ v: i, i: c, n: o }) => {
-        if (!x(i))
+    let n = [];
+    if (L(t))
+      t.forEach(({ v: i, i: o, n: c }) => {
+        if (!D(i))
           return;
-        const { isMatch: u, score: l, indices: a } = n.searchIn(i);
-        u && r.push({
+        const { isMatch: u, score: l, indices: a } = r.searchIn(i);
+        u && n.push({
           score: l,
           key: e,
           value: i,
-          idx: c,
-          norm: o,
+          idx: o,
+          norm: c,
           indices: a
         });
       });
     else {
-      const { v: i, n: c } = t, { isMatch: o, score: u, indices: l } = n.searchIn(i);
-      o && r.push({ score: u, key: e, value: i, norm: c, indices: l });
+      const { v: i, n: o } = t, { isMatch: c, score: u, indices: l } = r.searchIn(i);
+      c && n.push({ score: u, key: e, value: i, norm: o, indices: l });
     }
-    return r;
+    return n;
   }
 }
 N.version = "7.1.0";
 N.createIndex = ce;
-N.parseIndex = we;
-N.config = f;
+N.parseIndex = ve;
+N.config = p;
 N.parseQuery = ae;
-We(ze);
-function Je() {
+Ge(qe);
+function et() {
   const s = document.querySelectorAll("[data-search-tool]");
+  let e = !1;
   for (const c of s)
     c.addEventListener("click", async () => {
-      const o = c.getAttribute("data-mode"), u = c.getAttribute("data-static-url"), l = c.getAttribute("data-dynamic-url");
-      c.hasAttribute("data-exact-match");
-      const { overlay: a, modal: h, input: d, results: p, spinner: g, message: m, dismissBtn: C } = e();
-      document.body.appendChild(a), document.body.appendChild(h), d.focus();
-      let A = null, y = null;
-      if (o === "static") {
-        g.style.display = "block";
+      const u = c.getAttribute("data-mode"), l = c.getAttribute("data-static-url"), a = c.getAttribute("data-dynamic-url"), {
+        overlay: h,
+        modal: d,
+        input: f,
+        results: g,
+        spinner: A,
+        message: m,
+        dismissBtn: x,
+        resultCount: y
+      } = t();
+      document.body.appendChild(h), document.body.appendChild(d), m.style.display = "none", y.style.display = "none", f.focus();
+      let M = null, C = null;
+      if (u === "static") {
+        A.style.display = "block";
         try {
-          y = await (await fetch(u)).json(), A = new N(y, {
-            includeScore: !0,
+          C = await (await fetch(l)).json(), M = new N(C, {
+            includeScore: !1,
             includeMatches: !0,
             useExtendedSearch: !0,
             minMatchCharLength: 2,
@@ -1074,120 +1152,143 @@ function Je() {
               { name: "content", weight: 0.3 }
             ]
           });
-        } catch (E) {
-          m.textContent = "⚠️ Failed to load search index.", console.error("Static fetch failed:", E);
+        } catch (S) {
+          e = !0, m.style.display = "block", m.textContent = "⚠️ Failed to load search index, please refresh the page.", console.error("Static fetch failed:", S);
         } finally {
-          g.style.display = "none";
+          A.style.display = "none";
         }
       }
-      d.oninput = async function() {
-        const E = d.value.trim();
-        if (p.innerHTML = "", m.textContent = "", g.style.display = "block", !E) {
-          g.style.display = "none";
+      f.oninput = async function() {
+        const S = f.value.trim();
+        if (g.innerHTML = "", e !== !0 && (m.textContent = "", m.style.display = "none", A.style.display = "block"), !S) {
+          m.style.display = "none", A.style.display = "none", y.textContent = "", y.style.display = "none";
           return;
         }
-        if (o === "static" && A) {
-          const M = A.search(E);
-          M.length === 0 ? m.textContent = "No results found." : M.forEach((D) => {
-            t(p, D.item, D.matches, D.score);
-          }), g.style.display = "none";
+        if (u === "static" && M) {
+          const F = M.search(S);
+          F.length === 0 ? (m.style.display = "block", m.textContent = "No results found.", y.textContent = "", y.style.display = "none") : (m.style.display = "none", y.style.display = "block", y.textContent = `🔎 Found ${F.length} result(s).`, F.forEach((E) => {
+            r(g, E.item, E.matches, E.score);
+          })), A.style.display = "none";
         }
-        if (o === "dynamic")
+        if (u === "dynamic")
           try {
-            const D = await (await fetch(l + encodeURIComponent(E))).json();
-            D.length === 0 ? m.textContent = "No results found." : D.forEach(
-              (w) => t(p, w.title || w.name)
-            );
-          } catch (M) {
-            m.textContent = "⚠️ Failed to fetch results.", console.error("Dynamic fetch failed:", M);
+            const E = await (await fetch(a + encodeURIComponent(S))).json();
+            E.length === 0 ? (m.textContent = "No results found.", y.textContent = "") : (y.textContent = `🔎 Found ${E.length} result(s).`, E.forEach(
+              (B) => r(g, B.title || B.name)
+            ));
+          } catch (F) {
+            m.textContent = "⚠️ Failed to fetch results.", console.error("Dynamic fetch failed:", F);
           } finally {
-            g.style.display = "none";
+            A.style.display = "none";
           }
-      }, a.onclick = () => i(h, a), C.onclick = () => i(h, a), document.addEventListener("keydown", function E(M) {
-        M.key === "Escape" && (i(h, a), document.removeEventListener("keydown", E));
+      }, h.onclick = () => o(d, h), x.onclick = () => o(d, h), document.addEventListener("keydown", function S(F) {
+        F.key === "Escape" && (o(d, h), document.removeEventListener("keydown", S));
       });
     });
-  function e() {
+  function t() {
     const c = document.createElement("div");
     c.className = "search-tool-overlay";
-    const o = document.createElement("div");
-    o.className = "search-tool-modal";
-    const u = document.createElement("input");
-    u.className = "search-tool-input", u.type = "text", u.placeholder = "Search...";
-    const l = document.createElement("button");
-    l.className = "search-tool-dismiss", l.innerHTML = `
+    const u = document.createElement("div");
+    u.className = "search-tool-modal";
+    const l = document.createElement("input");
+    l.className = "search-tool-input", l.type = "text", l.placeholder = "Search...";
+    const a = document.createElement("button");
+    a.className = "search-tool-dismiss", a.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
         <path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/>
       </svg>`;
-    const a = document.createElement("div");
-    a.className = "search-tool-spinner", a.textContent = "Loading...", a.style.display = "none";
     const h = document.createElement("div");
-    h.className = "search-tool-message";
-    const d = document.createElement("ul");
-    return d.className = "search-tool-results", o.appendChild(l), o.appendChild(u), o.appendChild(a), o.appendChild(h), o.appendChild(d), { overlay: c, modal: o, input: u, results: d, spinner: a, message: h, dismissBtn: l };
+    h.className = "search-tool-spinner", h.textContent = "Loading...", h.style.display = "none";
+    const d = document.createElement("div");
+    d.className = "search-tool-message";
+    const f = document.createElement("div");
+    f.className = "search-tool-result-count";
+    const g = document.createElement("ul");
+    return g.className = "search-tool-results", u.appendChild(a), u.appendChild(l), u.appendChild(h), u.appendChild(d), u.appendChild(f), u.appendChild(g), {
+      overlay: c,
+      modal: u,
+      input: l,
+      results: g,
+      spinner: h,
+      message: d,
+      dismissBtn: a,
+      resultCount: f
+    };
   }
-  function t(c, o, u = [], l = null) {
-    const a = document.createElement("li");
-    a.className = "search-tool-result";
-    const h = o.url ? document.createElement("a") : document.createElement("div");
-    o.url && (h.href = o.url, h.target = "_blank", h.className = "search-tool-result-link");
-    const d = document.createElement("strong"), p = document.createElement("div"), g = u.find((A) => A.key === "title"), m = u.find((A) => A.key === "content");
-    r(d, o.title || "", (g == null ? void 0 : g.indices) || []);
-    const C = n(
-      o.content || "",
+  function r(c, u, l = [], a = null) {
+    const h = document.createElement("li");
+    h.className = "search-tool-result";
+    const d = u.url ? document.createElement("a") : document.createElement("div");
+    u.url && (d.href = u.url, d.target = "_blank", d.className = "search-tool-result-link");
+    const f = document.createElement("strong"), g = document.createElement("div"), A = l.find((C) => C.key === "title"), m = l.find((C) => C.key === "content"), x = te((A == null ? void 0 : A.indices) || []);
+    i(f, u.title || "", x);
+    const y = n(
+      u.content || "",
       (m == null ? void 0 : m.indices) || [],
       200
-    );
-    if (r(p, C.text, C.adjustedIndices), h.appendChild(d), h.appendChild(p), l !== null) {
-      const A = document.createElement("div");
-      A.style.fontSize = "0.8em", A.style.color = "gray", A.textContent = `Score: ${(l * 100).toFixed(1)}%`, h.appendChild(A);
+    ), M = te(y.adjustedIndices);
+    if (i(
+      g,
+      y.text,
+      M
+    ), d.appendChild(f), d.appendChild(g), a !== null) {
+      const C = document.createElement("div");
+      C.style.fontSize = "0.8em", C.style.color = "gray", C.textContent = `Score: ${(a * 100).toFixed(1)}%`, d.appendChild(C);
     }
-    a.appendChild(h), c.appendChild(a);
+    h.appendChild(d), c.appendChild(h);
   }
-  function n(c, o, u) {
-    if (c.length <= u || o.length === 0)
+  function n(c, u, l) {
+    if (c.length <= l || u.length === 0)
       return {
-        text: c.slice(0, u),
-        adjustedIndices: o.filter(([y, E]) => y < u)
+        text: c.slice(0, l),
+        adjustedIndices: u.filter(([M, C]) => M < l)
       };
-    const [l, a] = o.reduce((y, E) => {
-      const [M, D] = y, [w, F] = E;
-      return F - w > D - M ? E : y;
-    }), h = Math.floor((l + a) / 2), d = Math.max(0, h - Math.floor(u / 2)), p = Math.min(c.length, d + u), g = c.slice(d, p), m = l - d, C = a - d, A = m >= 0 && C < g.length ? [[m, C]] : [];
-    return { text: g, adjustedIndices: A };
+    const [a, h] = u.reduce((M, C) => {
+      const [S, F] = M, [E, B] = C;
+      return B - E > F - S ? C : M;
+    }), d = Math.floor((a + h) / 2), f = Math.max(0, d - Math.floor(l / 2)), g = Math.min(c.length, f + l), A = c.slice(f, g), m = a - f, x = h - f, y = m >= 0 && x < A.length ? [[m, x]] : [];
+    return { text: A, adjustedIndices: y };
   }
-  function r(c, o, u) {
-    let l = 0;
-    for (const [a, h] of u) {
-      if (h - a + 1 < 2) continue;
-      if (l < a) {
-        const p = document.createTextNode(o.slice(l, a));
-        c.appendChild(p);
+  function i(c, u, l) {
+    let a = 0;
+    for (const [h, d] of l) {
+      if (d - h + 1 < 2) continue;
+      if (a < h) {
+        const g = document.createTextNode(u.slice(a, h));
+        c.appendChild(g);
       }
-      const d = document.createElement("mark");
-      d.textContent = o.slice(a, h + 1), c.appendChild(d), l = h + 1;
+      const f = document.createElement("mark");
+      f.textContent = u.slice(h, d + 1), c.appendChild(f), a = d + 1;
     }
-    if (l < o.length) {
-      const a = document.createTextNode(o.slice(l));
-      c.appendChild(a);
+    if (a < u.length) {
+      const h = document.createTextNode(u.slice(a));
+      c.appendChild(h);
     }
   }
-  function i(c, o) {
-    c.remove(), o.remove();
+  function o(c, u) {
+    c.remove(), u.remove();
   }
 }
-function Xe() {
+function te(s) {
+  const e = [...s].sort((r, n) => r[0] - n[0]), t = [];
+  for (const [r, n] of e) {
+    const i = t[t.length - 1];
+    !i || r > i[1] ? t.push([r, n]) : i[1] = Math.max(i[1], n);
+  }
+  return t;
+}
+function tt() {
   const s = document.querySelector(".stt-component");
   if (!s) return;
-  const e = s.querySelector('[data-stt-action="toggle"]'), t = s.querySelector('[data-stt-action="dismiss"]'), n = s.querySelector('[data-stt-element="sidebar"]'), r = s.querySelector('[data-stt-element="overlay"]');
+  const e = s.querySelector('[data-stt-action="toggle"]'), t = s.querySelector('[data-stt-action="dismiss"]'), r = s.querySelector('[data-stt-element="sidebar"]'), n = s.querySelector('[data-stt-element="overlay"]');
   function i() {
-    n.classList.add("stt-drawer-open"), r.classList.add("stt-overlay-visible");
+    r.classList.add("stt-drawer-open"), n.classList.add("stt-overlay-visible");
   }
-  function c() {
-    n.classList.remove("stt-drawer-open"), r.classList.remove("stt-overlay-visible");
+  function o() {
+    r.classList.remove("stt-drawer-open"), n.classList.remove("stt-overlay-visible");
   }
-  e == null || e.addEventListener("click", i), t == null || t.addEventListener("click", c), r == null || r.addEventListener("click", c);
+  e == null || e.addEventListener("click", i), t == null || t.addEventListener("click", o), n == null || n.addEventListener("click", o);
 }
 document.addEventListener("DOMContentLoaded", () => {
-  Xe(), Je(), le();
+  he(), tt(), et(), pe();
 });
