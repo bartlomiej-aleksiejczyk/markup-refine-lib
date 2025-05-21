@@ -9,12 +9,23 @@ export function initSearchTool() {
       const mode = btn.getAttribute("data-mode");
       const staticUrl = btn.getAttribute("data-static-url");
       const dynamicUrl = btn.getAttribute("data-dynamic-url");
-      const exactMatch = btn.hasAttribute("data-exact-match");
 
-      const { overlay, modal, input, results, spinner, message, dismissBtn } =
-        createSearchModalElements();
+      const {
+        overlay,
+        modal,
+        input,
+        results,
+        spinner,
+        message,
+        dismissBtn,
+        resultCount,
+      } = createSearchModalElements();
       document.body.appendChild(overlay);
       document.body.appendChild(modal);
+
+      message.style.display = "none";
+      resultCount.style.display = "none";
+
       input.focus();
 
       let fuse = null;
@@ -27,7 +38,7 @@ export function initSearchTool() {
           dataset = await res.json();
 
           fuse = new Fuse(dataset, {
-            includeScore: true,
+            includeScore: false,
             includeMatches: true,
             useExtendedSearch: true,
             minMatchCharLength: 2,
@@ -40,7 +51,7 @@ export function initSearchTool() {
           });
         } catch (err) {
           isLoadingFailed = true;
-          console.log(isLoadingFailed);
+          message.style.display = "block";
           message.textContent =
             "⚠️ Failed to load search index, please refresh the page.";
           console.error("Static fetch failed:", err);
@@ -54,19 +65,30 @@ export function initSearchTool() {
         results.innerHTML = "";
         if (isLoadingFailed !== true) {
           message.textContent = "";
+          message.style.display = "none";
           spinner.style.display = "block";
         }
 
         if (!query) {
+          message.style.display = "none";
           spinner.style.display = "none";
+          resultCount.textContent = "";
+          resultCount.style.display = "none";
           return;
         }
 
         if (mode === "static" && fuse) {
           const searchResults = fuse.search(query);
           if (searchResults.length === 0) {
+            message.style.display = "block";
             message.textContent = "No results found.";
+            resultCount.textContent = "";
+            resultCount.style.display = "none";
           } else {
+            message.style.display = "none";
+            resultCount.style.display = "block";
+
+            resultCount.textContent = `🔎 Found ${searchResults.length} result(s).`;
             searchResults.forEach((result) => {
               appendResult(results, result.item, result.matches, result.score);
             });
@@ -80,7 +102,9 @@ export function initSearchTool() {
             const dynamicResults = await res.json();
             if (dynamicResults.length === 0) {
               message.textContent = "No results found.";
+              resultCount.textContent = "";
             } else {
+              resultCount.textContent = `🔎 Found ${dynamicResults.length} result(s).`;
               dynamicResults.forEach((item) =>
                 appendResult(results, item.title || item.name)
               );
@@ -133,6 +157,9 @@ export function initSearchTool() {
     const message = document.createElement("div");
     message.className = "search-tool-message";
 
+    const resultCount = document.createElement("div");
+    resultCount.className = "search-tool-result-count";
+
     const results = document.createElement("ul");
     results.className = "search-tool-results";
 
@@ -140,9 +167,19 @@ export function initSearchTool() {
     modal.appendChild(input);
     modal.appendChild(spinner);
     modal.appendChild(message);
+    modal.appendChild(resultCount);
     modal.appendChild(results);
 
-    return { overlay, modal, input, results, spinner, message, dismissBtn };
+    return {
+      overlay,
+      modal,
+      input,
+      results,
+      spinner,
+      message,
+      dismissBtn,
+      resultCount,
+    };
   }
 
   function appendResult(container, item, matches = [], score = null) {
@@ -164,15 +201,22 @@ export function initSearchTool() {
 
     const titleMatch = matches.find((m) => m.key === "title");
     const contentMatch = matches.find((m) => m.key === "content");
+    const mergedTitleIndices = mergeRanges(titleMatch?.indices || []);
 
-    renderHighlightedText(titleEl, item.title || "", titleMatch?.indices || []);
+    renderHighlightedText(titleEl, item.title || "", mergedTitleIndices);
 
     const truncated = truncateToMatch(
       item.content || "",
       contentMatch?.indices || [],
       200
     );
-    renderHighlightedText(contentEl, truncated.text, truncated.adjustedIndices);
+    const mergedTruncatedTextIndices = mergeRanges(truncated.adjustedIndices);
+
+    renderHighlightedText(
+      contentEl,
+      truncated.text,
+      mergedTruncatedTextIndices
+    );
 
     wrapper.appendChild(titleEl);
     wrapper.appendChild(contentEl);
@@ -252,4 +296,21 @@ export function initSearchTool() {
     modal.remove();
     overlay.remove();
   }
+}
+
+function mergeRanges(ranges: [number, number][]): [number, number][] {
+  const sorted = [...ranges].sort((a, b) => a[0] - b[0]);
+
+  const merged: [number, number][] = [];
+
+  for (const [start, end] of sorted) {
+    const last = merged[merged.length - 1];
+    if (!last || start > last[1]) {
+      merged.push([start, end]);
+    } else {
+      last[1] = Math.max(last[1], end);
+    }
+  }
+
+  return merged;
 }

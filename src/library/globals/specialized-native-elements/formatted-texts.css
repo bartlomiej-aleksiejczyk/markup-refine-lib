@@ -18,6 +18,7 @@ pre {
 }
 
 code {
+  padding-bottom: 0;
   display: inline-block;
   vertical-align: middle;
   font-family: "Courier New", Courier, monospace;
