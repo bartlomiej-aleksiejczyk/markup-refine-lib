@@ -63,7 +63,7 @@
 
 .card-elevated {
   padding: 0.5rem;
-  border-radius: var(--border-radius-larfe);
+  border-radius: var(--border-radius-large);
   margin-bottom: 1rem;
   background: var(--color-secondary);
   box-shadow: 0 2px 5px var(--color-secondary);
