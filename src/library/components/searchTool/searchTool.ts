@@ -3,6 +3,7 @@ import { searchInDataset } from "./searchInDataset";
 
 export function initSearchTool() {
   const triggers = document.querySelectorAll("[data-search-tool]");
+  let isLoadingFailed = false;
   for (const btn of triggers) {
     btn.addEventListener("click", async () => {
       const mode = btn.getAttribute("data-mode");
@@ -38,7 +39,10 @@ export function initSearchTool() {
             ],
           });
         } catch (err) {
-          message.textContent = "⚠️ Failed to load search index.";
+          isLoadingFailed = true;
+          console.log(isLoadingFailed);
+          message.textContent =
+            "⚠️ Failed to load search index, please refresh the page.";
           console.error("Static fetch failed:", err);
         } finally {
           spinner.style.display = "none";
@@ -48,8 +52,10 @@ export function initSearchTool() {
       input.oninput = async function () {
         const query = input.value.trim();
         results.innerHTML = "";
-        message.textContent = "";
-        spinner.style.display = "block";
+        if (isLoadingFailed !== true) {
+          message.textContent = "";
+          spinner.style.display = "block";
+        }
 
         if (!query) {
           spinner.style.display = "none";
