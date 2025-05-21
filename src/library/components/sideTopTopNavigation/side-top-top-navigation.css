@@ -133,6 +133,10 @@
     overflow: hidden;
   }
 
+  .navbar-title {
+    margin-left: 1rem;
+  }
+
   .stt-overlay.stt-overlay-visible {
     display: block;
     position: fixed;
@@ -190,6 +194,7 @@
   justify-content: space-evenly;
   gap: 1rem;
   align-items: center;
+  height: var(--stt-primary-topbar-height);
 }
 .secondary-topbar-content {
   display: flex;

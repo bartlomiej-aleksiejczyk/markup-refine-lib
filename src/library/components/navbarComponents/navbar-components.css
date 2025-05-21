@@ -40,9 +40,16 @@
   font-size: 2.25rem;
   display: inline;
   margin-left: 4rem;
+  margin-bottom: 0;
   text-align: center;
   a {
     color: var(--color-text-on-primary);
     text-decoration: none;
+  }
+}
+@media (max-width: 992px) {
+  .navbar-title {
+    margin-left: 1rem;
+    font-size: 1.75rem;
   }
 }
