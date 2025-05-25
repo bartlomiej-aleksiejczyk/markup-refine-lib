@@ -463,7 +463,6 @@
   left: 0;
   width: var(--ss-primary-sidebar-width);
   height: 100vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -471,17 +470,6 @@
   gap: 0.5rem;
   flex-grow: 0;
   background-color: var(--color-primary);
-  @media (max-width: 768px) {
-    position: sticky;
-    bottom: 0;
-    flex-direction: row;
-    width: auto;
-    padding: 0.5rem;
-    margin: auto 0 0 0;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-  }
 }
 
 .ss-secondary-sidebar {
@@ -492,10 +480,29 @@
   height: 100vh;
   border-right: 3px solid var(--color-secondary);
   background-color: var(--color-secondary-lighter);
+  transition: transform 0.3s ease-in-out;
 }
 
 .ss-overlay {
   display: none;
+}
+
+.ss-toggle-button {
+  display: none;
+  position: fixed;
+  width: 2.75rem;
+  height: 2.75rem;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1003;
+  border: none;
+  border-radius: 0;
+  outline: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
 }
 
 @media (max-width: 1700px) {
@@ -519,9 +526,15 @@
     overflow: hidden;
   }
 
-  .ss-navigation-main-content.responsive-container {
-    margin-left: var(--ss-primary-sidebar-width);
+  .ss-toggle-button {
+    display: flex;
   }
+
+  .ss-navigation-main-content.responsive-container {
+    margin-left: auto;
+    margin-top: 0.5rem;
+  }
+
   .ss-overlay.ss-overlay-visible {
     display: block;
     position: fixed;
@@ -536,5 +549,35 @@
 
   .stt-navigation-main-content.responsive-container {
     margin-left: auto;
+  }
+
+  .ss-primary-sidebar {
+    position: fixed;
+    bottom: 0;
+    flex-direction: row;
+    width: 100vw;
+    height: var(--ss-primary-sidebar-width);
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .ss-secondary-sidebar.ss-drawer-open {
+    transform: translateX(0);
+  }
+
+  .ss-secondary-sidebar:not(.ss-drawer-open) {
+    transform: translateX(-100%);
+  }
+
+  .ss-secondary-sidebar {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: var(--ss-secondary-sidebar-width);
+    height: calc(100vh);
+    border-right: 3px solid var(--color-secondary);
+    background-color: var(--color-secondary-lighter);
   }
 }
