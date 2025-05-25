@@ -63,16 +63,6 @@
   width: calc(100vw - var(--stt-primary-sidebar-width));
 }
 
-/* Main content */
-.main-content-toolbar,
-.stt-main-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: calc(var(--stt-primary-sidebar-width) + 1rem);
-}
-
 /* Overlay logic */
 .stt-overlay {
   display: none;

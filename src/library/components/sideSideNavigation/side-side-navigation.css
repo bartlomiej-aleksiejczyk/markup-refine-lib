@@ -450,6 +450,8 @@
   --ss-primary-sidebar-width: 4rem;
   --ss-secondary-sidebar-width: 20rem;
 }
+.stt-main-content {
+}
 .ss-component {
   left: 0;
   position: fixed;
@@ -490,4 +492,49 @@
   height: 100vh;
   border-right: 3px solid var(--color-secondary);
   background-color: var(--color-secondary-lighter);
+}
+
+.ss-overlay {
+  display: none;
+}
+
+@media (max-width: 1700px) {
+  .ss-navigation-main-content.responsive-container {
+    margin-left: calc(
+      var(--ss-primary-sidebar-width) +var(--ss-secondary-sidebar-width) + 2rem
+    );
+  }
+}
+
+@media (max-width: 1400px) {
+  .ss-navigation-main-content.responsive-container {
+    margin-left: calc(
+      var(--ss-primary-sidebar-width) +var(--ss-secondary-sidebar-width)
+    );
+  }
+}
+
+@media (max-width: 992px) {
+  body:has(.ss-overlay-visible) {
+    overflow: hidden;
+  }
+
+  .ss-navigation-main-content.responsive-container {
+    margin-left: var(--ss-primary-sidebar-width);
+  }
+  .ss-overlay.ss-overlay-visible {
+    display: block;
+    position: fixed;
+    overflow-y: hidden;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--color-overlay);
+    z-index: 1002;
+  }
+
+  .stt-navigation-main-content.responsive-container {
+    margin-left: auto;
+  }
 }
