@@ -1,0 +1,1 @@
+import "markup-refine-lib-javascript-attribute-components"

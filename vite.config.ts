@@ -20,6 +20,12 @@ export default defineConfig({
           "library",
           "markup-refine-lib-javascript-attribute-components.ts"
         ),
+                resolve(
+          __dirname,
+          "src",
+          "library",
+          "markup-refine-lib.ts"
+        ),
         resolve(
           __dirname,
           "src",
