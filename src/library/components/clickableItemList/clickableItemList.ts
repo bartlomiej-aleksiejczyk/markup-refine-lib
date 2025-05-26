@@ -122,7 +122,7 @@ export function handleAutoSelector() {
       if (normalizedCurrent === normalizedLink) {
         const li = a.closest("li");
         if (li && list.contains(li)) {
-          li.classList.add("selected");
+          li.classList.add("clickable-item-list--selected");
         }
       }
     });

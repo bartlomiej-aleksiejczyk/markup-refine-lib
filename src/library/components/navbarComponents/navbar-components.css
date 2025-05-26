@@ -116,10 +116,10 @@
         background-color: var(--color-secondary-darker);
       }
     }
-    .navigation-tabs__selected {
-      color: var(--color-main-text);
+    &.navigation-tabs--selected {
+      color: var(--color-text-on-secondary);
       &::after {
-        background-color: var(--color-main-text);
+        background-color: var(--color-text-on-secondary);
       }
     }
   }

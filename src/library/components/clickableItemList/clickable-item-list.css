@@ -130,7 +130,7 @@
       }
     }
   }
-  .selected {
+  .clickable-item-list--selected {
     color: var(--color-text-on-secondary);
     background-color: var(--color-secondary-lighter);
     &::before {
