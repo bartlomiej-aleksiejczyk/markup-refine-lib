@@ -19,9 +19,9 @@
 .stt-secondary-topbar {
   height: var(--stt-secondary-topbar-height);
   width: 100vw;
+  height: var(--stt-secondary-topbar-height);
   overflow: auto;
   background-color: var(--color-secondary-lighter);
-  height: 3rem;
 }
 
 /* Sidebar positioning */
@@ -109,8 +109,10 @@
 }
 /* Responsive logic */
 @media (max-width: 1700px) {
-  .stt-navigation-main-content.responsive-container {
-    margin-left: var(--stt-primary-sidebar-width);
+  body:has(.stt-primary-sidebar) {
+    .stt-navigation-main-content.responsive-container {
+      margin-left: var(--stt-primary-sidebar-width);
+    }
   }
 }
 
@@ -125,6 +127,12 @@
     overflow: hidden;
   }
 
+  body:has(.stt-primary-sidebar) {
+    .stt-navigation-main-content.responsive-container {
+      margin-left: auto;
+    }
+  }
+
   .stt-overlay.stt-overlay-visible {
     display: block;
     position: fixed;
@@ -135,10 +143,6 @@
     height: 100vh;
     background: var(--color-overlay);
     z-index: 1002;
-  }
-
-  .stt-navigation-main-content.responsive-container {
-    margin-left: auto;
   }
 
   .stt-primary-sidebar {

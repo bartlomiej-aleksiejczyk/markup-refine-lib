@@ -33,62 +33,98 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
           <span class="text">Search...</span></button
         >
       </div>
-      <div class="stt-primary-sidebar" data-stt-element="sidebar">
-        <div class="stt-primary-sidebar-top">
-          <h2>Collapsible</h2>
+    </div>
+    <div class="stt-primary-sidebar" data-stt-element="sidebar">
+      <div class="stt-primary-sidebar-top">
+        <h2>Collapsible</h2>
 
-          <button data-stt-action="dismiss" class="stt-button">
+        <button data-stt-action="dismiss" class="stt-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+          >
+            <path
+              d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <div>
+        <hr />
+        <ul class="clickable-item-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li>
+            <details>
+              <summary><a>Services</a></summary>
+              <ul>
+                <li>
+                  <a href="#">Web </a>
+                </li>
+                <li><a href="#">Mobile Apps</a></li>
+                <li>
+                  <details>
+                    <summary>Consulting</summary>
+                    <ul>
+                      <li><a href="#">Strategy</a></li>
+                      <li><a href="#">Marketing</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <hr />
+      </div>
+    </div>
+    <div class="stt-secondary-topbar">
+      <div class="secondary-topbar-content">
+        <!-- <a id="notes-display-mobile-icon" href="/notes/30/">
+          <div class="main-navbar__icon-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="40px"
+              class="main-navbar__icon"
+              height="24px"
+              width="24px"
               viewBox="0 -960 960 960"
-              width="40px"
             >
               <path
-                d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+                d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"
               ></path>
             </svg>
-          </button>
-        </div>
-
-        <div>
-          <hr />
-          <ul class="clickable-item-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li>
-              <details>
-                <summary><a>Services</a></summary>
-                <ul>
-                  <li>
-                    <a href="#">Web </a>
-                  </li>
-                  <li><a href="#">Mobile Apps</a></li>
-                  <li>
-                    <details>
-                      <summary>Consulting</summary>
-                      <ul>
-                        <li><a href="#">Strategy</a></li>
-                        <li><a href="#">Marketing</a></li>
-                      </ul>
-                    </details>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          <hr />
-        </div>
+          </div>
+        </a>
+        <a href="/notes/">
+          <div
+            class="main-navbar__icon-wrapper main-navbar__icon-wrapper--selected"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="main-navbar__icon main-navbar__icon--selected"
+              height="24px"
+              width="24px"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M320-280q17 0 28.5-11.5T360-320q0-17-11.5-28.5T320-360q-17 0-28.5 11.5T280-320q0 17 11.5 28.5T320-280Zm0-160q17 0 28.5-11.5T360-480q0-17-11.5-28.5T320-520q-17 0-28.5 11.5T280-480q0 17 11.5 28.5T320-440Zm0-160q17 0 28.5-11.5T360-640q0-17-11.5-28.5T320-680q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Zm120 320h240v-80H440v80Zm0-160h240v-80H440v80Zm0-160h240v-80H440v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+              ></path>
+            </svg>
+          </div>
+        </a> -->
+        <nav class="navigation-tabs">
+          <a class="navigation-topbar__link"> List Templates</a>
+          <a class="navigation-topbar__link"> New Template </a>
+          <a class="navigation-topbar__link"> List Jobs</a>
+          <a class="navigation-topbar__link"> New Job</a>
+        </nav>
       </div>
-      <div class="stt-secondary-topbar">
-        <div class="secondary-topbar-content">
-          <h3>Downloading data at: 40%</h3>
-        </div>
-      </div>
-
-      <div class="stt-overlay" data-stt-element="overlay"></div>
     </div>
+
     <div class="stt-overlay" data-stt-element="overlay"></div>
   </header>
 
