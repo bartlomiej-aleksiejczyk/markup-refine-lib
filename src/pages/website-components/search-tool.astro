@@ -23,8 +23,8 @@ import { base } from "astro:config/client";
         data-mode="static"
         data-static-url="${base}demo-internal/offline-search-index.json"
   🔍 Search
-</button>`}
-    </code></pre>
+</button>`}</code></pre>
+    <p>Search can also be used with dynamic, server side search.</p>
     <h2>Rendered snippet:</h2>
     <button
       data-search-tool
@@ -33,5 +33,12 @@ import { base } from "astro:config/client";
     >
       🔍 Search
     </button>
-  </main>
-</LibraryStyleLayout>
+    <h2>Example usage (dynamic):</h2>
+    <pre><code>{`<button data-search-tool data-mode="dynamic" data-dynamic-url='test'>
+  🔍 Search
+</button>`}</code></pre>
+    <button data-search-tool data-mode="dynamic" data-dynamic-url="test">
+      🔍 Search
+    </button>
+  </main></LibraryStyleLayout
+>
