@@ -1,22 +1,97 @@
 ---
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 import { base } from "astro:config/client";
----
 
-<LibraryStyleLayout>
-  <main class="responsive-container stt-navigation-main-content">
-    <h1>Side Top Top Navigation</h1>
-    <p>
-      This component provides fully responsive navigation bars using css classes
-      and attibutes
-    </p>
-    <h2>Base blocs:</h2>
-    <p>
-      To use the basic side-top-top navigation layout, you need the following
-      structure:
-    </p>
-    <pre
-      data-copyable-snippet><code>{`<header class="stt-component">
+const primaryTopbar = `<div class="stt-primary-topbar">
+  <div class="stt-primary-topbar-content">
+    <button data-stt-action="toggle" class="stt-button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">
+        <path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"></path>
+      </svg>
+    </button>
+    <h1 class="navbar-title">SamplePage</h1>
+    <button class="search-area">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"></path>
+      </svg>
+      <span class="text">Search...</span>
+    </button>
+  </div>
+</div>`;
+
+const clickableItemList = `<ul class="clickable-item-list">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">About</a></li>
+  <li>
+    <details>
+      <summary><a>Services</a></summary>
+      <ul>
+        <li><a href="#">Web</a></li>
+        <li><a href="#">Mobile Apps</a></li>
+        <li>
+          <details>
+            <summary>Consulting</summary>
+            <ul>
+              <li><a href="#">Strategy</a></li>
+              <li><a href="#">Marketing</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </details>
+  </li>
+  <li><a href="#">Contact</a></li>
+</ul>`;
+
+const primarySidebar = `<div class="stt-primary-sidebar" data-stt-element="sidebar">
+  <div class="stt-primary-sidebar-top">
+    <h2>Collapsible</h2>
+    <button data-stt-action="dismiss" class="stt-button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">
+        <path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"></path>
+      </svg>
+    </button>
+  </div>
+  <div>
+    <hr />
+    ${clickableItemList}
+    <hr />
+  </div>
+</div>`;
+
+const secondaryTopbar = `<div class="stt-secondary-topbar">
+  <div class="secondary-topbar-content">
+    <nav class="navigation-tabs">
+      <a>List Templates</a>
+      <a class="navigation-tabs--selected">New Template</a>
+      <a>List Jobs</a>
+      <a>New Job</a>
+    </nav>
+  </div>
+</div>`;
+
+const headerComponent = `<header class="stt-component">
+  ${primaryTopbar}
+  ${primarySidebar}
+  ${secondaryTopbar}
+  <div class="stt-overlay" data-stt-element="overlay"></div>
+</header>`;
+
+const standaloneTopbar = `<header class="stt-component">
+  <div class="stt-primary-topbar">
+    <div class="stt-primary-topbar-content">
+      <h1 class="navbar-title">SamplePage</h1>
+      <button class="search-area">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+          <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"></path>
+        </svg>
+        <span class="text">Search...</span>
+      </button>
+    </div>
+  </div>
+</header>`;
+
+const rawStructure = `<header class="stt-component">
     <div class="stt-primary-topbar">
       <div class="stt-primary-topbar-content">
         <button data-stt-action="toggle" class="stt-button">
@@ -37,199 +112,49 @@ import { base } from "astro:config/client";
     <div class="stt-overlay" data-stt-element="overlay"></div>
 </header>
 <main class="responsive-container stt-navigation-main-content">
-</main>
-  `}</code></pre>
+</main>`
+---
+
+<LibraryStyleLayout>
+  <main class="responsive-container stt-navigation-main-content">
+    <h1>Side Top Top Navigation</h1>
+
     <p>
-      This creates an empty layout to be filled with content—buttons, icons, a
-      logo, a search box, and internal navigation bars structures (e.g., using
-      Flexbox for layout).
+      This component provides fully responsive navigation bars using CSS classes and attributes.
     </p>
+
+    <h2>Base blocks:</h2>
+    <p>
+      To use the basic side-top-top navigation layout, you need the following structure:
+    </p>
+
+    <pre data-copyable-snippet><code>{rawStructure}</code></pre>
+
+    <p>
+      This creates an empty layout to be filled with content—buttons, icons, a logo, a search box, and internal navigation bars structures.
+    </p>
+
     <h2>Navbars' content and structure</h2>
-    <p>
-      Several utility classes are provided to help with general-purpose navbar
-      layouts:
-    </p>
     <p>To populate the primary sidebar you can use this template:</p>
-    <pre
-      data-copyable-snippet><code>{`<div class="stt-primary-sidebar-top">
-  <h2>Collapsible</h2>
-  <button data-stt-action="dismiss" class="stt-button">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="40px"
-      viewBox="0 -960 960 960"
-      width="40px"
-    >
-      <path
-        d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
-      ></path>
-    </svg>
-  </button>
-</div>
 
-<div>
-  <hr />
-    <!--Your sidebar content-->
-  <hr />
-</div>`}</code></pre>
+    <pre data-copyable-snippet><code>{primarySidebar}</code></pre>
+
     <p>
-      To display items in the sidebar you can use the <code
-        >clickable-item-list</code
-      > class in the following structure:
+      To display items in the sidebar use the <code>clickable-item-list</code> class:
     </p>
-    <pre
-      data-copyable-snippet><code>{`<ul class="clickable-item-list">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">About</a></li>
-  <li>
-    <details>
-      <summary><a>Services</a></summary>
-      <ul>
-        <li>
-          <a href="#">Web </a>
-        </li>
-        <li><a href="#">Mobile Apps</a></li>
-        <li>
-          <details>
-            <summary>Consulting</summary>
-            <ul>
-              <li><a href="#">Strategy</a></li>
-              <li><a href="#">Marketing</a></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </details>
-  </li>
-  <li><a href="#">Contact</a></li>
-</ul>
-`}</code></pre>
+
+    <pre data-copyable-snippet><code>{clickableItemList}</code></pre>
+
+    <h2>Full Usage Example:</h2>
+    <pre data-copyable-snippet><code>{headerComponent}</code></pre>
+
+    <h2>Rendered snippet with sample text:</h2>
     <p>
-      <h2>Full Usage Example:</h2>
-      <pre
-        data-copyable-snippet><code>{` <header class="stt-component">
-      <div class="stt-primary-topbar">
-        <div class="stt-primary-topbar-content">
-          <button data-stt-action="toggle" class="stt-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="40px"
-              viewBox="0 -960 960 960"
-              width="40px"
-            >
-              <path
-                d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"
-              ></path>
-            </svg>
-          </button>
-          <h1 class="navbar-title">SamplePage</h1>
-          <button class="search-area">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="currentColor"
-              ><path
-                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
-              ></path></svg
-            >
-            <span class="text">Search...</span></button
-          >
-        </div>
-      </div>
-
-      <div class="stt-primary-sidebar" data-stt-element="sidebar">
-        <div class="stt-primary-sidebar-top">
-          <h2>Collapsible</h2>
-
-          <button data-stt-action="dismiss" class="stt-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="40px"
-              viewBox="0 -960 960 960"
-              width="40px"
-            >
-              <path
-                d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
-              ></path>
-            </svg>
-          </button>
-        </div>
-
-        <div>
-          <hr />
-          <ul class="clickable-item-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li>
-              <details>
-                <summary><a>Services</a></summary>
-                <ul>
-                  <li>
-                    <a href="#">Web </a>
-                  </li>
-                  <li><a href="#">Mobile Apps</a></li>
-                  <li>
-                    <details>
-                      <summary>Consulting</summary>
-                      <ul>
-                        <li><a href="#">Strategy</a></li>
-                        <li><a href="#">Marketing</a></li>
-                      </ul>
-                    </details>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          <hr />
-        </div>
-      </div>
-
-      <div class="stt-secondary-topbar">
-        <div class="secondary-topbar-content">
-          <nav class="navigation-tabs">
-            <a> List Templates</a>
-            <a class="navigation-tabs--selected"> New Template </a>
-            <a> List Jobs</a>
-            <a> New Job</a>
-          </nav>
-        </div>
-      </div>
-
-      <div class="stt-overlay" data-stt-element="overlay"></div>
-  </header>
-`}</code></pre>
-      <h2>Rendered snippet with sample text:</h2>
-      <p>
-        It's also accesible <a
-          href=`${base}demo-internal/side-top-top-navigation`>here</a
-        >
-      </p>
-      <iframe src=`${base}demo-internal/side-top-top-navigation`></iframe>
+      It's also accessible <a href={`${base}demo-internal/side-top-top-navigation`}>here</a>.
     </p>
+    <iframe src={`${base}demo-internal/side-top-top-navigation`}></iframe>
+
     <h2>Using topbar as standalone component</h2>
-    <pre><code>{`  <header class="stt-component">
-    <div class="stt-primary-topbar">
-      <div class="stt-primary-topbar-content">
-        <h1 class="navbar-title">SamplePage</h1>
-        <button class="search-area">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="currentColor"
-            ><path
-              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
-            ></path></svg
-          >
-          <span class="text">Search...</span></button
-        >
-      </div>
-    </div>
-</header>>`}</code></pre>
+    <pre data-copyable-snippet><code>{standaloneTopbar}</code></pre>
   </main>
 </LibraryStyleLayout>
