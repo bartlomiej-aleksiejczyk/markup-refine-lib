@@ -1,5 +1,13 @@
 ---
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+
+const snippetExampleUsage = `<pre data-copyable-snippet>
+  <code>
+    npm install my-package
+  </code>
+</pre>`;
+
+const renderedSnippet = `npm install my-package`;
 ---
 
 <LibraryStyleLayout>
@@ -7,29 +15,17 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
     <h2>Copyable Snippet</h2>
 
     <p>
-      Use the <code>data-copyable-snippet</code> attribute on any <code
-        >&lt;pre&gt;</code
-      > element that wraps a <code>&lt;code&gt;</code> block to enable automatic
-      copy functionality. A copy button will be injected automatically if not already
-      present.
+      Use the <code>data-copyable-snippet</code> attribute on any <code>&lt;pre&gt;</code> element that wraps a <code>&lt;code&gt;</code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present.
     </p>
 
     <h3>Example usage:</h3>
+    <pre data-copyable-snippet><code>{snippetExampleUsage}</code></pre>
 
-    <pre
-      data-copyable-snippet><code>&lt;pre data-copyable-snippet&gt;
-  &lt;code&gt;
-    npm install my-package
-  &lt;/code&gt;
-&lt;/pre&gt;</code></pre>
     <h3>Rendered snippet:</h3>
-    <pre data-copyable-snippet><code>npm install my-package</code></pre>
+    <pre data-copyable-snippet><code>{renderedSnippet}</code></pre>
+
     <p>
-      When the copy button is clicked, the visible text inside the <code
-        >&lt;code&gt;</code
-      > block (excluding the button itself) will be copied to the clipboard. If the
-      Clipboard API is not available (e.g. in insecure contexts), a fallback method
-      will be used.
+      When the copy button is clicked, the visible text inside the <code>&lt;code&gt;</code> block (excluding the button itself) will be copied to the clipboard. If the Clipboard API is not available (e.g. in insecure contexts), a fallback method will be used.
     </p>
   </main>
 </LibraryStyleLayout>
