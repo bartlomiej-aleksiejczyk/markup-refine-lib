@@ -3,42 +3,42 @@ import { getCollection } from "astro:content";
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 import { base } from "astro:config/client";
 
-// Get all entries from a collection.
-// Requires the name of the collection as an argument.
+const staticSearchSnippet = `<button data-search-tool
+  data-mode="static"
+  data-static-url="${base}demo-internal/offline-search-index.json">
+  🔍 Search
+</button>`;
+
+const dynamicSearchSnippet = `<button data-search-tool
+  data-mode="dynamic"
+  data-dynamic-url="test">
+  🔍 Search
+</button>`;
 ---
 
 <LibraryStyleLayout>
   <main class="responsive-container">
-    <h1>Search tool tool</h1>
+    <h1>Search tool</h1>
     <p>
       For simple cases, class <code>navbar</code> can be used to style the top bar.
     </p>
 
     <p>
-      To improve apperance of topbar element classes: <code>navbar-brand</code> and
+      To improve the appearance of the topbar element, classes <code>navbar-brand</code> and
       <code>group</code> can be used.
     </p>
+
     <h2>Example usage:</h2>
-    <pre><code>{`<button data-search-tool
-        data-mode="static"
-        data-static-url="${base}demo-internal/offline-search-index.json"
-  🔍 Search
-</button>`}</code></pre>
-    <p>Search can also be used with dynamic, server side search.</p>
+    <pre data-copyable-snippet><code>{staticSearchSnippet}</code></pre>
+
+    <p>Search can also be used with dynamic, server-side search.</p>
+
     <h2>Rendered snippet:</h2>
-    <button
-      data-search-tool
-      data-mode="static"
-      data-static-url=`${base}demo-internal/offline-search-index.json`
-    >
-      🔍 Search
-    </button>
+    <Fragment set:html={staticSearchSnippet} />
+
     <h2>Example usage (dynamic):</h2>
-    <pre><code>{`<button data-search-tool data-mode="dynamic" data-dynamic-url='test'>
-  🔍 Search
-</button>`}</code></pre>
-    <button data-search-tool data-mode="dynamic" data-dynamic-url="test">
-      🔍 Search
-    </button>
-  </main></LibraryStyleLayout
->
+    <pre data-copyable-snippet><code>{dynamicSearchSnippet}</code></pre>
+
+    <Fragment set:html={dynamicSearchSnippet} />
+  </main>
+</LibraryStyleLayout>
