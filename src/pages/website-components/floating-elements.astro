@@ -1,27 +1,28 @@
 ---
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+
+const floatingElementSnippet = `<figure class="floating-element">
+  <img src="https://placehold.co/250x200" alt="Placeholder image 1"/>
+  <figcaption style="font-size: 0.9em; text-align: center;">
+    This is a caption
+  </figcaption>
+</figure>`;
 ---
 
 <LibraryStyleLayout>
   <div class="responsive-container">
     <h1>Floating Elements</h1>
+    
     <p>
       Use the <code>floating-element</code> class on any element to make it float.
     </p>
+    
     <h2>Example usage:</h2>
-    <pre
-      data-copyable-snippet><code>{`<figure class="floating-element">
-  <img src="https://placehold.co/250x200" alt="Placeholder image 1"/>
-  <figcaption style="font-size: 0.9em; text-align: center;">This is a caption</figcaption>
-</figure>
-`}</code></pre>
+    <pre data-copyable-snippet><code>{floatingElementSnippet}</code></pre>
+    
     <h2>Rendered snippet with sample text:</h2>
-    <figure class="floating-element">
-      <img src="https://placehold.co/250x200" alt="Placeholder image 1" />
-      <figcaption style="font-size: 0.9em; text-align: center;">
-        This is a caption
-      </figcaption>
-    </figure>
+    <Fragment set:html={floatingElementSnippet} />
+    
     <p>
       Lorem ipsum dolor sit amet consectetur adipiscing elit. Pretium tellus
       duis convallis tempus leo eu aenean. Iaculis massa nisl malesuada lacinia
