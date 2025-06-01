@@ -1,0 +1,28 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+
+const navigationTabsSnippet = `<nav class="navigation-tabs">
+  <a> List Templates</a>
+  <a class="navigation-tabs--selected"> New Template </a>
+  <a> List Jobs</a>
+  <a> New Job</a>
+</nav>`;
+---
+
+<LibraryStyleLayout>
+  <div class="responsive-container">
+    <h1>Navigation Tabs</h1>
+    
+    <p>
+      Use the <code>navigation-tabs</code> class on any element to make it navigation tabs.
+    </p>
+    
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{navigationTabsSnippet}</code></pre>
+    
+    <h2>Rendered snippet:</h2>
+    <Fragment set:html={navigationTabsSnippet} />
+    
+    
+  </div>
+</LibraryStyleLayout>
