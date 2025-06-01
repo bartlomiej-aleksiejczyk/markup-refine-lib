@@ -105,6 +105,7 @@ export function handleAutoSelector() {
 
   lists.forEach((list) => {
     const anchors = list.querySelectorAll("a[href]");
+    let numberOfSelectedItems = 0;
 
     anchors.forEach((a) => {
       const linkUrl = new URL(
@@ -123,7 +124,12 @@ export function handleAutoSelector() {
         const li = a.closest("li");
         if (li && list.contains(li)) {
           li.classList.add("clickable-item-list--selected");
+          numberOfSelectedItems++;
         }
+      }
+      if (numberOfSelectedItems>1){
+        anchors.forEach((a) => a.classList.remove("clickable-item-list--selected"))
+        return;
       }
     });
   });

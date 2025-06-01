@@ -1,12 +1,21 @@
 ---
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import { base } from "astro:config/client";
 
-const navigationTabsSnippet = `<nav class="navigation-tabs">
+const navigationTabsSnippet = `<nav class="navigation-tabs" data-navigation-tabs-autoselector>
   <a> List Templates</a>
-  <a class="navigation-tabs--selected"> New Template </a>
+  <a href="${base}website-components/navigation-tabs"> This Page </a>
   <a> List Jobs</a>
   <a> New Job</a>
 </nav>`;
+const navigationTabsSnippetSemantic = `<nav class="navigation-tabs">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Clients</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+</nav>`
 ---
 
 <LibraryStyleLayout>
@@ -22,7 +31,10 @@ const navigationTabsSnippet = `<nav class="navigation-tabs">
     
     <h2>Rendered snippet:</h2>
     <Fragment set:html={navigationTabsSnippet} />
+    <p>Also more semantic version is supported</p>
+    <pre data-copyable-snippet><code>{navigationTabsSnippetSemantic}</code></pre>
     
-    
+    <h2>Rendered snippet:</h2>
+    <Fragment set:html={navigationTabsSnippetSemantic} />
   </div>
 </LibraryStyleLayout>

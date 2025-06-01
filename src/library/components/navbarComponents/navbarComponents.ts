@@ -4,14 +4,20 @@ export function initNavbarComponents() {
 export function handleAutoSelector() {
   const currentUrl = window.location.origin + window.location.pathname;
 
-  const lists = document.querySelectorAll("nav.navigation-tabs");
+  const lists = document.querySelectorAll(
+    "nav.navigation-tabs[data-navigation-tabs-autoselector]"
+  );
 
   lists.forEach((list) => {
     const anchors = list.querySelectorAll("a[href]");
+    let numberOfSelectedItems = 0;
 
     anchors.forEach((a) => {
+      const href = a.getAttribute("href");
+      if (!href) return;
+
       const linkUrl = new URL(
-        a.getAttribute("href"),
+        href,
         window.location.origin + window.location.pathname
       ).href;
 
@@ -23,7 +29,12 @@ export function handleAutoSelector() {
         : linkUrl;
 
       if (normalizedCurrent === normalizedLink) {
+        numberOfSelectedItems++;
         a.classList.add("navigation-tabs--selected");
+      }
+      if (numberOfSelectedItems>1){
+        anchors.forEach((a) => a.classList.remove("navigation-tabs--selected"))
+        return;
       }
     });
   });
