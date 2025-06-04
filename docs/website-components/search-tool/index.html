@@ -1,14 +1,22 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.4J5zKSls.css"></head> <body>  <main class="responsive-container"> <h1>Search tool tool</h1> <p>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.Bt7aMnk2.css"></head> <body>  <main class="responsive-container"> <h1>Search tool</h1> <p>
 For simple cases, class <code>navbar</code> can be used to style the top bar.
 </p> <p>
-To improve apperance of topbar element classes: <code>navbar-brand</code> and
+To improve the appearance of the topbar element, classes <code>navbar-brand</code> and
 <code>group</code> can be used.
-</p> <h2>Example usage:</h2> <pre><code>&lt;button data-search-tool
-        data-mode=&quot;static&quot;
-        data-static-url=&quot;/markup-refine-lib/demo-internal/offline-search-index.json&quot;
-        data-dynamic-url=&quot;/api/search?q=&quot;&gt;
+</p> <h2>Example usage:</h2> <pre data-copyable-snippet><code>&lt;button data-search-tool
+  data-mode=&quot;static&quot;
+  data-static-url=&quot;/markup-refine-lib/demo-internal/offline-search-index.json&quot;&gt;
   🔍 Search
-&lt;/button&gt;
-    </code></pre> <h2>Rendered snippet:</h2> <button data-search-tool data-mode="static" data-static-url="/markup-refine-lib/demo-internal/offline-search-index.json" data-dynamic-url="/api/search?q=">
-🔍 Search
-</button> </main>  <script type="module" src="/markup-refine-lib/_astro/LibraryStyleLayout.astro_astro_type_script_index_0_lang.BQnPGm-8.js"></script> </body> </html>
+&lt;/button&gt;</code></pre> <p>Search can also be used with dynamic, server-side search.</p> <h2>Rendered snippet:</h2> <button data-search-tool
+  data-mode="static"
+  data-static-url="/markup-refine-lib/demo-internal/offline-search-index.json">
+  🔍 Search
+</button> <h2>Example usage (dynamic):</h2> <pre data-copyable-snippet><code>&lt;button data-search-tool
+  data-mode=&quot;dynamic&quot;
+  data-dynamic-url=&quot;test&quot;&gt;
+  🔍 Search
+&lt;/button&gt;</code></pre> <button data-search-tool
+  data-mode="dynamic"
+  data-dynamic-url="test">
+  🔍 Search
+</button> </main>  <script type="module" src="/markup-refine-lib/_astro/LibraryStyleLayout.astro_astro_type_script_index_0_lang.C1JoRl1o.js"></script> </body> </html>
