@@ -1,6 +1,6 @@
 # markup-refine-lib
 
-**markup-refine-lib** is a customizable, lightweight CSS and JS library designed to give a simple way to style HTML with an emphasis on a native HTML look. What's more, markup-refine-lib is fully responsive, just like the native styling of HTML
+**markup-refine-lib** is a CSS and JS library designed to give a simple way to style HTML with an emphasis on a native HTML look. What's more, markup-refine-lib is fully responsive, just like the native styling of HTML
 
 **Note**: markup-refine-lib is currently in the early stages of development and may not be suitable for production environments yet.
 
