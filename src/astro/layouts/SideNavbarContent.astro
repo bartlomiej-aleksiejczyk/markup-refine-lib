@@ -1,0 +1,47 @@
+---
+interface Props {}
+import { base } from "astro:config/client";
+---
+
+<div class="stt-primary-sidebar-top">
+  <button data-stt-action="dismiss" class="stt-button">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="40px"
+      viewBox="0 -960 960 960"
+      width="40px"
+    >
+      <path
+        d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+      ></path>
+    </svg>
+  </button>
+</div>
+
+<div>
+  <ul class="clickable-item-list">
+    <li><a href="#">Quickstart</a></li>
+    <li><a href="#">Installation</a></li>
+    <li>
+      <details>
+        <summary><a>Content presentation components</a></summary>
+        <ul>
+          <li>
+            <a href="#">Web </a>
+          </li>
+          <li><a href="#">Mobile Apps</a></li>
+        </ul>
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary><a>Navigation components</a></summary>
+        <ul>
+          <li><a href="#">Strategy</a></li>
+          <li><a href="#">Marketing</a></li>
+        </ul>
+      </details>
+    </li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</div>

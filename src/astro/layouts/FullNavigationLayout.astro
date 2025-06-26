@@ -1,6 +1,7 @@
 ---
 interface Props {}
 import { base } from "astro:config/client";
+import SideNavbarContent from "./SideNavbarContent.astro";
 ---
 
 <html lang="en">
@@ -35,6 +36,9 @@ import { base } from "astro:config/client";
             <span class="text">Search...</span></button
           >
         </div>
+      </div>
+      <div class="stt-primary-sidebar" data-stt-element="sidebar">
+        <SideNavbarContent />
       </div>
     </div>
     <slot />
