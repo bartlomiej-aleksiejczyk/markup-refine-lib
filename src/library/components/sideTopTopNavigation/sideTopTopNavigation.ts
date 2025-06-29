@@ -10,11 +10,19 @@ export function initSideTopTopNavigation() {
   function openSidebar() {
     sidebar.classList.add("stt-drawer-open");
     overlay.classList.add("stt-overlay-visible");
+    document.addEventListener("keydown", handleEscape); // Add listener when open
   }
 
   function closeSidebar() {
     sidebar.classList.remove("stt-drawer-open");
     overlay.classList.remove("stt-overlay-visible");
+    document.removeEventListener("keydown", handleEscape); // Clean up listener
+  }
+
+  function handleEscape(event) {
+    if (event.key === "Escape" || event.key === "Esc") {
+      closeSidebar();
+    }
   }
 
   drawerToggle?.addEventListener("click", openSidebar);
