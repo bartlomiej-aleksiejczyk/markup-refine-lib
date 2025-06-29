@@ -4,6 +4,7 @@ import { base } from "astro:config/client";
 ---
 
 <div class="stt-primary-sidebar-top">
+  <h2>Menu</h2>
   <button data-stt-action="dismiss" class="stt-button">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,30 +20,36 @@ import { base } from "astro:config/client";
 </div>
 
 <div>
+  <hr />
   <ul class="clickable-item-list">
     <li><a href="#">Quick start</a></li>
     <li><a href="#">Installation</a></li>
     <li>
-      <details>
+      <details open>
         <summary><a>Content components</a></summary>
         <ul>
+          <li><a href="#">Buttons</a></li>
           <li><a href="#">Card</a></li>
           <li><a href="#">Pill</a></li>
+          <li><a href="#">Breadcrumbs</a></li>
           <li><a href="#">Copyable snippet</a></li>
           <li><a href="#">Clickable item list</a></li>
           <li><a href="#">Tree list container</a></li>
+          <li><a href="#">Datalist range labels</a></li>
+          <h4>Layout and Element Position</h4>
           <li><a href="#">Responsive container</a></li>
+          <li><a href="#">Group</a></li>
+          <li><a href="#">Inline display</a></li>
+          <li><a href="#">Floating element</a></li>
         </ul>
       </details>
     </li>
     <li>
-      <details>
+      <details open>
         <summary><a>Navigation components</a></summary>
         <ul>
           <li><a href="#">Side top top navigation</a></li>
-          <li><a href="#">Navigation tabs</a></li>
-          <li><a href="#">Breadcrumbs</a></li>
-          <li><a href="#">Search tool</a></li>
+          <li><a href="#">Navigation bar components</a></li>
         </ul>
       </details>
     </li>
