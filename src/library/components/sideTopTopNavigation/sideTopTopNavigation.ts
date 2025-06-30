@@ -10,13 +10,13 @@ export function initSideTopTopNavigation() {
   function openSidebar() {
     sidebar.classList.add("stt-drawer-open");
     overlay.classList.add("stt-overlay-visible");
-    document.addEventListener("keydown", handleEscape); // Add listener when open
+    document.addEventListener("keydown", handleEscape);
   }
 
   function closeSidebar() {
     sidebar.classList.remove("stt-drawer-open");
     overlay.classList.remove("stt-overlay-visible");
-    document.removeEventListener("keydown", handleEscape); // Clean up listener
+    document.removeEventListener("keydown", handleEscape);
   }
 
   function handleEscape(event) {
