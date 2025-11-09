@@ -24,7 +24,7 @@ export default defineConfig({
           __dirname,
           "src",
           "library",
-          "markup-refine-lib.ts"
+          "index.ts"
         ),
         resolve(
           __dirname,
