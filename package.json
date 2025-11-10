@@ -1,7 +1,7 @@
 {
   "name": "markup-refine-lib",
   "description": "A customizable, lightweight CSS and JS library designed to give a simple way to style HTML with an emphasis on a native HTML look",
-  "version": "0.6.14",
+  "version": "0.6.15",
   "type": "module",
   "module": "dist/index.js",
   "license": "Apache-2.0",
