@@ -13,7 +13,7 @@ export function initResettableFileInput() {
     const input = container.querySelector("input");
     if (!input) return;
 
-    btn.addEventListener("click", () => {console.log(2232)
+    btn.addEventListener("click", () => {
       input.value = ''; 
     });
   });
