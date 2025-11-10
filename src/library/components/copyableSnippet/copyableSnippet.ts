@@ -8,11 +8,11 @@ export function initCopyableSnippet() {
       btn.setAttribute("aria-label", "Copy");
       btn.textContent = "📋";
       pre.appendChild(btn);
+      btn.addEventListener("click", handleCopy);
     }
   });
 
-  // Handle button click
-  document.addEventListener("click", (e) => {
+  function handleCopy(e) {
     const btn = e.target.closest(".copyable-snippet-button");
     if (!btn) return;
 
@@ -42,7 +42,7 @@ export function initCopyableSnippet() {
     } else {
       fallbackCopy(text, btn, original);
     }
-  });
+  }
 
   function fallbackCopy(text, btn, original) {
     const textarea = document.createElement("textarea");
