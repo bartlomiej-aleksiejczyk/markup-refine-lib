@@ -24,7 +24,7 @@ export default defineConfig({
           __dirname,
           "src",
           "library",
-          "index.ts"
+          "markup-refine-lib-interactive-components.ts"
         ),
         resolve(
           __dirname,

@@ -91,6 +91,13 @@ To devlop markup-refine-lib, follow these steps:
 
    This command will increment the minor version number and add the specified comment to the release notes.
 
+4. **Publish a new version on npm**:
+If you have credentials to npm of that project you can publish a new version by running the following command:
+
+   ```bash
+   npm publish
+   ```
+
 ## Scripts
 
 Here are the main scripts used for building and releasing markup-refine-lib:
