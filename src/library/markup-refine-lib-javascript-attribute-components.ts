@@ -3,6 +3,7 @@ import { initCopyableSnippet } from "./components/copyableSnippet/copyableSnippe
 import { initSearchTool } from "./components/searchTool/searchTool";
 import { initSideTopTopNavigation } from "./components/sideTopTopNavigation/sideTopTopNavigation";
 import { initNavbarComponents } from "./components/navbarComponents/navbarComponents";
+import {initResettableFileInput} from "./components/resettableFileInput/resettableFileInput"
 
 document.addEventListener("DOMContentLoaded", () => {
   initClickableItemList();
@@ -10,4 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initSearchTool();
   initCopyableSnippet();
   initNavbarComponents();
+  initResettableFileInput();
 });

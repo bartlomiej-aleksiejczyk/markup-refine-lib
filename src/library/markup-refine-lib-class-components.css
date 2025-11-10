@@ -4,6 +4,7 @@
 @import "components/card/card.css";
 @import "components/clickableItemList/clickable-item-list.css";
 @import "components/copyableSnippet/copyable-snippet.css";
+@import "components/resettableFileInput/resettable-file-input.css";
 @import "components/datalistRangeLabels/datalist-range-labels.css";
 @import "components/floatingElement/floating-element.css";
 @import "components/group/group.css";

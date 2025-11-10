@@ -69,7 +69,10 @@ To devlop markup-refine-lib, follow these steps:
    ```bash
    npm install
    ```
-
+3. **Serve you project locally**:
+   ```bash
+   npm run astro:dev
+   ```
 3. **Make your changes**: Modify the necessary files to improve or extend the functionality of markup-refine-lib.
 
 4. **Build and release a new version**: After making changes, you can build and release a new version of markup-refine-lib by running the following command:
