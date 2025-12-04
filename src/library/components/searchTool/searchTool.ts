@@ -1,14 +1,15 @@
 import Fuse from "fuse.js";
-import { searchInDataset } from "./searchInDataset";
+// import { searchInDataset } from "./searchInDataset"; // still unused, can be removed
 
 export function initSearchTool() {
   const triggers = document.querySelectorAll("[data-search-tool]");
-  let isLoadingFailed = false;
+
   for (const btn of triggers) {
     btn.addEventListener("click", async () => {
-      const mode = btn.getAttribute("data-mode");
-      const staticUrl = btn.getAttribute("data-static-url");
-      const dynamicUrl = btn.getAttribute("data-dynamic-url");
+      const mode = btn.getAttribute("data-mode"); // "static" | "dynamic"
+      const staticUrl = btn.getAttribute("data-static-url") || "";
+      const dynamicUrl = btn.getAttribute("data-dynamic-url") || "";
+      let isLoadingFailed = false;
 
       const {
         overlay,
@@ -20,6 +21,7 @@ export function initSearchTool() {
         dismissBtn,
         resultCount,
       } = createSearchModalElements();
+
       document.body.appendChild(overlay);
       document.body.appendChild(modal);
 
@@ -28,10 +30,11 @@ export function initSearchTool() {
 
       input.focus();
 
-      let fuse = null;
-      let dataset = null;
+      let fuse: Fuse<any> | null = null;
+      let dataset: any[] | null = null;
 
-      if (mode === "static") {
+      // --- STATIC MODE: load dataset once ------------------------------------
+      if (mode === "static" && staticUrl) {
         spinner.style.display = "block";
         try {
           const res = await fetch(staticUrl);
@@ -60,64 +63,115 @@ export function initSearchTool() {
         }
       }
 
-      input.oninput = async function () {
-        const query = input.value.trim();
+      // --- SEARCH LOGIC (extracted so we can debounce it) --------------------
+      async function performSearch(query: string) {
         results.innerHTML = "";
-        if (isLoadingFailed !== true) {
-          message.textContent = "";
-          message.style.display = "none";
-          spinner.style.display = "block";
-        }
+
+        // reset info UI
+        message.textContent = "";
+        message.style.display = "none";
+        resultCount.textContent = "";
+        resultCount.style.display = "none";
 
         if (!query) {
-          message.style.display = "none";
           spinner.style.display = "none";
-          resultCount.textContent = "";
-          resultCount.style.display = "none";
           return;
         }
 
+        if (!isLoadingFailed) {
+          spinner.style.display = "block";
+        }
+
+        // --- STATIC SEARCH ---------------------------------------------------
         if (mode === "static" && fuse) {
           const searchResults = fuse.search(query);
+
           if (searchResults.length === 0) {
             message.style.display = "block";
             message.textContent = "No results found.";
-            resultCount.textContent = "";
-            resultCount.style.display = "none";
           } else {
-            message.style.display = "none";
             resultCount.style.display = "block";
-
             resultCount.textContent = `🔎 Found ${searchResults.length} result(s).`;
+
             searchResults.forEach((result) => {
-              appendResult(results, result.item, result.matches, result.score);
+              appendResult(
+                results,
+                result.item,
+                result.matches || [],
+                result.score ?? null
+              );
             });
           }
+
           spinner.style.display = "none";
+          return;
         }
 
-        if (mode === "dynamic") {
+        // --- DYNAMIC SEARCH (global search API) ------------------------------
+        if (mode === "dynamic" && dynamicUrl) {
           try {
             const res = await fetch(dynamicUrl + encodeURIComponent(query));
-            const dynamicResults = await res.json();
+            const data = await res.json();
+
+            // EXPECTED SHAPE: { results: [{ title, content, url }, ...] }
+            const dynamicResults = Array.isArray(data.results)
+              ? data.results
+              : [];
+
             if (dynamicResults.length === 0) {
+              message.style.display = "block";
               message.textContent = "No results found.";
-              resultCount.textContent = "";
             } else {
-              resultCount.textContent = `🔎 Found ${dynamicResults.length} result(s).`;
-              dynamicResults.forEach((item) =>
-                appendResult(results, item.title || item.name)
-              );
+              resultCount.style.display = "block";
+              resultCount.textContent = `\U0001f50e Found ${dynamicResults.length} result(s).`;
+
+              dynamicResults.forEach((item: any) => {
+                // item: { title, content, url }
+                appendResult(results, item);
+              });
             }
           } catch (err) {
-            message.textContent = "⚠️ Failed to fetch results.";
+            message.style.display = "block";
+            message.textContent = "\u26a0\ufe0f Failed to fetch results.";
             console.error("Dynamic fetch failed:", err);
           } finally {
             spinner.style.display = "none";
           }
         }
-      };
+      }
 
+      // --- INPUT HANDLER WITH SIMPLE DEBOUNCE -------------------------------
+      let debounceId: number | null = null;
+      const DEBOUNCE_MS = 200;
+
+      input.addEventListener("input", () => {
+        const query = input.value.trim();
+
+        // If user cleared the input, immediately clear UI & cancel pending search
+        if (!query) {
+          if (debounceId !== null) {
+            clearTimeout(debounceId);
+            debounceId = null;
+          }
+          results.innerHTML = "";
+          message.textContent = "";
+          message.style.display = "none";
+          resultCount.textContent = "";
+          resultCount.style.display = "none";
+          spinner.style.display = "none";
+          return;
+        }
+
+        // debounce
+        if (debounceId !== null) {
+          clearTimeout(debounceId);
+        }
+        debounceId = window.setTimeout(() => {
+          performSearch(query);
+        }, DEBOUNCE_MS);
+      });
+
+      // --- CLOSE HANDLERS ----------------------------------------------------
       overlay.onclick = () => closeModal(modal, overlay);
       dismissBtn.onclick = () => closeModal(modal, overlay);
 
@@ -130,6 +184,9 @@ export function initSearchTool() {
     });
   }
 
+  // -------------------------------------------------------------------------
+  // DOM helpers
+  // -------------------------------------------------------------------------
   function createSearchModalElements() {
     const overlay = document.createElement("div");
     overlay.className = "search-tool-overlay";
@@ -182,7 +239,12 @@ export function initSearchTool() {
     };
   }
 
-  function appendResult(container, item, matches = [], score = null) {
+  function appendResult(
+    container: HTMLElement,
+    item: { title?: string; content?: string; url?: string },
+    matches: any[] = [],
+    score: number | null = null
+  ) {
     const li = document.createElement("li");
     li.className = "search-tool-result";
 
@@ -199,28 +261,42 @@ export function initSearchTool() {
     const titleEl = document.createElement("strong");
     const contentEl = document.createElement("div");
 
-    const titleMatch = matches.find((m) => m.key === "title");
-    const contentMatch = matches.find((m) => m.key === "content");
+    // Fuse matches (static mode) \u2013 dynamic mode passes empty matches
+    const titleMatch = matches.find((m: any) => m.key === "title");
+    const contentMatch = matches.find((m: any) => m.key === "content");
     const mergedTitleIndices = mergeRanges(titleMatch?.indices || []);
 
-    renderHighlightedText(titleEl, item.title || "", mergedTitleIndices);
+    // Title
+    const titleText = item.title || "";
+    if (mergedTitleIndices.length > 0) {
+      renderHighlightedText(titleEl, titleText, mergedTitleIndices);
+    } else {
+      titleEl.textContent = titleText;
+    }
 
+    // Content snippet
+    const fullContent = item.content || "";
     const truncated = truncateToMatch(
-      item.content || "",
+      fullContent,
       contentMatch?.indices || [],
       200
     );
     const mergedTruncatedTextIndices = mergeRanges(truncated.adjustedIndices);
 
-    renderHighlightedText(
-      contentEl,
-      truncated.text,
-      mergedTruncatedTextIndices
-    );
+    if (mergedTruncatedTextIndices.length > 0) {
+      renderHighlightedText(
+        contentEl,
+        truncated.text,
+        mergedTruncatedTextIndices
+      );
+    } else {
+      contentEl.textContent = truncated.text;
+    }
 
     wrapper.appendChild(titleEl);
     wrapper.appendChild(contentEl);
 
+    // Optional score display (only used in static mode)
     if (score !== null) {
       const scoreEl = document.createElement("div");
       scoreEl.style.fontSize = "0.8em";
@@ -233,7 +309,11 @@ export function initSearchTool() {
     container.appendChild(li);
   }
 
-  function truncateToMatch(text, indices, maxLen) {
+  function truncateToMatch(
+    text: string,
+    indices: [number, number][],
+    maxLen: number
+  ) {
     if (text.length <= maxLen || indices.length === 0) {
       return {
         text: text.slice(0, maxLen),
@@ -241,7 +321,7 @@ export function initSearchTool() {
       };
     }
 
-    // 🔥 Get the match with the longest length
+    // longest match
     const [matchStart, matchEnd] = indices.reduce((longest, current) => {
       const [s1, e1] = longest;
       const [s2, e2] = current;
@@ -253,7 +333,6 @@ export function initSearchTool() {
     const end = Math.min(text.length, start + maxLen);
     const sliced = text.slice(start, end);
 
-    // Only keep the adjusted longest match
     const adjustedStart = matchStart - start;
     const adjustedEnd = matchEnd - start;
 
@@ -265,19 +344,21 @@ export function initSearchTool() {
     return { text: sliced, adjustedIndices };
   }
 
-  function renderHighlightedText(parent, text, indices) {
+  function renderHighlightedText(
+    parent: HTMLElement,
+    text: string,
+    indices: [number, number][]
+  ) {
     let lastIndex = 0;
 
     for (const [start, end] of indices) {
       if (end - start + 1 < 2) continue; // Skip 1-char matches
 
-      // Append plain text before match
       if (lastIndex < start) {
         const span = document.createTextNode(text.slice(lastIndex, start));
         parent.appendChild(span);
       }
 
-      // Append <mark> with matched text
       const mark = document.createElement("mark");
       mark.textContent = text.slice(start, end + 1);
       parent.appendChild(mark);
@@ -285,14 +366,13 @@ export function initSearchTool() {
       lastIndex = end + 1;
     }
 
-    // Append remaining text after last match
     if (lastIndex < text.length) {
       const span = document.createTextNode(text.slice(lastIndex));
       parent.appendChild(span);
     }
   }
 
-  function closeModal(modal, overlay) {
+  function closeModal(modal: HTMLElement, overlay: HTMLElement) {
     modal.remove();
     overlay.remove();
   }
@@ -300,7 +380,6 @@ export function initSearchTool() {
 
 function mergeRanges(ranges: [number, number][]): [number, number][] {
   const sorted = [...ranges].sort((a, b) => a[0] - b[0]);
-
   const merged: [number, number][] = [];
 
   for (const [start, end] of sorted) {
