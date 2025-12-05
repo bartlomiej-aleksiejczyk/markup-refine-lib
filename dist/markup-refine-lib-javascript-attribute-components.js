@@ -1190,13 +1190,13 @@ function et() {
               t(m, I);
             }));
           } catch (M) {
-            g.style.display = "block", g.textContent = "⚠️ Failed to fetch results.", console.error("Dynamic fetch failed:", M);
+            g.style.display = "block", g.textContent = "🔎 Failed to fetch results.", console.error("Dynamic fetch failed:", M);
           } finally {
             A.style.display = "none";
           }
       }
       let w = null;
-      const x = 200;
+      const x = 800;
       p.addEventListener("input", () => {
         const C = p.value.trim();
         if (!C) {
