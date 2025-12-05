@@ -132,7 +132,7 @@ export function initSearchTool() {
             }
           } catch (err) {
             message.style.display = "block";
-            message.textContent = "\u26a0\ufe0f Failed to fetch results.";
+            message.textContent = "🔎 Failed to fetch results.";
             console.error("Dynamic fetch failed:", err);
           } finally {
             spinner.style.display = "none";
@@ -142,7 +142,8 @@ export function initSearchTool() {
 
       // --- INPUT HANDLER WITH SIMPLE DEBOUNCE -------------------------------
       let debounceId: number | null = null;
-      const DEBOUNCE_MS = 200;
+      // TODO: add customization by attribute, remove dynamic/static declaration
+      const DEBOUNCE_MS = 800;
 
       input.addEventListener("input", () => {
         const query = input.value.trim();
@@ -261,7 +262,6 @@ export function initSearchTool() {
     const titleEl = document.createElement("strong");
     const contentEl = document.createElement("div");
 
-    // Fuse matches (static mode) \u2013 dynamic mode passes empty matches
     const titleMatch = matches.find((m: any) => m.key === "title");
     const contentMatch = matches.find((m: any) => m.key === "content");
     const mergedTitleIndices = mergeRanges(titleMatch?.indices || []);
