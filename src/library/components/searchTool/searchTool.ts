@@ -135,7 +135,7 @@ export function initSearchTool() {
               message.textContent = "No results found.";
             } else {
               resultCount.style.display = "block";
-              resultCount.textContent = `\U0001f50e Found ${dynamicResults.length} result(s).`;
+              resultCount.textContent = `Found ${dynamicResults.length} result(s).`;
 
               dynamicResults.forEach((item: any) => {
                 // item: { title, content, url }
