@@ -169,21 +169,21 @@ class Se {
 function ce(n) {
   let e = null, t = null, s = null, i = 1, o = null;
   if (k(n) || I(n))
-    s = n, e = Z(n), t = U(n);
+    s = n, e = Z(n), t = z(n);
   else {
     if (!J.call(n, "name"))
       throw new Error(be("name"));
     const r = n.name;
     if (s = r, J.call(n, "weight") && (i = n.weight, i <= 0))
       throw new Error(Fe(r));
-    e = Z(r), t = U(r), o = n.getFn;
+    e = Z(r), t = z(r), o = n.getFn;
   }
   return { path: e, id: t, weight: i, src: s, getFn: o };
 }
 function Z(n) {
   return I(n) ? n : n.split(".");
 }
-function U(n) {
+function z(n) {
   return I(n) ? n.join(".") : n;
 }
 function we(n, e) {
@@ -703,7 +703,7 @@ class qe extends _ {
     };
   }
 }
-class Ue extends _ {
+class ze extends _ {
   constructor(e) {
     super(e);
   }
@@ -788,30 +788,30 @@ class ae extends _ {
     };
   }
 }
-const z = [
+const U = [
   Oe,
   ae,
   je,
   Pe,
-  Ue,
+  ze,
   qe,
   $e,
   ue
-], ee = z.length, ze = / +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/, We = "|";
+], ee = U.length, Ue = / +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/, We = "|";
 function Ke(n, e = {}) {
   return n.split(We).map((t) => {
-    let s = t.trim().split(ze).filter((o) => o && !!o.trim()), i = [];
+    let s = t.trim().split(Ue).filter((o) => o && !!o.trim()), i = [];
     for (let o = 0, r = s.length; o < r; o += 1) {
       const c = s[o];
       let u = !1, l = -1;
       for (; !u && ++l < ee; ) {
-        const a = z[l];
+        const a = U[l];
         let h = a.isMultiMatch(c);
         h && (i.push(new a(h, e)), u = !0);
       }
       if (!u)
         for (l = -1; ++l < ee; ) {
-          const a = z[l];
+          const a = U[l];
           let h = a.isSingleMatch(c);
           if (h) {
             i.push(new a(h, e));
@@ -923,7 +923,7 @@ function he(n, e, { auto: t = !0 } = {}) {
       if (!k(l))
         throw new Error(Me(u));
       const a = {
-        keyId: U(u),
+        keyId: z(u),
         pattern: l
       };
       return t && (a.searcher = K(l, e)), a;
@@ -1187,7 +1187,7 @@ function tt() {
         if (l === "dynamic" && u)
           try {
             const L = await (await fetch(u + encodeURIComponent(M))).json(), v = Array.isArray(L.results) ? L.results : [];
-            v.length === 0 ? (y.style.display = "block", y.textContent = "No results found.") : (C.style.display = "block", C.textContent = `U0001f50e Found ${v.length} result(s).`, v.forEach((V) => {
+            v.length === 0 ? (y.style.display = "block", y.textContent = "No results found.") : (C.style.display = "block", C.textContent = `Found ${v.length} result(s).`, v.forEach((V) => {
               t(m, V);
             }));
           } catch (w) {
