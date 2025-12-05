@@ -1174,7 +1174,7 @@ function tt() {
         }
         if (a || (g.style.display = "none", A.style.display = "block"), l === "static" && b) {
           const w = b.search(M);
-          w.length === 0 ? (y.style.display = "block", y.textContent = "No results found.") : (C.style.display = "block", C.textContent = `🔎 Found ${w.length} result(s).`, w.forEach((L) => {
+          w.length === 0 ? (y.style.display = "block", y.textContent = "No results found.") : (C.style.display = "block", C.textContent = `Found ${w.length} result(s).`, w.forEach((L) => {
             t(
               m,
               L.item,
