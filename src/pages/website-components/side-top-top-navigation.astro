@@ -11,7 +11,7 @@ const primaryTopbar = `<div class="stt-primary-topbar">
     </button>
     <h1 class="navbar-title">SamplePage</h1>
     <button class="search-area">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="currentColor">
         <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"></path>
       </svg>
       <span class="text">Search...</span>
@@ -82,7 +82,7 @@ const standaloneTopbar = `<header class="stt-component">
     <div class="stt-primary-topbar-content">
       <h1 class="navbar-title">SamplePage</h1>
       <button class="search-area">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="currentColor">
           <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"></path>
         </svg>
         <span class="text">Search...</span>
@@ -112,7 +112,7 @@ const rawStructure = `<header class="stt-component">
     <div class="stt-overlay" data-stt-element="overlay"></div>
 </header>
 <main class="responsive-container stt-navigation-main-content">
-</main>`
+</main>`;
 ---
 
 <LibraryStyleLayout>
@@ -120,18 +120,21 @@ const rawStructure = `<header class="stt-component">
     <h1>Side Top Top Navigation</h1>
 
     <p>
-      This component provides fully responsive navigation bars using CSS classes and attributes.
+      This component provides fully responsive navigation bars using CSS classes
+      and attributes.
     </p>
 
     <h2>Base blocks:</h2>
     <p>
-      To use the basic side-top-top navigation layout, you need the following structure:
+      To use the basic side-top-top navigation layout, you need the following
+      structure:
     </p>
 
     <pre data-copyable-snippet><code>{rawStructure}</code></pre>
 
     <p>
-      This creates an empty layout to be filled with content—buttons, icons, a logo, a search box, and internal navigation bars structures.
+      This creates an empty layout to be filled with content—buttons, icons, a
+      logo, a search box, and internal navigation bars structures.
     </p>
 
     <h2>Navbars' content and structure</h2>
@@ -150,7 +153,9 @@ const rawStructure = `<header class="stt-component">
 
     <h2>Rendered snippet with sample text:</h2>
     <p>
-      It's also accessible <a href={`${base}demo-internal/side-top-top-navigation`}>here</a>.
+      It's also accessible <a
+        href={`${base}demo-internal/side-top-top-navigation`}>here</a
+      >.
     </p>
     <iframe src={`${base}demo-internal/side-top-top-navigation`}></iframe>
 

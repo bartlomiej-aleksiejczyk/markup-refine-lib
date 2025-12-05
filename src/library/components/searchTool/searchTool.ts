@@ -6,9 +6,15 @@ export function initSearchTool() {
 
   for (const btn of triggers) {
     btn.addEventListener("click", async () => {
-      const mode = btn.getAttribute("data-mode"); // "static" | "dynamic"
       const staticUrl = btn.getAttribute("data-static-url") || "";
       const dynamicUrl = btn.getAttribute("data-dynamic-url") || "";
+      // TODO: Add a hybrid mode
+      const mode: "static" | "dynamic" | null =
+        staticUrl && !dynamicUrl
+          ? "static"
+          : dynamicUrl && !staticUrl
+          ? "dynamic"
+          : null;
       let isLoadingFailed = false;
 
       const {
@@ -16,6 +22,7 @@ export function initSearchTool() {
         modal,
         input,
         results,
+        searchIcon,
         spinner,
         message,
         dismissBtn,
@@ -35,6 +42,7 @@ export function initSearchTool() {
 
       // --- STATIC MODE: load dataset once ------------------------------------
       if (mode === "static" && staticUrl) {
+        searchIcon.style.display = "none";
         spinner.style.display = "block";
         try {
           const res = await fetch(staticUrl);
@@ -60,6 +68,7 @@ export function initSearchTool() {
           console.error("Static fetch failed:", err);
         } finally {
           spinner.style.display = "none";
+          searchIcon.style.display = "block";
         }
       }
 
@@ -75,10 +84,12 @@ export function initSearchTool() {
 
         if (!query) {
           spinner.style.display = "none";
+          searchIcon.style.display = "none";
           return;
         }
 
         if (!isLoadingFailed) {
+          searchIcon.style.display = "none";
           spinner.style.display = "block";
         }
 
@@ -104,6 +115,7 @@ export function initSearchTool() {
           }
 
           spinner.style.display = "none";
+          searchIcon.style.display = "block";
           return;
         }
 
@@ -136,6 +148,7 @@ export function initSearchTool() {
             console.error("Dynamic fetch failed:", err);
           } finally {
             spinner.style.display = "none";
+            searchIcon.style.display = "block";
           }
         }
       }
@@ -160,6 +173,7 @@ export function initSearchTool() {
           resultCount.textContent = "";
           resultCount.style.display = "none";
           spinner.style.display = "none";
+          searchIcon.style.display = "block";
           return;
         }
 
@@ -202,14 +216,22 @@ export function initSearchTool() {
 
     const dismissBtn = document.createElement("button");
     dismissBtn.className = "search-tool-dismiss";
+
     dismissBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
         <path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/>
       </svg>`;
 
+    const searchIcon = document.createElement("div");
+    searchIcon.className = "search-tool-input-icon";
+    searchIcon.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px">
+      <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+    </svg>`;
+
     const spinner = document.createElement("div");
-    spinner.className = "search-tool-spinner";
-    spinner.textContent = "Loading...";
+    spinner.classList.add("search-tool-spinner", "search-tool-input-icon");
+    spinner.textContent = "";
     spinner.style.display = "none";
 
     const message = document.createElement("div");
@@ -223,6 +245,7 @@ export function initSearchTool() {
 
     modal.appendChild(dismissBtn);
     modal.appendChild(input);
+    modal.appendChild(searchIcon);
     modal.appendChild(spinner);
     modal.appendChild(message);
     modal.appendChild(resultCount);
@@ -233,6 +256,7 @@ export function initSearchTool() {
       modal,
       input,
       results,
+      searchIcon,
       spinner,
       message,
       dismissBtn,

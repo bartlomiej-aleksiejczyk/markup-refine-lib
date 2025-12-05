@@ -4,13 +4,11 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 import { base } from "astro:config/client";
 
 const staticSearchSnippet = `<button data-search-tool
-  data-mode="static"
   data-static-url="${base}demo-internal/offline-search-index.json">
   🔍 Search
 </button>`;
 
 const dynamicSearchSnippet = `<button data-search-tool
-  data-mode="dynamic"
   data-dynamic-url="test">
   🔍 Search
 </button>`;
@@ -24,7 +22,9 @@ const dynamicSearchSnippet = `<button data-search-tool
     </p>
 
     <p>
-      To improve the appearance of the topbar element, classes <code>navbar-brand</code> and
+      To improve the appearance of the topbar element, classes <code
+        >navbar-brand</code
+      > and
       <code>group</code> can be used.
     </p>
 

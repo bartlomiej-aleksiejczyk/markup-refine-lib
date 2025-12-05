@@ -1,6 +1,7 @@
 body:has(.search-tool-overlay) {
   overflow: hidden;
 }
+
 .search-tool-overlay {
   position: fixed;
   top: 0;
@@ -8,10 +9,12 @@ body:has(.search-tool-overlay) {
   width: 100vw;
   height: 100vh;
   background: var(--color-overlay);
+  backdrop-filter: blur(3px);
   z-index: 9998;
 }
 
 .search-tool-modal {
+  --search-input-border-width: 2px;
   top: 20%;
   left: 50%;
   transform: translate(-50%);
@@ -20,6 +23,7 @@ body:has(.search-tool-overlay) {
   border-radius: 8px;
   width: var(--max-container-width);
   max-height: 70%;
+  min-height: calc(7.5rem + 3em + 4px);
   z-index: 9999;
   position: fixed;
   display: flex;
@@ -45,9 +49,12 @@ body:has(.search-tool-overlay) {
 }
 
 .search-tool-input {
+  border-width: var(--search-input-border-width);
   width: 100%;
+  min-height: 3rem;
   font-size: 1.1rem;
   padding: 0.5em;
+  padding-left: 3.5rem;
   margin-bottom: 0.1rem;
 }
 
@@ -92,6 +99,45 @@ body:has(.search-tool-overlay) {
 
 .search-tool-result-count {
   margin: 0.5em 0;
+}
+.search-tool-input-icon {
+  margin-left: -0.4rem;
+  --spinner-border-width: 3px;
+  fill: var(--color-primary-lighter);
+  border: var(--spinner-border-width) solid transparent;
+  display: inline-block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: calc(
+    4rem - 15px - var(--search-input-border-width) - var(--spinner-border-width)
+  );
+  left: calc(
+    0.5rem + 15px + var(--search-input-border-width) +
+      var(--spinner-border-width)
+  );
+}
+.search-tool-spinner {
+  width: 22px;
+  height: 22px;
+  margin-left: 0;
+  border-color: var(--color-primary-lighter);
+  top: calc(
+    4rem - 14px - var(--search-input-border-width) - var(--spinner-border-width)
+  );
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 1700px) {
