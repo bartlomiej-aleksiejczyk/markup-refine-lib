@@ -102,7 +102,7 @@ export function initSearchTool() {
             message.textContent = "No results found.";
           } else {
             resultCount.style.display = "block";
-            resultCount.textContent = `🔎 Found ${searchResults.length} result(s).`;
+            resultCount.textContent = `Found ${searchResults.length} result(s).`;
 
             searchResults.forEach((result) => {
               appendResult(

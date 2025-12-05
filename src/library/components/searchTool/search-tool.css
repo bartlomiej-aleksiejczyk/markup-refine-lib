@@ -48,7 +48,7 @@ body:has(.search-tool-overlay) {
   }
 }
 
-.search-tool-input {
+:not(#\9).search-tool-input {
   border-width: var(--search-input-border-width);
   width: 100%;
   min-height: 3rem;
