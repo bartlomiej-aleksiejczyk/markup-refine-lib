@@ -87,6 +87,7 @@
     justify-content: center;
     align-items: center;
   }
+
   .stt-button:hover {
     box-shadow: none;
   }
@@ -214,6 +215,16 @@
     background-color: var(--color-secondary-darker);
     box-shadow: none;
     margin: 0.5rem 1rem;
+  }
+  .stt-primary-sidebar__block {
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: var(--color-primary);
+    margin: 0.75rem auto;
+    height: 2.75rem;
+    transition: outline 0.3s ease;
   }
 }
 .stt-primary-sidebar-top {
