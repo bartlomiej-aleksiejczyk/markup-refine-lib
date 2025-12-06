@@ -217,14 +217,11 @@
     margin: 0.5rem 1rem;
   }
   .stt-primary-sidebar__block {
-    width: 90%;
+    width: 95%;
     display: flex;
     justify-content: start;
     align-items: center;
-    color: var(--color-primary);
     margin: 0.75rem auto;
-    height: 2.75rem;
-    transition: outline 0.3s ease;
   }
 }
 .stt-primary-sidebar-top {
