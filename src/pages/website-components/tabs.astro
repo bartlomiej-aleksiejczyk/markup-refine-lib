@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import { base } from "astro:config/client";
+
+const staticSearchSnippet = `<button data-search-tool
+  data-static-url="${base}demo-internal/offline-search-index.json">
+  🔍 Search
+</button>`;
+
+const dynamicSearchSnippet = `<button data-search-tool
+  data-dynamic-url="test">
+  🔍 Search
+</button>`;
+---
+
+<LibraryStyleLayout>
+  <main class="responsive-container">
+    <h1>Search tool</h1>
+    <p>
+      For simple cases, class <code>navbar</code> can be used to style the top bar.
+    </p>
+
+    <p>
+      To improve the appearance of the topbar element, classes <code
+        >navbar-brand</code
+      > and
+      <code>group</code> can be used.
+    </p>
+
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{staticSearchSnippet}</code></pre>
+
+    <p>Search can also be used with dynamic, server-side search.</p>
+
+    <h2>Rendered snippet:</h2>
+    <Fragment set:html={staticSearchSnippet} />
+
+    <h2>Example usage (dynamic):</h2>
+    <pre data-copyable-snippet><code>{dynamicSearchSnippet}</code></pre>
+
+    <Fragment set:html={dynamicSearchSnippet} />
+  </main>
+</LibraryStyleLayout>

@@ -3,7 +3,8 @@ import { initCopyableSnippet } from "./components/copyableSnippet/copyableSnippe
 import { initSearchTool } from "./components/searchTool/searchTool";
 import { initSideTopTopNavigation } from "./components/sideTopTopNavigation/sideTopTopNavigation";
 import { initNavbarComponents } from "./components/navbarComponents/navbarComponents";
-import {initResettableFileInput} from "./components/resettableFileInput/resettableFileInput"
+import { initResettableFileInput } from "./components/resettableFileInput/resettableFileInput";
+import { initNavigationTabs } from "./components/navigationTabs/navigationTabs";
 
 document.addEventListener("DOMContentLoaded", () => {
   initClickableItemList();
@@ -12,4 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initCopyableSnippet();
   initNavbarComponents();
   initResettableFileInput();
+  initNavigationTabs();
 });

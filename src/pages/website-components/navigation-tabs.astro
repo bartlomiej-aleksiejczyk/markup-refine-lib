@@ -15,29 +15,60 @@ const navigationTabsSnippetSemantic = `<nav class="navigation-tabs">
     <li><a href="#">Clients</a></li>
     <li><a href="#">Contact Us</a></li>
   </ul>
-</nav>`
+</nav>`;
+
+const navigationTabsInteractive = `<nav class="navigation-tabs">
+  <ul>
+    <button data-tabs-button-name="demo-1" data-tabs-group="demo">Home</button>
+    <button data-tabs-button-name="demo-2" data-tabs-group="demo">About</button>
+    <button data-tabs-button-name="demo-3" data-tabs-group="demo">Clients</button>
+    <button data-tabs-button-name="demo-4" data-tabs-group="demo">Contact Us</button>
+  </ul>
+  <p>Choosen tab</p>
+    <div data-tabs-name="demo-1" data-tabs-group="demo" data-tabs-default>Default</div>
+    <div data-tabs-name="demo-2" data-tabs-group="demo">About</div>
+    <div data-tabs-name="demo-3" data-tabs-group="demo">Clients</div>
+    <div data-tabs-name="demo-4" data-tabs-group="demo">Contact Us</div>
+</nav>`;
 ---
 
 <LibraryStyleLayout>
   <div class="responsive-container">
     <h1>Navigation Tabs</h1>
-    
+
     <p>
-      Use the <code>navigation-tabs</code> class on any element to make it navigation tabs.
+      Use the <code>navigation-tabs</code> class on any element to make it navigation
+      tabs.
     </p>
     <p>
-      Add <code>data-navigation-tabs-autoselector</code> attribute to select currently choose tab.
+      Add <code>data-navigation-tabs-autoselector</code> attribute to select currently
+      choose tab.
     </p>
-    
+
     <h2>Example usage:</h2>
     <pre data-copyable-snippet><code>{navigationTabsSnippet}</code></pre>
-    
+
     <h2>Rendered snippet:</h2>
     <Fragment set:html={navigationTabsSnippet} />
     <p>Also more semantic version is supported</p>
-    <pre data-copyable-snippet><code>{navigationTabsSnippetSemantic}</code></pre>
-    
+    <pre
+      data-copyable-snippet><code>{navigationTabsSnippetSemantic}</code></pre>
+
     <h2>Rendered snippet:</h2>
     <Fragment set:html={navigationTabsSnippetSemantic} />
+
+    <p>
+      You can use an interactive version of this component that is headless and
+      is not tied to any css
+    </p>
+    <p>
+      Use the <code>data-tabs-group</code> and <code>data-tabs-name</code> and <code
+        >data-tabs-button-name</code
+      > to group and connect tab's content and buttons.
+    </p>
+    <pre data-copyable-snippet><code>{navigationTabsInteractive}</code></pre>
+
+    <h2>Rendered snippet:</h2>
+    <Fragment set:html={navigationTabsInteractive} />
   </div>
 </LibraryStyleLayout>
