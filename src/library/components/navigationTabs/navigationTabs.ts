@@ -3,8 +3,13 @@ export function initNavigationTabs() {
     button.addEventListener("click", handleSwitchTab);
   });
   document.querySelectorAll("[data-tabs-name]").forEach((tab) => {
-    if (tab.getAttribute("data-tabs-default") !== "") {
+    const defaultTabName = tab.getAttribute("data-tabs-default");
+    if (defaultTabName) {
       tab.style.display = "none";
+      const button = document.querySelector(
+        `[data-tabs-button-name="${defaultTabName}"]`,
+      );
+      button?.setAttribute("data-tabs-button-active", "");
     }
   });
 
@@ -25,6 +30,17 @@ export function initNavigationTabs() {
         tab.style.display = "";
       } else {
         tab.style.display = "none";
+      }
+    });
+
+    const buttons = document.querySelectorAll(
+      `[data-tabs-group="${tabGroup}"][data-tabs-button-name]`,
+    );
+    buttons.forEach((button) => {
+      if (button.getAttribute("data-tabs-button-name") === tabName) {
+        button?.setAttribute("data-tabs-button-active", "");
+      } else {
+        button?.removeAttribute("data-tabs-button-active");
       }
     });
   }
