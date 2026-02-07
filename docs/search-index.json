@@ -265,6 +265,12 @@
   },
   {
     "id": 45,
+    "title": "Search tool",
+    "content": "Search tool For simple cases, class navbar can be used to style the top bar. To improve the appearance of the topbar element, classes navbar-brand and group can be used. Example usage: <button data-search-tool data-static-url=\"/markup-refine-lib/demo-internal/offline-search-index.json\"> 🔍 Search </button> Search can also be used with dynamic, server-side search. Rendered snippet: 🔍 Search Example usage (dynamic): <button data-search-tool data-dynamic-url=\"test\"> 🔍 Search </button> 🔍 Search",
+    "url": "/markup-refine-lib/website-components/tabs/"
+  },
+  {
+    "id": 46,
     "title": "Untitled",
     "content": "",
     "url": "/markup-refine-lib/website-components/tree-list-container/"

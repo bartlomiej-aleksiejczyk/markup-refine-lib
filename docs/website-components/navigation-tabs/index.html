@@ -1,7 +1,9 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.BzQDtlzH.css"></head> <body>  <div class="responsive-container"> <h1>Navigation Tabs</h1> <p>
-Use the <code>navigation-tabs</code> class on any element to make it navigation tabs.
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content"><link rel="stylesheet" href="/markup-refine-lib/_astro/FullNavigationLayout.BzQDtlzH.css"></head> <body>  <div class="responsive-container"> <h1>Navigation Tabs</h1> <p>
+Use the <code>navigation-tabs</code> class on any element to make it navigation
+      tabs.
 </p> <p>
-Add <code>data-navigation-tabs-autoselector</code> attribute to select currently choose tab.
+Add <code>data-navigation-tabs-autoselector</code> attribute to select currently
+      choose tab.
 </p> <h2>Example usage:</h2> <pre data-copyable-snippet><code>&lt;nav class=&quot;navigation-tabs&quot; data-navigation-tabs-autoselector&gt;
   &lt;a&gt; List Templates&lt;/a&gt;
   &lt;a href=&quot;/markup-refine-lib/website-components/navigation-tabs&quot;&gt; This Page &lt;/a&gt;
@@ -26,4 +28,33 @@ Add <code>data-navigation-tabs-autoselector</code> attribute to select currently
     <li><a href="#">Clients</a></li>
     <li><a href="#">Contact Us</a></li>
   </ul>
-</nav> </div>  <script type="module" src="/markup-refine-lib/_astro/LibraryStyleLayout.astro_astro_type_script_index_0_lang.BX1ATNUp.js"></script> </body> </html>
+</nav> <p>
+You can use an interactive version of this component that is headless and
+      is not tied to any css
+</p> <p>
+Use the <code>data-tabs-group</code> and <code>data-tabs-name</code> and <code>data-tabs-button-name</code> to group and connect tab's content and buttons.
+</p> <pre data-copyable-snippet><code>&lt;nav class=&quot;navigation-tabs&quot;&gt;
+  &lt;ul&gt;
+    &lt;button data-tabs-button-name=&quot;demo-1&quot; data-tabs-group=&quot;demo&quot;&gt;Home&lt;/button&gt;
+    &lt;button data-tabs-button-name=&quot;demo-2&quot; data-tabs-group=&quot;demo&quot;&gt;About&lt;/button&gt;
+    &lt;button data-tabs-button-name=&quot;demo-3&quot; data-tabs-group=&quot;demo&quot;&gt;Clients&lt;/button&gt;
+    &lt;button data-tabs-button-name=&quot;demo-4&quot; data-tabs-group=&quot;demo&quot;&gt;Contact Us&lt;/button&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;Choosen tab&lt;/p&gt;
+    &lt;div data-tabs-name=&quot;demo-1&quot; data-tabs-group=&quot;demo&quot; data-tabs-default&gt;Default&lt;/div&gt;
+    &lt;div data-tabs-name=&quot;demo-2&quot; data-tabs-group=&quot;demo&quot;&gt;About&lt;/div&gt;
+    &lt;div data-tabs-name=&quot;demo-3&quot; data-tabs-group=&quot;demo&quot;&gt;Clients&lt;/div&gt;
+    &lt;div data-tabs-name=&quot;demo-4&quot; data-tabs-group=&quot;demo&quot;&gt;Contact Us&lt;/div&gt;
+&lt;/nav&gt;</code></pre> <h2>Rendered snippet:</h2> <nav class="navigation-tabs">
+  <ul>
+    <button data-tabs-button-name="demo-1" data-tabs-group="demo">Home</button>
+    <button data-tabs-button-name="demo-2" data-tabs-group="demo">About</button>
+    <button data-tabs-button-name="demo-3" data-tabs-group="demo">Clients</button>
+    <button data-tabs-button-name="demo-4" data-tabs-group="demo">Contact Us</button>
+  </ul>
+  <p>Choosen tab</p>
+    <div data-tabs-name="demo-1" data-tabs-group="demo" data-tabs-default>Default</div>
+    <div data-tabs-name="demo-2" data-tabs-group="demo">About</div>
+    <div data-tabs-name="demo-3" data-tabs-group="demo">Clients</div>
+    <div data-tabs-name="demo-4" data-tabs-group="demo">Contact Us</div>
+</nav> </div>  <script type="module" src="/markup-refine-lib/_astro/LibraryStyleLayout.astro_astro_type_script_index_0_lang.BpJG9Yf_.js"></script> </body> </html>
