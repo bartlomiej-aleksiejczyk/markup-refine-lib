@@ -3,13 +3,17 @@ export function initNavigationTabs() {
     button.addEventListener("click", handleSwitchTab);
   });
   document.querySelectorAll("[data-tabs-name]").forEach((tab) => {
-    const defaultTabName = tab.getAttribute("data-tabs-default");
-    if (defaultTabName) {
-      tab.style.display = "none";
+    const defaultTab = tab.getAttribute("data-tabs-default");
+
+    if (defaultTab === "") {
+      const defaultTabName = tab.getAttribute("data-tabs-name");
+
       const button = document.querySelector(
         `[data-tabs-button-name="${defaultTabName}"]`,
       );
       button?.setAttribute("data-tabs-button-active", "");
+    } else {
+      tab.style.display = "none";
     }
   });
 
