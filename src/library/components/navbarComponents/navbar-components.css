@@ -122,6 +122,12 @@
         background-color: var(--color-text-on-secondary);
       }
     }
+    &[data-tabs-button-active] {
+      color: var(--color-text-on-secondary);
+      &::after {
+        background-color: var(--color-text-on-secondary);
+      }
+    }
   }
   ul {
     all: unset;

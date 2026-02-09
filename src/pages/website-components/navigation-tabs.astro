@@ -19,10 +19,10 @@ const navigationTabsSnippetSemantic = `<nav class="navigation-tabs">
 
 const navigationTabsInteractive = `<nav class="navigation-tabs">
   <ul>
-    <button data-tabs-button-name="demo-1" data-tabs-group="demo">Home</button>
-    <button data-tabs-button-name="demo-2" data-tabs-group="demo">About</button>
-    <button data-tabs-button-name="demo-3" data-tabs-group="demo">Clients</button>
-    <button data-tabs-button-name="demo-4" data-tabs-group="demo">Contact Us</button>
+    <li><a data-tabs-button-name="demo-1" data-tabs-group="demo">Home</a></li>
+    <li><a data-tabs-button-name="demo-2" data-tabs-group="demo">About</a></li>
+    <li><a data-tabs-button-name="demo-3" data-tabs-group="demo">Clients</a></li>
+    <li><a data-tabs-button-name="demo-4" data-tabs-group="demo">Contact Us</a></li>
   </ul>
   <p>Choosen tab</p>
     <div data-tabs-name="demo-1" data-tabs-group="demo" data-tabs-default>Default</div>
@@ -33,7 +33,7 @@ const navigationTabsInteractive = `<nav class="navigation-tabs">
 ---
 
 <LibraryStyleLayout>
-  <div class="responsive-container">
+  <main class="responsive-container stt-navigation-main-content">
     <h1>Navigation Tabs</h1>
 
     <p>
@@ -70,5 +70,5 @@ const navigationTabsInteractive = `<nav class="navigation-tabs">
 
     <h2>Rendered snippet:</h2>
     <Fragment set:html={navigationTabsInteractive} />
-  </div>
+  </main>
 </LibraryStyleLayout>
