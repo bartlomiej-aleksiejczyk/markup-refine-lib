@@ -51,11 +51,19 @@ import { base } from "astro:config/client";
       </details>
     </li>
   </ul>
-  <details open>
-    <summary><a>Navigation components</a></summary>
-    <ul>
-      <li><a href="#">Side top top navigation</a></li>
-      <li><a href="#">Navigation bar components</a></li>
-    </ul>
-  </details>
+  <ul class="clickable-item-list">
+    <details open>
+      <summary><a>Navigation components</a></summary>
+      <ul>
+        <li>
+          <a href=`${base}website-components/side-top-top-navigation/`
+            >Side top top navigation</a
+          >
+        </li>
+        <li>
+          <a href=`${base}website-components/search-tool/`>Search Tool</a>
+        </li>
+      </ul>
+    </details>
+  </ul>
 </div>

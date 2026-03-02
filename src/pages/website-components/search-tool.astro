@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 import { base } from "astro:config/client";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 
 const staticSearchSnippet = `<button data-search-tool
   data-static-url="${base}demo-internal/offline-search-index.json">
@@ -14,7 +14,7 @@ const dynamicSearchSnippet = `<button data-search-tool
 </button>`;
 ---
 
-<LibraryStyleLayout>
+<FullNavigationLayout>
   <main class="responsive-container">
     <h1>Search tool</h1>
     <p>
@@ -41,4 +41,4 @@ const dynamicSearchSnippet = `<button data-search-tool
 
     <Fragment set:html={dynamicSearchSnippet} />
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>

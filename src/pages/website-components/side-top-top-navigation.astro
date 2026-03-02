@@ -1,5 +1,5 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 import { base } from "astro:config/client";
 
 const primaryTopbar = `<div class="stt-primary-topbar">
@@ -115,7 +115,7 @@ const rawStructure = `<header class="stt-component">
 </main>`;
 ---
 
-<LibraryStyleLayout>
+<FullNavigationLayout>
   <main class="responsive-container stt-navigation-main-content">
     <h1>Side Top Top Navigation</h1>
 
@@ -162,4 +162,4 @@ const rawStructure = `<header class="stt-component">
     <h2>Using topbar as standalone component</h2>
     <pre data-copyable-snippet><code>{standaloneTopbar}</code></pre>
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>
