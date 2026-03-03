@@ -1,5 +1,5 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 import { base } from "astro:config/client";
 
 const navigationTabsSnippet = `<nav class="navigation-tabs" data-navigation-tabs-autoselector>
@@ -32,14 +32,23 @@ const navigationTabsInteractive = `<nav class="navigation-tabs">
 </nav>`;
 ---
 
-<LibraryStyleLayout>
+<FullNavigationLayout>
   <main class="responsive-container stt-navigation-main-content">
     <h1>Navigation Tabs</h1>
-
+    <p>This component comes in two variations:</p>
+    <ul>
+      <li>Multi-page tabs</li>
+      <li>Single-page tabs</li>
+    </ul>
+    <p>
+      In the first variant every tab should be separate page. In the second
+      variant contains every tab's content on a single page
+    </p>
     <p>
       Use the <code>navigation-tabs</code> class on any element to make it navigation
       tabs.
     </p>
+    <h2>Multi-page tabs:</h2>
     <p>
       Add <code>data-navigation-tabs-autoselector</code> attribute to select currently
       choose tab.
@@ -57,10 +66,7 @@ const navigationTabsInteractive = `<nav class="navigation-tabs">
     <h2>Rendered snippet:</h2>
     <Fragment set:html={navigationTabsSnippetSemantic} />
 
-    <p>
-      You can use an interactive version of this component that is headless and
-      is not tied to any css
-    </p>
+    <h2>Single-page tabs:</h2>
     <p>
       Use the <code>data-tabs-group</code> and <code>data-tabs-name</code> and <code
         >data-tabs-button-name</code
@@ -71,4 +77,4 @@ const navigationTabsInteractive = `<nav class="navigation-tabs">
     <h2>Rendered snippet:</h2>
     <Fragment set:html={navigationTabsInteractive} />
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>
