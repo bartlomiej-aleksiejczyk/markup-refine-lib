@@ -30,6 +30,44 @@ const navigationTabsInteractive = `<nav class="navigation-tabs">
     <div data-tabs-name="demo-3" data-tabs-group="demo">Clients</div>
     <div data-tabs-name="demo-4" data-tabs-group="demo">Contact Us</div>
 </nav>`;
+const primarySidebar = `<div class="stt-primary-sidebar" data-stt-element="sidebar">
+  <div class="stt-primary-sidebar-top">
+    <h2>Collapsible</h2>
+    <button data-stt-action="dismiss" class="stt-button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">
+        <path
+          d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z">
+        </path>
+      </svg>
+    </button>
+  </div>
+  <div>
+    <hr />
+    <p></p>
+    <hr />
+  </div>
+  <div class="stt-primary-sidebar___upper-section">
+    <div class="stt-primary-sidebar-header">
+      <a class="stt-primary-sidebar__back-button" href="/hyperdossier/">← Back to Home</a>
+      <button data-stt-action="dismiss" class="stt-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">
+          <path
+            d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div class="stt-primary-sidebar-tabs">
+      <button class="stt-primary-sidebar-tabs__tab">test</button>
+      <button class="stt-primary-sidebar-tabs__tab stt-primary-sidebar-tabs__tab--active">test2</button>
+    </div>
+    <div class="stt-primary-sidebar-top">
+      <h2>Manage Infobjects:</h2>
+    </div>
+    <div class="stt-primary-sidebar__list-container">
+    </div>
+  </div>
+</div>`;
 ---
 
 <FullNavigationLayout>
@@ -76,5 +114,17 @@ const navigationTabsInteractive = `<nav class="navigation-tabs">
 
     <h2>Rendered snippet:</h2>
     <Fragment set:html={navigationTabsInteractive} />
+
+    <h2>Rendered snippet:</h2>
+    <Fragment set:html={navigationTabsSnippetSemantic} />
+    <p>
+      Use the <code>data-tabs-group</code> and <code>data-tabs-name</code> and <code
+        >data-tabs-button-name</code
+      > to group and connect tab's content and buttons.
+    </p>
+    <pre data-copyable-snippet><code>{primarySidebar}</code></pre>
+
+    <h2>Rendered snippet:</h2>
+    <iframe src={`${base}demo-internal/navigation-tabs-sidebar`}></iframe>
   </main>
 </FullNavigationLayout>
