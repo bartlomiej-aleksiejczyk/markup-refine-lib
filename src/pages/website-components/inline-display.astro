@@ -1,0 +1,25 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+
+const inlineDisplaySnippet = `<p>
+  This is a paragraph with <span class="inline">inline text</span> and another <span class="inline-display">inline
+    element</span>
+  showing how inline display works. Notice how all these elements stay on the same line.
+</p>`;
+---
+
+<LibraryStyleLayout>
+  <div class="responsive-container">
+    <h1>Inline display</h1>
+
+    <p>
+      Use the <code>inline-display</code> class on any element to make it inline.
+    </p>
+
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{inlineDisplaySnippet}</code></pre>
+
+    <h2>Rendered snippet with sample text:</h2>
+    <Fragment set:html={inlineDisplaySnippet} />
+  </div>
+</LibraryStyleLayout>
