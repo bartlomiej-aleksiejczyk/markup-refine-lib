@@ -1,0 +1,34 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+
+const cardSnippet = `<div class="card">
+  <p>
+    To create seamless digital experiences that enrich the lives of our
+    users.
+  </p>
+</div>
+
+<div class="card positive">
+  <span class="card__header">Our Vision</span>
+  <p>
+    To be a leader in innovative technology solutions and user experience.
+  </p>
+</div>`;
+---
+
+<LibraryStyleLayout>
+  <div class="responsive-container">
+    <h1>Card</h1>
+
+    <p>
+      Use the <code>card</code> class to create card-like component.
+    </p>
+    <p>Use the <code>header</code> class to add a header.</p>
+    <p>You can choose a color variation using the common classes.</p>
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{cardSnippet}</code></pre>
+
+    <h2>Rendered snippet with sample text:</h2>
+    <Fragment set:html={cardSnippet} />
+  </div>
+</LibraryStyleLayout>

@@ -7,7 +7,7 @@
   padding: 0.5rem;
   border-radius: var(--border-radius-medium);
   margin-bottom: 1rem;
-  .card__header {
+  . {
     margin: -0.5rem;
     margin-bottom: 0.5rem;
     padding: 0.5rem;
@@ -20,42 +20,42 @@
   &.secondary {
     border-color: var(--color-secondary-darker);
     background-color: var(--color-secondary);
-    .card__header {
+    . {
       background-color: var(--color-secondary-darker);
     }
   }
   &.positive {
     border-color: var(--color-positive-darker);
     background-color: var(--color-positive);
-    .card__header {
+    . {
       background-color: var(--color-positive-darker);
     }
   }
   &.negative {
     border-color: var(--color-negative-darker);
     background-color: var(--color-negative);
-    .card__header {
+    . {
       background-color: var(--color-negative-darker);
     }
   }
   &.warning {
     border-color: var(--color-warning-darker);
     background-color: var(--color-warning);
-    .card__header {
+    . {
       background-color: var(--color-warning-darker);
     }
   }
   &.info {
     border-color: var(--color-info-darker);
     background-color: var(--color-info);
-    .card__header {
+    . {
       background-color: var(--color-info-darker);
     }
   }
   &.help {
     border-color: var(--color-help-darker);
     background-color: var(--color-help);
-    .card__header {
+    . {
       background-color: var(--color-help-darker);
     }
   }
