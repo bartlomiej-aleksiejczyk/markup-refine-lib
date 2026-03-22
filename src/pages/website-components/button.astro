@@ -1,5 +1,5 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 
 const buttonSnippet = `    
 <button>Default</button>
@@ -13,8 +13,8 @@ const buttonSnippet = `
 `;
 ---
 
-<LibraryStyleLayout>
-  <div class="responsive-container">
+<FullNavigationLayout>
+  <main class="responsive-container">
     <h1>Button</h1>
     <p>Buttons are styled by default.</p>
     <p>
@@ -29,5 +29,5 @@ const buttonSnippet = `
 
     <h2>Rendered snippet with sample text:</h2>
     <Fragment set:html={buttonSnippet} />
-  </div>
-</LibraryStyleLayout>
+  </main>
+</FullNavigationLayout>

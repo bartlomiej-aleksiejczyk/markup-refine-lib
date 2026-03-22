@@ -1,5 +1,5 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 
 const floatingElementSnippet = `<figure class="floating-element">
   <img src="https://placehold.co/250x200" alt="Placeholder image 1"/>
@@ -9,8 +9,8 @@ const floatingElementSnippet = `<figure class="floating-element">
 </figure>`;
 ---
 
-<LibraryStyleLayout>
-  <div class="responsive-container">
+<FullNavigationLayout>
+  <main class="responsive-container">
     <h1>Floating Elements</h1>
 
     <p>
@@ -42,5 +42,5 @@ const floatingElementSnippet = `<figure class="floating-element">
       netus suscipit auctor curabitur facilisi cubilia curae. Quisque faucibus
       ex sapien vitae pellentesque sem placerat.
     </p>
-  </div>
-</LibraryStyleLayout>
+  </main>
+</FullNavigationLayout>

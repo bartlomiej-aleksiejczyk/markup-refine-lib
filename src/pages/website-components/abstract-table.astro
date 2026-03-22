@@ -1,11 +1,9 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 ---
 
-<LibraryStyleLayout>
-  <main
-    class="grid grid-cols-1 gap-8 p-6 rounded-xl shadow-xl bg-gradient-to-br from-gray-50 to-white"
-  >
+<FullNavigationLayout>
+  <main class="responsive-container">
     <section class="text-center">
       <h1
         class="text-4xl font-extrabold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
@@ -50,4 +48,4 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
       </table>
     </section>
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>

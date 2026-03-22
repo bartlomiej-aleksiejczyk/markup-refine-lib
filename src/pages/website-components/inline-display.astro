@@ -1,4 +1,5 @@
 ---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 
 const inlineDisplaySnippet = `<p>
@@ -8,8 +9,8 @@ const inlineDisplaySnippet = `<p>
 </p>`;
 ---
 
-<LibraryStyleLayout>
-  <div class="responsive-container">
+<FullNavigationLayout>
+  <main class="responsive-container">
     <h1>Inline display</h1>
 
     <p>
@@ -21,5 +22,5 @@ const inlineDisplaySnippet = `<p>
 
     <h2>Rendered snippet with sample text:</h2>
     <Fragment set:html={inlineDisplaySnippet} />
-  </div>
-</LibraryStyleLayout>
+  </main>
+</FullNavigationLayout>

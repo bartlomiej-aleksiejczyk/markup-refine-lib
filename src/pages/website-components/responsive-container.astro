@@ -1,0 +1,26 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const inlineDisplaySnippet = `<p>
+  This is a paragraph with <span class="inline">inline text</span> and another <span class="inline-display">inline
+    element</span>
+  showing how inline display works. Notice how all these elements stay on the same line.
+</p>`;
+---
+
+<FullNavigationLayout>
+  <div class="responsive-container">
+    <h1>Responsive Container</h1>
+
+    <p>
+      Use the <code>responsive-container</code> class on your base tag to make it
+      responsive.
+    </p>
+
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{inlineDisplaySnippet}</code></pre>
+
+    <h2>Rendered snippet with sample text:</h2>
+    <Fragment set:html={inlineDisplaySnippet} />
+  </div>
+</FullNavigationLayout>

@@ -1,5 +1,5 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 import { base } from "astro:config/client";
 
 const snippet = `<form>
@@ -10,13 +10,13 @@ const snippet = `<form>
     </form>`;
 ---
 
-<LibraryStyleLayout>
+<FullNavigationLayout>
   <main class="responsive-container stt-navigation-main-content">
     <h1>Resettable file input</h1>
 
     <p>
-      To use the resettable file input, add <code>resettable</code> attribute
-      to your file input's wrapper.
+      To use the resettable file input, add <code>resettable</code> attribute to your
+      file input's wrapper.
     </p>
 
     <h2>Full Usage Example:</h2>
@@ -27,4 +27,4 @@ const snippet = `<form>
 
     <Fragment set:html={snippet} />
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>

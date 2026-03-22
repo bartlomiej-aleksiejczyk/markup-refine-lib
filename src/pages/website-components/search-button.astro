@@ -1,5 +1,5 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 
 const snippet = `<button class="search-area">
   <svg
@@ -17,7 +17,7 @@ const snippet = `<button class="search-area">
 </button>`;
 ---
 
-<LibraryStyleLayout>
+<FullNavigationLayout>
   <main class="responsive-container">
     <h2>Search button</h2>
 
@@ -33,4 +33,4 @@ const snippet = `<button class="search-area">
 
     <Fragment set:html={snippet} />
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>
