@@ -1,0 +1,30 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+
+const inlineDisplaySnippet = `<div class="group">
+      <span class="pill">Tech</span>
+      <span class="pill secondary">Design</span>
+      <span class="pill positive">Success</span>
+      <span class="pill negative">Error</span>
+      <span class="pill warning">Warning</span>
+      <span class="pill info">Info</span>
+      <span class="pill help">Help</span>
+    </div>`;
+---
+
+<LibraryStyleLayout>
+  <div class="responsive-container">
+    <h1>Group</h1>
+
+    <p>
+      Use the <code>group</code> class on any element container to group it's child
+      elements.
+    </p>
+
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{inlineDisplaySnippet}</code></pre>
+
+    <h2>Rendered snippet with sample text:</h2>
+    <Fragment set:html={inlineDisplaySnippet} />
+  </div>
+</LibraryStyleLayout>

@@ -1,5 +1,5 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 import { base } from "astro:config/client";
 
 const clickableListSnippet = `<ul class="clickable-item-list">
@@ -29,13 +29,13 @@ const clickableListSnippet = `<ul class="clickable-item-list">
 </ul>`;
 ---
 
-<LibraryStyleLayout>
+<FullNavigationLayout>
   <main class="responsive-container stt-navigation-main-content">
     <h1>Clickable Item List</h1>
 
     <p>
-      To use the Clickable Item List, add <code>clickable-item-list</code> class
-      to your unordered list root element.
+      To use the Clickable Item List, add <code>clickable-item-list</code> class to
+      your unordered list root element.
     </p>
 
     <p>This list also handles collapsing via <code>details</code>.</p>
@@ -54,4 +54,4 @@ const clickableListSnippet = `<ul class="clickable-item-list">
 
     <Fragment set:html={clickableListSnippet} />
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>

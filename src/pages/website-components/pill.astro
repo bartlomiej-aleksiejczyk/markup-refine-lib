@@ -1,0 +1,41 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const inlineDisplaySnippet = `<span class="pill">Tech</span>
+      <span class="pill secondary">Design</span>
+      <span class="pill positive">Success</span>
+      <span class="pill negative">Error</span>
+      <span class="pill warning">Warning</span>
+      <span class="pill info">Info</span>
+      <span class="pill help">Help</span>`;
+
+const inlineDisplaySnippetGroup = `<div class="group">
+      <span class="pill">Tech</span>
+      <span class="pill secondary">Design</span>
+      <span class="pill positive">Success</span>
+      <span class="pill negative">Error</span>
+      <span class="pill warning">Warning</span>
+      <span class="pill info">Info</span>
+      <span class="pill help">Help</span>
+    </div>`;
+---
+
+<FullNavigationLayout>
+  <div class="responsive-container">
+    <h1>Pill</h1>
+
+    <p>
+      Use the <code>pill</code> class on any element to give it a pill-like appearance.
+      You can use color classes along with pill class.
+    </p>
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{inlineDisplaySnippet}</code></pre>
+    <h2>Rendered snippet with sample text:</h2>
+    <Fragment set:html={inlineDisplaySnippetGroup} />
+    <p>Pill elements can be used along with <code>group</code> class.</p>
+    <h2>Example usage:</h2>
+    <pre data-copyable-snippet><code>{inlineDisplaySnippetGroup}</code></pre>
+    <h2>Rendered snippet with sample text:</h2>
+    <Fragment set:html={inlineDisplaySnippetGroup} />
+  </div>
+</FullNavigationLayout>
