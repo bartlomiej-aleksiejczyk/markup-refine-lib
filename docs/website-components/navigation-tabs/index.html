@@ -1,60 +1,45 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content"><link rel="stylesheet" href="/markup-refine-lib/_astro/LibraryStyleLayout.DIOyXTdJ.css"></head> <body>  <main class="responsive-container stt-navigation-main-content"> <h1>Navigation Tabs</h1> <p>
-Use the <code>navigation-tabs</code> class on any element to make it navigation
-      tabs.
-</p> <p>
-Add <code>data-navigation-tabs-autoselector</code> attribute to select currently
-      choose tab.
-</p> <h2>Example usage:</h2> <pre data-copyable-snippet><code>&lt;nav class=&quot;navigation-tabs&quot; data-navigation-tabs-autoselector&gt;
-  &lt;a&gt; List Templates&lt;/a&gt;
-  &lt;a href=&quot;/markup-refine-lib/website-components/navigation-tabs&quot;&gt; This Page &lt;/a&gt;
-  &lt;a&gt; List Jobs&lt;/a&gt;
-  &lt;a&gt; New Job&lt;/a&gt;
-&lt;/nav&gt;</code></pre> <h2>Rendered snippet:</h2> <nav class="navigation-tabs" data-navigation-tabs-autoselector>
-  <a> List Templates</a>
-  <a href="/markup-refine-lib/website-components/navigation-tabs"> This Page </a>
-  <a> List Jobs</a>
-  <a> New Job</a>
-</nav> <p>Also more semantic version is supported</p> <pre data-copyable-snippet><code>&lt;nav class=&quot;navigation-tabs&quot;&gt;
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content"></head><body data-mr><div class="mr-shell" data-mr-shell><div class="mr-shell__topbar"><div class="mr-shell__topbar-content"><button data-mr-shell-action="toggle" class="mr-shell__button mr-shell__toggle" aria-label="Open navigation"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"></path></svg></button><h1 class="mr-nav-title">MarkupRefineLib</h1><button class="mr-search-trigger" data-mr-search data-mr-search-static-url="/markup-refine-lib/search-index.json"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"></path></svg><span class="mr-search-trigger__label">Search...</span></button></div></div><div class="mr-shell__sidebar" data-mr-shell-part="sidebar"><div class="mr-shell__sidebar-header"><h2>Menu</h2><button data-mr-shell-action="dismiss" class="mr-shell__button mr-shell__dismiss" aria-label="Close navigation"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"></path></svg></button></div><div><hr><ul class="mr-clickable-list" data-mr-clickable-list-autoselect><li><a href="/markup-refine-lib/">Quick start</a></li><li><details open><summary><a>Usage</a></summary><ul><li><a href="/markup-refine-lib/usage/scoped-mode/">Scoped semantic HTML</a></li><li><a href="/markup-refine-lib/usage/theming/">Theming and tokens</a></li><li><a href="/markup-refine-lib/usage/component-api/">Component API</a></li><li><a href="/markup-refine-lib/usage/layout/">Layout primitives</a></li><li><a href="/markup-refine-lib/usage/progressive-enhancement/">Progressive enhancement</a></li><li><a href="/markup-refine-lib/usage/package-exports/">Package exports</a></li></ul></details></li><li><details open><summary><a>Content components</a></summary><ul><li><a href="/markup-refine-lib/website-components/button/">Button</a></li><li><a href="/markup-refine-lib/website-components/card/">Card</a></li><li><a href="/markup-refine-lib/website-components/pill/">Pill</a></li><li><a href="/markup-refine-lib/website-components/breadcrumbs/">Breadcrumbs</a></li><li><a href="/markup-refine-lib/website-components/copyable-snippet/">Copyable snippet</a></li><li><a href="/markup-refine-lib/website-components/clickable-item-list/">Clickable item list</a></li><li><a href="/markup-refine-lib/website-components/tree-list-container/">Tree list container</a></li><li><a href="/markup-refine-lib/website-components/datalist-range-labels/">Datalist range labels</a></li></ul></details></li><li><details open><summary><a>Navigation components</a></summary><ul><li><a href="/markup-refine-lib/website-components/application-shell/">Application shell</a></li><li><a href="/markup-refine-lib/website-components/navigation-tabs/">Navigation tabs</a></li><li><a href="/markup-refine-lib/website-components/tabs/">Tabs</a></li><li><a href="/markup-refine-lib/website-components/search-tool/">Search tool</a></li></ul></details></li></ul></div></div><div class="mr-shell__overlay" data-mr-shell-part="overlay"></div></div><main class="mr-container mr-shell__main"><h1>Navigation tabs</h1><p>Use <code>mr-nav-tabs</code> for presentation. Multi-page navigation can opt into current-URL enhancement with<code>data-mr-nav-tabs-autoselect</code>.</p><p>For authored current-page state, prefer the semantic<code>aria-current="page"</code> attribute. Autoselection writes the same attribute rather than a presentation modifier class.</p><h2>Multi-page navigation</h2><pre data-mr-copyable><code>&lt;nav class=&quot;mr-nav-tabs&quot; data-mr-nav-tabs-autoselect&gt;
+  &lt;a href=&quot;/markup-refine-lib/&quot;&gt;Home&lt;/a&gt;
+  &lt;a href=&quot;/markup-refine-lib/website-components/navigation-tabs&quot;&gt;This page&lt;/a&gt;
+  &lt;a href=&quot;/markup-refine-lib/website-components/card&quot;&gt;Cards&lt;/a&gt;
+&lt;/nav&gt;</code></pre><nav class="mr-nav-tabs" data-mr-nav-tabs-autoselect>
+  <a href="/markup-refine-lib/">Home</a>
+  <a href="/markup-refine-lib/website-components/navigation-tabs">This page</a>
+  <a href="/markup-refine-lib/website-components/card">Cards</a>
+</nav><h2>Semantic current page</h2><pre data-mr-copyable><code>&lt;nav class=&quot;mr-nav-tabs&quot; aria-label=&quot;Section navigation&quot;&gt;
   &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Clients&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/about&quot; aria-current=&quot;page&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/nav&gt;</code></pre> <h2>Rendered snippet:</h2> <nav class="navigation-tabs">
+&lt;/nav&gt;</code></pre><nav class="mr-nav-tabs" aria-label="Section navigation">
   <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Clients</a></li>
-    <li><a href="#">Contact Us</a></li>
+    <li><a href="/home">Home</a></li>
+    <li><a href="/about" aria-current="page">About</a></li>
+    <li><a href="/contact">Contact</a></li>
   </ul>
-</nav> <p>
-You can use an interactive version of this component that is headless and
-      is not tied to any css
-</p> <p>
-Use the <code>data-tabs-group</code> and <code>data-tabs-name</code> and <code>data-tabs-button-name</code> to group and connect tab's content and buttons.
-</p> <pre data-copyable-snippet><code>&lt;nav class=&quot;navigation-tabs&quot;&gt;
+</nav><h2>Single-page tab relationship</h2><p><code>data-mr-tab</code>, <code>data-mr-panel</code>, and<code>data-mr-tabs-group</code> connect triggers to panels. The enhancement supplies <code>role="tab"</code>/<code>role="tabpanel"</code>,<code>aria-selected</code>, roving <code>tabindex</code>, relationships, and native <code>hidden</code> state. Arrow keys plus Home/End move and activate tabs.</p><pre data-mr-copyable><code>&lt;nav class=&quot;mr-nav-tabs&quot; role=&quot;tablist&quot; aria-label=&quot;Example tabs&quot;&gt;
   &lt;ul&gt;
-    &lt;li&gt;&lt;a data-tabs-button-name=&quot;demo-1&quot; data-tabs-group=&quot;demo&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a data-tabs-button-name=&quot;demo-2&quot; data-tabs-group=&quot;demo&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a data-tabs-button-name=&quot;demo-3&quot; data-tabs-group=&quot;demo&quot;&gt;Clients&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a data-tabs-button-name=&quot;demo-4&quot; data-tabs-group=&quot;demo&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button data-mr-tab=&quot;demo-1&quot; data-mr-tabs-group=&quot;demo&quot;&gt;Home&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button data-mr-tab=&quot;demo-2&quot; data-mr-tabs-group=&quot;demo&quot;&gt;About&lt;/button&gt;&lt;/li&gt;
   &lt;/ul&gt;
-  &lt;p&gt;Choosen tab&lt;/p&gt;
-    &lt;div data-tabs-name=&quot;demo-1&quot; data-tabs-group=&quot;demo&quot; data-tabs-default&gt;Default&lt;/div&gt;
-    &lt;div data-tabs-name=&quot;demo-2&quot; data-tabs-group=&quot;demo&quot;&gt;About&lt;/div&gt;
-    &lt;div data-tabs-name=&quot;demo-3&quot; data-tabs-group=&quot;demo&quot;&gt;Clients&lt;/div&gt;
-    &lt;div data-tabs-name=&quot;demo-4&quot; data-tabs-group=&quot;demo&quot;&gt;Contact Us&lt;/div&gt;
-&lt;/nav&gt;</code></pre> <h2>Rendered snippet:</h2> <nav class="navigation-tabs">
+&lt;/nav&gt;
+
+&lt;section data-mr-panel=&quot;demo-1&quot; data-mr-tabs-group=&quot;demo&quot; data-mr-tabs-default&gt;
+  Home content
+&lt;/section&gt;
+&lt;section data-mr-panel=&quot;demo-2&quot; data-mr-tabs-group=&quot;demo&quot;&gt;
+  About content
+&lt;/section&gt;</code></pre><nav class="mr-nav-tabs" role="tablist" aria-label="Example tabs">
   <ul>
-    <li><a data-tabs-button-name="demo-1" data-tabs-group="demo">Home</a></li>
-    <li><a data-tabs-button-name="demo-2" data-tabs-group="demo">About</a></li>
-    <li><a data-tabs-button-name="demo-3" data-tabs-group="demo">Clients</a></li>
-    <li><a data-tabs-button-name="demo-4" data-tabs-group="demo">Contact Us</a></li>
+    <li><button data-mr-tab="demo-1" data-mr-tabs-group="demo">Home</button></li>
+    <li><button data-mr-tab="demo-2" data-mr-tabs-group="demo">About</button></li>
   </ul>
-  <p>Choosen tab</p>
-    <div data-tabs-name="demo-1" data-tabs-group="demo" data-tabs-default>Default</div>
-    <div data-tabs-name="demo-2" data-tabs-group="demo">About</div>
-    <div data-tabs-name="demo-3" data-tabs-group="demo">Clients</div>
-    <div data-tabs-name="demo-4" data-tabs-group="demo">Contact Us</div>
-</nav> </main>  <script type="module" src="/markup-refine-lib/_astro/LibraryStyleLayout.astro_astro_type_script_index_0_lang.CAafZVat.js"></script> </body> </html>
+</nav>
+
+<section data-mr-panel="demo-1" data-mr-tabs-group="demo" data-mr-tabs-default>
+  Home content
+</section>
+<section data-mr-panel="demo-2" data-mr-tabs-group="demo">
+  About content
+</section></main></body></html>

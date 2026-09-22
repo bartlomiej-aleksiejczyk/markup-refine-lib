@@ -14,265 +14,331 @@
   {
     "id": 3,
     "title": "SamplePage",
-    "content": "Copyable Snippet Use the data-copyable-snippet attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present. Lorem <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.",
-    "url": "/markup-refine-lib/demo-internal/side-top-top-navigation/"
+    "content": "Copyable SnippetUse the data-mr-copyable attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present.Lorem<ul class=\"mr-clickable-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.",
+    "url": "/markup-refine-lib/demo-internal/application-shell/"
   },
   {
     "id": 4,
-    "title": "Untitled",
+    "title": "SamplePage",
     "content": "",
-    "url": "/markup-refine-lib/demo-internal/test/"
+    "url": "/markup-refine-lib/demo-internal/navigation-tabs-sidebar/"
   },
   {
     "id": 5,
-    "title": "SamplePage",
-    "content": "Copyable Snippet Use the data-copyable-snippet attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present. Lorem <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.",
-    "url": "/markup-refine-lib/demo-internal/top-navigation/"
+    "title": "Host application HTML",
+    "content": "Host application HTMLThis section intentionally has no data-mr attribute.NameHost buttonMarkup Refine island ASemantic styling and a local token override apply in this scope.Refined buttonUnstyled subtreeHost/native-styled buttonNested Markup Refine scopeRefined againUnstyled single controlMarkup Refine island BA second scope carries a different inherited token value.Current link",
+    "url": "/markup-refine-lib/demo-internal/scoped-isolation/"
   },
   {
     "id": 6,
-    "title": "MarkupRefineLib",
-    "content": "Introduction to markup-refine-lib.css markup-refine-lib.css is a lightweight CSS library that aims to provide a simple way to style HTML with an emphasis on a native HTML look. What's more, markup-refine-lib.css is fully responsive, just like the native styling of HTML. Demonstration To see how to use markup-refine-lib in your website's you can preview usage under: components preview section To start using markup-refine-lib.css, simply add the following code to your website's HTML. <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib.css@0.9.5/dist/markup-refine-lib.min.css\" /> By default, all elements will take up the available space. To prevent excessive stretching, use the class: responsive-container <div class=\"responsive-container\"> ...your html content </div> Examples and Usage Form Elements Sample Form Name Password Gender Female Male undisclosed Subscribe Do Not Subscribe Message Submit Typography Main Heading Subheading This is a paragraph demonstrating bold , italic , and underlined text. Keyboard Shortcut: Ctrl + Alt + Delete Images Small Image Medium Image Big Image Tables Sample Data Table ID Name Job Date 1 John Doe Junior PHP Developer 2021-01-02 2 Jane Smith Lead Architect 2020-12-19 3 Jack Doe Designer 2022-08-09 Asci image _ /\\ | | / \\ __ _ _ _ __ ___ _____| |__ ___ ___ ___ / /\\ \\ / _` | | | |/ _` \\ \\ /\\ / / _ \\ '_ \\ / __/ __/ __| / ____ \\ (_| | |_| | (_| |\\ V V / __/ |_) | (__\\__ \\__ \\ /_/ \\_\\__, |\\__,_|\\__,_| \\_/\\_/ \\___|_.__(_)___|___/___/ | | |_| Tree list Fruits Apple Banana Cherry Vegetables Carrot Broccoli Spinach Dairy Milk Cheese Yogurt Food Fruits Apple Banana Cherry Vegetables Carrot Broccoli Spinach Dairy Milk Cheese Yogurt Fruits Apple Banana Cherry Fruits Apple Banana Cherry Breadcrumbs Home Category Sub-Category Sample Item Extended Breadcrumbs Home Category Sub-Category Sample Item Extra Level Deeper Item markup-refine-lib.css - released under Apache 2.0 license",
-    "url": "/markup-refine-lib/"
+    "title": "SamplePage",
+    "content": "Copyable SnippetUse the data-copyable-snippet attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present.Lorem<ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.",
+    "url": "/markup-refine-lib/demo-internal/side-top-top-navigation/"
   },
   {
     "id": 7,
     "title": "Untitled",
     "content": "",
-    "url": "/markup-refine-lib/usage/coloring/"
+    "url": "/markup-refine-lib/demo-internal/test/"
   },
   {
     "id": 8,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/usage/images/"
+    "title": "SamplePage",
+    "content": "Copyable SnippetUse the data-mr-copyable attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present.Lorem<ul class=\"mr-clickable-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web </a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.",
+    "url": "/markup-refine-lib/demo-internal/top-navigation/"
   },
   {
     "id": 9,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/usage/scoped-mode/"
+    "title": "MarkupRefineLib",
+    "content": "Markup Refinemarkup-refine-lib refines semantic HTML without taking over the rest of your application. Import the CSS, add data-mr only where semantic styling should apply, and opt into components or JavaScript behavior only when needed.Quick startimport \"markup-refine-lib/css\"; import \"markup-refine-lib/behaviors\"; // optional<main data-mr class=\"mr-container\"> <h1>Users</h1> <form> <label>Name <input name=\"name\" /></label> <button>Save</button> </form> </main>Stable design[data-mr] scopes semantic/reset styling.--mr-* tokens provide theming.mr-* classes provide explicit component/layout presentation.data-mr-* provides optional progressive enhancement.Native HTML/ARIA carries state whenever possible.Start with scoped semantic HTML, then seetheming,components,layout, andprogressive enhancement.",
+    "url": "/markup-refine-lib/"
   },
   {
     "id": 10,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-archetypes/dashboard/"
+    "title": "MarkupRefineLib",
+    "content": "Component APIComponent classes use mr-* and describe presentation only. Optional JavaScript behavior uses data-mr-*. Native HTML and ARIA carry state whenever possible.Cards<article class=\"mr-card mr-card--positive\"> <header>Status</header> <p>Everything is ready.</p> </article>Button variants<button class=\"mr-button--outlined\">Outline</button> <button class=\"mr-button--positive\">Save</button>Behavior is separate<pre data-mr-copyable><code>npm install example</code></pre> <button class=\"mr-search-trigger\" data-mr-search data-mr-search-static-url=\"/search-index.json\"> Search </button>See the individual component pages for concrete markup andprogressive enhancement for behavior/state semantics.",
+    "url": "/markup-refine-lib/usage/component-api/"
   },
   {
     "id": 11,
     "title": "Untitled",
     "content": "",
-    "url": "/markup-refine-lib/website-archetypes/discussion-forum/"
+    "url": "/markup-refine-lib/usage/images/"
   },
   {
     "id": 12,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-archetypes/file-hosting-service/"
+    "title": "MarkupRefineLib",
+    "content": "Layout primitivesMarkup Refine keeps layout deliberately small and intrinsic instead of reproducing an atomic utility framework.StackVertical flow with --mr-stack-gap.<section class=\"mr-stack\">...</section>ClusterWrapping horizontal grouping with optional repeated-use alignment modifiers.<div class=\"mr-cluster mr-cluster--between\">...</div>InlineAn inline-level layout group. Use semantic inline elements directly when no layout group is needed.<span class=\"mr-inline\">...</span>GridIntrinsic auto-fit columns controlled by --mr-grid-min-column-sizeand --mr-grid-gap.<section class=\"mr-grid\">...</section>ContainerBounded inline size with fluid padding and no dedicated mobile breakpoint.<main class=\"mr-container\">...</main>Admission ruleA new general primitive must solve a repeated layout relationship that the existing five cannot express cleanly without creating an atomic property or breakpoint catalog.",
+    "url": "/markup-refine-lib/usage/layout/"
   },
   {
     "id": 13,
-    "title": "Gallery",
-    "content": "Gallery Take a look at some of our favorite projects and memories! Project 1 - Innovative Design Project 2 - Modern Interface Project 3 - Creative Solution",
-    "url": "/markup-refine-lib/website-archetypes/gallery/"
+    "title": "MarkupRefineLib",
+    "content": "Migrating to the stable APIThe stable package has no compatibility CSS or behavior adapter. Convert older markup before upgrading.Semantic scopeAdd data-mr to every subtree that should receive semantic/reset styling. Replace the transitional .mdl-scope root with[data-mr].Package importsUse markup-refine-lib/css and, when needed,markup-refine-lib/behaviors. Compatibility and direct historicaldist/* package imports are no longer exported.Common mappingsOlder APIStable API.card.mr-card.pill.mr-pill.group.mr-cluster.responsive-container.mr-container.stt-component.mr-shelldata-copyable-snippetdata-mr-copyabledata-search-tooldata-mr-searchdata-stt-actiondata-mr-shell-action--color-primary--mr-color-primary",
+    "url": "/markup-refine-lib/usage/migration-1.0/"
   },
   {
     "id": 14,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-archetypes/internet-encyclopedia/"
+    "title": "MarkupRefineLib",
+    "content": "Package exportsThe package exposes only stable scoped/namespaced entry points. This page reads the package name/version from package.json.Installnpm install markup-refine-libComplete CSS + optional behaviorimport \"markup-refine-lib/css\"; import \"markup-refine-lib/behaviors\";Focused layersimport \"markup-refine-lib/tokens\"; import \"markup-refine-lib/base\"; import \"markup-refine-lib/components\"; import \"markup-refine-lib/layout\";Import tokens before base/components/layout when using focused entries standalone.Build outputsMaintainer builds produce unminified and .min.* variants plus source maps. After building, npm run check:release validates the generated package contract before publish.",
+    "url": "/markup-refine-lib/usage/package-exports/"
   },
   {
     "id": 15,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-archetypes/mixed-media-platform/"
+    "title": "MarkupRefineLib",
+    "content": "Progressive enhancementBehavior discovery uses only data-mr-*. Presentation classes are not runtime identity and the CSS remains useful when the JavaScript bundle is omitted.Native and ARIA state firstCurrent-page links use aria-current=\"page\".Tabs use aria-selected, roving tabindex, and hidden panels.The shell toggle uses aria-expanded and aria-controls.Search uses native modal <dialog>.Tabs<nav class=\"mr-nav-tabs\" role=\"tablist\" aria-label=\"Example tabs\"> <button data-mr-tab=\"one\" data-mr-tabs-group=\"demo\">One</button> <button data-mr-tab=\"two\" data-mr-tabs-group=\"demo\">Two</button> </nav> <section data-mr-panel=\"one\" data-mr-tabs-group=\"demo\" data-mr-tabs-default>First panel</section> <section data-mr-panel=\"two\" data-mr-tabs-group=\"demo\">Second panel</section> One Two First panel Second panelNo-JavaScript baselineEnhancementWithout JavaScriptCopyable snippetCode stays readable.Clickable-list filterThe complete list remains visible.Resettable file inputThe native file input remains usable.Single-page tabsAll authored panels remain visible.Navigation shellNavigation content remains reachable.SearchProvide a normal form/link fallback when no-JS search is required.SSR and repeated initializationimport { initMarkupRefineBehaviors } from \"markup-refine-lib/behaviors\"; initMarkupRefineBehaviors(container);The initializer is SSR-safe and idempotent.",
+    "url": "/markup-refine-lib/usage/progressive-enhancement/"
   },
   {
     "id": 16,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-archetypes/service-website/"
+    "title": "MarkupRefineLib",
+    "content": "Scoped semantic HTMLImporting Markup Refine does not globally restyle ordinary host markup. Add data-mr to the document or subtree that should receive the semantic reset and native-element styling.<section data-mr> <h2>Refined island</h2> <button>Refined button</button> </section>Host and refined island side by sideHost HTMLThis section has no semantic Markup Refine scope.Host buttonMarkup Refine islandThe same native elements are refined inside this boundary.Refined buttonOpt out and re-enterdata-mr-unstyled stops the semantic scope for one element or an entire subtree. A nested data-mr scope explicitly opts back in.<section data-mr> <button>Refined</button> <div data-mr-unstyled> <button>Host/native styles</button> <section data-mr> <button>Refined again</button> </section> </div> </section>Per-island themesTokens inherit normally, so separate islands can override --mr-*values independently without selector duplication..billing-admin { --mr-color-primary: hsl(215 70% 42%); } .reporting-admin { --mr-color-primary: hsl(145 55% 35%); }Browser requirementThe semantic boundary uses native CSS @scope. Markup Refine does not ship an old-browser scoping polyfill.",
+    "url": "/markup-refine-lib/usage/scoped-mode/"
   },
   {
     "id": 17,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-archetypes/video-platform/"
+    "title": "MarkupRefineLib",
+    "content": "Theming and tokensEvery library-owned CSS custom property uses the --mr-*namespace. Override tokens on an application root or individualdata-mr island rather than fighting component selectors..admin-area { --mr-color-primary: hsl(215 70% 42%); --mr-color-primary-darker: hsl(215 72% 32%); --mr-radius-medium: 0.5rem; --mr-container-max-width: 70rem; }Useful token groups--mr-color-* for surfaces, text, links, and status colors.--mr-font-family-* and --mr-line-height-body.--mr-space-* and layout-specific gap tokens.--mr-radius-* for component shape.--mr-control-* and --mr-focus-*.--mr-motion-duration-* for motion.Per-scope themingCustom properties inherit, so islands can use independent themes.<section data-mr class=\"theme-a\">...</section> <section data-mr class=\"theme-b\">...</section>Color scheme and motionDefault palettes follow prefers-color-scheme. Motion-duration tokens collapse under prefers-reduced-motion: reduce.",
+    "url": "/markup-refine-lib/usage/theming/"
   },
   {
     "id": 18,
     "title": "Untitled",
     "content": "",
-    "url": "/markup-refine-lib/website-archetypes/wiki/"
+    "url": "/markup-refine-lib/website-archetypes/dashboard/"
   },
   {
     "id": 19,
-    "title": "About Us",
-    "content": "About Us Welcome to MySite! We are a team of passionate developers and designers committed to building innovative solutions that empower users. Our focus is on delivering high-quality, user-friendly applications that make a difference. Our Mission To create seamless digital experiences that enrich the lives of our users. Our Vision To be a leader in innovative technology solutions and user experience. “Innovation distinguishes between a leader and a follower.” — Steve Jobs",
-    "url": "/markup-refine-lib/website-components/about/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/discussion-forum/"
   },
   {
     "id": 20,
-    "title": "📦 Inventory Dashboard",
-    "content": "📦 Inventory Dashboard # 🔤 Name 📂 Type 📊 Status 💰 Cost 1 Laptop Electronics Available $999 2 Headphones Accessories Low Stock $79 3 Smart",
-    "url": "/markup-refine-lib/website-components/abstract-table/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/file-hosting-service/"
   },
   {
     "id": 21,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/breadcrumbs/"
+    "title": "Gallery",
+    "content": "GalleryTake a look at some of our favorite projects and memories!Project 1 - Innovative DesignProject 2 - Modern InterfaceProject 3 - Creative Solution",
+    "url": "/markup-refine-lib/website-archetypes/gallery/"
   },
   {
     "id": 22,
     "title": "Untitled",
     "content": "",
-    "url": "/markup-refine-lib/website-components/card/"
+    "url": "/markup-refine-lib/website-archetypes/internet-encyclopedia/"
   },
   {
     "id": 23,
-    "title": "Clickable Item List",
-    "content": "Clickable Item List To use the Clickable Item List, add clickable-item-list class to your unordered list root element. This list also handles collapsing via details. Full Usage Example: <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li> <a href=\"#\">Web</a> </li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Rendered snippet: Home About Services Web Mobile Apps Consulting Strategy Marketing Contact",
-    "url": "/markup-refine-lib/website-components/clickable-item-list/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/mixed-media-platform/"
   },
   {
     "id": 24,
     "title": "Untitled",
     "content": "",
-    "url": "/markup-refine-lib/website-components/code-and-preformatted-text/"
+    "url": "/markup-refine-lib/website-archetypes/service-website/"
   },
   {
     "id": 25,
-    "title": "Contact Us",
-    "content": "Contact Us We would love to hear from you! Please fill out the form below and we will get back to you as soon as possible. Contact Form Name: Email: Message:",
-    "url": "/markup-refine-lib/website-components/contact/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/video-platform/"
   },
   {
     "id": 26,
-    "title": "Copyable Snippet",
-    "content": "Copyable Snippet Use the data-copyable-snippet attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present. Example usage: <pre data-copyable-snippet><code> npm install my-package </code></pre> Rendered snippet: npm install my-package When the copy button is clicked, the visible text inside the <code> block (excluding the button itself) will be copied to the clipboard. If the Clipboard API is not available (e.g. in insecure contexts), a fallback method will be used.",
-    "url": "/markup-refine-lib/website-components/copyable-snippet/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-archetypes/wiki/"
   },
   {
     "id": 27,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/details/"
+    "title": "About Us",
+    "content": "About UsWelcome to MySite! We are a team of passionate developers and designers committed to building innovative solutions that empower users. Our focus is on delivering high-quality, user-friendly applications that make a difference.To create seamless digital experiences that enrich the lives of our users.Our VisionTo be a leader in innovative technology solutions and user experience.“Innovation distinguishes between a leader and a follower.” — Steve Jobs",
+    "url": "/markup-refine-lib/website-components/about/"
   },
   {
     "id": 28,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/figures/"
+    "title": "MarkupRefineLib",
+    "content": "📦 Inventory Dashboard#🔤 Name📂 Type📊 Status💰 Cost1LaptopElectronicsAvailable$9992HeadphonesAccessoriesLow Stock$793Smart",
+    "url": "/markup-refine-lib/website-components/abstract-table/"
   },
   {
     "id": 29,
-    "title": "Uploaded Files",
-    "content": "Uploaded Files Documents Report.pdf Invoice.docx Presentation.pptx Images photo1.jpg photo2.png logo.svg Videos intro.mp4 demo.mov presentation.avi",
-    "url": "/markup-refine-lib/website-components/files/"
+    "title": "MarkupRefineLib",
+    "content": "Application shellThe mr-shell component provides the application-shell pattern. Presentation usesmr-shell__* classes. Behavior discovery usesdata-mr-shell, data-mr-shell-action, anddata-mr-shell-part.JavaScript queries only those data-mr-* hooks. The toggle receives aria-expanded/aria-controls; drawer lifecycle uses data-mr-state and the overlay uses native hidden.Without JavaScript the sidebar remains visible and enhancement-only toggle/dismiss controls remain hidden, preserving access to navigation.Complete structure<header class=\"mr-shell\" data-mr-shell> <div class=\"mr-shell__topbar\"> <div class=\"mr-shell__topbar-content\"> <button class=\"mr-shell__button mr-shell__toggle\" data-mr-shell-action=\"toggle\" >Menu</button> <h1 class=\"mr-nav-title\">Sample page</h1> <button class=\"mr-search-trigger\" data-mr-search data-mr-search-static-url=\"/search-index.json\" >Search</button> </div> </div> <aside class=\"mr-shell__sidebar\" data-mr-shell-part=\"sidebar\"> <div class=\"mr-shell__sidebar-header\"> <h2>Menu</h2> <button class=\"mr-shell__button mr-shell__dismiss\" data-mr-shell-action=\"dismiss\" >Close</button> </div> <ul class=\"mr-clickable-list\"> <li><a href=\"/\">Home</a></li> <li><a href=\"/docs\">Docs</a></li> </ul> </aside> <div class=\"mr-shell__subbar\"> <div class=\"mr-shell__subbar-content\"> <nav class=\"mr-nav-tabs\"> <a href=\"/one\">One</a> <a href=\"/two\" aria-current=\"page\">Two</a> </nav> </div> </div> <div class=\"mr-shell__overlay\" data-mr-shell-part=\"overlay\"></div> </header> <main class=\"mr-container mr-shell__main\"> ... </main>Live demoThe same contract is used by the documentation site and thestandalone demo.Standalone top bar<header class=\"mr-shell\" data-mr-shell> <div class=\"mr-shell__topbar\"> <div class=\"mr-shell__topbar-content\"> <h1 class=\"mr-nav-title\">Sample page</h1> </div> </div> </header>",
+    "url": "/markup-refine-lib/website-components/application-shell/"
   },
   {
     "id": 30,
-    "title": "Floating Elements",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/floating-elements/"
+    "title": "MarkupRefineLib",
+    "content": "BreadcrumbsAdd mr-breadcrumbs to a semantic navigation root. The ordered list, list items, and links need no Markup Refine-specific part classes.<nav class=\"mr-breadcrumbs\" aria-label=\"Breadcrumb\"> <ol> <li><a href=\"/\">Home</a></li> <li><a href=\"/docs\">Docs</a></li> <li aria-current=\"page\">Components</li> </ol> </nav> Home Docs Components",
+    "url": "/markup-refine-lib/website-components/breadcrumbs/"
   },
   {
     "id": 31,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/forms/"
+    "title": "MarkupRefineLib",
+    "content": "ButtonNative buttons receive the scoped base appearance. Component variants are opt-in presentation classes using the mr-button--* namespace.Use mr-button--outlined for an outlined button and combine it with a color modifier such as mr-button--warning when needed.Example usage<button>Default</button> <button class=\"mr-button--outlined\">Default outlined</button> <button class=\"mr-button--outlined mr-button--secondary\">Secondary</button> <button class=\"mr-button--outlined mr-button--positive\">Positive</button> <button class=\"mr-button--outlined mr-button--negative\">Negative</button> <button class=\"mr-button--outlined mr-button--warning\">Warning</button> <button class=\"mr-button--outlined mr-button--info\">Info</button> <button class=\"mr-button--outlined mr-button--help\">Help</button>Rendered exampleDefault Default outlined Secondary Positive Negative Warning Info Help",
+    "url": "/markup-refine-lib/website-components/button/"
   },
   {
     "id": 32,
-    "title": "Welcome to My Sample Site",
-    "content": "Welcome to My Sample Site This site is styled using a custom CSS framework. Information Card This is an informational card. Use it to display important messages. Success Card Operation completed successfully! Error Card Something went wrong. Please try again. Warning Card Proceed with caution. Save Delete Cancel Contact Us Name: Email: Message: Tech Design Success Error Warning Info Help",
-    "url": "/markup-refine-lib/website-components/generic/"
+    "title": "MarkupRefineLib",
+    "content": "CardUse mr-card as the component root. A direct semantic<header> is styled automatically, so a header-specific class is normally unnecessary.Variants use namespaced modifiers such as mr-card--positive,mr-card--warning, and mr-card--elevated.Example usage<article class=\"mr-card\"> <p>Simple related content.</p> </article> <article class=\"mr-card mr-card--positive\"> <header>Our Vision</header> <p>Use semantic structure where HTML already describes the part.</p> </article>Rendered example Simple related content. Our Vision Use semantic structure where HTML already describes the part.",
+    "url": "/markup-refine-lib/website-components/card/"
   },
   {
     "id": 33,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/group/"
+    "title": "MarkupRefineLib",
+    "content": "Clickable Item Listmr-clickable-list is presentation. Usedata-mr-clickable-list only when JavaScript needs a stable list root, such as when pairing the list with a filter input.Nested disclosure uses native <details>.Filterable list<div> <input data-mr-clickable-list-filter placeholder=\"Filter menu...\"> <ul class=\"mr-clickable-list\" data-mr-clickable-list> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li><a href=\"#\">Web</a></li> <li><a href=\"#\">Mobile Apps</a></li> </ul> </details> </li> </ul> </div> Home About Services Web Mobile Apps Current-URL selectionThe matching link receives aria-current=\"page\". No selected presentation class is required by JavaScript.<ul class=\"mr-clickable-list\" data-mr-clickable-list-autoselect > <li><a href=\"/\">Home</a></li> <li><a href=\"/docs\">Docs</a></li> </ul>",
+    "url": "/markup-refine-lib/website-components/clickable-item-list/"
   },
   {
     "id": 34,
-    "title": "Product List",
-    "content": "Product List Product 1 Amazing product with top-notch features. Product 2 Reliable and efficient solution for your needs. Product 3 Warning: Limited stock available! Product 4 Out of stock. Check back soon!",
-    "url": "/markup-refine-lib/website-components/list/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/code-and-preformatted-text/"
   },
   {
     "id": 35,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/navigation-bars/"
+    "title": "Contact Us",
+    "content": "Contact UsWe would love to hear from you! Please fill out the form below and we will get back to you as soon as possible.Contact FormName:Email:Message:",
+    "url": "/markup-refine-lib/website-components/contact/"
   },
   {
     "id": 36,
-    "title": "Navigation Tabs",
-    "content": "Navigation Tabs Use the navigation-tabs class on any element to make it navigation tabs. Add data-navigation-tabs-autoselector attribute to select currently choose tab. Example usage: <nav class=\"navigation-tabs\" data-navigation-tabs-autoselector> <a> List Templates</a> <a href=\"/markup-refine-lib/website-components/navigation-tabs\"> This Page </a> <a> List Jobs</a> <a> New Job</a> </nav> Rendered snippet: List Templates This Page List Jobs New Job Also more semantic version is supported <nav class=\"navigation-tabs\"> <ul> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li><a href=\"#\">Clients</a></li> <li><a href=\"#\">Contact Us</a></li> </ul> </nav> Rendered snippet: Home About Clients Contact Us You can use an interactive version of this component that is headless and is not tied to any css Use the data-tabs-group and data-tabs-name and data-tabs-button-name to group and connect tab's content and buttons. <nav class=\"navigation-tabs\"> <ul> <li><a data-tabs-button-name=\"demo-1\" data-tabs-group=\"demo\">Home</a></li> <li><a data-tabs-button-name=\"demo-2\" data-tabs-group=\"demo\">About</a></li> <li><a data-tabs-button-name=\"demo-3\" data-tabs-group=\"demo\">Clients</a></li> <li><a data-tabs-button-name=\"demo-4\" data-tabs-group=\"demo\">Contact Us</a></li> </ul> <p>Choosen tab</p> <div data-tabs-name=\"demo-1\" data-tabs-group=\"demo\" data-tabs-default>Default</div> <div data-tabs-name=\"demo-2\" data-tabs-group=\"demo\">About</div> <div data-tabs-name=\"demo-3\" data-tabs-group=\"demo\">Clients</div> <div data-tabs-name=\"demo-4\" data-tabs-group=\"demo\">Contact Us</div> </nav> Rendered snippet: Home About Clients Contact Us Choosen tab Default About Clients Contact Us",
-    "url": "/markup-refine-lib/website-components/navigation-tabs/"
+    "title": "MarkupRefineLib",
+    "content": "Copyable SnippetUse the data-mr-copyable attribute on any <pre> element that wraps a <code> block to enable automatic copy functionality. A copy button will be injected automatically if not already present.Example usage:<pre data-mr-copyable><code> npm install my-package </code></pre>Rendered snippet:npm install my-packageWhen the copy button is clicked, the visible text inside the <code> block is copied to the clipboard. If the Clipboard API is unavailable, a fallback method is used. The generated button has an accessible label and reports success/failure through that label. Without JavaScript the code block remains ordinary readable HTML.",
+    "url": "/markup-refine-lib/website-components/copyable-snippet/"
   },
   {
     "id": 37,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/pill/"
+    "title": "MarkupRefineLib",
+    "content": "Range labelsUse mr-range-labels on the datalist used to visually align range labels with the input steps.<input type=\"range\" min=\"0\" max=\"2\" step=\"1\" list=\"quality\"> <datalist id=\"quality\" class=\"mr-range-labels\"> <option value=\"0\" label=\"Low\"></option> <option value=\"1\" label=\"Medium\"></option> <option value=\"2\" label=\"High\"></option> </datalist>",
+    "url": "/markup-refine-lib/website-components/datalist-range-labels/"
   },
   {
     "id": 38,
     "title": "Untitled",
     "content": "",
-    "url": "/markup-refine-lib/website-components/popovers-and-dialogs/"
+    "url": "/markup-refine-lib/website-components/details/"
   },
   {
     "id": 39,
-    "title": "Resettable file input",
-    "content": "Resettable file input To use the resettable file input, add resettable attribute to your file input's wrapper. Full Usage Example: <form> <div data-resettable-file-input> <label for=\"message_attachments\">Attachments (PDF/Images)</label> <input type=\"file\" multiple=\"multiple\" /> </div> </form> Rendered snippet: Attachments (PDF/Images)",
-    "url": "/markup-refine-lib/website-components/resettable-file-input/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/figures/"
   },
   {
     "id": 40,
-    "title": "Untitled",
-    "content": "",
-    "url": "/markup-refine-lib/website-components/responsive-container/"
+    "title": "Uploaded Files",
+    "content": "Uploaded FilesDocumentsReport.pdfInvoice.docxPresentation.pptxImagesphoto1.jpgphoto2.pnglogo.svgVideosintro.mp4demo.movpresentation.avi",
+    "url": "/markup-refine-lib/website-components/files/"
   },
   {
     "id": 41,
-    "title": "Search button",
-    "content": "Search button Use search-area component for styling search area. Example usage: <button class=\"search-area\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\" width=\"24px\" fill=\"currentColor\" > <path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\" ></path> </svg> <span class=\"text\">Search...</span> </button> Rendered snippet: Search...",
-    "url": "/markup-refine-lib/website-components/search-button/"
+    "title": "Floating Elements",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/floating-elements/"
   },
   {
     "id": 42,
-    "title": "MarkupRefineLib",
-    "content": "Search tool For simple cases, class navbar can be used to style the top bar. To improve the appearance of the topbar element, classes navbar-brand and group can be used. Example usage: <button data-search-tool data-static-url=\"/markup-refine-lib/demo-internal/offline-search-index.json\"> 🔍 Search </button> Search can also be used with dynamic, server-side search. Rendered snippet: 🔍 Search Example usage (dynamic): <button data-search-tool data-dynamic-url=\"test\"> 🔍 Search </button> 🔍 Search",
-    "url": "/markup-refine-lib/website-components/search-tool/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/forms/"
   },
   {
     "id": 43,
-    "title": "MarkupRefineLib",
-    "content": "Side Top Top Navigation This component provides fully responsive navigation bars using CSS classes and attributes. Base blocks: To use the basic side-top-top navigation layout, you need the following structure: <header class=\"stt-component\"> <div class=\"stt-primary-topbar\"> <div class=\"stt-primary-topbar-content\"> <button data-stt-action=\"toggle\" class=\"stt-button\"> </button> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"></button > </div> </div> <div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <button data-stt-action=\"dismiss\" class=\"stt-button\"> </button> </div> </div> <div class=\"stt-secondary-topbar\"> </div> <div class=\"stt-overlay\" data-stt-element=\"overlay\"></div> </header> <main class=\"responsive-container stt-navigation-main-content\"> </main> This creates an empty layout to be filled with content—buttons, icons, a logo, a search box, and internal navigation bars structures. Navbars' content and structure To populate the primary sidebar you can use this template: <div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <h2>Collapsible</h2> <button data-stt-action=\"dismiss\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\"> <path d=\"m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z\"></path> </svg> </button> </div> <div> <hr /> <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li><a href=\"#\">Web</a></li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> <hr /> </div> </div> To display items in the sidebar use the clickable-item-list class: <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li><a href=\"#\">Web</a></li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> Full Usage Example: <header class=\"stt-component\"> <div class=\"stt-primary-topbar\"> <div class=\"stt-primary-topbar-content\"> <button data-stt-action=\"toggle\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\"> <path d=\"M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z\"></path> </svg> </button> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"36px\" viewBox=\"0 -960 960 960\" width=\"36px\" fill=\"currentColor\"> <path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\"></path> </svg> <span class=\"text\">Search...</span> </button> </div> </div> <div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <h2>Collapsible</h2> <button data-stt-action=\"dismiss\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\"> <path d=\"m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z\"></path> </svg> </button> </div> <div> <hr /> <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li><a href=\"#\">Web</a></li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> <hr /> </div> </div> <div class=\"stt-secondary-topbar\"> <div class=\"secondary-topbar-content\"> <nav class=\"navigation-tabs\"> <a>List Templates</a> <a class=\"navigation-tabs--selected\">New Template</a> <a>List Jobs</a> <a>New Job</a> </nav> </div> </div> <div class=\"stt-overlay\" data-stt-element=\"overlay\"></div> </header> Rendered snippet with sample text: It's also accessible here. Using topbar as standalone component <header class=\"stt-component\"> <div class=\"stt-primary-topbar\"> <div class=\"stt-primary-topbar-content\"> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"36px\" viewBox=\"0 -960 960 960\" width=\"36px\" fill=\"currentColor\"> <path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\"></path> </svg> <span class=\"text\">Search...</span> </button> </div> </div> </header>",
-    "url": "/markup-refine-lib/website-components/side-top-top-navigation/"
+    "title": "Welcome to My Sample Site",
+    "content": "Welcome to My Sample SiteThis site is styled using a custom CSS framework.Information CardThis is an informational card. Use it to display important messages.Success CardOperation completed successfully!Error CardSomething went wrong. Please try again.Warning CardProceed with caution.SaveDeleteCancelContact UsName:Email:Message:TechDesignSuccessErrorWarningInfoHelp",
+    "url": "/markup-refine-lib/website-components/generic/"
   },
   {
     "id": 44,
-    "title": "Table Display",
-    "content": "Table Display Tables are styled in a classless way by default. ID Item Name Category Status Price 1 Laptop Electronics Available $999 2 Headphones Accessories Low Stock $79 3 Smartphone Mobile Out of Stock $699 4 Camera Photography Pre-Order $499 Handling Large Tables For large tables, use a scrollable container to maintain layout and readability: Wrap the table in a figure tag like this: <figure > <table> ... </table> </figure> ID Name Category Status Description Price Stock SKU Supplier Rating 1 Laptop Pro X Electronics Available A high-performance laptop suitable for developers and gamers. $1,299.99 34 LPX-899 TechSource 4.8⭐ 2 Ergonomic Chair Deluxe Furniture Low Stock Comfortable, adjustable office chair with lumbar support and mesh back. $199.50 5 CH-ERGO-002 FurniPlus 4.2⭐ 3 Multi-function Printer 9000 Office Equipment Out of Stock All-in-one printer with wireless printing, scanning, and cloud support. $449.00 0 MFP-9000Xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff PrintLab 3.9⭐ 4 Desk Lamp Touch Lighting Pre-Order Minimalist LED lamp with touch controls and USB charging port. $45.75 N/A LAMP-201 BrightHome 4.5⭐",
-    "url": "/markup-refine-lib/website-components/table/"
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/group/"
   },
   {
     "id": 45,
-    "title": "Search tool",
-    "content": "Search tool For simple cases, class navbar can be used to style the top bar. To improve the appearance of the topbar element, classes navbar-brand and group can be used. Example usage: <button data-search-tool data-static-url=\"/markup-refine-lib/demo-internal/offline-search-index.json\"> 🔍 Search </button> Search can also be used with dynamic, server-side search. Rendered snippet: 🔍 Search Example usage (dynamic): <button data-search-tool data-dynamic-url=\"test\"> 🔍 Search </button> 🔍 Search",
-    "url": "/markup-refine-lib/website-components/tabs/"
+    "title": "MarkupRefineLib",
+    "content": "Product ListProduct 1Amazing product with top-notch features.Product 2Reliable and efficient solution for your needs.Product 3Warning: Limited stock available!Product 4Out of stock. Check back soon!",
+    "url": "/markup-refine-lib/website-components/list/"
   },
   {
     "id": 46,
     "title": "Untitled",
     "content": "",
+    "url": "/markup-refine-lib/website-components/navigation-bars/"
+  },
+  {
+    "id": 47,
+    "title": "MarkupRefineLib",
+    "content": "Navigation tabsUse mr-nav-tabs for presentation. Multi-page navigation can opt into current-URL enhancement withdata-mr-nav-tabs-autoselect.For authored current-page state, prefer the semanticaria-current=\"page\" attribute. Autoselection writes the same attribute rather than a presentation modifier class.Multi-page navigation<nav class=\"mr-nav-tabs\" data-mr-nav-tabs-autoselect> <a href=\"/markup-refine-lib/\">Home</a> <a href=\"/markup-refine-lib/website-components/navigation-tabs\">This page</a> <a href=\"/markup-refine-lib/website-components/card\">Cards</a> </nav> Home This page Cards Semantic current page<nav class=\"mr-nav-tabs\" aria-label=\"Section navigation\"> <ul> <li><a href=\"/home\">Home</a></li> <li><a href=\"/about\" aria-current=\"page\">About</a></li> <li><a href=\"/contact\">Contact</a></li> </ul> </nav> Home About Contact Single-page tab relationshipdata-mr-tab, data-mr-panel, anddata-mr-tabs-group connect triggers to panels. The enhancement supplies role=\"tab\"/role=\"tabpanel\",aria-selected, roving tabindex, relationships, and native hidden state. Arrow keys plus Home/End move and activate tabs.<nav class=\"mr-nav-tabs\" role=\"tablist\" aria-label=\"Example tabs\"> <ul> <li><button data-mr-tab=\"demo-1\" data-mr-tabs-group=\"demo\">Home</button></li> <li><button data-mr-tab=\"demo-2\" data-mr-tabs-group=\"demo\">About</button></li> </ul> </nav> <section data-mr-panel=\"demo-1\" data-mr-tabs-group=\"demo\" data-mr-tabs-default> Home content </section> <section data-mr-panel=\"demo-2\" data-mr-tabs-group=\"demo\"> About content </section> Home About Home content About content",
+    "url": "/markup-refine-lib/website-components/navigation-tabs/"
+  },
+  {
+    "id": 48,
+    "title": "MarkupRefineLib",
+    "content": "PillUse mr-pill on the element and a namespaced modifier such asmr-pill--info when a semantic color variant is needed.Example usage<span class=\"mr-pill\">Tech</span> <span class=\"mr-pill mr-pill--secondary\">Design</span> <span class=\"mr-pill mr-pill--positive\">Success</span> <span class=\"mr-pill mr-pill--negative\">Error</span> <span class=\"mr-pill mr-pill--warning\">Warning</span> <span class=\"mr-pill mr-pill--info\">Info</span> <span class=\"mr-pill mr-pill--help\">Help</span>Rendered exampleTech Design Success Error Warning Info HelpLayout around multiple pills is intentionally handled by the layout API; combine pills with mr-cluster when they need wrapping horizontal layout.",
+    "url": "/markup-refine-lib/website-components/pill/"
+  },
+  {
+    "id": 49,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/popovers-and-dialogs/"
+  },
+  {
+    "id": 50,
+    "title": "MarkupRefineLib",
+    "content": "Resettable file inputAdd data-mr-resettable-file to the wrapper. The enhancement adds mr-file-input without replacing classes already owned by the application, and creates a reset button withdata-mr-file-reset. Resetting emits a bubblingchange event and returns focus to the native file input. Without JavaScript the ordinary file input remains fully usable.Example usage<form> <div class=\"my-upload-field\" data-mr-resettable-file> <label for=\"attachments\">Attachments</label> <input id=\"attachments\" type=\"file\" multiple> </div> </form>Rendered example Attachments",
+    "url": "/markup-refine-lib/website-components/resettable-file-input/"
+  },
+  {
+    "id": 51,
+    "title": "Untitled",
+    "content": "",
+    "url": "/markup-refine-lib/website-components/responsive-container/"
+  },
+  {
+    "id": 52,
+    "title": "MarkupRefineLib",
+    "content": "Search triggermr-search-trigger provides presentation only. Adddata-mr-search and a search URL attribute when the same button should open the search enhancement.Presentation-only example<button class=\"mr-search-trigger\" type=\"button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\" fill=\"currentColor\"> <path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\"></path> </svg> <span class=\"mr-search-trigger__label\">Search...</span> </button> Search...",
+    "url": "/markup-refine-lib/website-components/search-button/"
+  },
+  {
+    "id": 53,
+    "title": "MarkupRefineLib",
+    "content": "Search toolThe search trigger's presentation class and behavior hook are independent:mr-search-trigger styles it and data-mr-searchenables the enhancement.Use exactly one of data-mr-search-static-url ordata-mr-search-dynamic-url. Generated modal parts usemr-search* presentation classes anddata-mr-search-part behavior/part hooks. The generated modal is a native <dialog>: Escape closes it, background content is modal/inert while it is open, and focus returns to the trigger on close.Search is an enhancement-only feature. If a no-JavaScript search path is required, provide a normal search form or link as the fallback.Static search<button class=\"mr-search-trigger\" data-mr-search data-mr-search-static-url=\"/markup-refine-lib/demo-internal/offline-search-index.json\" > Search </button> Search Dynamic search<button class=\"mr-search-trigger\" data-mr-search data-mr-search-dynamic-url=\"/api/search?q=\" > Search </button>Search",
+    "url": "/markup-refine-lib/website-components/search-tool/"
+  },
+  {
+    "id": 54,
+    "title": "Side Top Top Navigation",
+    "content": "Side Top Top NavigationThis component provides fully responsive navigation bars using CSS classes and attributes.Base blocks:To use the basic side-top-top navigation layout, you need the following structure:<header class=\"stt-component\"> <div class=\"stt-primary-topbar\"> <div class=\"stt-primary-topbar-content\"> <button data-stt-action=\"toggle\" class=\"stt-button\"> </button> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"></button > </div> </div> <div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <button data-stt-action=\"dismiss\" class=\"stt-button\"> </button> </div> </div> <div class=\"stt-secondary-topbar\"> </div> <div class=\"stt-overlay\" data-stt-element=\"overlay\"></div> </header> <main class=\"responsive-container stt-navigation-main-content\"> </main>This creates an empty layout to be filled with content—buttons, icons, a logo, a search box, and internal navigation bars structures.Navbars' content and structureTo populate the primary sidebar you can use this template:<div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <h2>Collapsible</h2> <button data-stt-action=\"dismiss\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\"> <path d=\"m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z\"></path> </svg> </button> </div> <div> <hr /> <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li><a href=\"#\">Web</a></li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> <hr /> </div> </div>To display items in the sidebar use the clickable-item-list class:<ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li><a href=\"#\">Web</a></li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul>Full Usage Example:<header class=\"stt-component\"> <div class=\"stt-primary-topbar\"> <div class=\"stt-primary-topbar-content\"> <button data-stt-action=\"toggle\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\"> <path d=\"M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z\"></path> </svg> </button> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"36px\" viewBox=\"0 -960 960 960\" width=\"36px\" fill=\"currentColor\"> <path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\"></path> </svg> <span class=\"text\">Search...</span> </button> </div> </div> <div class=\"stt-primary-sidebar\" data-stt-element=\"sidebar\"> <div class=\"stt-primary-sidebar-top\"> <h2>Collapsible</h2> <button data-stt-action=\"dismiss\" class=\"stt-button\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"40px\" viewBox=\"0 -960 960 960\" width=\"40px\"> <path d=\"m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z\"></path> </svg> </button> </div> <div> <hr /> <ul class=\"clickable-item-list\"> <li><a href=\"#\">Home</a></li> <li><a href=\"#\">About</a></li> <li> <details> <summary><a>Services</a></summary> <ul> <li><a href=\"#\">Web</a></li> <li><a href=\"#\">Mobile Apps</a></li> <li> <details> <summary>Consulting</summary> <ul> <li><a href=\"#\">Strategy</a></li> <li><a href=\"#\">Marketing</a></li> </ul> </details> </li> </ul> </details> </li> <li><a href=\"#\">Contact</a></li> </ul> <hr /> </div> </div> <div class=\"stt-secondary-topbar\"> <div class=\"secondary-topbar-content\"> <nav class=\"navigation-tabs\"> <a>List Templates</a> <a class=\"navigation-tabs--selected\">New Template</a> <a>List Jobs</a> <a>New Job</a> </nav> </div> </div> <div class=\"stt-overlay\" data-stt-element=\"overlay\"></div> </header>Rendered snippet with sample text:It's also accessible here.Using topbar as standalone component<header class=\"stt-component\"> <div class=\"stt-primary-topbar\"> <div class=\"stt-primary-topbar-content\"> <h1 class=\"navbar-title\">SamplePage</h1> <button class=\"search-area\"> <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"36px\" viewBox=\"0 -960 960 960\" width=\"36px\" fill=\"currentColor\"> <path d=\"M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z\"></path> </svg> <span class=\"text\">Search...</span> </button> </div> </div> </header>",
+    "url": "/markup-refine-lib/website-components/side-top-top-navigation/"
+  },
+  {
+    "id": 55,
+    "title": "MarkupRefineLib",
+    "content": "TablesSemantic tables are refined inside a data-mr scope.IDItemStatusPrice1LaptopAvailable$9992HeadphonesLow stock$793SmartphoneOut of stock$699Wide tablesWrap wide tables in a semantic figure so horizontal overflow remains contained.<figure> <table> ... </table> </figure>",
+    "url": "/markup-refine-lib/website-components/table/"
+  },
+  {
+    "id": 56,
+    "title": "MarkupRefineLib",
+    "content": "TabsSingle-page tabs use data-mr-tab and data-mr-panelas behavior relationships. Put role=\"tablist\" on the authored container and give separate tab sets different data-mr-tabs-groupvalues.The enhancement applies tab/panel roles, aria-selected, rovingtabindex, aria-controls/aria-labelledby, and native hidden state. Arrow keys plus Home and End move and activate tabs.Without JavaScript all panels remain visible, so content is still reachable; only the tab-switching interaction is absent.Example<nav class=\"mr-nav-tabs\" role=\"tablist\" aria-label=\"Account sections\"> <button data-mr-tab=\"profile\" data-mr-tabs-group=\"account\">Profile</button> <button data-mr-tab=\"security\" data-mr-tabs-group=\"account\">Security</button> </nav> <section data-mr-panel=\"profile\" data-mr-tabs-group=\"account\" data-mr-tabs-default> Profile content </section> <section data-mr-panel=\"security\" data-mr-tabs-group=\"account\"> Security content </section> Profile Security Profile content Security content",
+    "url": "/markup-refine-lib/website-components/tabs/"
+  },
+  {
+    "id": 57,
+    "title": "MarkupRefineLib",
+    "content": "Tree listUse mr-tree as the only component root. Standard lists anddetails/summary elements provide the internal structure.<div class=\"mr-tree\"> <ul> <li>Root <ul> <li>Child</li> <li> <details open> <summary>Branch</summary> <ul><li>Leaf</li></ul> </details> </li> </ul> </li> </ul> </div> Root Child Branch Leaf",
     "url": "/markup-refine-lib/website-components/tree-list-container/"
   }
 ]
