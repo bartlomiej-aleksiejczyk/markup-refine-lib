@@ -52,8 +52,8 @@ import "markup-refine-lib/behaviors";
 
 ### Usage in html:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib-behaviors.min.js" /></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@1.0.0/dist/markup-refine-lib.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@1.0.0/dist/markup-refine-lib-behaviors.min.js" /></script>
 ```
 
 This link points to the latest stable version hosted on the jsDelivr CDN, ensuring you are always using the most up-to-date version of the library.
