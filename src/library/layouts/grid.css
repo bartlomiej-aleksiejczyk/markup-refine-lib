@@ -1,0 +1,8 @@
+:where(.mr-grid) {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--mr-grid-min-column-size)), 1fr)
+  );
+  gap: var(--mr-grid-gap);
+}

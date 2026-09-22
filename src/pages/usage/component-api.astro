@@ -1,0 +1,38 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Component API</h1>
+    <p>
+      Component classes use <code>mr-*</code> and describe presentation only.
+      Optional JavaScript behavior uses <code>data-mr-*</code>. Native HTML and
+      ARIA carry state whenever possible.
+    </p>
+
+    <h2>Cards</h2>
+    <pre data-mr-copyable><code>{`<article class="mr-card mr-card--positive">
+  <header>Status</header>
+  <p>Everything is ready.</p>
+</article>`}</code></pre>
+
+    <h2>Button variants</h2>
+    <pre data-mr-copyable><code>{`<button class="mr-button--outlined">Outline</button>
+<button class="mr-button--positive">Save</button>`}</code></pre>
+
+    <h2>Behavior is separate</h2>
+    <pre data-mr-copyable><code>{`<pre data-mr-copyable><code>npm install example</code></pre>
+
+<button class="mr-search-trigger" data-mr-search
+        data-mr-search-static-url="/search-index.json">
+  Search
+</button>`}</code></pre>
+
+    <p>
+      See the individual component pages for concrete markup and
+      <a href="../progressive-enhancement/">progressive enhancement</a> for
+      behavior/state semantics.
+    </p>
+  </main>
+</FullNavigationLayout>

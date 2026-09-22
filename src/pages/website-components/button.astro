@@ -1,0 +1,30 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const buttonSnippet = `<button>Default</button>
+<button class="mr-button--outlined">Default outlined</button>
+<button class="mr-button--outlined mr-button--secondary">Secondary</button>
+<button class="mr-button--outlined mr-button--positive">Positive</button>
+<button class="mr-button--outlined mr-button--negative">Negative</button>
+<button class="mr-button--outlined mr-button--warning">Warning</button>
+<button class="mr-button--outlined mr-button--info">Info</button>
+<button class="mr-button--outlined mr-button--help">Help</button>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Button</h1>
+    <p>
+      Native buttons receive the scoped base appearance. Component variants are
+      opt-in presentation classes using the <code>mr-button--*</code> namespace.
+    </p>
+    <p>
+      Use <code>mr-button--outlined</code> for an outlined button and combine it
+      with a color modifier such as <code>mr-button--warning</code> when needed.
+    </p>
+    <h2>Example usage</h2>
+    <pre data-mr-copyable><code>{buttonSnippet}</code></pre>
+    <h2>Rendered example</h2>
+    <Fragment set:html={buttonSnippet} />
+  </main>
+</FullNavigationLayout>

@@ -1,0 +1,30 @@
+button:where(.mr-file-input__reset) {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
+  color: var(--mr-color-primary-darker);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  font-size: 1.6rem;
+}
+
+button:where(.mr-file-input__reset):hover {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  opacity: 1;
+}
+button:where(.mr-file-input__reset):focus {
+  outline: none;
+  background-color: transparent;
+}
+:where(.mr-file-input) {
+    position: relative;
+}

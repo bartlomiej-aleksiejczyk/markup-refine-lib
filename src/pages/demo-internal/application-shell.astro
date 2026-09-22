@@ -1,0 +1,207 @@
+---
+import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+---
+
+<LibraryStyleLayout>
+  <header class="mr-shell" data-mr-shell>
+    <div class="mr-shell__topbar">
+      <div class="mr-shell__topbar-content">
+        <button data-mr-shell-action="toggle" class="mr-shell__button mr-shell__toggle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+          >
+            <path
+              d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"
+            ></path>
+          </svg>
+        </button>
+        <h1 class="mr-nav-title">SamplePage</h1>
+        <button class="mr-search-trigger">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="36px"
+            viewBox="0 -960 960 960"
+            width="36px"
+            fill="currentColor"
+            ><path
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            ></path></svg
+          >
+          <span class="mr-search-trigger__label">Search...</span></button
+        >
+      </div>
+    </div>
+    <div class="mr-shell__sidebar" data-mr-shell-part="sidebar">
+      <div class="mr-shell__sidebar-header">
+        <h2>Collapsible</h2>
+
+        <button data-mr-shell-action="dismiss" class="mr-shell__button mr-shell__dismiss">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+          >
+            <path
+              d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <div>
+        <hr />
+        <ul class="mr-clickable-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li>
+            <details>
+              <summary><a>Services</a></summary>
+              <ul>
+                <li>
+                  <a href="#">Web </a>
+                </li>
+                <li><a href="#">Mobile Apps</a></li>
+                <li>
+                  <details>
+                    <summary>Consulting</summary>
+                    <ul>
+                      <li><a href="#">Strategy</a></li>
+                      <li><a href="#">Marketing</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <hr />
+      </div>
+    </div>
+    <div class="mr-shell__subbar">
+      <div class="mr-shell__subbar-content">
+        <!-- <a id="notes-display-mobile-icon" href="/notes/30/">
+          <div class="mr-nav-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              
+              height="24px"
+              width="24px"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+        <a href="/notes/">
+          <div
+            class="mr-nav-icon" aria-current="page"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              
+              height="24px"
+              width="24px"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M320-280q17 0 28.5-11.5T360-320q0-17-11.5-28.5T320-360q-17 0-28.5 11.5T280-320q0 17 11.5 28.5T320-280Zm0-160q17 0 28.5-11.5T360-480q0-17-11.5-28.5T320-520q-17 0-28.5 11.5T280-480q0 17 11.5 28.5T320-440Zm0-160q17 0 28.5-11.5T360-640q0-17-11.5-28.5T320-680q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Zm120 320h240v-80H440v80Zm0-160h240v-80H440v80Zm0-160h240v-80H440v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+              ></path>
+            </svg>
+          </div>
+        </a> -->
+        <nav class="mr-nav-tabs">
+          <a> List Templates</a>
+          <a aria-current="page"> New Template </a>
+          <a> List Jobs</a>
+          <a> New Job</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mr-shell__overlay" data-mr-shell-part="overlay"></div>
+  </header>
+
+  <main class="mr-container mr-shell__main">
+    <h2>Copyable Snippet</h2>
+
+    <p>
+      Use the <code>data-mr-copyable</code> attribute on any <code
+        >&lt;pre&gt;</code
+      > element that wraps a <code>&lt;code&gt;</code> block to enable automatic
+      copy functionality. A copy button will be injected automatically if not already
+      present.
+    </p>
+
+    <h3>Lorem</h3>
+    <pre
+      data-mr-copyable><code>{`<ul class="mr-clickable-list">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li>
+  <details>
+    <summary><a>Services</a></summary>
+    <ul>
+      <li>
+        <a href="#">Web </a>
+      </li>
+      <li><a href="#">Mobile Apps</a></li>
+      <li>
+        <details>
+          <summary>Consulting</summary>
+          <ul>
+            <li><a href="#">Strategy</a></li>
+            <li><a href="#">Marketing</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </details>
+</li>
+<li><a href="#">Contact</a></li>
+</ul>
+`}</code></pre>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+      nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+      faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+      pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+      Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+    </p>
+  </main>
+</LibraryStyleLayout>

@@ -1,5 +1,5 @@
-.clickable-item-list {
-  color: var(--color-text-on-secondary);
+:where(.mr-clickable-list) {
+  color: var(--mr-color-text-on-secondary);
   position: relative;
   padding: 0 0.5rem;
   ul {
@@ -18,13 +18,13 @@
     }
   }
   details[open] {
-    background-color: var(--color-secondary);
+    background-color: var(--mr-color-secondary);
   }
   summary {
     padding: 0.1rem;
-    color: var(--color-text-secondary);
+    color: var(--mr-color-text-secondary);
     &:hover {
-      color: var(--color-text-on-secondary);
+      color: var(--mr-color-text-on-secondary);
     }
   }
   summary li {
@@ -33,9 +33,9 @@
   li {
     padding: 0;
     list-style-type: none;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color var(--mr-motion-duration-fast) ease-in-out;
     &:hover {
-      background-color: var(--color-secondary-lighter);
+      background-color: var(--mr-color-secondary-lighter);
     }
   }
 
@@ -45,13 +45,13 @@
     padding: 0.1rem 0.4rem;
     white-space: nowrap;
     text-decoration: none;
-    color: var(--color-text-secondary);
+    color: var(--mr-color-text-secondary);
     &:visited {
-      color: var(--color-text-secondary);
+      color: var(--mr-color-text-secondary);
     }
     &:hover {
       text-decoration: underline;
-      color: var(--color-text-on-secondary);
+      color: var(--mr-color-text-on-secondary);
     }
   }
   details[open] summary {
@@ -68,12 +68,12 @@
       margin-inline-start: 5px;
       position: absolute;
       right: 0.5rem;
-      transition: transform 0.1s ease-in-out;
+      transition: transform var(--mr-motion-duration-short) ease-in-out;
     }
   }
   details[open] > summary::after {
     transform: translateY(25%) rotate(-90deg);
-    transition: transform 0.1s ease-in-out;
+    transition: transform var(--mr-motion-duration-short) ease-in-out;
   }
   details summary::-webkit-details-marker {
     margin-left: 5rem;
@@ -104,14 +104,14 @@
       content: "";
       margin-left: -0.6rem;
       margin-top: -2px;
-      border-left: 2px solid var(--color-text-secondary);
+      border-left: 2px solid var(--mr-color-text-secondary);
       float: left;
       height: 1.7rem;
     }
     &:hover {
-      color: var(--color-text-on-secondary);
+      color: var(--mr-color-text-on-secondary);
       &::before {
-        border-color: var(--color-text-on-secondary);
+        border-color: var(--mr-color-text-on-secondary);
       }
     }
   }
@@ -119,27 +119,33 @@
     &::before {
       content: "";
       margin-left: -0.5rem;
-      border-left: 2px solid var(--color-text-secondary);
+      border-left: 2px solid var(--mr-color-text-secondary);
       float: left;
       height: 1.7rem;
     }
     &:hover {
-      color: var(--color-text-on-secondary);
+      color: var(--mr-color-text-on-secondary);
       &::before {
-        border-color: var(--color-text-on-secondary);
+        border-color: var(--mr-color-text-on-secondary);
       }
     }
   }
-  .clickable-item-list--selected {
-    color: var(--color-text-on-secondary);
-    background-color: var(--color-secondary-lighter);
+  a[aria-current="page"] {
+    color: var(--mr-color-text-on-secondary);
+    background-color: var(--mr-color-secondary-lighter);
+    font-weight: 700;
+  }
+
+  :where(a[aria-current="page"]) {
+    color: var(--mr-color-text-on-secondary);
+    background-color: var(--mr-color-secondary-lighter);
     &::before {
-      border-color: var(--color-text-on-secondary);
+      border-color: var(--mr-color-text-on-secondary);
     }
   }
 }
 
-ul[data-clickable-item-list-autoselector] {
+:where(ul[data-mr-clickable-list-autoselect]) {
   margin: auto;
   width: calc(100% - 1.2rem);
 }

@@ -1,41 +1,24 @@
-export function initNavbarComponents() {
-  handleAutoSelector();
+export function initNavbarComponents(root: ParentNode = document) {
+  handleAutoSelector(root);
 }
-export function handleAutoSelector() {
-  const currentUrl = window.location.origin + window.location.pathname;
 
-  const lists = document.querySelectorAll(
-    "nav.navigation-tabs[data-navigation-tabs-autoselector]"
-  );
+export function handleAutoSelector(root: ParentNode = document) {
+  const currentUrl = normalizeUrl(window.location.href);
 
-  lists.forEach((list) => {
-    const anchors = list.querySelectorAll("a[href]");
-    let numberOfSelectedItems = 0;
+  root.querySelectorAll<HTMLElement>("[data-mr-nav-tabs-autoselect]").forEach((list) => {
+    if (list.dataset.mrNavAutoselectInitialized === "true") return;
+    list.dataset.mrNavAutoselectInitialized = "true";
 
-    anchors.forEach((a) => {
-      const href = a.getAttribute("href");
-      if (!href) return;
+    const anchors = Array.from(list.querySelectorAll<HTMLAnchorElement>("a[href]"));
+    const matching = anchors.filter((anchor) => normalizeUrl(anchor.href) === currentUrl);
 
-      const linkUrl = new URL(
-        href,
-        window.location.origin + window.location.pathname
-      ).href;
-
-      const normalizedCurrent = currentUrl.endsWith("/")
-        ? currentUrl.slice(0, -1)
-        : currentUrl;
-      const normalizedLink = linkUrl.endsWith("/")
-        ? linkUrl.slice(0, -1)
-        : linkUrl;
-
-      if (normalizedCurrent === normalizedLink) {
-        numberOfSelectedItems++;
-        a.classList.add("navigation-tabs--selected");
-      }
-      if (numberOfSelectedItems>1){
-        anchors.forEach((a) => a.classList.remove("navigation-tabs--selected"))
-        return;
-      }
-    });
+    anchors.forEach((anchor) => anchor.removeAttribute("aria-current"));
+    if (matching.length === 1) matching[0].setAttribute("aria-current", "page");
   });
+}
+
+function normalizeUrl(url: string) {
+  const parsed = new URL(url, window.location.href);
+  const pathname = parsed.pathname.length > 1 ? parsed.pathname.replace(/\/$/, "") : parsed.pathname;
+  return `${parsed.origin}${pathname}`;
 }

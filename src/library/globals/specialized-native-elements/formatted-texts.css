@@ -1,37 +1,35 @@
-pre,
-code {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.05rem;
-  line-height: 1.5;
+@scope ([data-mr]) to ([data-mr-unstyled]) {
+  :where(pre, code) {
+    font-family: var(--mr-font-family-mono);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    word-break: break-word;
+    font-style: italic;
+    padding: 0.1rem 0.3rem;
+    margin-bottom: 0.3rem;
+    overflow: auto;
+  }
 
-  word-break: break-word;
-  font-style: italic;
-  padding: 0.1rem 0.3rem;
-  margin-bottom: 0.3rem;
-  overflow: auto;
-}
+  :where(pre) {
+    position: relative;
+    margin: 0.5rem 0 1.25rem;
+    max-width: 100%;
+  }
 
-pre {
-  position: relative;
-  margin: 0.5rem 0 1.25rem 0;
-  max-width: 100%;
-}
+  :where(code) {
+    padding-bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: var(--mr-color-secondary);
+    color: var(--mr-color-text-primary);
+    border-radius: var(--mr-radius-large);
+  }
 
-code {
-  padding-bottom: 0;
-  display: inline-block;
-  vertical-align: middle;
-  font-family: "Courier New", Courier, monospace;
-  font-style: italic;
-  background-color: var(--color-secondary);
-  color: var(--color-text);
-  border-radius: var(--border-radius-large);
-}
-
-pre code {
-  display: block;
-  margin: 0rem;
-  white-space: pre;
-  overflow-x: auto;
-  padding: 1rem;
+  :where(pre code) {
+    display: block;
+    margin: 0;
+    white-space: pre;
+    overflow-x: auto;
+    padding: 1rem;
+  }
 }

@@ -1,12 +1,14 @@
-a {
-  color: var(--color-link);
-}
+@scope ([data-mr]) to ([data-mr-unstyled]) {
+  :where(a) {
+    color: var(--mr-color-link);
+  }
 
-a:hover,
-a:focus {
-  color: var(--color-link-hover);
-  text-decoration-thickness: 0.1em;
-}
-a:visited {
-  color: var(--color-link-visited);
+  :where(a:hover, a:focus) {
+    color: var(--mr-color-link-hover);
+    text-decoration-thickness: 0.1em;
+  }
+
+  :where(a:visited) {
+    color: var(--mr-color-link-visited);
+  }
 }

@@ -1,44 +1,55 @@
 ---
-import { getCollection } from "astro:content";
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 import { base } from "astro:config/client";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 
-const staticSearchSnippet = `<button data-search-tool
-  data-mode="static"
-  data-static-url="${base}demo-internal/offline-search-index.json">
-  🔍 Search
+const staticSearchSnippet = `<button
+  class="mr-search-trigger"
+  data-mr-search
+  data-mr-search-static-url="${base}demo-internal/offline-search-index.json"
+>
+  Search
 </button>`;
 
-const dynamicSearchSnippet = `<button data-search-tool
-  data-mode="dynamic"
-  data-dynamic-url="test">
-  🔍 Search
+const dynamicSearchSnippet = `<button
+  class="mr-search-trigger"
+  data-mr-search
+  data-mr-search-dynamic-url="/api/search?q="
+>
+  Search
 </button>`;
 ---
 
-<LibraryStyleLayout>
-  <main class="responsive-container">
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
     <h1>Search tool</h1>
     <p>
-      For simple cases, class <code>navbar</code> can be used to style the top bar.
+      The search trigger's presentation class and behavior hook are independent:
+      <code>mr-search-trigger</code> styles it and <code>data-mr-search</code>
+      enables the enhancement.
     </p>
-
     <p>
-      To improve the appearance of the topbar element, classes <code>navbar-brand</code> and
-      <code>group</code> can be used.
+      Use exactly one of <code>data-mr-search-static-url</code> or
+      <code>data-mr-search-dynamic-url</code>. Generated modal parts use
+      <code>mr-search*</code> presentation classes and
+      <code>data-mr-search-part</code> behavior/part hooks. The generated modal is
+      a native <code>&lt;dialog&gt;</code>: Escape closes it, background content is
+      modal/inert while it is open, and focus returns to the trigger on close.
     </p>
-
-    <h2>Example usage:</h2>
-    <pre data-copyable-snippet><code>{staticSearchSnippet}</code></pre>
-
-    <p>Search can also be used with dynamic, server-side search.</p>
-
-    <h2>Rendered snippet:</h2>
+    <p>
+      Search is an enhancement-only feature. If a no-JavaScript search path is
+      required, provide a normal search form or link as the fallback.
+    </p>
+    <h2>Static search</h2>
+    <pre data-mr-copyable><code>{staticSearchSnippet}</code></pre>
     <Fragment set:html={staticSearchSnippet} />
-
-    <h2>Example usage (dynamic):</h2>
-    <pre data-copyable-snippet><code>{dynamicSearchSnippet}</code></pre>
-
-    <Fragment set:html={dynamicSearchSnippet} />
+    <h2>Dynamic search</h2>
+    <pre data-mr-copyable><code>{dynamicSearchSnippet}</code></pre>
+    <button
+  class="mr-search-trigger"
+  data-mr-search
+  data-mr-search-dynamic-url="/api/search?q="
+>
+  Search
+</button>
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>

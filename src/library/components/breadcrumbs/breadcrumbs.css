@@ -1,4 +1,4 @@
-.breadcrumbs {
+:where(.mr-breadcrumbs) {
   ol {
     display: flex;
     flex-wrap: wrap;
@@ -29,7 +29,7 @@
 }
 
 @media (max-width: 768px) {
-  .breadcrumbs {
+  :where(.mr-breadcrumbs) {
     padding: 0.5rem;
     a {
       font-size: 0.9rem;

@@ -1,0 +1,130 @@
+:where(.mr-nav-tabs) {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  text-align: center;
+  cursor: pointer;
+  column-gap: 1rem;
+
+  a {
+    color: var(--mr-color-text-secondary);
+    text-decoration: none;
+    transition: all var(--mr-motion-duration-normal) ease;
+    position: relative;
+    padding: 0 0.5rem;
+    white-space: nowrap;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--mr-color-secondary);
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      color: var(--mr-color-text-primary);
+      outline: none;
+
+      &::after {
+        background-color: var(--mr-color-secondary-darker);
+      }
+    }
+
+    &:where([aria-current="page"]) {
+      color: var(--mr-color-text-on-secondary);
+
+      &::after {
+        background-color: var(--mr-color-text-on-secondary);
+      }
+    }
+
+    &:where([aria-selected="true"]) {
+      color: var(--mr-color-text-on-secondary);
+
+      &::after {
+        background-color: var(--mr-color-text-on-secondary);
+      }
+    }
+  }
+
+  ul {
+    all: unset;
+    display: flex;
+    column-gap: 1rem;
+  }
+
+  li {
+    all: unset;
+    display: flex;
+  }
+}
+
+@media (max-width: 992px) {
+  :where(.mr-nav-tabs) {
+    column-gap: 0;
+
+    ul {
+      column-gap: 0;
+    }
+  }
+
+  :where(.mr-nav-title) {
+    font-size: 1.75rem;
+  }
+}
+
+:where(.mr-shell__sidebar) {
+  :where(.mr-tabs) {
+    display: flex;
+    background-color: var(--mr-color-secondary-darker);
+    padding: 0.4rem 0.2rem 0;
+  }
+
+  button:where(.mr-tab) {
+    all: unset;
+    display: flex;
+    outline: var(--mr-color-secondary) solid 2px;
+    margin: 0 0.2rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    outline: revert;
+    transition: transform var(--mr-motion-duration-medium) ease,
+      background-color var(--mr-motion-duration-medium) ease;
+  }
+
+  button:where(.mr-tab):hover {
+    background-color: var(--mr-color-secondary);
+  }
+
+  button:where(.mr-tab):active {
+    transform: translateY(2px);
+  }
+
+  button:where(.mr-tab[aria-selected="true"]) {
+    background-color: var(--mr-color-secondary);
+  }
+}
+
+:where(.mr-nav-tabs) [role="tab"]:focus-visible,
+:where(.mr-tabs) [role="tab"]:focus-visible {
+  outline: var(--mr-focus-outline-width) var(--mr-focus-outline-style)
+    var(--mr-color-primary-darker);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  :where(.mr-nav-tabs) a[aria-current="page"],
+  :where(.mr-nav-tabs) [role="tab"][aria-selected="true"],
+  :where(.mr-tabs) [role="tab"][aria-selected="true"] {
+    outline: 2px solid CanvasText;
+    outline-offset: 2px;
+  }
+}

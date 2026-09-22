@@ -1,0 +1,28 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const snippet = `<form>
+  <div class="my-upload-field" data-mr-resettable-file>
+    <label for="attachments">Attachments</label>
+    <input id="attachments" type="file" multiple>
+  </div>
+</form>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Resettable file input</h1>
+    <p>
+      Add <code>data-mr-resettable-file</code> to the wrapper. The enhancement
+      adds <code>mr-file-input</code> without replacing classes already owned by
+      the application, and creates a reset button with
+      <code>data-mr-file-reset</code>. Resetting emits a bubbling
+      <code>change</code> event and returns focus to the native file input. Without
+      JavaScript the ordinary file input remains fully usable.
+    </p>
+    <h2>Example usage</h2>
+    <pre data-mr-copyable><code>{snippet}</code></pre>
+    <h2>Rendered example</h2>
+    <Fragment set:html={snippet} />
+  </main>
+</FullNavigationLayout>

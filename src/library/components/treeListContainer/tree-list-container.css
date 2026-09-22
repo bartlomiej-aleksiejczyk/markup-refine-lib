@@ -1,4 +1,4 @@
-.tree-list-container {
+:where(.mr-tree) {
   padding: 1rem;
 
   summary {
@@ -13,7 +13,7 @@
   }
   details summary::-webkit-details-marker,
   details summary::marker {
-    color: var(--color-secondary-darker);
+    color: var(--mr-color-secondary-darker);
   }
 
   /* Important: When using clickable elements in nested tree list set z-index to be on top */
@@ -24,7 +24,7 @@
     list-style-type: none;
 
     li {
-      border-left: 3px solid var(--color-secondary-darker);
+      border-left: 3px solid var(--mr-color-secondary-darker);
       position: relative;
       padding-left: 1rem;
       margin-top: -0.3rem;
@@ -35,7 +35,7 @@
     }
 
     li:last-child:after {
-      border-left: 3px solid var(--color-secondary-darker);
+      border-left: 3px solid var(--mr-color-secondary-darker);
       content: "";
       display: block;
       position: absolute;
@@ -44,7 +44,7 @@
     }
 
     li:before {
-      border-bottom: 3px solid var(--color-secondary-darker);
+      border-bottom: 3px solid var(--mr-color-secondary-darker);
       content: "";
       display: block;
       position: absolute;

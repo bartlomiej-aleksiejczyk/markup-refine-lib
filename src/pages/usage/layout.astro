@@ -1,0 +1,52 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const stackExample = `<section class="mr-stack">...</section>`;
+const clusterExample = `<div class="mr-cluster mr-cluster--between">...</div>`;
+const inlineExample = `<span class="mr-inline">...</span>`;
+const gridExample = `<section class="mr-grid">...</section>`;
+const containerExample = `<main class="mr-container">...</main>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Layout primitives</h1>
+    <p>
+      Markup Refine keeps layout deliberately small and intrinsic instead of
+      reproducing an atomic utility framework.
+    </p>
+
+    <h2>Stack</h2>
+    <p>Vertical flow with <code>--mr-stack-gap</code>.</p>
+    <pre data-mr-copyable><code>{stackExample}</code></pre>
+
+    <h2>Cluster</h2>
+    <p>Wrapping horizontal grouping with optional repeated-use alignment modifiers.</p>
+    <pre data-mr-copyable><code>{clusterExample}</code></pre>
+
+    <h2>Inline</h2>
+    <p>
+      An inline-level layout group. Use semantic inline elements directly when no
+      layout group is needed.
+    </p>
+    <pre data-mr-copyable><code>{inlineExample}</code></pre>
+
+    <h2>Grid</h2>
+    <p>
+      Intrinsic auto-fit columns controlled by <code>--mr-grid-min-column-size</code>
+      and <code>--mr-grid-gap</code>.
+    </p>
+    <pre data-mr-copyable><code>{gridExample}</code></pre>
+
+    <h2>Container</h2>
+    <p>Bounded inline size with fluid padding and no dedicated mobile breakpoint.</p>
+    <pre data-mr-copyable><code>{containerExample}</code></pre>
+
+    <h2>Admission rule</h2>
+    <p>
+      A new general primitive must solve a repeated layout relationship that the
+      existing five cannot express cleanly without creating an atomic property or
+      breakpoint catalog.
+    </p>
+  </main>
+</FullNavigationLayout>

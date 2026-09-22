@@ -1,25 +1,25 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 ---
 
-<LibraryStyleLayout>
-  <main class="responsive-container">
+<FullNavigationLayout>
+  <main class="mr-container">
     <h1>Product List</h1>
     <ul>
-      <li class="card positive">
-        <span class="card__header">Product 1</span>
+      <li class="mr-card mr-card--positive">
+        <span class="">Product 1</span>
         <p>Amazing product with top-notch features.</p>
       </li>
-      <li class="card info">
-        <span class="card__header">Product 2</span>
+      <li class="mr-card mr-card--info">
+        <span class="">Product 2</span>
         <p>Reliable and efficient solution for your needs.</p>
       </li>
-      <li class="card warning">
-        <span class="card__header">Product 3</span>
+      <li class="mr-card mr-card--warning">
+        <span class="">Product 3</span>
         <p>Warning: Limited stock available!</p>
       </li>
-      <li class="card negative">
-        <span class="card__header">Product 4</span>
+      <li class="mr-card mr-card--negative">
+        <span class="">Product 4</span>
         <p>Out of stock. Check back soon!</p>
       </li>
     </ul>
@@ -28,4 +28,4 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
   <footer>
     <p>&copy; 2025 MySite. All rights reserved.</p>
   </footer>
-</LibraryStyleLayout>
+</FullNavigationLayout>

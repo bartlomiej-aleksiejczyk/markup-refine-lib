@@ -1,136 +1,122 @@
-export function initClickableItemList() {
-  handleFilters();
-  handleAutoSelector();
+type ClickableListEntry = {
+  li: HTMLLIElement;
+  parentLi: HTMLLIElement | null;
+  selfMatches?: boolean;
+  childrenMatch?: boolean;
+};
+
+export function initClickableItemList(root: ParentNode = document) {
+  handleFilters(root);
+  handleAutoSelector(root);
 }
 
-function handleFilters() {
-  const filters = document.querySelectorAll(
-    "input[data-clickable-item-list-filter]"
-  );
+function handleFilters(root: ParentNode) {
+  root.querySelectorAll<HTMLInputElement>("input[data-mr-clickable-list-filter]").forEach((input) => {
+    if (input.dataset.mrClickableFilterInitialized === "true") return;
 
-  filters.forEach((input) => {
-    const list =
-      input.parentElement.querySelector(".clickable-item-list") ||
-      input.nextElementSibling;
+    const nearbyList =
+      input.parentElement?.querySelector<HTMLElement>("[data-mr-clickable-list]") ||
+      (input.nextElementSibling instanceof HTMLElement &&
+      input.nextElementSibling.matches("[data-mr-clickable-list]")
+        ? input.nextElementSibling
+        : null);
 
-    if (!list || !list.classList.contains("clickable-item-list")) {
-      console.warn("No clickable-item-list found near filter input");
+    if (!nearbyList) {
+      console.warn("No Markup Refine clickable list found near filter input");
       return;
     }
 
-    input.addEventListener("input", () => {
-      const filterText = input.value.trim().toLowerCase();
-
-      const allLis = [];
-      const stack = [];
-      stack.push({ ul: list, parentLi: null });
-
-      while (stack.length) {
-        const { ul, parentLi } = stack.pop();
-        const lis = Array.from(ul.children).filter((el) => el.tagName === "LI");
-
-        for (const li of lis) {
-          allLis.push({ li, parentLi });
-          const nestedUL = li.querySelector(":scope > ul");
-          if (nestedUL) stack.push({ ul: nestedUL, parentLi: li });
-        }
-      }
-
-      for (const entry of allLis) {
-        const text = entry.li.textContent.toLowerCase();
-        entry.selfMatches = filterText === "" || text.includes(filterText);
-        entry.childrenMatch = false;
-      }
-
-      for (let i = allLis.length - 1; i >= 0; i--) {
-        const entry = allLis[i];
-        const li = entry.li;
-        const nestedUL = li.querySelector(":scope > ul");
-
-        if (nestedUL) {
-          const immediateChildren = Array.from(nestedUL.children).filter(
-            (el) => el.tagName === "LI"
-          );
-          entry.childrenMatch = immediateChildren.some((childLi) => {
-            const childEntry = allLis.find((e) => e.li === childLi);
-            return (
-              childEntry && (childEntry.selfMatches || childEntry.childrenMatch)
-            );
-          });
-        }
-
-        if (entry.parentLi) {
-          const parentEntry = allLis.find((e) => e.li === entry.parentLi);
-          if (parentEntry && (entry.selfMatches || entry.childrenMatch)) {
-            parentEntry.childrenMatch = true;
-          }
-        }
-      }
-
-      for (const entry of allLis) {
-        const li = entry.li;
-        const nestedUL = li.querySelector(":scope > ul");
-        const details = li.querySelector("details");
-
-        const show = entry.selfMatches || entry.childrenMatch;
-        li.style.display = show ? "" : "none";
-
-        if (details) {
-          if (show) {
-            details.open = true;
-          } else {
-            details.open = false;
-          }
-        }
-
-        if (entry.selfMatches && nestedUL) {
-          const immediateChildren = Array.from(nestedUL.children).filter(
-            (el) => el.tagName === "LI"
-          );
-          immediateChildren.forEach((childLi) => {
-            childLi.style.display = "";
-          });
-        }
-      }
-    });
+    input.dataset.mrClickableFilterInitialized = "true";
+    input.addEventListener("input", () => filterList(nearbyList, input.value));
   });
 }
 
-export function handleAutoSelector() {
-  const currentUrl = window.location.origin + window.location.pathname;
+function filterList(list: HTMLElement, rawFilter: string) {
+  const filterText = rawFilter.trim().toLowerCase();
+  const allLis: ClickableListEntry[] = [];
+  const stack: Array<{ ul: HTMLElement; parentLi: HTMLLIElement | null }> = [
+    { ul: list, parentLi: null },
+  ];
 
-  const lists = document.querySelectorAll(
-    "ul[data-clickable-item-list-autoselector]"
-  );
+  while (stack.length) {
+    const current = stack.pop();
+    if (!current) break;
 
-  lists.forEach((list) => {
-    const anchors = list.querySelectorAll("a[href]");
-    let numberOfSelectedItems = 0;
+    const { ul, parentLi } = current;
+    const lis = Array.from(ul.children).filter(
+      (element): element is HTMLLIElement => element instanceof HTMLLIElement,
+    );
 
-    anchors.forEach((a) => {
-      const linkUrl = new URL(
-        a.getAttribute("href"),
-        window.location.origin + window.location.pathname
-      ).href;
+    for (const li of lis) {
+      allLis.push({ li, parentLi });
+      const nestedList = li.querySelector<HTMLUListElement>(":scope > ul");
+      if (nestedList) stack.push({ ul: nestedList, parentLi: li });
+    }
+  }
 
-      const normalizedCurrent = currentUrl.endsWith("/")
-        ? currentUrl.slice(0, -1)
-        : currentUrl;
-      const normalizedLink = linkUrl.endsWith("/")
-        ? linkUrl.slice(0, -1)
-        : linkUrl;
+  for (const entry of allLis) {
+    const text = (entry.li.textContent ?? "").toLowerCase();
+    entry.selfMatches = filterText === "" || text.includes(filterText);
+    entry.childrenMatch = false;
+  }
 
-      if (normalizedCurrent === normalizedLink) {
-        const li = a.closest("li");
-        if (li && list.contains(li)) {
-          li.classList.add("clickable-item-list--selected");
-          numberOfSelectedItems++;
-        }
+  for (let index = allLis.length - 1; index >= 0; index--) {
+    const entry = allLis[index];
+    const nestedList = entry.li.querySelector<HTMLUListElement>(":scope > ul");
+
+    if (nestedList) {
+      const immediateChildren = Array.from(nestedList.children).filter(
+        (element): element is HTMLLIElement => element instanceof HTMLLIElement,
+      );
+      entry.childrenMatch = immediateChildren.some((childLi) => {
+        const childEntry = allLis.find((candidate) => candidate.li === childLi);
+        return Boolean(childEntry && (childEntry.selfMatches || childEntry.childrenMatch));
+      });
+    }
+
+    if (entry.parentLi) {
+      const parentEntry = allLis.find((candidate) => candidate.li === entry.parentLi);
+      if (parentEntry && (entry.selfMatches || entry.childrenMatch)) {
+        parentEntry.childrenMatch = true;
       }
-      if (numberOfSelectedItems>1){
-        anchors.forEach((a) => a.classList.remove("clickable-item-list--selected"))
-        return;
-      }
-    });
+    }
+  }
+
+  for (const entry of allLis) {
+    const nestedList = entry.li.querySelector<HTMLUListElement>(":scope > ul");
+    const details = entry.li.querySelector<HTMLDetailsElement>("details");
+    const show = Boolean(entry.selfMatches || entry.childrenMatch);
+
+    entry.li.hidden = !show;
+    if (details && filterText) details.open = show;
+
+    if (entry.selfMatches && nestedList) {
+      Array.from(nestedList.children)
+        .filter((element): element is HTMLLIElement => element instanceof HTMLLIElement)
+        .forEach((childLi) => {
+          childLi.hidden = false;
+        });
+    }
+  }
+}
+
+export function handleAutoSelector(root: ParentNode = document) {
+  const currentUrl = normalizeUrl(window.location.href);
+
+  root.querySelectorAll<HTMLUListElement>("ul[data-mr-clickable-list-autoselect]").forEach((list) => {
+    if (list.dataset.mrClickableAutoselectInitialized === "true") return;
+    list.dataset.mrClickableAutoselectInitialized = "true";
+
+    const anchors = Array.from(list.querySelectorAll<HTMLAnchorElement>("a[href]"));
+    const matching = anchors.filter((anchor) => normalizeUrl(anchor.href) === currentUrl);
+
+    anchors.forEach((anchor) => anchor.removeAttribute("aria-current"));
+    if (matching.length === 1) matching[0].setAttribute("aria-current", "page");
   });
+}
+
+function normalizeUrl(url: string) {
+  const parsed = new URL(url, window.location.href);
+  const pathname = parsed.pathname.length > 1 ? parsed.pathname.replace(/\/$/, "") : parsed.pathname;
+  return `${parsed.origin}${pathname}`;
 }

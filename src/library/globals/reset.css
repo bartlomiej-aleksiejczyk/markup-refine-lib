@@ -1,29 +1,34 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@scope ([data-mr]) to ([data-mr-unstyled]) {
+  :where(:scope, *) {
+    box-sizing: border-box;
+  }
+
+  :where(:scope, *)::before,
+  :where(:scope, *)::after {
+    box-sizing: border-box;
+  }
+
+  :where(:scope:is(html, body)) {
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6, p, ul, ol, figure, figcaption) {
+    margin: 0;
+    padding: 0;
+  }
 }
 
-html,
-body {
-  height: auto;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-figure,
-figcaption {
-  margin: 0;
-  padding: 0;
+/*
+ * `@scope` limits stop direct selectors at the opt-out boundary, but inherited
+ * properties can still cross that boundary. Reverting the boundary element
+ * prevents Markup Refine's inherited base styles from becoming accidental
+ * defaults for the unstyled subtree. Consumer unlayered CSS still outranks
+ * this rule because Markup Refine ships it inside the low-priority mr.base
+ * layer.
+ */
+:where([data-mr] [data-mr-unstyled]) {
+  all: revert;
 }

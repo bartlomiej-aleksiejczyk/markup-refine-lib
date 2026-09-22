@@ -1,314 +1,45 @@
 ---
-import { getCollection } from "astro:content";
 import FullNavigationLayout from "../astro/layouts/FullNavigationLayout.astro";
-// Get all entries from a collection.
-// Requires the name of the collection as an argument.
+import { packageMeta } from "../astro/packageMeta";
 ---
 
 <FullNavigationLayout>
-  <main class="responsive-container stt-navigation-main-content">
-    <section id="introduction">
-      <h1>Introduction to markup-refine-lib.css</h1>
-      <p>
-        markup-refine-lib.css is a lightweight CSS library that aims to provide
-        a simple way to style HTML with an emphasis on a native HTML look.
-        What's more, markup-refine-lib.css is fully responsive, just like the
-        native styling of HTML.
-      </p>
-    </section>
-    <section id="installation">
-      <h1>Demonstration</h1>
-      <p>
-        To see how to use markup-refine-lib in your website's you can preview
-        usage under:
-        <a href="component-preview">components preview section</a>
-      </p>
+  <main class="mr-container mr-shell__main">
+    <h1>Markup Refine</h1>
+    <p>
+      <strong>{packageMeta.name}</strong> refines semantic HTML without taking over
+      the rest of your application. Import the CSS, add <code>data-mr</code> only
+      where semantic styling should apply, and opt into components or JavaScript
+      behavior only when needed.
+    </p>
 
-      <section id="quickstart">
-        <p>
-          To start using markup-refine-lib.css, simply add the following code to
-          your website's HTML.
-        </p>
-        <pre>
-        <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib.css@0.9.5/dist/markup-refine-lib.min.css&quot; /&gt;</code>
-      </pre>
-        <p>
-          By default, all elements will take up the available space. To prevent
-          excessive stretching, use the class:
-          <b>responsive-container</b>
-        </p>
+    <h2>Quick start</h2>
+    <pre data-mr-copyable><code>{`import "${packageMeta.name}/css";
+import "${packageMeta.name}/behaviors"; // optional`}</code></pre>
 
-        <pre><code>&lt;div class=&quot;responsive-container&quot;&gt; ...your html content &lt;/div&gt;</code></pre>
-      </section>
-      <section id="examples">
-        <h2>Examples and Usage</h2>
-        <section id="form">
-          <h3>Form Elements</h3>
-          <form>
-            <fieldset>
-              <legend>Sample Form</legend>
-              <label for="name">Name</label>
-              <input type="text" id="name" placeholder="John Doe" />
+    <pre data-mr-copyable><code>{`<main data-mr class="mr-container">
+  <h1>Users</h1>
+  <form>
+    <label>Name <input name="name" /></label>
+    <button>Save</button>
+  </form>
+</main>`}</code></pre>
 
-              <label for="password">Password</label>
-              <input type="password" id="password" placeholder="••••••••" />
+    <h2>Stable design</h2>
+    <ul>
+      <li><code>[data-mr]</code> scopes semantic/reset styling.</li>
+      <li><code>--mr-*</code> tokens provide theming.</li>
+      <li><code>mr-*</code> classes provide explicit component/layout presentation.</li>
+      <li><code>data-mr-*</code> provides optional progressive enhancement.</li>
+      <li>Native HTML/ARIA carries state whenever possible.</li>
+    </ul>
 
-              <label for="gender">Gender</label>
-              <select id="gender">
-                <option>Female</option>
-                <option>Male</option>
-                <option>undisclosed</option>
-              </select>
-
-              <div>
-                <label for="yes">
-                  <input type="radio" id="yes" name="subscribe" checked />
-                  Subscribe
-                </label>
-                <label for="no">
-                  <input type="radio" id="no" name="subscribe" />
-                  Do Not Subscribe
-                </label>
-              </div>
-
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="Type your message here..."
-              ></textarea>
-            </fieldset>
-            <button type="submit">Submit</button>
-          </form>
-        </section>
-
-        <section id="typography">
-          <h3>Typography</h3>
-          <h1>Main Heading</h1>
-          <h2>Subheading</h2>
-          <p>
-            This is a paragraph demonstrating
-            <strong>bold</strong>
-            ,
-            <em>italic</em>
-            , and
-            <u>underlined</u>
-            text.
-          </p>
-          <p>
-            Keyboard Shortcut:
-            <kbd>Ctrl</kbd>
-            +
-            <kbd>Alt</kbd>
-            +
-            <kbd>Delete</kbd>
-          </p>
-        </section>
-
-        <section>
-          <h3>Images</h3>
-          <figure>
-            <img src="https://placehold.co/250x200" alt="Placeholder image 1" />
-            <figcaption>Small Image</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="https://placehold.co/1600x300"
-              alt="Placeholder image 2"
-            />
-            <figcaption>Medium Image</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="https://placehold.co/6000x3000"
-              alt="Placeholder image 2"
-            />
-            <figcaption>Big Image</figcaption>
-          </figure>
-        </section>
-
-        <section>
-          <h3>Tables</h3>
-          <div class="table-container">
-            <table>
-              <caption>Sample Data Table</caption>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>John Doe</td>
-                  <td>Junior PHP Developer</td>
-                  <td>2021-01-02</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jane Smith</td>
-                  <td>Lead Architect</td>
-                  <td>2020-12-19</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Jack Doe</td>
-                  <td>Designer</td>
-                  <td>2022-08-09</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <section>
-          <h3>Asci image</h3>
-          <pre
-            class="asci-image">
-                                              _                  
-          /\                                 | |                 
-         /  \   __ _ _   _  __ ___      _____| |__   ___ ___ ___ 
-        / /\ \ / _` | | | |/ _` \ \ /\ / / _ \ '_ \ / __/ __/ __|
-       / ____ \ (_| | |_| | (_| |\ V  V /  __/ |_) | (__\__ \__ \
-      /_/    \_\__, |\__,_|\__,_| \_/\_/ \___|_.__(_)___|___/___/
-                  | |                                            
-                  |_|                                            
-      </pre>
-        </section>
-        <section>
-          <h3>Tree list</h3>
-          <div class="tree-list-container">
-            <ul>
-              <li>
-                Fruits
-                <ul>
-                  <li>Apple</li>
-                  <li>Banana</li>
-                  <li>Cherry</li>
-                </ul>
-              </li>
-              <li>
-                Vegetables
-                <ul>
-                  <li>Carrot</li>
-                  <li>Broccoli</li>
-                  <li>Spinach</li>
-                </ul>
-              </li>
-              <li>
-                Dairy
-                <ul>
-                  <li>Milk</li>
-                  <li>Cheese</li>
-                  <li>Yogurt</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div class="tree-list-container">
-            <strong>Food</strong>
-            <ul>
-              <li>
-                <details>
-                  <summary>Fruits</summary>
-                  <ul>
-                    <li>Apple</li>
-                    <li>Banana</li>
-                    <li>Cherry</li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <details>
-                  <summary>Vegetables</summary>
-                  <ul>
-                    <li>Carrot</li>
-                    <li>Broccoli</li>
-                    <li>Spinach</li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <details>
-                  <summary>Dairy</summary>
-                  <ul>
-                    <li>Milk</li>
-                    <li>Cheese</li>
-                    <li>Yogurt</li>
-                  </ul>
-                </details>
-              </li>
-            </ul>
-          </div>
-          <div class="tree-list-container">
-            <ul>
-              <li>
-                <details>
-                  <summary>Fruits</summary>
-                  <ul>
-                    <li>Apple</li>
-                    <li>Banana</li>
-                    <li>Cherry</li>
-                  </ul>
-                </details>
-              </li>
-            </ul>
-          </div>
-          <div class="tree-list-container">
-            <ul>
-              <li>
-                Fruits
-                <ul>
-                  <li>Apple</li>
-                  <li>Banana</li>
-                  <li>Cherry</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3>Breadcrumbs</h3>
-
-          <nav aria-label="breadcrumb" class="breadcrumbs">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/home/">Home</a></li>
-              <li class="breadcrumb-item"><a href="/category/">Category</a></li>
-              <li class="breadcrumb-item">
-                <a href="/category/sub-category/">Sub-Category</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="/category/sub-category/sample-item">Sample Item</a>
-              </li>
-            </ol>
-          </nav>
-
-          <h4>Extended Breadcrumbs</h4>
-          <nav aria-label="breadcrumb" class="breadcrumbs">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/home/">Home</a></li>
-              <li class="breadcrumb-item"><a href="/category/">Category</a></li>
-              <li class="breadcrumb-item">
-                <a href="/category/sub-category/">Sub-Category</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="/category/sub-category/sample-item">Sample Item</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="/category/sub-category/extra-level/">Extra Level</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="/category/sub-category/extra-level/deeper-item"
-                  >Deeper Item</a
-                >
-              </li>
-            </ol>
-          </nav>
-        </section>
-      </section>
-
-      <footer>
-        <small>markup-refine-lib.css - released under MIT license</small>
-      </footer>
-    </section>
+    <p>
+      Start with <a href="usage/scoped-mode/">scoped semantic HTML</a>, then see
+      <a href="usage/theming/">theming</a>,
+      <a href="usage/component-api/">components</a>,
+      <a href="usage/layout/">layout</a>, and
+      <a href="usage/progressive-enhancement/">progressive enhancement</a>.
+    </p>
   </main>
 </FullNavigationLayout>

@@ -1,7 +1,7 @@
 {
   "name": "markup-refine-lib",
   "description": "A customizable, lightweight CSS and JS library designed to give a simple way to style HTML with an emphasis on a native HTML look",
-  "version": "0.6.12",
+  "version": "0.10.0",
   "type": "module",
   "license": "Apache-2.0",
   "files": [
@@ -14,20 +14,25 @@
     "url": "git+https://github.com/bartlomiej-aleksiejczyk/markup-refine-lib.git"
   },
   "scripts": {
-    "dev": "node src/build/buildDev.js & vite",
-    "build": "vite build",
+    "build": "npm run build:library:unminified && npm run build:library:minified",
+    "build:library:unminified": "vite build --mode library-unminified",
+    "build:library:minified": "vite build --mode library-minified",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
-    "astro:dev": "astro dev --host",
-    "astro:build": "astro build",
+    "check:css": "node scripts/check-css-architecture.mjs",
+    "check:stable": "node scripts/check-css-architecture.mjs && node scripts/check-library-contract.mjs",
+    "check:release": "npm run check:stable && node scripts/check-release-artifacts.mjs",
+    "astro:dev": "node src/build/buildDev.js & astro dev --host",
+    "astro:build": "astro build && node src/build/buildDocs.js",
     "astro:preview": "astro preview",
-    "release": "node src/build/releaseNewVersion.js"
+    "release": "node src/build/releaseNewVersion.js",
+    "check:docs": "node scripts/check-generated-docs.mjs"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
     "@tsconfig/svelte": "^5.0.5",
     "@types/node": "^22.18.0",
-    "astro": "^5.13.3",
+    "astro": "^7.3.3",
     "jsdom": "^26.1.0",
     "mustache": "^4.2.0",
     "sass": "^1.91.0",
@@ -37,6 +42,22 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "fuse.js": "^7.1.0"
-  }
+    "fuse.js": "^7.1.0",
+    "markup-refine-lib": "^0.10.0"
+  },
+  "style": "./dist/markup-refine-lib.css",
+  "exports": {
+    "./css": "./dist/markup-refine-lib.css",
+    "./tokens": "./dist/markup-refine-lib-tokens.css",
+    "./base": "./dist/markup-refine-lib-base.css",
+    "./components": "./dist/markup-refine-lib-components.css",
+    "./layout": "./dist/markup-refine-lib-layout.css",
+    "./behaviors": "./dist/markup-refine-lib-behaviors.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "./dist/*.css",
+    "./dist/markup-refine-lib-behaviors.js",
+    "./dist/markup-refine-lib-behaviors.min.js"
+  ]
 }

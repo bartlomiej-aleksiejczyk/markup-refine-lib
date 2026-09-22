@@ -1,0 +1,42 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Theming and tokens</h1>
+    <p>
+      Every library-owned CSS custom property uses the <code>--mr-*</code>
+      namespace. Override tokens on an application root or individual
+      <code>data-mr</code> island rather than fighting component selectors.
+    </p>
+
+    <pre data-mr-copyable><code>{`.admin-area {
+  --mr-color-primary: hsl(215 70% 42%);
+  --mr-color-primary-darker: hsl(215 72% 32%);
+  --mr-radius-medium: 0.5rem;
+  --mr-container-max-width: 70rem;
+}`}</code></pre>
+
+    <h2>Useful token groups</h2>
+    <ul>
+      <li><code>--mr-color-*</code> for surfaces, text, links, and status colors.</li>
+      <li><code>--mr-font-family-*</code> and <code>--mr-line-height-body</code>.</li>
+      <li><code>--mr-space-*</code> and layout-specific gap tokens.</li>
+      <li><code>--mr-radius-*</code> for component shape.</li>
+      <li><code>--mr-control-*</code> and <code>--mr-focus-*</code>.</li>
+      <li><code>--mr-motion-duration-*</code> for motion.</li>
+    </ul>
+
+    <h2>Per-scope theming</h2>
+    <p>Custom properties inherit, so islands can use independent themes.</p>
+    <pre data-mr-copyable><code>{`<section data-mr class="theme-a">...</section>
+<section data-mr class="theme-b">...</section>`}</code></pre>
+
+    <h2>Color scheme and motion</h2>
+    <p>
+      Default palettes follow <code>prefers-color-scheme</code>. Motion-duration
+      tokens collapse under <code>prefers-reduced-motion: reduce</code>.
+    </p>
+  </main>
+</FullNavigationLayout>

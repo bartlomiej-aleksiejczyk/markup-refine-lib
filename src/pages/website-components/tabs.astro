@@ -1,0 +1,40 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const tabsSnippet = `<nav class="mr-nav-tabs" role="tablist" aria-label="Account sections">
+  <button data-mr-tab="profile" data-mr-tabs-group="account">Profile</button>
+  <button data-mr-tab="security" data-mr-tabs-group="account">Security</button>
+</nav>
+
+<section data-mr-panel="profile" data-mr-tabs-group="account" data-mr-tabs-default>
+  Profile content
+</section>
+<section data-mr-panel="security" data-mr-tabs-group="account">
+  Security content
+</section>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Tabs</h1>
+    <p>
+      Single-page tabs use <code>data-mr-tab</code> and <code>data-mr-panel</code>
+      as behavior relationships. Put <code>role="tablist"</code> on the authored
+      container and give separate tab sets different <code>data-mr-tabs-group</code>
+      values.
+    </p>
+    <p>
+      The enhancement applies tab/panel roles, <code>aria-selected</code>, roving
+      <code>tabindex</code>, <code>aria-controls</code>/<code>aria-labelledby</code>,
+      and native <code>hidden</code> state. Arrow keys plus Home and End move and
+      activate tabs.
+    </p>
+    <p>
+      Without JavaScript all panels remain visible, so content is still reachable;
+      only the tab-switching interaction is absent.
+    </p>
+    <h2>Example</h2>
+    <pre data-mr-copyable><code>{tabsSnippet}</code></pre>
+    <Fragment set:html={tabsSnippet} />
+  </main>
+</FullNavigationLayout>

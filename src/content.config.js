@@ -1,7 +1,6 @@
-// src/content/config.js
 import { defineCollection } from "astro:content";
 import { file } from "astro/loaders";
-import { BASE } from "./site.config.js"; // ✅ Import shared base
+import { BASE } from "./site.config.js";
 
 const websiteComponents = defineCollection({
   loader: () => {
@@ -12,7 +11,7 @@ const websiteComponents = defineCollection({
     return data.map((path) => {
       const id = path.split("/").pop()?.split(".")[0];
       const relativePath = path.split("/").slice(2).join("/").split(".")[0];
-      const url = `/${BASE}/${relativePath}`; // ✅ Prepend base
+      const url = `/${BASE}/${relativePath}`;
       return { id, url };
     });
   },

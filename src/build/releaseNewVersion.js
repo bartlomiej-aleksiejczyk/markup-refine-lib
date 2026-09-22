@@ -90,7 +90,7 @@ async function releaseNewVersion(versionType = "patch", customMessage = "") {
         JSON.stringify(packageLockJson, null, 2)
       );
     }
-    const readmeContent = fs.readFileSync(readmePath, "utf8");
+        const readmeContent = fs.readFileSync(readmePath, "utf8");
     const updatedReadmeContent = readmeContent.replace(
       /markup-refine-lib@\d+\.\d+\.\d+/g,
       `markup-refine-lib@${packageJson.version}`

@@ -1,4 +1,4 @@
-button.copyable-snippet-button {
+button:where(.mr-copy-button) {
   background-color: transparent;
   position: absolute;
   top: 0;
@@ -10,16 +10,16 @@ button.copyable-snippet-button {
   font-size: 1em;
   cursor: pointer;
   opacity: 0.6;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--mr-motion-duration-fast) ease;
 }
 
-button.copyable-snippet-button:hover {
+button:where(.mr-copy-button):hover {
   background-color: transparent;
   box-shadow: none;
   border: none;
   opacity: 1;
 }
-button.copyable-snippet-button:focus {
+button:where(.mr-copy-button):focus {
   outline: none;
   background-color: transparent;
 }

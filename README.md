@@ -4,55 +4,62 @@
 
 **Note**: markup-refine-lib is currently in the early stages of development and may not be suitable for production environments yet.
 
-## How to Use
+The stable API is deliberately opt-in:
 
-To integrate markup-refine-lib into your project, add the following link to the `<head>` section of your HTML file:
-`
+- `[data-mr]` enables semantic/reset styling for one subtree;
+- `[data-mr-unstyled]` opts an element or subtree back out;
+- `--mr-*` is the design-token namespace;
+- `mr-*` is the presentation/component/layout namespace;
+- `data-mr-*` is the progressive-enhancement namespace;
+- native HTML and ARIA carry interaction state whenever the platform already defines it;
+
+## Install
+
+```shell
+npm install markup-refine-lib
+```
+
+Import the complete stylesheet:
+
+```js
+import "markup-refine-lib/css";
+```
+
+Then opt a document or island in:
+
+```html
+<body>
+  <header>Host application header</header>
+
+  <main data-mr class="mr-container">
+    <h1>Users</h1>
+    <form>
+      <label>
+        Name
+        <input name="name" />
+      </label>
+      <button>Save</button>
+    </form>
+  </main>
+</body>
+```
+
+Import behavior only when enhanced components need it:
+
+```js
+import "markup-refine-lib/behaviors";
+```
+
 ### Usage in html:
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib.min.js" /></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib-behaviors.min.js" /></script>
 ```
 
 This link points to the latest stable version hosted on the jsDelivr CDN, ensuring you are always using the most up-to-date version of the library.
 
 More detailed instructions and usage examples can be found on the [documentation page](https://bartlomiej-aleksiejczyk.github.io/markup-refine-lib/).
 
-### Usage via npm:
-
-You can also import the library using npm:
-```shell
-npm i markup-refine-lib
-```
-
-Then, import the necessary files in your project:
-```js
-import "markup-refine-lib/dist/markup-refine.css";
-import "markup-refine-lib/dist/markup-refine-lib-web-components.css";
-import "markup-refine-lib/dist/markup-refine-lib-web-components.js";
-```
-### Selective usage:
-
-If you only need specific features from the library, you can selectively import just the parts you need.
-
-Using html:
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib-reset.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib-class-components.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib-variables.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/markup-refine-lib-scoped.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/webComponents.css" />
-<script src="https://cdn.jsdelivr.net/gh/bartlomiej-aleksiejczyk/markup-refine-lib@0.6.12/dist/webComponents.js"></script>
-```
-Using npm:
-```js
-import "markup-refine-lib/dist/markup-refine-reset.css";
-import "markup-refine-lib/dist/markup-refine-variables.css";
-import "markup-refine-lib/dist/markup-refine-class-components.css";
-import "markup-refine-lib/dist/markup-refine-scoped.css";
-import "markup-refine-lib/dist/markup-refine-lib-web-components.css";
-import "markup-refine-lib/dist/markup-refine-lib-web-components.js";
-```
 ## Local Development
 
 To devlop markup-refine-lib, follow these steps:

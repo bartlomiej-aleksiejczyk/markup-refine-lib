@@ -1,0 +1,32 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const snippet = `<div class="mr-tree">
+  <ul>
+    <li>Root
+      <ul>
+        <li>Child</li>
+        <li>
+          <details open>
+            <summary>Branch</summary>
+            <ul><li>Leaf</li></ul>
+          </details>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Tree list</h1>
+    <p>
+      Use <code>mr-tree</code> as the only component root. Standard lists and
+      <code>details</code>/<code>summary</code> elements provide the internal
+      structure.
+    </p>
+    <pre data-mr-copyable><code>{snippet}</code></pre>
+    <Fragment set:html={snippet} />
+  </main>
+</FullNavigationLayout>

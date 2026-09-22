@@ -1,0 +1,23 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const snippet = `<nav class="mr-breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/docs">Docs</a></li>
+    <li aria-current="page">Components</li>
+  </ol>
+</nav>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Breadcrumbs</h1>
+    <p>
+      Add <code>mr-breadcrumbs</code> to a semantic navigation root. The ordered
+      list, list items, and links need no Markup Refine-specific part classes.
+    </p>
+    <pre data-mr-copyable><code>{snippet}</code></pre>
+    <Fragment set:html={snippet} />
+  </main>
+</FullNavigationLayout>

@@ -1,76 +1,77 @@
-fieldset {
-  margin: 1rem 0;
-  border-radius: var(--border-radius-medium);
-  border: solid 2px var(--color-secondary-darker);
-}
-
-form {
-  margin: 1rem 0;
-  padding: 1.5rem 2rem;
-  background: var(--color-background-light-contrast);
-  border-radius: var(--border-radius-large);
-  & button,
-  input[type="submit"],
-  input[type="reset"] {
-    margin: 1rem auto 0.5rem;
+@scope ([data-mr]) to ([data-mr-unstyled]) {
+  :where(fieldset) {
+    margin: 1rem 0;
+    border-radius: var(--mr-radius-medium);
+    border: solid var(--mr-control-border-width) var(--mr-color-secondary-darker);
   }
-}
 
-input,
-select,
-textarea {
-  &:focus {
-    outline: 1px dashed var(--color-primary-lighter);
+  :where(form) {
+    margin: 1rem 0;
+    padding: 1.5rem 2rem;
+    background: var(--mr-color-background-light-contrast);
+    border-radius: var(--mr-radius-large);
+
+    & :where(button, input[type="submit"], input[type="reset"]) {
+      margin: 1rem auto 0.5rem;
+    }
   }
-  &:disabled {
-    background-color: var(--color-secondary);
+
+  :where(input, select, textarea) {
+    padding: var(--mr-control-padding);
+    border: var(--mr-control-border-width) solid var(--mr-color-secondary-darker);
+    border-radius: var(--mr-radius-medium);
+    margin: 0 auto 1.5rem;
+    width: 100%;
+    display: block;
+    justify-content: center;
+    background-color: var(--mr-color-background);
+    color: var(--mr-color-text-primary);
+
+    &:focus {
+      outline: var(--mr-focus-outline-width) var(--mr-focus-outline-style)
+        var(--mr-color-primary-lighter);
+    }
+
+    &:disabled {
+      background-color: var(--mr-color-secondary);
+    }
   }
-  padding: 0.5rem;
-  border: 2px solid var(--color-secondary-darker);
-  border-radius: var(--border-radius-medium);
-  margin: 0rem auto 1.5rem;
-  width: 100%;
-  display: block;
-  justify-content: center;
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-}
 
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline;
-  margin: 0rem;
-  width: auto;
-}
-input[type="radio"]:checked,
-input[type="checkbox"]:checked {
-  background-color: var(--color-primary);
-  accent-color: var(--color-primary);
-}
+  :where(input[type="checkbox"], input[type="radio"]) {
+    display: inline;
+    margin: 0;
+    width: auto;
+  }
 
-input[type="file"] {
-  background-color: transparent;
-  border: 2px solid var(--color-secondary-darker);
-  border-radius: var(--border-radius-medium);
-  padding: 0.5rem;
-  margin: 0.5rem auto 1rem;
-  width: 100%;
-  max-width: 100%;
-  display: block;
-  color: var(--color-text-primary);
-  font-size: medium;
-}
+  :where(input[type="radio"]:checked, input[type="checkbox"]:checked) {
+    background-color: var(--mr-color-primary);
+    accent-color: var(--mr-color-primary);
+  }
 
-input[type="file"]::file-selector-button {
-  background-color: var(--color-primary);
-  color: var(--color-text-on-primary);
-  border: 2px solid var(--color-primary-darker);
-  border-radius: var(--border-radius-medium);
-  padding: 0.5rem;
-  cursor: pointer;
-  margin-right: 0.5rem;
-}
+  :where(input[type="file"]) {
+    background-color: transparent;
+    border: var(--mr-control-border-width) solid var(--mr-color-secondary-darker);
+    border-radius: var(--mr-radius-medium);
+    padding: var(--mr-control-padding);
+    margin: 0.5rem auto 1rem;
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    color: var(--mr-color-text-primary);
+    font-size: medium;
+  }
 
-input[type="file"]::file-selector-button:hover {
-  box-shadow: inset 0 0 0 2px var(--color-primary-darker);
+  :where(input[type="file"])::file-selector-button {
+    background-color: var(--mr-color-primary);
+    color: var(--mr-color-text-on-primary);
+    border: var(--mr-control-border-width) solid var(--mr-color-primary-darker);
+    border-radius: var(--mr-radius-medium);
+    padding: var(--mr-control-padding);
+    cursor: pointer;
+    margin-right: 0.5rem;
+  }
+
+  :where(input[type="file"])::file-selector-button:hover {
+    box-shadow: inset 0 0 0 2px var(--mr-color-primary-darker);
+  }
 }

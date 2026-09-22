@@ -4,8 +4,8 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
 
 <LibraryStyleLayout>
   <header class="navbar">
-    <div class="navbar-brand">MySite</div>
-    <div class="group">
+    <div class="mr-nav-brand">MySite</div>
+    <div class="mr-cluster">
       <a href="pages/index.html">Home</a>
       <a href="pages/about.html">About Us</a>
       <a href="pages/contact.html">Contact</a>
@@ -13,7 +13,7 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
     </div>
   </header>
 
-  <main class="responsive-container">
+  <main class="mr-container">
     <h1>Contact Us</h1>
     <p>
       We would love to hear from you! Please fill out the form below and we will
@@ -49,8 +49,8 @@ import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
           placeholder="Your Message"
           required></textarea>
 
-        <input type="submit" value="Send Message" class="positive" />
-        <input type="reset" value="Clear" class="warning" />
+        <input type="submit" value="Send Message" class="mr-button--positive" />
+        <input type="reset" value="Clear" class="mr-button--warning" />
       </fieldset>
     </form>
   </main>

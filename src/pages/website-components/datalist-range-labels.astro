@@ -1,0 +1,22 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const snippet = `<input type="range" min="0" max="2" step="1" list="quality">
+<datalist id="quality" class="mr-range-labels">
+  <option value="0" label="Low"></option>
+  <option value="1" label="Medium"></option>
+  <option value="2" label="High"></option>
+</datalist>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Range labels</h1>
+    <p>
+      Use <code>mr-range-labels</code> on the datalist used to visually align
+      range labels with the input steps.
+    </p>
+    <pre data-mr-copyable><code>{snippet}</code></pre>
+    <Fragment set:html={snippet} />
+  </main>
+</FullNavigationLayout>

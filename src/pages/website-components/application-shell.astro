@@ -1,0 +1,93 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+import { base } from "astro:config/client";
+
+const shellStructure = `<header class="mr-shell" data-mr-shell>
+  <div class="mr-shell__topbar">
+    <div class="mr-shell__topbar-content">
+      <button
+        class="mr-shell__button mr-shell__toggle"
+        data-mr-shell-action="toggle"
+      >Menu</button>
+      <h1 class="mr-nav-title">Sample page</h1>
+      <button
+        class="mr-search-trigger"
+        data-mr-search
+        data-mr-search-static-url="/search-index.json"
+      >Search</button>
+    </div>
+  </div>
+
+  <aside class="mr-shell__sidebar" data-mr-shell-part="sidebar">
+    <div class="mr-shell__sidebar-header">
+      <h2>Menu</h2>
+      <button
+        class="mr-shell__button mr-shell__dismiss"
+        data-mr-shell-action="dismiss"
+      >Close</button>
+    </div>
+
+    <ul class="mr-clickable-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+    </ul>
+  </aside>
+
+  <div class="mr-shell__subbar">
+    <div class="mr-shell__subbar-content">
+      <nav class="mr-nav-tabs">
+        <a href="/one">One</a>
+        <a href="/two" aria-current="page">Two</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="mr-shell__overlay" data-mr-shell-part="overlay"></div>
+</header>
+
+<main class="mr-container mr-shell__main">
+  ...
+</main>`;
+
+const standaloneTopbar = `<header class="mr-shell" data-mr-shell>
+  <div class="mr-shell__topbar">
+    <div class="mr-shell__topbar-content">
+      <h1 class="mr-nav-title">Sample page</h1>
+    </div>
+  </div>
+</header>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Application shell</h1>
+    <p>
+      The <code>mr-shell</code> component provides the application-shell pattern. Presentation uses
+      <code>mr-shell__*</code> classes. Behavior discovery uses
+      <code>data-mr-shell</code>, <code>data-mr-shell-action</code>, and
+      <code>data-mr-shell-part</code>.
+    </p>
+    <p>
+      JavaScript queries only those <code>data-mr-*</code> hooks. The toggle
+      receives <code>aria-expanded</code>/<code>aria-controls</code>; drawer lifecycle
+      uses <code>data-mr-state</code> and the overlay uses native <code>hidden</code>.
+    </p>
+
+    <p>
+      Without JavaScript the sidebar remains visible and enhancement-only
+      toggle/dismiss controls remain hidden, preserving access to navigation.
+    </p>
+    <h2>Complete structure</h2>
+    <pre data-mr-copyable><code>{shellStructure}</code></pre>
+
+    <h2>Live demo</h2>
+    <p>
+      The same contract is used by the documentation site and the
+      <a href={`${base}demo-internal/application-shell`}>standalone demo</a>.
+    </p>
+    <iframe src={`${base}demo-internal/application-shell`}></iframe>
+
+    <h2>Standalone top bar</h2>
+    <pre data-mr-copyable><code>{standaloneTopbar}</code></pre>
+  </main>
+</FullNavigationLayout>

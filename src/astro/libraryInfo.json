@@ -1,9 +1,12 @@
 {
-  "headerLinks": [
+  "packageImports": [
     {
-      "classlessLibrary": "<link rel=\"stylesheet\" href=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.12\/dist\/markup-refine-lib.min.css\" \/>\r\n",
-      "webComponentsJs": "<script src=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.12\/dist\/webComponents.js\"><\/script>",
-      "webComponentsCss": "<link rel=\"stylesheet\" href=\"https:\/\/cdn.jsdelivr.net\/gh\/bartlomiej-aleksiejczyk\/markup-refine-lib@0.6.12\/dist\/webComponents.css\" \/>"
+      "completeCss": "import \"markup-refine-lib/css\";",
+      "behaviorJs": "import \"markup-refine-lib/behaviors\";",
+      "tokensCss": "import \"markup-refine-lib/tokens\";",
+      "baseCss": "import \"markup-refine-lib/base\";",
+      "componentsCss": "import \"markup-refine-lib/components\";",
+      "layoutCss": "import \"markup-refine-lib/layout\";",
     }
   ]
 }

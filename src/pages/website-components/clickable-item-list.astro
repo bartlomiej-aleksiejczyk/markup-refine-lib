@@ -1,57 +1,46 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
-import { base } from "astro:config/client";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 
-const clickableListSnippet = `<ul class="clickable-item-list">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">About</a></li>
-  <li>
-    <details>
-      <summary><a>Services</a></summary>
-      <ul>
-        <li>
-          <a href="#">Web</a>
-        </li>
-        <li><a href="#">Mobile Apps</a></li>
-        <li>
-          <details>
-            <summary>Consulting</summary>
-            <ul>
-              <li><a href="#">Strategy</a></li>
-              <li><a href="#">Marketing</a></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </details>
-  </li>
-  <li><a href="#">Contact</a></li>
+const clickableListSnippet = `<div>
+  <input data-mr-clickable-list-filter placeholder="Filter menu...">
+  <ul class="mr-clickable-list" data-mr-clickable-list>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li>
+      <details>
+        <summary><a>Services</a></summary>
+        <ul>
+          <li><a href="#">Web</a></li>
+          <li><a href="#">Mobile Apps</a></li>
+        </ul>
+      </details>
+    </li>
+  </ul>
+</div>`;
+
+const autoselectSnippet = `<ul
+  class="mr-clickable-list"
+  data-mr-clickable-list-autoselect
+>
+  <li><a href="/">Home</a></li>
+  <li><a href="/docs">Docs</a></li>
 </ul>`;
 ---
 
-<LibraryStyleLayout>
-  <main class="responsive-container stt-navigation-main-content">
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
     <h1>Clickable Item List</h1>
-
     <p>
-      To use the Clickable Item List, add <code>clickable-item-list</code> class
-      to your unordered list root element.
+      <code>mr-clickable-list</code> is presentation. Use
+      <code>data-mr-clickable-list</code> only when JavaScript needs a stable
+      list root, such as when pairing the list with a filter input.
     </p>
-
-    <p>This list also handles collapsing via <code>details</code>.</p>
-
-    <h2>Full Usage Example:</h2>
-
-    <pre data-copyable-snippet><code>{clickableListSnippet}</code></pre>
-
-    <h2>Rendered snippet:</h2>
-
-    <input
-      type="text"
-      data-clickable-item-list-filter
-      placeholder="Filter menu..."
-    />
-
+    <p>Nested disclosure uses native <code>&lt;details&gt;</code>.</p>
+    <h2>Filterable list</h2>
+    <pre data-mr-copyable><code>{clickableListSnippet}</code></pre>
     <Fragment set:html={clickableListSnippet} />
+    <h2>Current-URL selection</h2>
+    <p>The matching link receives <code>aria-current="page"</code>. No selected presentation class is required by JavaScript.</p>
+    <pre data-mr-copyable><code>{autoselectSnippet}</code></pre>
   </main>
-</LibraryStyleLayout>
+</FullNavigationLayout>

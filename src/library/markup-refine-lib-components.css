@@ -1,0 +1,16 @@
+@layer mr.tokens, mr.base, mr.components, mr.layout, mr.utilities;
+
+@import "components/asciiImage/ascii-image.css" layer(mr.components);
+@import "components/breadcrumbs/breadcrumbs.css" layer(mr.components);
+@import "components/button/button.css" layer(mr.components);
+@import "components/card/card.css" layer(mr.components);
+@import "components/clickableItemList/clickable-item-list.css" layer(mr.components);
+@import "components/copyableSnippet/copyable-snippet.css" layer(mr.components);
+@import "components/resettableFileInput/resettable-file-input.css" layer(mr.components);
+@import "components/datalistRangeLabels/datalist-range-labels.css" layer(mr.components);
+@import "components/navbarComponents/navbar-components.css" layer(mr.components);
+@import "components/navigationTabs/navigation-tabs.css" layer(mr.components);
+@import "components/pill/pill.css" layer(mr.components);
+@import "components/searchTool/search-tool.css" layer(mr.components);
+@import "components/applicationShell/application-shell.css" layer(mr.components);
+@import "components/treeListContainer/tree-list-container.css" layer(mr.components);

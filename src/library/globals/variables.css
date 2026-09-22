@@ -1,103 +1,110 @@
+/*
+ * Markup Refine canonical design tokens.
+ *
+ * Stable entry points expose only the namespaced `--mr-*` token API.
+ */
 :root {
-  /* ================= */
-  /* Global Colors */
-
-  --color-link: hsl(200, 100%, 30%);
-  --color-link-visited: hsl(234, 50%, 30%);
-  --color-link-hover: hsl(210, 100%, 20%);
-
-  --color-primary: hsl(0, 0%, 41%);
-  --color-primary-darker: hsl(0, 0%, 32%);
-  --color-primary-lighter: hsl(0, 0%, 55%);
-
-  --color-secondary: hsl(0, 0%, 87%);
-  --color-secondary-darker: hsl(0, 0%, 71%);
-  --color-secondary-lighter: hsl(0, 0%, 94%);
-
-  --color-text-primary: hsl(0, 0%, 20%);
-  --color-text-secondary: hsl(0, 0%, 33%);
-  --color-text-on-primary: hsl(0, 0%, 100%);
-  --color-text-on-primary-darker: hsl(0, 0%, 90%);
-  --color-text-on-secondary: hsl(0, 0%, 25%);
-
-  --color-background: hsl(0, 0%, 100%);
-  --color-background-light-contrast: hsl(0, 0%, 94%);
-
-  --color-positive-darker: hsl(105, 48%, 64%);
-  --color-positive: hsl(100, 69%, 87%);
-
-  --color-negative-darker: hsl(0, 57%, 49%);
-  --color-negative: hsl(0, 69%, 87%);
-
-  --color-warning: hsl(40, 71%, 86%);
-  --color-warning-darker: hsl(36, 58%, 55%);
-
-  --color-info: hsl(220, 69%, 87%);
-  --color-info-darker: hsl(227, 48%, 64%);
-
-  --color-help: hsl(260, 69%, 87%);
-  --color-help-darker: hsl(257, 48%, 64%);
-
-  --color-main-text-area-darker: hsl(0, 0%, 97%);
-  --color-main-text-area: hsl(0, 0%, 100%);
-  --color-main-text: hsl(0, 0%, 0%);
-  --color-overlay: rgba(0, 0, 0, 0.3);
-
-  /* ================= */
-  /* Global Properties */
-
-  --max-container-width: 55rem;
-  --border-radius-medium: 3px;
-  --border-radius-large: 5px;
-
-  /* ======================= */
-  /* Screen size breakpoints */
-  /* Do not work because CSS variables aren't supported in media queries. Need to wait till the spec update. */
-  /* --screen-xs: 480px;
-    --screen-sm: 768px;
-    --screen-md: 1200px; */
+  --mr-color-link: hsl(200, 100%, 30%);
+  --mr-color-link-visited: hsl(234, 50%, 30%);
+  --mr-color-link-hover: hsl(210, 100%, 20%);
+  --mr-color-primary: hsl(0, 0%, 41%);
+  --mr-color-primary-darker: hsl(0, 0%, 32%);
+  --mr-color-primary-lighter: hsl(0, 0%, 55%);
+  --mr-color-secondary: hsl(0, 0%, 87%);
+  --mr-color-secondary-darker: hsl(0, 0%, 71%);
+  --mr-color-secondary-lighter: hsl(0, 0%, 94%);
+  --mr-color-text-primary: hsl(0, 0%, 20%);
+  --mr-color-text-secondary: hsl(0, 0%, 33%);
+  --mr-color-text-on-primary: hsl(0, 0%, 100%);
+  --mr-color-text-on-primary-darker: hsl(0, 0%, 90%);
+  --mr-color-text-on-secondary: hsl(0, 0%, 25%);
+  --mr-color-background: hsl(0, 0%, 100%);
+  --mr-color-background-light-contrast: hsl(0, 0%, 94%);
+  --mr-color-positive-darker: hsl(105, 48%, 64%);
+  --mr-color-positive: hsl(100, 69%, 87%);
+  --mr-color-negative-darker: hsl(0, 57%, 49%);
+  --mr-color-negative: hsl(0, 69%, 87%);
+  --mr-color-warning: hsl(40, 71%, 86%);
+  --mr-color-warning-darker: hsl(36, 58%, 55%);
+  --mr-color-info: hsl(220, 69%, 87%);
+  --mr-color-info-darker: hsl(227, 48%, 64%);
+  --mr-color-help: hsl(260, 69%, 87%);
+  --mr-color-help-darker: hsl(257, 48%, 64%);
+  --mr-color-main-text-area-darker: hsl(0, 0%, 97%);
+  --mr-color-main-text-area: hsl(0, 0%, 100%);
+  --mr-color-main-text: hsl(0, 0%, 0%);
+  --mr-color-overlay: rgba(0, 0, 0, 0.3);
+  --mr-container-max-width: 55rem;
+  --mr-radius-medium: 3px;
+  --mr-radius-large: 5px;
+  --mr-font-family-sans: "Verdana", "Noto Sans", sans-serif;
+  --mr-font-family-serif: Georgia, "Liberation Serif", serif;
+  --mr-font-family-mono: "Courier New", Courier, monospace;
+  --mr-line-height-body: 1.6;
+  --mr-space-xs: 0.25rem;
+  --mr-space-sm: 0.5rem;
+  --mr-space-md: 1rem;
+  --mr-space-lg: 1.5rem;
+  --mr-stack-gap: 1rem;
+  --mr-cluster-gap: 0.5rem;
+  --mr-cluster-align: center;
+  --mr-inline-gap: 0.5rem;
+  --mr-grid-gap: 1rem;
+  --mr-grid-min-column-size: 16rem;
+  --mr-container-padding-inline: clamp(0.5rem, 2vw, 1rem);
+  --mr-control-padding: 0.5rem;
+  --mr-control-border-width: 2px;
+  --mr-button-border-width: 3px;
+  --mr-control-font-size: 1.3rem;
+  --mr-focus-outline-width: 1px;
+  --mr-focus-outline-style: dashed;
+  --mr-focus-outline-offset: -0.25rem;
+  --mr-motion-duration-short: 0.1s;
+  --mr-motion-duration-fast: 0.2s;
+  --mr-motion-duration-medium: 0.25s;
+  --mr-motion-duration-normal: 0.3s;
+  --mr-overlay-blur: 3px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-link: hsl(200, 60%, 50%);
-    --color-link-visited: hsl(234, 50%, 60%);
-    --color-link-hover: hsl(213, 100%, 70%);
+    --mr-color-link: hsl(200, 60%, 50%);
+    --mr-color-link-visited: hsl(234, 50%, 60%);
+    --mr-color-link-hover: hsl(213, 100%, 70%);
+    --mr-color-primary: hsl(0, 0%, 31%);
+    --mr-color-primary-darker: hsl(0, 0%, 25%);
+    --mr-color-primary-lighter: hsl(0, 0%, 47%);
+    --mr-color-secondary: hsl(0, 0%, 40%);
+    --mr-color-secondary-darker: hsl(0, 0%, 29%);
+    --mr-color-secondary-lighter: hsl(0, 0%, 48%);
+    --mr-color-text-primary: hsl(0, 0%, 87%);
+    --mr-color-text-secondary: hsl(0, 0%, 73%);
+    --mr-color-text-on-primary: hsl(0, 0%, 83%);
+    --mr-color-text-on-primary-darker: hsl(0, 0%, 73%);
+    --mr-color-text-on-secondary: hsl(0, 0%, 85%);
+    --mr-color-background: hsl(0, 0%, 19%);
+    --mr-color-background-light-contrast: hsl(0, 0%, 16%);
+    --mr-color-positive-darker: hsl(120, 20%, 50%);
+    --mr-color-positive: hsl(120, 33%, 30%);
+    --mr-color-negative-darker: hsl(0, 20%, 50%);
+    --mr-color-negative: hsl(0, 33%, 30%);
+    --mr-color-warning: hsl(39, 40%, 50%);
+    --mr-color-warning-darker: hsl(34, 50%, 40%);
+    --mr-color-info: hsl(210, 50%, 60%);
+    --mr-color-info-darker: hsl(210, 43%, 47%);
+    --mr-color-help: hsl(250, 25%, 42%);
+    --mr-color-help-darker: hsl(255, 26%, 27%);
+    --mr-color-main-text-area-darker: hsl(0, 0%, 12%);
+    --mr-color-main-text-area: hsl(0, 0%, 15%);
+    --mr-color-main-text: hsl(0, 0%, 100%);
+  }
+}
 
-    --color-primary: hsl(0, 0%, 31%);
-    --color-primary-darker: hsl(0, 0%, 25%);
-    --color-primary-lighter: hsl(0, 0%, 47%);
-
-    --color-secondary: hsl(0, 0%, 40%);
-    --color-secondary-darker: hsl(0, 0%, 29%);
-    --color-secondary-lighter: hsl(0, 0%, 48%);
-
-    --color-text-primary: hsl(0, 0%, 87%);
-    --color-text-secondary: hsl(0, 0%, 73%);
-    --color-text-on-primary: hsl(0, 0%, 83%);
-    --color-text-on-primary-darker: hsl(0, 0%, 73%);
-    --color-text-on-secondary: hsl(0, 0%, 85%);
-
-    --color-background: hsl(0, 0%, 19%);
-    --color-background-light-contrast: hsl(0, 0%, 16%);
-
-    --color-positive-darker: hsl(120, 20%, 50%);
-    --color-positive: hsl(120, 33%, 30%);
-
-    --color-negative-darker: hsl(0, 20%, 50%);
-    --color-negative: hsl(0, 33%, 30%);
-
-    --color-warning: hsl(39, 40%, 50%);
-    --color-warning-darker: hsl(34, 50%, 40%);
-
-    --color-info: hsl(210, 50%, 60%);
-    --color-info-darker: hsl(210, 43%, 47%);
-
-    --color-help: hsl(250, 25%, 42%);
-    --color-help-darker: hsl(255, 26%, 27%);
-
-    --color-main-text-area-darker: hsl(0, 0%, 12%);
-    --color-main-text-area: hsl(0, 0%, 15%);
-    --color-main-text: hsl(0, 0%, 100%);
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mr-motion-duration-short: 0s;
+    --mr-motion-duration-fast: 0s;
+    --mr-motion-duration-medium: 0s;
+    --mr-motion-duration-normal: 0s;
   }
 }

@@ -1,0 +1,72 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const basic = `<section data-mr>
+  <h2>Refined island</h2>
+  <button>Refined button</button>
+</section>`;
+
+const optOut = `<section data-mr>
+  <button>Refined</button>
+
+  <div data-mr-unstyled>
+    <button>Host/native styles</button>
+
+    <section data-mr>
+      <button>Refined again</button>
+    </section>
+  </div>
+</section>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Scoped semantic HTML</h1>
+    <p>
+      Importing Markup Refine does not globally restyle ordinary host markup.
+      Add <code>data-mr</code> to the document or subtree that should receive the
+      semantic reset and native-element styling.
+    </p>
+    <pre data-mr-copyable><code>{basic}</code></pre>
+
+    <h2>Host and refined island side by side</h2>
+    <div class="mr-grid">
+      <section data-mr-unstyled>
+        <h3>Host HTML</h3>
+        <p>This section has no semantic Markup Refine scope.</p>
+        <button type="button">Host button</button>
+      </section>
+      <section data-mr>
+        <h3>Markup Refine island</h3>
+        <p>The same native elements are refined inside this boundary.</p>
+        <button type="button">Refined button</button>
+      </section>
+    </div>
+
+    <h2>Opt out and re-enter</h2>
+    <p>
+      <code>data-mr-unstyled</code> stops the semantic scope for one element or an
+      entire subtree. A nested <code>data-mr</code> scope explicitly opts back in.
+    </p>
+    <pre data-mr-copyable><code>{optOut}</code></pre>
+
+    <h2>Per-island themes</h2>
+    <p>
+      Tokens inherit normally, so separate islands can override <code>--mr-*</code>
+      values independently without selector duplication.
+    </p>
+    <pre data-mr-copyable><code>{`.billing-admin {
+  --mr-color-primary: hsl(215 70% 42%);
+}
+
+.reporting-admin {
+  --mr-color-primary: hsl(145 55% 35%);
+}`}</code></pre>
+
+    <h2>Browser requirement</h2>
+    <p>
+      The semantic boundary uses native CSS <code>@scope</code>. Markup Refine does
+      not ship an old-browser scoping polyfill.
+    </p>
+  </main>
+</FullNavigationLayout>

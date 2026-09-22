@@ -1,0 +1,6 @@
+:where(.mr-container) {
+  box-sizing: border-box;
+  inline-size: min(100%, var(--mr-container-max-width));
+  margin-inline: auto;
+  padding-inline: var(--mr-container-padding-inline);
+}

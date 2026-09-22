@@ -1,0 +1,7 @@
+:where(.mr-inline) {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: var(--mr-inline-gap);
+  align-items: baseline;
+  max-inline-size: 100%;
+}

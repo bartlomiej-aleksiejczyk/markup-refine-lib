@@ -1,0 +1,43 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Migrating to the stable API</h1>
+    <p>
+      The stable package has no compatibility CSS or behavior adapter. Convert
+      older markup before upgrading.
+    </p>
+
+    <h2>Semantic scope</h2>
+    <p>
+      Add <code>data-mr</code> to every subtree that should receive semantic/reset
+      styling. Replace the transitional <code>.mdl-scope</code> root with
+      <code>[data-mr]</code>.
+    </p>
+
+    <h2>Package imports</h2>
+    <p>
+      Use <code>markup-refine-lib/css</code> and, when needed,
+      <code>markup-refine-lib/behaviors</code>. Compatibility and direct historical
+      <code>dist/*</code> package imports are no longer exported.
+    </p>
+
+    <h2>Common mappings</h2>
+    <table>
+      <thead><tr><th>Older API</th><th>Stable API</th></tr></thead>
+      <tbody>
+        <tr><td><code>.card</code></td><td><code>.mr-card</code></td></tr>
+        <tr><td><code>.pill</code></td><td><code>.mr-pill</code></td></tr>
+        <tr><td><code>.group</code></td><td><code>.mr-cluster</code></td></tr>
+        <tr><td><code>.responsive-container</code></td><td><code>.mr-container</code></td></tr>
+        <tr><td><code>.stt-component</code></td><td><code>.mr-shell</code></td></tr>
+        <tr><td><code>data-copyable-snippet</code></td><td><code>data-mr-copyable</code></td></tr>
+        <tr><td><code>data-search-tool</code></td><td><code>data-mr-search</code></td></tr>
+        <tr><td><code>data-stt-action</code></td><td><code>data-mr-shell-action</code></td></tr>
+        <tr><td><code>--color-primary</code></td><td><code>--mr-color-primary</code></td></tr>
+      </tbody>
+    </table>
+  </main>
+</FullNavigationLayout>

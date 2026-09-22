@@ -1,0 +1,3 @@
+@layer mr.tokens, mr.base, mr.components, mr.layout, mr.utilities;
+
+@import "globals/variables.css" layer(mr.tokens);

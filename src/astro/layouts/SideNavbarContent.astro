@@ -3,59 +3,57 @@ interface Props {}
 import { base } from "astro:config/client";
 ---
 
-<div class="stt-primary-sidebar-top">
+<div class="mr-shell__sidebar-header">
   <h2>Menu</h2>
-  <button data-stt-action="dismiss" class="stt-button">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="40px"
-      viewBox="0 -960 960 960"
-      width="40px"
-    >
-      <path
-        d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
-      ></path>
+  <button data-mr-shell-action="dismiss" class="mr-shell__button mr-shell__dismiss" aria-label="Close navigation">
+    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">
+      <path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"></path>
     </svg>
   </button>
 </div>
 
 <div>
   <hr />
-  <ul class="clickable-item-list">
-    <li><a href="#">Quick start</a></li>
-    <li><a href="#">Installation</a></li>
+  <ul class="mr-clickable-list" data-mr-clickable-list-autoselect>
+    <li><a href=`${base}`>Quick start</a></li>
+    <li>
+      <details open>
+        <summary><a>Usage</a></summary>
+        <ul>
+          <li><a href=`${base}usage/scoped-mode/`>Scoped semantic HTML</a></li>
+          <li><a href=`${base}usage/theming/`>Theming and tokens</a></li>
+          <li><a href=`${base}usage/component-api/`>Component API</a></li>
+          <li><a href=`${base}usage/layout/`>Layout primitives</a></li>
+          <li><a href=`${base}usage/progressive-enhancement/`>Progressive enhancement</a></li>
+          <li><a href=`${base}usage/package-exports/`>Package exports</a></li>
+        </ul>
+      </details>
+    </li>
     <li>
       <details open>
         <summary><a>Content components</a></summary>
         <ul>
-          <li><a href="#">Buttons</a></li>
-          <li><a href="#">Card</a></li>
-          <li><a href="#">Pill</a></li>
-          <li><a href="#">Breadcrumbs</a></li>
-          <li><a href="#">Copyable snippet</a></li>
-          <li><a href="#">Clickable item list</a></li>
-          <li><a href="#">Tree list container</a></li>
-          <li><a href="#">Datalist range labels</a></li>
+          <li><a href=`${base}website-components/button/`>Button</a></li>
+          <li><a href=`${base}website-components/card/`>Card</a></li>
+          <li><a href=`${base}website-components/pill/`>Pill</a></li>
+          <li><a href=`${base}website-components/breadcrumbs/`>Breadcrumbs</a></li>
+          <li><a href=`${base}website-components/copyable-snippet/`>Copyable snippet</a></li>
+          <li><a href=`${base}website-components/clickable-item-list/`>Clickable item list</a></li>
+          <li><a href=`${base}website-components/tree-list-container/`>Tree list container</a></li>
+          <li><a href=`${base}website-components/datalist-range-labels/`>Datalist range labels</a></li>
         </ul>
       </details>
     </li>
     <li>
       <details open>
-        <summary><a>Layout and Element Position</a></summary>
+        <summary><a>Navigation components</a></summary>
         <ul>
-          <li><a href="#">Responsive container</a></li>
-          <li><a href="#">Group</a></li>
-          <li><a href="#">Inline display</a></li>
-          <li><a href="#">Floating element</a></li>range labels
+          <li><a href=`${base}website-components/application-shell/`>Application shell</a></li>
+          <li><a href=`${base}website-components/navigation-tabs/`>Navigation tabs</a></li>
+          <li><a href=`${base}website-components/tabs/`>Tabs</a></li>
+          <li><a href=`${base}website-components/search-tool/`>Search tool</a></li>
         </ul>
       </details>
     </li>
   </ul>
-  <details open>
-    <summary><a>Navigation components</a></summary>
-    <ul>
-      <li><a href="#">Side top top navigation</a></li>
-      <li><a href="#">Navigation bar components</a></li>
-    </ul>
-  </details>
 </div>

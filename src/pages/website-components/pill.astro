@@ -1,0 +1,29 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const pillSnippet = `<span class="mr-pill">Tech</span>
+<span class="mr-pill mr-pill--secondary">Design</span>
+<span class="mr-pill mr-pill--positive">Success</span>
+<span class="mr-pill mr-pill--negative">Error</span>
+<span class="mr-pill mr-pill--warning">Warning</span>
+<span class="mr-pill mr-pill--info">Info</span>
+<span class="mr-pill mr-pill--help">Help</span>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Pill</h1>
+    <p>
+      Use <code>mr-pill</code> on the element and a namespaced modifier such as
+      <code>mr-pill--info</code> when a semantic color variant is needed.
+    </p>
+    <h2>Example usage</h2>
+    <pre data-mr-copyable><code>{pillSnippet}</code></pre>
+    <h2>Rendered example</h2>
+    <Fragment set:html={pillSnippet} />
+    <p>
+      Layout around multiple pills is intentionally handled by the layout API;
+      combine pills with <code>mr-cluster</code> when they need wrapping horizontal layout.
+    </p>
+  </main>
+</FullNavigationLayout>

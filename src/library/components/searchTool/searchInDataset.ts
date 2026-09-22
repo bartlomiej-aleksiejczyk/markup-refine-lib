@@ -1,4 +1,14 @@
-export function searchInDataset(dataset, query, options = {}) {
+type SearchDatasetOptions = {
+  keys?: string[];
+  caseSensitive?: boolean;
+  minMatchCharLength?: number;
+};
+
+export function searchInDataset(
+  dataset: Array<Record<string, any>>,
+  query: string,
+  options: SearchDatasetOptions = {},
+) {
   const {
     keys = ["title", "content"],
     caseSensitive = false,
@@ -32,7 +42,7 @@ export function searchInDataset(dataset, query, options = {}) {
       results.push({
         item,
         matches,
-        score: 1 - query.length / (item.title?.length || 100), // basic score
+        score: 1 - query.length / (item.title?.length || 100),
       });
     }
   }

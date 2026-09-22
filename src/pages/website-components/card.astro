@@ -1,0 +1,31 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const cardSnippet = `<article class="mr-card">
+  <p>Simple related content.</p>
+</article>
+
+<article class="mr-card mr-card--positive">
+  <header>Our Vision</header>
+  <p>Use semantic structure where HTML already describes the part.</p>
+</article>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container">
+    <h1>Card</h1>
+    <p>
+      Use <code>mr-card</code> as the component root. A direct semantic
+      <code>&lt;header&gt;</code> is styled automatically, so a header-specific
+      class is normally unnecessary.
+    </p>
+    <p>
+      Variants use namespaced modifiers such as <code>mr-card--positive</code>,
+      <code>mr-card--warning</code>, and <code>mr-card--elevated</code>.
+    </p>
+    <h2>Example usage</h2>
+    <pre data-mr-copyable><code>{cardSnippet}</code></pre>
+    <h2>Rendered example</h2>
+    <Fragment set:html={cardSnippet} />
+  </main>
+</FullNavigationLayout>

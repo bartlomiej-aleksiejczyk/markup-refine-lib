@@ -1,43 +1,67 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 import { base } from "astro:config/client";
 
-const navigationTabsSnippet = `<nav class="navigation-tabs" data-navigation-tabs-autoselector>
-  <a> List Templates</a>
-  <a href="${base}website-components/navigation-tabs"> This Page </a>
-  <a> List Jobs</a>
-  <a> New Job</a>
+const navigationTabsSnippet = `<nav class="mr-nav-tabs" data-mr-nav-tabs-autoselect>
+  <a href="${base}">Home</a>
+  <a href="${base}website-components/navigation-tabs">This page</a>
+  <a href="${base}website-components/card">Cards</a>
 </nav>`;
-const navigationTabsSnippetSemantic = `<nav class="navigation-tabs">
+
+const navigationTabsSemantic = `<nav class="mr-nav-tabs" aria-label="Section navigation">
   <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Clients</a></li>
-    <li><a href="#">Contact Us</a></li>
+    <li><a href="/home">Home</a></li>
+    <li><a href="/about" aria-current="page">About</a></li>
+    <li><a href="/contact">Contact</a></li>
   </ul>
-</nav>`
+</nav>`;
+
+const navigationTabsInteractive = `<nav class="mr-nav-tabs" role="tablist" aria-label="Example tabs">
+  <ul>
+    <li><button data-mr-tab="demo-1" data-mr-tabs-group="demo">Home</button></li>
+    <li><button data-mr-tab="demo-2" data-mr-tabs-group="demo">About</button></li>
+  </ul>
+</nav>
+
+<section data-mr-panel="demo-1" data-mr-tabs-group="demo" data-mr-tabs-default>
+  Home content
+</section>
+<section data-mr-panel="demo-2" data-mr-tabs-group="demo">
+  About content
+</section>`;
 ---
 
-<LibraryStyleLayout>
-  <div class="responsive-container">
-    <h1>Navigation Tabs</h1>
-    
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Navigation tabs</h1>
     <p>
-      Use the <code>navigation-tabs</code> class on any element to make it navigation tabs.
+      Use <code>mr-nav-tabs</code> for presentation. Multi-page navigation can
+      opt into current-URL enhancement with
+      <code>data-mr-nav-tabs-autoselect</code>.
     </p>
     <p>
-      Add <code>data-navigation-tabs-autoselector</code> attribute to select currently choose tab.
+      For authored current-page state, prefer the semantic
+      <code>aria-current="page"</code> attribute. Autoselection writes the same
+      attribute rather than a presentation modifier class.
     </p>
-    
-    <h2>Example usage:</h2>
-    <pre data-copyable-snippet><code>{navigationTabsSnippet}</code></pre>
-    
-    <h2>Rendered snippet:</h2>
+
+    <h2>Multi-page navigation</h2>
+    <pre data-mr-copyable><code>{navigationTabsSnippet}</code></pre>
     <Fragment set:html={navigationTabsSnippet} />
-    <p>Also more semantic version is supported</p>
-    <pre data-copyable-snippet><code>{navigationTabsSnippetSemantic}</code></pre>
-    
-    <h2>Rendered snippet:</h2>
-    <Fragment set:html={navigationTabsSnippetSemantic} />
-  </div>
-</LibraryStyleLayout>
+
+    <h2>Semantic current page</h2>
+    <pre data-mr-copyable><code>{navigationTabsSemantic}</code></pre>
+    <Fragment set:html={navigationTabsSemantic} />
+
+    <h2>Single-page tab relationship</h2>
+    <p>
+      <code>data-mr-tab</code>, <code>data-mr-panel</code>, and
+      <code>data-mr-tabs-group</code> connect triggers to panels. The enhancement
+      supplies <code>role="tab"</code>/<code>role="tabpanel"</code>,
+      <code>aria-selected</code>, roving <code>tabindex</code>, relationships, and
+      native <code>hidden</code> state. Arrow keys plus Home/End move and activate tabs.
+    </p>
+    <pre data-mr-copyable><code>{navigationTabsInteractive}</code></pre>
+    <Fragment set:html={navigationTabsInteractive} />
+  </main>
+</FullNavigationLayout>

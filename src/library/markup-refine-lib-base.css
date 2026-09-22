@@ -1,0 +1,11 @@
+@layer mr.tokens, mr.base, mr.components, mr.layout, mr.utilities;
+
+@import "globals/reset.css" layer(mr.base);
+@import "globals/native-elements.css" layer(mr.base);
+@import "globals/specialized-native-elements/button.css" layer(mr.base);
+@import "globals/specialized-native-elements/forms.css" layer(mr.base);
+@import "globals/specialized-native-elements/headings.css" layer(mr.base);
+@import "globals/specialized-native-elements/links.css" layer(mr.base);
+@import "globals/specialized-native-elements/lists.css" layer(mr.base);
+@import "globals/specialized-native-elements/formatted-texts.css" layer(mr.base);
+@import "globals/specialized-native-elements/table.css" layer(mr.base);

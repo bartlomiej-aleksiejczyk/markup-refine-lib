@@ -1,36 +1,37 @@
-.pill {
-  border: 1px solid var(--color-primary-darker);
-  background-color: var(--color-primary-lighter);
+:where(.mr-pill) {
+  border: 1px solid var(--mr-color-primary-darker);
+  background-color: var(--mr-color-primary-lighter);
   padding: 0.1rem 0.2rem;
-  border-radius: var(--border-radius-large);
+  border-radius: var(--mr-radius-large);
   margin: 0.2rem;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-  &.secondary {
-    border-color: var(--color-secondary-darker);
-    background-color: var(--color-secondary);
+
+  &:where(.mr-pill--secondary) {
+    border-color: var(--mr-color-secondary-darker);
+    background-color: var(--mr-color-secondary);
   }
-  &.positive {
-    border-color: var(--color-positive-darker);
-    background-color: var(--color-positive);
+  &:where(.mr-pill--positive) {
+    border-color: var(--mr-color-positive-darker);
+    background-color: var(--mr-color-positive);
   }
-  &.negative {
-    border-color: var(--color-negative-darker);
-    background-color: var(--color-negative);
+  &:where(.mr-pill--negative) {
+    border-color: var(--mr-color-negative-darker);
+    background-color: var(--mr-color-negative);
   }
-  &.warning {
-    border-color: var(--color-warning-darker);
-    background-color: var(--color-warning);
+  &:where(.mr-pill--warning) {
+    border-color: var(--mr-color-warning-darker);
+    background-color: var(--mr-color-warning);
   }
-  &.info {
-    border-color: var(--color-info-darker);
-    background-color: var(--color-info);
+  &:where(.mr-pill--info) {
+    border-color: var(--mr-color-info-darker);
+    background-color: var(--mr-color-info);
   }
-  &.help {
-    border-color: var(--color-help-darker);
-    background-color: var(--color-help);
+  &:where(.mr-pill--help) {
+    border-color: var(--mr-color-help-darker);
+    background-color: var(--mr-color-help);
   }
 }

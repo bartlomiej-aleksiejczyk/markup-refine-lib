@@ -1,69 +1,72 @@
-export function initCopyableSnippet() {
-  // Add copy buttons
-  document.querySelectorAll("[data-copyable-snippet]").forEach((pre) => {
-    const code = pre.querySelector("code");
-    if (code && !pre.querySelector(".copyable-snippet-button")) {
-      const btn = document.createElement("button");
-      btn.className = "copyable-snippet-button";
-      btn.setAttribute("aria-label", "Copy");
-      btn.textContent = "📋";
-      pre.appendChild(btn);
-    }
-  });
-
-  // Handle button click
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".copyable-snippet-button");
-    if (!btn) return;
-
-    const pre = btn.closest("[data-copyable-snippet]");
-    if (!pre) return;
+export function initCopyableSnippet(root: ParentNode = document) {
+  root.querySelectorAll<HTMLElement>("[data-mr-copyable]").forEach((pre) => {
+    if (pre.dataset.mrCopyableInitialized === "true") return;
 
     const code = pre.querySelector("code");
     if (!code) return;
 
-    const text = code.textContent;
-    if (!text) return;
+    pre.dataset.mrCopyableInitialized = "true";
+    if (pre.querySelector("[data-mr-copy-action]")) return;
 
-    const original = btn.textContent;
-
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          btn.disabled = true;
-          btn.textContent = "✅";
-          setTimeout(() => {
-            btn.textContent = original;
-            btn.disabled = false;
-          }, 1000);
-        })
-        .catch(() => fallbackCopy(text, btn, original));
-    } else {
-      fallbackCopy(text, btn, original);
-    }
+    const button = document.createElement("button");
+    button.className = "mr-copy-button";
+    button.setAttribute("data-mr-copy-action", "");
+    button.setAttribute("aria-label", "Copy code");
+    button.type = "button";
+    button.textContent = "📋";
+    pre.appendChild(button);
+    button.addEventListener("click", () => copySnippet(pre, button));
   });
+}
 
-  function fallbackCopy(text, btn, original) {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
-    document.body.appendChild(textarea);
-    textarea.select();
-    try {
-      const successful = document.execCommand("copy");
-      if (successful) {
-        btn.textContent = "✅";
-      } else {
-        btn.textContent = "❌";
-      }
-    } catch (err) {
-      console.warn("Fallback copy failed:", err);
-      btn.textContent = "❌";
-    }
+async function copySnippet(pre: HTMLElement, button: HTMLButtonElement) {
+  const code = pre.querySelector("code");
+  const text = code?.textContent;
+  if (!text) return;
 
-    document.body.removeChild(textarea);
-    setTimeout(() => (btn.textContent = original), 1000);
+  const originalText = button.textContent;
+  const originalLabel = button.getAttribute("aria-label") ?? "Copy code";
+
+  try {
+    if (!navigator.clipboard || !window.isSecureContext) throw new Error("Clipboard API unavailable");
+    await navigator.clipboard.writeText(text);
+    showCopyResult(button, true, originalText, originalLabel);
+  } catch {
+    showCopyResult(button, fallbackCopy(text), originalText, originalLabel);
   }
+}
+
+function fallbackCopy(text: string) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    return document.execCommand("copy");
+  } catch (error) {
+    console.warn("Fallback copy failed:", error);
+    return false;
+  } finally {
+    textarea.remove();
+  }
+}
+
+function showCopyResult(
+  button: HTMLButtonElement,
+  success: boolean,
+  originalText: string | null,
+  originalLabel: string,
+) {
+  button.disabled = true;
+  button.textContent = success ? "✅" : "❌";
+  button.setAttribute("aria-label", success ? "Copied" : "Copy failed");
+
+  window.setTimeout(() => {
+    button.textContent = originalText;
+    button.setAttribute("aria-label", originalLabel);
+    button.disabled = false;
+  }, 1000);
 }

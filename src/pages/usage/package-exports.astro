@@ -1,0 +1,35 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+import { packageMeta } from "../../astro/packageMeta";
+
+const install = `npm install ${packageMeta.name}`;
+const complete = `import "${packageMeta.name}/css";\nimport "${packageMeta.name}/behaviors";`;
+const focused = `import "${packageMeta.name}/tokens";\nimport "${packageMeta.name}/base";\nimport "${packageMeta.name}/components";\nimport "${packageMeta.name}/layout";`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Package exports</h1>
+    <p>
+      The package exposes only stable scoped/namespaced entry points. This page
+      reads the package name/version from <code>package.json</code>.
+    </p>
+
+    <h2>Install</h2>
+    <pre data-mr-copyable><code>{install}</code></pre>
+
+    <h2>Complete CSS + optional behavior</h2>
+    <pre data-mr-copyable><code>{complete}</code></pre>
+
+    <h2>Focused layers</h2>
+    <pre data-mr-copyable><code>{focused}</code></pre>
+    <p>Import tokens before base/components/layout when using focused entries standalone.</p>
+
+    <h2>Build outputs</h2>
+    <p>
+      Maintainer builds produce unminified and <code>.min.*</code> variants plus
+      source maps. After building, <code>npm run check:release</code> validates the
+      generated package contract before publish.
+    </p>
+  </main>
+</FullNavigationLayout>
