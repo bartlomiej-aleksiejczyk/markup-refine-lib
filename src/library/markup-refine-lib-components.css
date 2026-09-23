@@ -11,6 +11,8 @@
 @import "components/navbarComponents/navbar-components.css" layer(mr.components);
 @import "components/navigationTabs/navigation-tabs.css" layer(mr.components);
 @import "components/pill/pill.css" layer(mr.components);
+@import "components/layer/layer.css" layer(mr.components);
+@import "components/tooltip/tooltip.css" layer(mr.components);
 @import "components/searchTool/search-tool.css" layer(mr.components);
 @import "components/applicationShell/application-shell.css" layer(mr.components);
 @import "components/treeListContainer/tree-list-container.css" layer(mr.components);

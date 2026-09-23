@@ -1,0 +1,293 @@
+/* Tooltip previews are native hint popovers, not registered Layers. */
+:where(.mr-tooltip) {
+  box-sizing: border-box;
+  margin: 0;
+  inset: auto;
+  inline-size: var(--mr-tooltip-inline-size);
+  min-inline-size: min(
+    var(--mr-tooltip-min-inline-size),
+    calc(100vi - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  max-inline-size: min(
+    var(--mr-tooltip-max-inline-size),
+    calc(100vi - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  max-block-size: min(
+    var(--mr-tooltip-max-block-size),
+    calc(100dvb - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  overflow: auto;
+  padding-block: var(--mr-tooltip-padding-block);
+  padding-inline-start: var(--mr-tooltip-padding-inline);
+  padding-inline-end: calc(
+    var(--mr-tooltip-padding-inline) + var(--mr-tooltip-control-size) + var(--mr-tooltip-control-gap)
+  );
+  background: var(--mr-tooltip-background);
+  color: var(--mr-tooltip-color);
+  border: var(--mr-tooltip-border-width) solid var(--mr-tooltip-border-color);
+  border-radius: var(--mr-tooltip-radius);
+  box-shadow: var(--mr-tooltip-shadow);
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/*
+ * Optional authored content primitives. Preview and pinned clones keep the same
+ * authored structure so promotion does not deliberately change geometry.
+ */
+:where(.mr-tooltip__title) {
+  display: block;
+  margin: 0 0 var(--mr-tooltip-content-gap);
+  font-weight: var(--mr-tooltip-title-font-weight);
+}
+
+:where(.mr-tooltip__content) {
+  display: block;
+  min-inline-size: 0;
+}
+
+:where(.mr-tooltip__content > :first-child) {
+  margin-block-start: 0;
+}
+
+:where(.mr-tooltip__content > :last-child) {
+  margin-block-end: 0;
+}
+
+:where(.mr-tooltip--preview) {
+  /* Keep hover content reachable so hover persistence and text selection are possible. */
+  pointer-events: auto;
+}
+
+/*
+ * The top-right control footprint is reserved in both preview and pinned states.
+ * Preview shows a determinate progress ring while its pin timer is active; pinned shows a
+ * real dismiss button in the exact same slot, so promotion does not reflow text.
+ */
+:where(.mr-tooltip__pin-progress, .mr-tooltip__dismiss) {
+  position: absolute;
+  inset-block-start: var(--mr-tooltip-control-inset);
+  inset-inline-end: var(--mr-tooltip-control-inset);
+  inline-size: var(--mr-tooltip-control-size);
+  block-size: var(--mr-tooltip-control-size);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+:where(.mr-tooltip__pin-progress) {
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+:where(.mr-tooltip__pin-progress-svg) {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  transform: rotate(-90deg);
+}
+
+:where(.mr-tooltip__pin-progress-track, .mr-tooltip__pin-progress-value) {
+  fill: none;
+  stroke-width: var(--mr-tooltip-pin-progress-stroke-width);
+}
+
+:where(.mr-tooltip__pin-progress-track) {
+  stroke: var(--mr-tooltip-pin-progress-track-color);
+}
+
+:where(.mr-tooltip__pin-progress-value) {
+  stroke: var(--mr-tooltip-pin-progress-color);
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+:where(.mr-tooltip--preview[data-mr-tooltip-pinning] .mr-tooltip__pin-progress) {
+  opacity: 1;
+  visibility: visible;
+}
+
+:where(.mr-tooltip--preview[data-mr-tooltip-pinning] .mr-tooltip__pin-progress-value) {
+  animation: mr-tooltip-pin-progress var(--mr-tooltip-pin-delay, 0ms) linear forwards;
+}
+
+:where(.mr-tooltip__dismiss) {
+  display: grid;
+  place-items: center;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--mr-tooltip-border-color);
+  border-radius: 50%;
+  background: var(--mr-tooltip-background);
+  color: var(--mr-tooltip-color);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+:where(.mr-tooltip__dismiss:hover) {
+  background: var(--mr-color-secondary-lighter);
+}
+
+:where(.mr-tooltip__dismiss:focus-visible) {
+  outline: 2px solid var(--mr-tooltip-pinned-outline-color);
+  outline-offset: 1px;
+}
+
+/*
+ * Native hint-popover motion. Pinned tooltips are normal `.mr-layer--popover`
+ * Layers and therefore use the Layer transition instead of a second animation.
+ */
+:where(.mr-tooltip--preview[popover]) {
+  opacity: 0;
+  transform: translateY(var(--mr-tooltip-motion-distance));
+  transition:
+    opacity var(--mr-tooltip-motion-duration) var(--mr-tooltip-motion-easing),
+    transform var(--mr-tooltip-motion-duration) var(--mr-tooltip-motion-easing),
+    overlay var(--mr-tooltip-motion-duration) allow-discrete,
+    display var(--mr-tooltip-motion-duration) allow-discrete;
+}
+
+:where(.mr-tooltip--preview[popover]:popover-open) {
+  opacity: 1;
+  transform: none;
+}
+
+/*
+ * Preview and pinned surfaces deliberately share the same box metrics. Promotion
+ * must read as a state change, not as a replacement popover. Pinned tooltips stay
+ * open while the pointer/focus moves around them; dismissal is explicit (button,
+ * Escape) or whole-tree outside click, which keeps text selection predictable.
+ */
+:where(.mr-tooltip--pinned) {
+  pointer-events: auto;
+  inline-size: var(--mr-tooltip-inline-size);
+  min-inline-size: min(
+    var(--mr-tooltip-min-inline-size),
+    calc(100vi - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  max-inline-size: min(
+    var(--mr-tooltip-max-inline-size),
+    calc(100vi - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  max-block-size: min(
+    var(--mr-tooltip-max-block-size),
+    calc(100dvb - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  overflow: auto;
+  padding-block: var(--mr-tooltip-padding-block);
+  padding-inline-start: var(--mr-tooltip-padding-inline);
+  padding-inline-end: calc(
+    var(--mr-tooltip-padding-inline) + var(--mr-tooltip-control-size) + var(--mr-tooltip-control-gap)
+  );
+  background: var(--mr-tooltip-background);
+  color: var(--mr-tooltip-color);
+  border: var(--mr-tooltip-border-width) solid var(--mr-tooltip-border-color);
+  border-radius: var(--mr-tooltip-radius);
+  box-shadow: var(--mr-tooltip-shadow);
+  outline: var(--mr-tooltip-pinned-outline-width) solid var(--mr-tooltip-pinned-outline-color);
+  outline-offset: var(--mr-tooltip-pinned-outline-offset);
+}
+
+/*
+ * The preview keeps interactive HTML visually intact while making it unavailable
+ * for pointer/focus interaction. This preserves geometry across promotion.
+ */
+:where(.mr-tooltip--preview [inert]) {
+  pointer-events: none;
+}
+
+/* Promotion is a handoff, not another visual entrance/exit. */
+:where(.mr-tooltip--preview[data-mr-tooltip-promoting]) {
+  opacity: 1;
+  transform: none;
+  transition-duration: 0s;
+}
+
+:where(.mr-tooltip--pinned[popover]:popover-open:not([data-mr-layer-closing])) {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  :where(.mr-tooltip--preview[popover]:popover-open) {
+    opacity: 0;
+    transform: translateY(var(--mr-tooltip-motion-distance));
+  }
+
+  :where(.mr-tooltip--pinned[popover]:popover-open:not([data-mr-layer-closing])) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * Current anchor-positioning browsers can keep tooltip surfaces on-screen without
+ * JavaScript geometry. Start below the invoker, then let the browser try alternate
+ * areas if that position would overflow the viewport.
+ */
+@supports (position-area: block-end center) {
+  :where(.mr-tooltip) {
+    position-area: block-end center;
+  }
+}
+
+@supports (position-try-fallbacks: block-start center) {
+  :where(.mr-tooltip) {
+    position-try-fallbacks:
+      block-start center,
+      block-end inline-start,
+      block-end inline-end,
+      block-start inline-start,
+      block-start inline-end;
+  }
+}
+
+@keyframes mr-tooltip-pin-progress {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.mr-tooltip--preview[popover]) {
+    transition-duration: 0s;
+    transform: none;
+  }
+
+  :where(.mr-tooltip--preview[data-mr-tooltip-pinning] .mr-tooltip__pin-progress-value) {
+    animation-timing-function: steps(4, end);
+  }
+}
+
+@media (forced-colors: active) {
+  :where(.mr-tooltip) {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+    box-shadow: none;
+  }
+
+  :where(.mr-tooltip--pinned) {
+    outline-color: Highlight;
+  }
+
+  :where(.mr-tooltip__pin-progress-track) {
+    stroke: CanvasText;
+  }
+
+  :where(.mr-tooltip__pin-progress-value) {
+    stroke: Highlight;
+  }
+
+  :where(.mr-tooltip__dismiss) {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+  }
+}

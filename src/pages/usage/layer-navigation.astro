@@ -1,0 +1,370 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+import { packageMeta } from "../../astro/packageMeta";
+
+const explicitApi = `import { layerNavigation } from "${packageMeta.name}/layer-navigation";
+
+type AuthorChoice = { id: string; label: string };
+
+const outcome = await layerNavigation.ask<AuthorChoice>({
+  url: createAuthorLink.href,
+  trigger: createAuthorLink,
+});
+
+if (outcome.status === "accepted") {
+  authorId.value = outcome.value.id;
+  authorLabel.value = outcome.value.label;
+}`;
+
+const optInLinks = `import { initLayerNavigation } from "${packageMeta.name}/layer-navigation";
+
+// Optional. This is NOT included in markup-refine-lib/behaviors.
+initLayerNavigation(document);`;
+
+const standalonePage = `<!doctype html>
+<html lang="en">
+  <head><title>Create author</title></head>
+  <body>
+    <main data-mr-layer-navigation-fragment>
+      <h1>Create author</h1>
+      <form action="/authors" method="post" data-mr-layer-navigation>
+        <input type="hidden" name="csrf_token" value="...server token...">
+        <label>Name <input name="name" required></label>
+        <button>Save</button>
+      </form>
+      <a href="/books/new" data-mr-layer-navigation-dismiss>Cancel</a>
+    </main>
+  </body>
+</html>`;
+
+const triggerMarkup = `<a href="/authors/new" data-mr-layer-navigation>
+  Quick-create author
+</a>`;
+
+const validationResponse = `HTTP/1.1 422 Unprocessable Content
+Content-Type: text/html
+
+<!doctype html>
+<html lang="en">
+  <head><title>Create author</title></head>
+  <body>
+    <main data-mr-layer-navigation-fragment>
+      <h1>Create author</h1>
+      <p role="alert">Please correct the highlighted field.</p>
+      <form action="/authors" method="post" data-mr-layer-navigation>
+        <input type="hidden" name="csrf_token" value="...server token...">
+        <label>
+          Name
+          <input name="name" value="" required aria-invalid="true">
+        </label>
+        <button>Save</button>
+      </form>
+    </main>
+  </body>
+</html>`;
+
+const acceptedResponse = `HTTP/1.1 200 OK
+Content-Type: text/html
+
+<!doctype html>
+<html lang="en">
+  <head><title>Author created</title></head>
+  <body>
+    <p>Author created. This remains a meaningful standalone response.</p>
+    <script type="application/json"
+      data-mr-layer-navigation-result="accepted">
+      {"id":"author-42","label":"Ada Example"}
+    </script>
+  </body>
+</html>`;
+
+const fileUploadForm = `<form
+  action="/authors"
+  method="post"
+  enctype="multipart/form-data"
+  data-mr-layer-navigation
+>
+  <label>
+    Name
+    <input name="name" required>
+  </label>
+
+  <label>
+    Avatar
+    <input
+      id="author-avatar"
+      type="file"
+      name="avatar"
+      accept="image/*"
+      data-mr-preserve
+    >
+  </label>
+
+  <button type="submit">Create author</button>
+</form>`;
+
+const fileValidationResponse = `HTTP/1.1 422 Unprocessable Content
+Content-Type: text/html
+
+<main data-mr-layer-navigation-fragment>
+  <p role="alert">Name is required.</p>
+
+  <form
+    action="/authors"
+    method="post"
+    enctype="multipart/form-data"
+    data-mr-layer-navigation
+  >
+    <label>
+      Name
+      <input name="name" required aria-invalid="true">
+    </label>
+
+    <label>
+      Avatar
+      <input
+        id="author-avatar"
+        type="file"
+        name="avatar"
+        accept="image/*"
+        data-mr-preserve
+      >
+    </label>
+
+    <button type="submit">Create author</button>
+  </form>
+</main>`;
+
+const configured = `layerNavigation.configure({
+  fragmentSelector: "[data-app-subinteraction]",
+  validationStatuses: [400, 422],
+  redirect: "error",
+  requestHeaders: ({ method }) => ({
+    "X-App-Interaction": method === "GET" ? "read" : "write",
+  }),
+  onRender: ({ fragment }) => {
+    initMarkupRefineBehaviors(fragment);
+  },
+});`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Remote Layer navigation</h1>
+    <p>
+      Remote Layer navigation is a stable, optional HTML-first module above Layer core. It is
+      published as <code>{packageMeta.name}/layer-navigation</code> rather than folded into the
+      default behaviors bundle. The dependency direction stays one-way: remote navigation may use
+      Layers; Layers never know about URLs, fetch, forms, redirects, or backend protocols.
+    </p>
+
+    <h2>Explicit orchestration</h2>
+    <pre data-mr-copyable><code>{explicitApi}</code></pre>
+    <p>
+      <code>ask()</code> fetches the standalone URL first, extracts its declared fragment,
+      creates a temporary Layer surface, and resolves with the same
+      <code>LayerOutcome</code> contract as local Layer interactions. The returned value is
+      an opaque interaction result chosen by the application, not a Markup Refine entity model.
+    </p>
+
+    <h2>Lower-capability fallback</h2>
+    <h3>Semantic fallback remains the source</h3>
+    <pre data-mr-copyable><code>{triggerMarkup}</code></pre>
+    <pre data-mr-copyable><code>{standalonePage}</code></pre>
+    <p>
+      The <code>href</code> and <code>action</code> are real navigation targets. If JavaScript
+      is unavailable, the browser follows/submits them normally. Every URL enhanced into a
+      Layer must therefore remain useful as a complete standalone page. The
+      <code>data-mr-layer-navigation</code> attribute only identifies links/forms that may be
+      intercepted; it does not encode workflow logic.
+    </p>
+
+    <h2>Optional declarative link enhancement</h2>
+    <pre data-mr-copyable><code>{optInLinks}</code></pre>
+    <p>
+      This initializer only intercepts unmodified primary-button activation of opted-in
+      links. New tabs/windows, downloads, unsupported schemes, and cross-origin destinations
+      retain native browser behavior; enhanced remote Layers are same-origin only. If the initial enhanced fetch fails,
+      the initializer reports <code>mr:layer-navigation:error</code> and falls back to the
+      link's normal navigation target.
+    </p>
+
+    <h2>Public JavaScript API</h2>
+    <pre data-mr-copyable><code>{`import {
+  initLayerNavigation,
+  layerNavigation,
+  LayerNavigationHttpError,
+  LayerNavigationProtocolError,
+} from "markup-refine-lib/layer-navigation";
+
+initLayerNavigation(root?: ParentNode);
+layerNavigation.initialize(root?: ParentNode);
+layerNavigation.configure(options);
+layerNavigation.ask<T, R>({
+  url,
+  trigger,
+  parent?,
+  signal?,
+  fragmentSelector?,
+  resultSelector?,
+  validationStatuses?,
+  redirect?,
+  credentials?,
+  requestHeaders?,
+  parseResult?,
+  onRender?,
+});`}</code></pre>
+    <p>
+      <code>LayerNavigationHttpError</code> represents a non-success HTTP response that is not
+      handled as validation, while <code>LayerNavigationProtocolError</code> represents malformed
+      or missing HTML protocol markers. The module remains opt-in and is not initialized by the
+      default behavior bundle.
+    </p>
+
+    <h2>Fragment contract</h2>
+    <p>
+      By default, fetched HTML must contain exactly the application region intended for the
+      transient surface as <code>[data-mr-layer-navigation-fragment]</code>. The full response
+      may include the site's normal layout; the module extracts only that region. A custom
+      selector can be configured globally or per <code>ask()</code> call.
+    </p>
+    <p>
+      Remote fragments are treated as trusted application HTML, not arbitrary third-party
+      HTML. The built-in import guard removes <code>&lt;script&gt;</code> elements, inline
+      <code>on*</code> handlers, and <code>javascript:</code> navigation attributes before
+      insertion, but it is deliberately not advertised as a complete sanitizer. Enhanced
+      requests are always same-origin; there is no public cross-origin override.
+    </p>
+
+    <h2>Loading, cancellation, and replacement</h2>
+    <ul>
+      <li>The trigger receives <code>aria-busy="true"</code> while the initial request is pending.</li>
+      <li>An open remote surface receives <code>aria-busy="true"</code> and <code>data-mr-layer-navigation-state="loading"</code> during in-Layer navigation.</li>
+      <li>Starting another remote request aborts the previous one; closing the Layer also aborts its active request.</li>
+      <li>An optional caller <code>AbortSignal</code> cancels the request and closes the remote Layer.</li>
+      <li>Aborted fetches are control flow, not HTTP errors, and do not render an error UI.</li>
+    </ul>
+
+    <h2>Validation responses</h2>
+    <pre data-mr-copyable><code>{validationResponse}</code></pre>
+    <p>
+      Statuses in <code>validationStatuses</code> (400 and 422 by default) are allowed to
+      return a replacement fragment. The Layer stays open, the server-rendered form/errors
+      replace the previous fragment, and focus moves to <code>autofocus</code>, an
+      <code>aria-invalid</code> control, or the first natively invalid control when present.
+      Other non-success statuses emit <code>mr:layer-navigation:error</code> and keep the
+      current surface intact so application code can decide how to report/recover.
+    </p>
+
+    <h2>Server result protocol</h2>
+    <pre data-mr-copyable><code>{acceptedResponse}</code></pre>
+    <p>
+      A response may finish the interaction with one
+      <code>[data-mr-layer-navigation-result]</code> marker whose value is
+      <code>accepted</code> or <code>dismissed</code>. Its text content is optional JSON and is
+      passed through as the opaque accepted value/dismiss reason. Applications that do not
+      want JSON payloads can replace the parser with <code>parseResult</code>; the endpoint is
+      still an HTML endpoint, not a JSON-only API.
+    </p>
+    <p>
+      An accepted marker calls the active Layer's <code>accept(value)</code>; a dismissed marker
+      calls <code>dismiss(reason)</code>. This means local and remote subinteractions share one
+      result model without teaching Layer core anything about HTTP.
+    </p>
+
+    <h2>Redirect policy</h2>
+    <p>
+      Redirects default to <code>redirect: "error"</code>. This avoids silently following an
+      unexpected redirect after form data has already been sent. Applications may opt into
+      <code>"follow"</code> for trusted endpoint chains; the final URL is then checked against
+      the same origin policy before its response is used. Markup Refine does not mutate
+      browser history for an in-Layer navigation.
+    </p>
+
+    <h2>CSRF</h2>
+    <p>
+      Markup Refine does not invent a framework-specific token name. Hidden CSRF controls are
+      submitted naturally because form data is constructed from the semantic form, and
+      same-origin credentials are used by default. Backends requiring a custom CSRF header
+      can add it through <code>requestHeaders</code>. The server remains responsible for
+      issuing/validating the token.
+    </p>
+
+    <h2>Multipart forms and file uploads</h2>
+    <p>
+      A file field does not force an enhanced nested workflow to escape to full-page
+      navigation. Same-origin <code>multipart/form-data</code> forms inside a remote Layer are
+      intercepted and submitted with the browser's native <code>FormData(form, submitter)</code>
+      encoding, so selected files remain part of the same Layer interaction. Markup Refine
+      deliberately does not set <code>Content-Type</code> for a <code>FormData</code> request; the
+      browser must generate the multipart boundary.
+    </p>
+    <pre data-mr-copyable><code>{fileUploadForm}</code></pre>
+    <p>
+      This is basic multipart submission, not an upload manager. There is no chunking,
+      resumable upload protocol, background upload, progress API, or automatic mutation retry.
+      Closing the Layer aborts its active request, and an ambiguous failed mutation stays in the
+      current Layer so application/server UI can decide whether retrying is safe.
+    </p>
+
+    <h3>Preserving a selected file across validation</h3>
+    <p>
+      Replacing a validation fragment normally creates a new file input, and browsers do not
+      allow scripts to reconstruct a user's local file selection. Add
+      <code>data-mr-preserve</code> plus a stable unique <code>id</code> to a stateful element that
+      must survive a 400/422 fragment replacement. If the validation response contains the same
+      preserved element, Markup Refine reuses the existing DOM node while applying the returned
+      attributes. For a file input this keeps its browser-owned <code>FileList</code>.
+    </p>
+    <pre data-mr-copyable><code>{fileValidationResponse}</code></pre>
+    <p>
+      Preservation is explicit. If the uploaded file itself is invalid and the server wants the
+      user to select it again, omit <code>data-mr-preserve</code> from that field in the validation
+      response. The replacement then proceeds normally and the file selection is cleared.
+    </p>
+
+    <h3>Lower-capability multipart fallback</h3>
+    <p>
+      The same form is still ordinary semantic HTML. Before enhancement commits, or when the
+      remote module is unavailable, the browser submits the real multipart form to its
+      <code>action</code>. Once an in-Layer form has been successfully enhanced, however, the mere
+      presence of a file input no longer causes an unexpected full-page navigation that would
+      discard parent Layer state. Unsupported encodings such as <code>text/plain</code>, non-self
+      targets, cross-origin actions, and malformed GET/file combinations remain native fallbacks.
+    </p>
+
+    <h2>Configuration without an attribute DSL</h2>
+    <pre data-mr-copyable><code>{configured}</code></pre>
+    <p>
+      Selectors, validation statuses, credentials, redirect handling, headers, result parsing,
+      and post-render initialization are JavaScript configuration. Same-origin and modal-only
+      remote surfaces are stable invariants rather than configurable policy.
+      HTML only identifies enhancement targets and carries normal web semantics.
+    </p>
+
+    <h2>Remote navigation decision</h2>
+    <p>
+      The Phase 7 remote module passes the stabilization gate as a focused optional export in the
+      same package. Its stable scope is deliberately narrow: same-origin server-rendered HTML,
+      modal subinteractions, ordinary links/forms as the baseline, validation-fragment replacement,
+      and Layer <code>accept()</code>/<code>dismiss()</code> outcomes. It does not become a router,
+      history framework, generic fragment engine, or SPA state manager.
+    </p>
+    <p>
+      Applications that need broad fragment targeting, history management, polling, navigation
+      orchestration, or a general server-driven interaction model should use a dedicated library
+      such as <a href="https://unpoly.com/up.layer">Unpoly</a> or
+      <a href="https://htmx.org/reference/">htmx</a> rather than growing this module into one.
+    </p>
+
+    <h2>Platform references</h2>
+    <ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">MDN: Using the Fetch API</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData">MDN: <code>FormData()</code></a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects">MDN: Using <code>FormData</code> objects</a></li>
+      <li><a href="https://htmx.org/examples/file-upload-input/">htmx: preserving file inputs after validation errors</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser/parseFromString">MDN: <code>DOMParser.parseFromString()</code></a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Response/redirected">MDN: <code>Response.redirected</code></a></li>
+    </ul>
+  </main>
+</FullNavigationLayout>

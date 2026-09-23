@@ -2,30 +2,24 @@ body:has(dialog:where(.mr-search)[open]) {
   overflow: hidden;
 }
 
-:where(.mr-search-overlay) {
-  position: fixed;
-  inset: 0;
-  background: var(--mr-color-overlay);
-  backdrop-filter: blur(var(--mr-overlay-blur));
-  z-index: 9998;
-}
 
 :where(dialog.mr-search) {
   --mr-search-input-border-width: 2px;
+  --mr-layer-surface-background: var(--mr-color-background);
+  --mr-layer-surface-color: var(--mr-color-text-primary);
+  --mr-layer-surface-padding: 0.5rem 1em;
+  --mr-layer-surface-border-color: var(--mr-color-background-light-contrast);
+  --mr-layer-surface-border-width: 1px;
+  --mr-layer-surface-radius: var(--mr-radius-medium);
+
   inset-block-start: 20%;
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  background: var(--mr-color-background);
-  color: var(--mr-color-text-primary);
-  padding: 0.5rem 1em;
-  border: 1px solid var(--mr-color-background-light-contrast);
-  border-radius: var(--mr-radius-medium);
+  inset-block-end: auto;
+  inset-inline: 0;
+  margin: 0 auto;
   width: var(--mr-container-max-width);
   max-width: calc(100vw - 2rem);
   max-height: 70vh;
   min-height: calc(7.5rem + 3em + 4px);
-  z-index: 9999;
 }
 
 :where(dialog.mr-search):not([open]) {
@@ -37,10 +31,6 @@ body:has(dialog:where(.mr-search)[open]) {
   flex-direction: column;
 }
 
-:where(dialog.mr-search)::backdrop {
-  background: var(--mr-color-overlay);
-  backdrop-filter: blur(var(--mr-overlay-blur));
-}
 
 :where(.mr-search__dismiss) {
   width: 2.5rem;

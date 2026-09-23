@@ -41,8 +41,6 @@ const shellStructure = `<header class="mr-shell" data-mr-shell>
       </nav>
     </div>
   </div>
-
-  <div class="mr-shell__overlay" data-mr-shell-part="overlay"></div>
 </header>
 
 <main class="mr-container mr-shell__main">
@@ -67,16 +65,27 @@ const standaloneTopbar = `<header class="mr-shell" data-mr-shell>
       <code>data-mr-shell</code>, <code>data-mr-shell-action</code>, and
       <code>data-mr-shell-part</code>.
     </p>
+
+    <h2>Layer-backed mobile navigation</h2>
     <p>
-      JavaScript queries only those <code>data-mr-*</code> hooks. The toggle
-      receives <code>aria-expanded</code>/<code>aria-controls</code>; drawer lifecycle
-      uses <code>data-mr-state</code> and the overlay uses native <code>hidden</code>.
+      The sidebar remains ordinary document navigation for desktop and no-JavaScript use. When
+      JavaScript enhances the shell, the mobile menu temporarily moves that same navigation DOM
+      into a generated <code>data-mr-layer="drawer"</code> native <code>&lt;dialog&gt;</code>.
+      The shared Layer core owns modal open/close state, Escape/request-close handling, native
+      backdrop behavior, light-dismiss compatibility, and focus restoration.
+    </p>
+    <p>
+      Shell behavior is limited to navigation concerns: moving the existing navigation into and
+      out of the transient drawer, choosing the dismiss button as initial focus, and synchronizing
+      <code>aria-expanded</code>/<code>aria-controls</code> on the menu button. There is no
+      shell-specific overlay element, document-level Escape listener, or private open/closed state
+      machine.
+    </p>
+    <p>
+      Without JavaScript the sidebar remains in the document and enhancement-only toggle/dismiss
+      controls remain hidden, preserving access to navigation content.
     </p>
 
-    <p>
-      Without JavaScript the sidebar remains visible and enhancement-only
-      toggle/dismiss controls remain hidden, preserving access to navigation.
-    </p>
     <h2>Complete structure</h2>
     <pre data-mr-copyable><code>{shellStructure}</code></pre>
 
@@ -89,5 +98,21 @@ const standaloneTopbar = `<header class="mr-shell" data-mr-shell>
 
     <h2>Standalone top bar</h2>
     <pre data-mr-copyable><code>{standaloneTopbar}</code></pre>
+    <h2>Lower-capability fallback</h2>
+    <p>
+      The authored sidebar is the fallback. It remains ordinary navigation in the document
+      until mobile enhancement can safely move those same nodes into a drawer Layer. The
+      navigation itself therefore never depends on the generated drawer existing.
+    </p>
+
+    <h2>Layer migration note</h2>
+    <p>
+      The public shell hooks remain <code>data-mr-shell</code>,
+      <code>data-mr-shell-action</code>, and <code>data-mr-shell-part</code>. The former
+      private overlay element, private open/closed state attribute, and document-level
+      Escape handler have been removed; integrations should observe native/Layer state and
+      lifecycle rather than target those internals.
+    </p>
+
   </main>
 </FullNavigationLayout>

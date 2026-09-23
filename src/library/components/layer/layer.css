@@ -1,0 +1,255 @@
+/*
+ * Canonical presentation for modal and drawer Layers.
+ *
+ * Layer behavior does not require these classes. Authors opt into presentation
+ * with `.mr-layer` plus a mode modifier while native <dialog> remains the
+ * interaction primitive and source of modal/top-layer semantics.
+ */
+
+:where(dialog.mr-layer) {
+  --mr-layer-closed-transform: none;
+
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  inline-size: min(
+    var(--mr-layer-surface-inline-size),
+    var(--mr-layer-surface-max-inline-size)
+  );
+  max-inline-size: var(--mr-layer-surface-max-inline-size);
+  max-block-size: var(--mr-layer-surface-max-block-size);
+  overflow: auto;
+  padding: var(--mr-layer-surface-padding);
+  background: var(--mr-layer-surface-background);
+  color: var(--mr-layer-surface-color);
+  border: var(--mr-layer-surface-border-width) solid var(--mr-layer-surface-border-color);
+  border-radius: var(--mr-layer-surface-radius);
+  opacity: 0;
+  transform: var(--mr-layer-closed-transform);
+  transition:
+    opacity var(--mr-layer-motion-duration) var(--mr-layer-motion-easing),
+    transform var(--mr-layer-motion-duration) var(--mr-layer-motion-easing),
+    overlay var(--mr-layer-motion-duration) allow-discrete,
+    display var(--mr-layer-motion-duration) allow-discrete;
+}
+
+:where(dialog.mr-layer.mr-layer--modal) {
+  --mr-layer-closed-transform: translateY(var(--mr-layer-motion-distance))
+    scale(var(--mr-layer-motion-scale));
+}
+
+/*
+ * Optional content primitives shared by modal, drawer, and popover Layers.
+ * They only arrange authored content; behavior still comes from native HTML and
+ * `data-mr-layer`.
+ */
+:where(.mr-layer__header) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--mr-layer-header-gap);
+  margin-block-end: var(--mr-layer-section-gap);
+}
+
+:where(.mr-layer__heading) {
+  min-inline-size: 0;
+}
+
+:where(.mr-layer__title) {
+  margin-block: 0;
+}
+
+:where(.mr-layer__description) {
+  margin-block: var(--mr-layer-description-gap) 0;
+  color: var(--mr-color-text-secondary);
+}
+
+:where(.mr-layer__body) {
+  min-inline-size: 0;
+}
+
+:where(.mr-layer__body > :first-child) {
+  margin-block-start: 0;
+}
+
+:where(.mr-layer__body > :last-child) {
+  margin-block-end: 0;
+}
+
+:where(.mr-layer__actions) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--mr-layer-actions-gap);
+  margin-block-start: var(--mr-layer-section-gap);
+  padding-block-start: var(--mr-layer-actions-padding-block-start);
+  border-block-start: var(--mr-layer-actions-border-width) solid
+    var(--mr-layer-actions-border-color);
+}
+
+:where(dialog.mr-layer[open]:not([data-mr-layer-closing])) {
+  opacity: 1;
+  transform: none;
+}
+
+:where(dialog.mr-layer)::backdrop {
+  background-color: transparent;
+  backdrop-filter: blur(0);
+  transition:
+    background-color var(--mr-layer-motion-duration) var(--mr-layer-motion-easing),
+    backdrop-filter var(--mr-layer-motion-duration) var(--mr-layer-motion-easing),
+    overlay var(--mr-layer-motion-duration) allow-discrete,
+    display var(--mr-layer-motion-duration) allow-discrete;
+}
+
+:where(dialog.mr-layer[open]:not([data-mr-layer-closing]))::backdrop {
+  background-color: var(--mr-layer-backdrop-color);
+  backdrop-filter: blur(var(--mr-layer-backdrop-blur));
+}
+
+/*
+ * Drawer is a visual variant of the same modal <dialog> lifecycle. It stays
+ * attached to the inline-start edge and changes only sizing/motion/radius.
+ */
+:where(dialog.mr-layer.mr-layer--drawer) {
+  --mr-layer-closed-transform: translateX(-100%);
+
+  inset-block: 0;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+  margin: 0;
+  inline-size: min(
+    var(--mr-layer-drawer-inline-size),
+    var(--mr-layer-surface-max-inline-size)
+  );
+  block-size: 100dvb;
+  max-block-size: 100dvb;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: var(--mr-layer-surface-radius);
+  border-end-end-radius: var(--mr-layer-surface-radius);
+}
+
+:where(dialog.mr-layer.mr-layer--drawer):dir(rtl) {
+  --mr-layer-closed-transform: translateX(100%);
+}
+
+@starting-style {
+  :where(dialog.mr-layer[open]:not([data-mr-layer-closing])) {
+    opacity: 0;
+    transform: var(--mr-layer-closed-transform);
+  }
+
+  :where(dialog.mr-layer[open]:not([data-mr-layer-closing]))::backdrop {
+    background-color: transparent;
+    backdrop-filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(dialog.mr-layer) {
+    --mr-layer-closed-transform: none;
+    transition-duration: 0s;
+  }
+
+  :where(dialog.mr-layer)::backdrop {
+    transition-duration: 0s;
+    backdrop-filter: none;
+  }
+}
+
+@media (forced-colors: active) {
+  :where(dialog.mr-layer) {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+  }
+
+  :where(dialog.mr-layer)::backdrop,
+  :where(dialog.mr-layer[open])::backdrop {
+    background: Canvas;
+    opacity: 0.75;
+    backdrop-filter: none;
+  }
+}
+
+/*
+ * Non-modal popover Layers use the native Popover API. The browser owns the
+ * top layer and light-dismiss behavior; this class only supplies presentation.
+ * `showPopover({ source })` or `popovertarget` supplies the implicit anchor.
+ */
+:where([popover].mr-layer.mr-layer--popover) {
+  box-sizing: border-box;
+  margin: 0;
+  inset: auto;
+  max-inline-size: min(
+    var(--mr-layer-popover-max-inline-size),
+    calc(100vi - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  max-block-size: min(
+    var(--mr-layer-popover-max-block-size),
+    calc(100dvb - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap))
+  );
+  overflow: auto;
+  padding: var(--mr-layer-popover-padding);
+  background: var(--mr-layer-surface-background);
+  color: var(--mr-layer-surface-color);
+  border: var(--mr-layer-surface-border-width) solid var(--mr-layer-surface-border-color);
+  border-radius: var(--mr-layer-popover-radius);
+  opacity: 0;
+  transform: translateY(calc(var(--mr-layer-motion-distance) * 0.5))
+    scale(var(--mr-layer-motion-scale));
+  transition:
+    opacity var(--mr-layer-motion-duration) var(--mr-layer-motion-easing),
+    transform var(--mr-layer-motion-duration) var(--mr-layer-motion-easing),
+    overlay var(--mr-layer-motion-duration) allow-discrete,
+    display var(--mr-layer-motion-duration) allow-discrete;
+}
+
+:where([popover].mr-layer.mr-layer--popover:popover-open:not([data-mr-layer-closing])) {
+  opacity: 1;
+  transform: none;
+}
+
+
+@starting-style {
+  :where([popover].mr-layer.mr-layer--popover:popover-open:not([data-mr-layer-closing])) {
+    opacity: 0;
+    transform: translateY(calc(var(--mr-layer-motion-distance) * 0.5))
+      scale(var(--mr-layer-motion-scale));
+  }
+}
+
+@supports (position-area: block-end center) {
+  :where([popover].mr-layer.mr-layer--popover) {
+    position-area: block-end center;
+  }
+}
+
+@supports (position-try-fallbacks: block-start center) {
+  :where([popover].mr-layer.mr-layer--popover) {
+    position-try-fallbacks:
+      block-start center,
+      block-end inline-start,
+      block-end inline-end,
+      block-start inline-start,
+      block-start inline-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([popover].mr-layer.mr-layer--popover) {
+    transition-duration: 0s;
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  :where([popover].mr-layer.mr-layer--popover) {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+  }
+}

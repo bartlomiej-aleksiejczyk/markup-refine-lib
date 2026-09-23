@@ -73,13 +73,6 @@
   width: calc(100vw - var(--mr-shell-sidebar-width));
 }
 
-:where(.mr-shell__overlay) {
-  display: none;
-}
-
-:where(.mr-shell__overlay)[hidden] {
-  display: none;
-}
 
 :where(.mr-shell) {
   :where(.mr-shell__button) {
@@ -141,7 +134,7 @@
 }
 
 @media (max-width: 992px) {
-  body:has([data-mr-shell][data-mr-state="open"]) {
+  body:has(dialog.mr-shell__drawer[open]) {
     overflow: hidden;
   }
 
@@ -151,31 +144,18 @@
     }
   }
 
-  [data-mr-shell][data-mr-state="open"] :where(.mr-shell__overlay) {
-    display: block;
-    position: fixed;
-    overflow-y: hidden;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--mr-color-overlay);
-    backdrop-filter: blur(var(--mr-overlay-blur));
-    z-index: 1002;
+  [data-mr-shell-initialized="true"] > :where(.mr-shell__sidebar) {
+    display: none;
   }
 
-  :where(.mr-shell__sidebar) {
-    transition: transform var(--mr-motion-duration-normal) ease-in-out;
-    height: 100vh;
-    top: 0;
-  }
+  :where(dialog.mr-shell__drawer) {
+    --mr-layer-drawer-inline-size: var(--mr-shell-sidebar-width);
+    --mr-layer-surface-max-inline-size: min(var(--mr-shell-sidebar-width), 100vi);
+    --mr-layer-surface-padding: 0;
+    --mr-layer-surface-radius: 0;
+    --mr-layer-surface-background: var(--mr-color-secondary);
 
-  [data-mr-shell][data-mr-state="open"] :where(.mr-shell__sidebar) {
-    transform: translateX(0);
-  }
-
-  [data-mr-shell][data-mr-state="closed"] :where(.mr-shell__sidebar) {
-    transform: translateX(-100%);
+    overflow-x: hidden;
   }
 
   :where(.mr-shell__sidebar) ~ :where(.mr-shell__subbar),
@@ -221,7 +201,7 @@
   height: 100%;
 }
 
-:where(.mr-shell__sidebar) {
+:where(.mr-shell__sidebar, .mr-shell__drawer) {
   hr {
     border: none;
     height: 2px;
@@ -275,17 +255,3 @@
   }
 }
 
-
-@media (prefers-reduced-motion: reduce) {
-  :where(.mr-shell__sidebar) {
-    transition: none;
-  }
-}
-
-@media (forced-colors: active) {
-  [data-mr-shell][data-mr-state="open"] :where(.mr-shell__overlay) {
-    background: Canvas;
-    opacity: 0.75;
-    backdrop-filter: none;
-  }
-}

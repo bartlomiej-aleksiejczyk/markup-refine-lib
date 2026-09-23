@@ -1,0 +1,312 @@
+---
+import { base } from "astro:config/client";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const lifecycle = `closed → opening → open → closing → closed`;
+
+const minimalApi = `type LayerMode = "modal" | "drawer" | "popover";
+type LayerState = "closed" | "opening" | "open" | "closing";
+
+interface Layer {
+  readonly element: HTMLElement;
+  readonly mode: LayerMode;
+  readonly state: LayerState;
+  readonly trigger: HTMLElement | null;
+  readonly parent: Layer | null;
+  readonly children: readonly Layer[];
+
+  open(options?: LayerOpenOptions): Promise<void>;
+  close(options?: LayerCloseOptions): Promise<void>;
+  accept<T>(value: T): Promise<void>;
+  dismiss<R = unknown>(reason?: R): Promise<void>;
+  ask<T, R = unknown>(options?: LayerOpenOptions): Promise<LayerOutcome<T, R>>;
+}`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Layer architecture</h1>
+    <p>
+      Phase 1 defined the Layer model used to unify local overlay mechanics without
+      introducing a generic overlay engine prematurely. Phase 2 implemented that model
+      as a small native-first runtime, Phase 3 added opt-in modal/drawer presentation,
+      Phase 4 migrated Search Tool and Application Shell onto the shared lifecycle, Phase 5
+      added native popovers/tooltips, Phase 6 added typed local interaction outcomes, Phase 7
+      added an optional HTML-first remote navigation module, and Phase 8 locks the resulting
+      public/degradation contract with permanent checks.
+      The full normative contract lives in
+      <code>LAYER-API.md</code> at the repository root.
+    </p>
+
+    <h2>Boundary</h2>
+    <p>
+      A Layer owns local open/close lifecycle, trigger ownership, focus restoration,
+      parent/child relationships, normalized lifecycle observation, and opaque local interaction outcomes. It does not
+      know about HTTP, URLs, CRUD entities, remote forms, redirects, fragment refresh,
+      or server frameworks.
+    </p>
+    <p>
+      The guiding rule is: <strong>attributes identify behavior; JavaScript composes
+      workflows</strong>. Promises sequence interaction flow; DOM events observe the
+      lifecycle.
+    </p>
+
+    <h2>Existing behavior inventory</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Consumer</th>
+          <th>Current mechanics</th>
+          <th>Layer model</th>
+          <th>Component-specific behavior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href={`${base}website-components/search-tool/`}>Search Tool</a></td>
+          <td>Generated native <code>&lt;dialog&gt;</code> opened through <code>layers.open()</code>; native/Layer close requests and Layer focus restoration</td>
+          <td><code>modal</code></td>
+          <td>Fetching, Fuse.js, debounce, query/result rendering, initial input focus, generated DOM cleanup</td>
+        </tr>
+        <tr>
+          <td><a href={`${base}website-components/application-shell/`}>Application Shell</a></td>
+          <td>Persistent sidebar content is moved into a transient native <code>&lt;dialog&gt;</code> opened through the same Layer core; native backdrop/Escape and Layer focus restoration</td>
+          <td><code>drawer</code></td>
+          <td>Navigation layout, responsive/no-JS behavior, content transfer, dismiss focus, disclosure ARIA</td>
+        </tr>
+        <tr>
+          <td>Legacy Side-Top-Top navigation</td>
+          <td>Independent overlay/classes/Escape listener; no focus restoration</td>
+          <td>Confirms duplicated mechanics, but does not expand the API</td>
+          <td>Handled by legacy cleanup/migration work</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Other keyboard-focus code such as tabs or resettable file inputs is ordinary
+      component behavior, not Layer behavior. The existing <code>floatingElement</code>
+      utility is a CSS float, not a top-layer primitive.
+    </p>
+
+    <h2>Phase 4 consumer architecture</h2>
+    <pre><code>{`[data-mr-search] ── creates modal ──┐
+                                    ├──> Layer core ──> native <dialog> lifecycle
+[data-mr-shell]  ── creates drawer ─┘          │
+                                               └──> focus + ownership + lifecycle events
+
+Search-specific: query / loading / results
+Shell-specific: navigation / responsive transfer / disclosure ARIA`}</code></pre>
+    <p>
+      Dependency direction is one-way: both components depend on <code>src/library/layers/</code>;
+      Layer core does not import either component.
+    </p>
+
+    <h2>Shared lifecycle versus consumer behavior</h2>
+    <table>
+      <thead>
+        <tr><th>Concern</th><th>Shared Layer core</th><th>Search Tool</th><th>Application Shell</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Open/close state</td><td>Yes</td><td>No private state machine</td><td>No private state machine</td></tr>
+        <tr><td>Trigger ownership/focus restoration</td><td>Yes</td><td>Passes search trigger</td><td>Passes menu toggle</td></tr>
+        <tr><td>Escape/request-close/backdrop lifecycle</td><td>Native dialog + Layer normalization; backdrop click closes the document's active Layer stack</td><td>No private Escape/backdrop engine</td><td>No private Escape/custom overlay</td></tr>
+        <tr><td>Initial focus</td><td>Consumer choice</td><td>Search input</td><td>Dismiss/navigation control</td></tr>
+        <tr><td>Domain behavior</td><td>None</td><td>Query, loading, results, status</td><td>Navigation, responsive layout, disclosure ARIA</td></tr>
+      </tbody>
+    </table>
+    <p>
+      This split is the Phase 4 proof: deleting either consumer leaves the Layer registry, lifecycle,
+      modal/drawer behavior, and other consumer intact. The Layer core imports neither component.
+    </p>
+
+    <h2>Lifecycle and modes</h2>
+    <pre><code>{lifecycle}</code></pre>
+    <p>
+      <code>opening</code> and <code>closing</code> are Markup Refine coordination states.
+      Settled visibility should remain native wherever the platform already exposes it.
+    </p>
+    <dl>
+      <dt><code>modal</code></dt>
+      <dd>Blocking interaction backed by modal <code>&lt;dialog&gt;</code>.</dd>
+      <dt><code>drawer</code></dt>
+      <dd>
+        Primarily a presentation mode. A transient modal drawer may use the same
+        <code>&lt;dialog&gt;</code> primitive as a modal rather than owning a second state engine.
+      </dd>
+      <dt><code>popover</code></dt>
+      <dd>Non-modal floating interaction backed by the native Popover API where appropriate.</dd>
+    </dl>
+
+    <h2>Ownership</h2>
+    <ul>
+      <li><strong>Trigger/invoker:</strong> the element responsible for the current open request.</li>
+      <li><strong>Surface:</strong> the element presented as the Layer.</li>
+      <li><strong>Parent:</strong> the direct owning Layer, if the interaction originates inside one.</li>
+      <li><strong>Children:</strong> direct nested Layers.</li>
+      <li><strong>State:</strong> <code>closed | opening | open | closing</code>.</li>
+    </ul>
+    <p>
+      Parent/child ownership is logical, not a custom visual stack. A child never
+      implicitly refreshes, replaces, reloads, or closes its parent.
+    </p>
+
+    <h2>Programmatic API</h2>
+    <pre data-mr-copyable><code>{minimalApi}</code></pre>
+    <p>
+      The implemented manager exposes <code>get(target)</code>, <code>closest(node)</code>,
+      <code>open(target, options)</code>, <code>ask(target, options)</code>, <code>current</code>, and <code>stack</code>.
+      Individual Layers add <code>accept(value)</code>, <code>dismiss(reason)</code>, and <code>ask()</code>.
+      Accepted values remain opaque; the API deliberately contains no URL, fetch, form, template, or result-to-field mapping.
+    </p>
+    <pre data-mr-copyable><code>{`import { initLayers, layers } from "markup-refine-lib/layers";
+
+initLayers(document);
+const settings = await layers.open("#settings-dialog", { trigger: settingsButton });
+console.log(settings.state, layers.current, layers.stack);`}</code></pre>
+
+
+    <h2>Local results and nested workflows</h2>
+    <pre><code>{`LayerOutcome<T, R>
+  ├─ { status: "accepted", value: T }
+  └─ { status: "dismissed", reason?: R }
+
+parent Layer
+  └─ await child.ask(...)
+       ├─ child.accept(value)  → caller receives accepted value
+       └─ child close/dismiss  → caller receives dismissed
+
+No automatic parent DOM mutation or parent completion.`}</code></pre>
+    <p>
+      <code>close()</code> remains a lifecycle operation; <code>accept()</code> and
+      <code>dismiss()</code> are semantic completion. If a pending <code>ask()</code> is
+      closed normally (including native Escape/request-close), it resolves as a dismissal
+      rather than rejecting. Result Promises are the workflow API;
+      <code>mr:layer:result</code> is an observation hook carrying the same outcome.
+      See <a href="../layer-results/">Layer results and local subinteractions</a>.
+    </p>
+
+    <h2>Modal and drawer presentation</h2>
+    <p>
+      <code>.mr-layer</code> provides the shared dialog surface presentation;
+      <code>.mr-layer--modal</code> and <code>.mr-layer--drawer</code> identify the visual
+      variant. Both behavior modes still use native modal <code>&lt;dialog&gt;</code> and
+      <code>showModal()</code>. See <a href="../layer-primitives/">modal and drawer Layers</a>
+      for live examples, tokens, request-close semantics, and unstyled HTML fallback.
+    </p>
+
+    <h2>Declarative discovery</h2>
+    <pre data-mr-copyable><code>{`<button commandfor="settings-dialog" command="show-modal">Settings</button>
+<dialog id="settings-dialog"
+        class="mr-layer mr-layer--modal"
+        data-mr-layer="modal">
+  <button commandfor="settings-dialog" command="request-close">Close</button>
+</dialog>`}</code></pre>
+    <p>
+      <code>data-mr-layer</code> identifies the surface; <code>mr-layer*</code> classes are
+      optional presentation hooks. Native invoker commands and
+      popover controls remain responsible for the browser action. Repeated initialization
+      is safe. The standard <code>markup-refine-lib/behaviors</code> entry initializes
+      Layers automatically, while the focused <code>markup-refine-lib/layers</code> export
+      provides explicit <code>initLayers()</code>.
+    </p>
+
+    <h2>Lifecycle events</h2>
+    <table>
+      <thead><tr><th>Event</th><th>Meaning</th><th>Cancellation</th></tr></thead>
+      <tbody>
+        <tr><td><code>mr:layer:beforeopen</code></td><td>Before an MR-controlled open commits</td><td>Cancelable only while the request can still be prevented</td></tr>
+        <tr><td><code>mr:layer:open</code></td><td>Settled open</td><td>No</td></tr>
+        <tr><td><code>mr:layer:beforeclose</code></td><td>Before a preventable close/request-close commits</td><td>Only when the underlying close is actually preventable</td></tr>
+        <tr><td><code>mr:layer:close</code></td><td>Settled closed</td><td>No</td></tr>
+        <tr><td><code>mr:layer:result</code></td><td>Semantic outcome / implicit dismissal for a pending <code>ask()</code></td><td>No</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Events originate on the Layer surface and bubble. Lifecycle details stay minimal;
+      <code>mr:layer:result</code> additionally carries the same opaque outcome returned by
+      <code>ask()</code>. Events remain observational rather than the primary workflow API.
+    </p>
+
+    <h2>State ownership</h2>
+    <table>
+      <thead><tr><th>Concern</th><th>Owner</th></tr></thead>
+      <tbody>
+        <tr><td>Dialog open/closed, modal inertness, top layer</td><td>Native <code>&lt;dialog&gt;</code>/browser</td></tr>
+        <tr><td>Popover shown/hidden, top layer, light dismiss, implicit anchor</td><td>Native Popover API</td></tr>
+        <tr><td>Tooltip delays, preview-to-pin promotion, whole-tree outside dismissal, and topmost Escape dismissal</td><td>Focused Tooltip module</td></tr>
+        <tr><td>Backdrop appearance</td><td>CSS <code>::backdrop</code></td></tr>
+        <tr><td>Disclosure/accessibility relationship</td><td>ARIA only where needed, e.g. shell <code>aria-expanded</code>/<code>aria-controls</code></td></tr>
+        <tr><td>Opening/closing transition and parent/child ownership</td><td>Markup Refine Layer runtime</td></tr>
+        <tr><td>Visual variant</td><td><code>mr-layer*</code> classes/tokens</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Popover and Tooltip layering</h2>
+    <pre><code>{`Tooltip trigger
+  ├─ transient preview: native popover=hint + role=tooltip (non-focusable, hover-persistent)
+  │                    (not registered; never in layers.stack)
+  └─ pinned surface:    native popover=manual + data-mr-layer=popover
+                         └─ nested pinned tooltip Layer
+                              └─ …`}</code></pre>
+    <p>
+      Phase 5 keeps tooltip timing/content discovery in a focused Tooltip module above
+      Layer core. Promotion is the boundary: only the interactive pinned surface becomes
+      a Layer. Parent/child ownership is then inferred from the nested trigger exactly as
+      for any other Layer, and parent close cascades through descendants child-first.
+    </p>
+    <p>
+      Generic <code>popover="auto"</code> Layers keep native light dismiss. Pinned Tooltips
+      deliberately use <code>popover="manual"</code> so the focused Tooltip module can dismiss
+      the whole active Tooltip stack on outside pointer-down while keeping <kbd>Escape</kbd>
+      topmost-only. Both paths
+      still use the native top layer, and <code>showPopover(&#123; source: trigger &#125;)</code>
+      supplies the invoker/anchor relationship for programmatic opens. See
+      <a href="../popovers-tooltips/">popovers and pinned tooltips</a> for the authoring API
+      and decision matrix.
+    </p>
+
+    <h2>Remote interactions remain separate</h2>
+    <pre><code>{`Application / semantic href + form action
+                  │
+                  ▼
+markup-refine-lib/layer-navigation
+  fetch + fragment extraction + form enhancement
+  validation replacement + server-result protocol
+                  │
+                  ▼
+              Layer core
+  local lifecycle + ownership + outcomes
+                  │
+                  ▼
+     native dialog / Popover primitives`}</code></pre>
+    <p>
+      Phase 7 implements the optional <code>layer-navigation</code> entry above Layer core.
+      It can fetch standalone HTML URLs, extract a declared fragment, progressively
+      enhance opted-in forms/links, and translate a small server result marker into the
+      existing <code>accept()</code>/<code>dismiss()</code> contract. Layer core still has
+      no fetch, URL, redirect, form, or backend-protocol dependency.
+    </p>
+    <p>
+      Remote navigation never refreshes a parent implicitly. The direct JavaScript caller
+      receives the child outcome and decides whether to update a field, reload another
+      fragment, or do nothing, preserving unsaved parent state. The module is also absent
+      from the default behaviors bundle so HTTP interception remains an explicit opt-in.
+      See <a href="../layer-navigation/">remote Layer navigation</a>.
+    </p>
+
+    <h2>Stable contract</h2>
+    <p>
+      The finalized public surface and permanent graceful-degradation matrix are documented in
+      <a href="../layer-api/">Stable Layer API</a>. The Layer core remains independent from
+      Search Tool, Application Shell, and optional remote navigation.
+    </p>
+
+    <h2>Platform references</h2>
+    <ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog">MDN: <code>&lt;dialog&gt;</code></a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API">MDN: Popover API</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API">MDN: Invoker Commands API</a></li>
+    </ul>
+  </main>
+</FullNavigationLayout>

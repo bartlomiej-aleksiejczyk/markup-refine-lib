@@ -1,3 +1,5 @@
+import { initLayers } from "../layers/manager";
+import { initTooltips } from "../tooltips/manager";
 import { initClickableItemList } from "../components/clickableItemList/clickableItemList";
 import { initCopyableSnippet } from "../components/copyableSnippet/copyableSnippet";
 import { initSearchTool } from "../components/searchTool/searchTool";
@@ -11,6 +13,8 @@ export function initMarkupRefineBehaviors(root?: ParentNode) {
   const target = root ?? (typeof document !== "undefined" ? document : null);
   if (!target) return;
 
+  initLayers(target);
+  initTooltips(target);
   initClickableItemList(target);
   initApplicationShell(target);
   initSearchTool(target);

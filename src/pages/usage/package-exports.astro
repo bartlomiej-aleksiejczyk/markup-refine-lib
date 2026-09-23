@@ -5,6 +5,9 @@ import { packageMeta } from "../../astro/packageMeta";
 const install = `npm install ${packageMeta.name}`;
 const complete = `import "${packageMeta.name}/css";\nimport "${packageMeta.name}/behaviors";`;
 const focused = `import "${packageMeta.name}/tokens";\nimport "${packageMeta.name}/base";\nimport "${packageMeta.name}/components";\nimport "${packageMeta.name}/layout";`;
+const layerApi = `import { initLayers, layers } from "${packageMeta.name}/layers";\n\ninitLayers(document);\nconst outcome = await layers.ask<MyValue>(surface, { trigger });`;
+const tooltipApi = `import { initTooltips, tooltips } from "${packageMeta.name}/tooltips";\n\ntooltips.configure({ showDelay: 400, pinDelay: 1600, closeDelay: 250 });\ninitTooltips(document);`;
+const layerNavigationApi = `import { layerNavigation } from "${packageMeta.name}/layer-navigation";\n\nconst outcome = await layerNavigation.ask({\n  url: link.href,\n  trigger: link,\n});`;
 ---
 
 <FullNavigationLayout>
@@ -21,15 +24,55 @@ const focused = `import "${packageMeta.name}/tokens";\nimport "${packageMeta.nam
     <h2>Complete CSS + optional behavior</h2>
     <pre data-mr-copyable><code>{complete}</code></pre>
 
-    <h2>Focused layers</h2>
+    <h2>Focused CSS entries</h2>
     <pre data-mr-copyable><code>{focused}</code></pre>
     <p>Import tokens before base/components/layout when using focused entries standalone.</p>
+    <p>
+      Canonical <code>.mr-layer*</code> modal/drawer presentation is part of the
+      <code>components</code> stylesheet; Layer behavior itself remains available from
+      the separate JavaScript export below.
+    </p>
+
+    <h2>Focused Layer API</h2>
+    <pre data-mr-copyable><code>{layerApi}</code></pre>
+    <p>
+      The focused Layer export is side-effect free. Use <code>initLayers()</code> when
+      consuming it directly; the regular behaviors bundle performs the same declarative
+      initialization as part of its normal scan. The same export includes typed
+      <code>LayerOutcome</code>, <code>ask()</code>, <code>accept()</code>, and <code>dismiss()</code>
+      for local workflow composition.
+    </p>
+
+    <h2>Focused Tooltip API</h2>
+    <pre data-mr-copyable><code>{tooltipApi}</code></pre>
+    <p>
+      The Tooltip export is side-effect free and depends on the Layer core for pinned
+      surfaces. The regular behaviors bundle initializes <code>data-mr-tooltip</code>
+      triggers automatically.
+    </p>
+
+    <h2>Optional remote Layer navigation</h2>
+    <pre data-mr-copyable><code>{layerNavigationApi}</code></pre>
+    <p>
+      The remote navigation entry depends on the focused Layer API but is intentionally
+      absent from <code>behaviors</code>. Import it only for same-origin, HTML-first modal
+      subinteractions. Cross-origin enhancement, routing, and history management are outside
+      this stable export.
+    </p>
+
+    <h2>Stable API reference</h2>
+    <p>
+      See <a href="../layer-api/">Stable Layer API</a> for the locked JavaScript,
+      declarative HTML, lifecycle-event, accessibility, and degradation contracts.
+    </p>
 
     <h2>Build outputs</h2>
     <p>
-      Maintainer builds produce unminified and <code>.min.*</code> variants plus
-      source maps. After building, <code>npm run check:release</code> validates the
-      generated package contract before publish.
+      Maintainer builds produce unminified and <code>.min.*</code> variants plus source maps.
+      <code>npm run check:layers</code> enforces the stable Layer source/runtime contract.
+      After producing library and documentation builds, <code>npm run check:release</code>
+      requires every declared export, minified counterpart, source map, and generated stable
+      documentation page to exist before publish.
     </p>
   </main>
 </FullNavigationLayout>

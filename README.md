@@ -116,3 +116,7 @@ Here are the main scripts used for building and releasing markup-refine-lib:
 ```
 
 These scripts automate the bundling, minification, and version management processes.
+
+## AI / coding-agent integration
+
+If a coding agent is integrating this library into another project, give it [`AI-USAGE.md`](./AI-USAGE.md). The file is a consumer-focused integration contract and is included in the published npm package, so an installed dependency can be referenced as `node_modules/markup-refine-lib/AI-USAGE.md`.

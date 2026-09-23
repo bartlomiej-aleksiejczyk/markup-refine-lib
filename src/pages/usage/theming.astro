@@ -26,7 +26,27 @@ import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro
       <li><code>--mr-radius-*</code> for component shape.</li>
       <li><code>--mr-control-*</code> and <code>--mr-focus-*</code>.</li>
       <li><code>--mr-motion-duration-*</code> for motion.</li>
+      <li><code>--mr-layer-*</code> for Layer surface sizing, backdrop, content scaffold spacing, and open/close motion.</li>
+      <li><code>--mr-tooltip-*</code> for Tooltip sizing, surface contrast/shadow, content spacing, preview motion, pin-progress/dismiss controls, and pinned-state feedback.</li>
     </ul>
+
+    <h2>Layer and Tooltip example</h2>
+    <pre data-mr-copyable><code>{`.admin-area {
+  --mr-layer-surface-inline-size: 40rem;
+  --mr-layer-section-gap: var(--mr-space-lg);
+  --mr-layer-actions-gap: var(--mr-space-sm);
+  --mr-layer-motion-duration: 180ms;
+
+  --mr-tooltip-content-gap: var(--mr-space-xs);
+  --mr-tooltip-motion-duration: 120ms;
+  --mr-tooltip-pinned-outline-width: 2px;
+  --mr-tooltip-pinned-outline-offset: 2px;
+  --mr-tooltip-control-size: 1.5rem;
+  --mr-tooltip-min-inline-size: 12rem;
+  --mr-tooltip-inline-size: 20rem;
+  --mr-tooltip-max-inline-size: 28rem;
+  --mr-tooltip-max-block-size: 60dvb;
+}`}</code></pre>
 
     <h2>Per-scope theming</h2>
     <p>Custom properties inherit, so islands can use independent themes.</p>

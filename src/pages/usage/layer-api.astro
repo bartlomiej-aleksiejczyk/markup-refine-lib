@@ -1,0 +1,330 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+import { packageMeta } from "../../astro/packageMeta";
+
+const javascriptApi = `import { initLayers, layers } from "${packageMeta.name}/layers";
+
+initLayers(document);
+
+const modal = layers.get(document.querySelector("#settings")!);
+await modal?.open({ trigger: settingsButton });
+
+const outcome = await layers.ask<Choice>("#picker", { trigger: pickerButton });
+if (outcome.status === "accepted") {
+  applyChoice(outcome.value);
+}`;
+
+const declarativeApi = `<button commandfor="settings" command="show-modal">Settings</button>
+<a href="/settings">Settings page fallback</a>
+
+<dialog id="settings"
+        data-mr-layer="modal"
+        aria-labelledby="settings-title">
+  <h2 id="settings-title">Settings</h2>
+  <button commandfor="settings" command="request-close">Close</button>
+</dialog>`;
+
+const popoverFallback = `<button popovertarget="format-help">Formatting help</button>
+<div id="format-help" popover="auto" data-mr-layer="popover">
+  Supplementary formatting help.
+</div>
+
+<details>
+  <summary>Formatting help without Popover</summary>
+  <p>Supplementary formatting help.</p>
+</details>`;
+
+const customCss = `<dialog id="custom-layer"
+        data-mr-layer="modal"
+        class="app-dialog"
+        aria-labelledby="custom-layer-title">
+  <h2 id="custom-layer-title">Custom presentation</h2>
+  ...
+</dialog>
+
+<style>
+  .app-dialog {
+    inline-size: min(42rem, calc(100vi - 2rem));
+    border: 1px solid currentColor;
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+</style>`;
+
+const tailwind = `<dialog id="tailwind-layer"
+        data-mr-layer="modal"
+        class="max-w-xl rounded-xl border p-6 shadow-xl"
+        aria-labelledby="tailwind-layer-title">
+  <h2 id="tailwind-layer-title" class="text-xl font-semibold">Tailwind presentation</h2>
+  ...
+</dialog>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Stable Layer API</h1>
+    <p>
+      This page is the stable public contract for Markup Refine Layers. The runtime is
+      intentionally small: native HTML owns modal/popover semantics, Markup Refine
+      coordinates local lifecycle and ownership, and optional remote navigation remains a
+      separate focused export.
+    </p>
+
+    <h2>Public responsibility split</h2>
+    <table>
+      <thead><tr><th>Category</th><th>Stable contract</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Presentation classes</strong></td><td><code>.mr-layer</code>, <code>.mr-layer--modal</code>, <code>.mr-layer--drawer</code>, and <code>.mr-layer--popover</code> style surfaces only. Layer behavior does not query them.</td></tr>
+        <tr><td><strong>Behavior hooks</strong></td><td><code>data-mr-layer</code>, <code>data-mr-tooltip</code>, and the optional <code>data-mr-layer-navigation</code> marker identify enhancement. <code>data-mr-preserve</code> is the remote-validation state-preservation hook and requires a stable <code>id</code>. These hooks do not encode application workflows.</td></tr>
+        <tr><td><strong>Native state</strong></td><td><code>&lt;dialog open&gt;</code>, <code>:popover-open</code>, native <code>cancel</code>/<code>close</code>/<code>beforetoggle</code>/<code>toggle</code>, and ordinary link/form behavior remain source-of-truth platform state.</td></tr>
+        <tr><td><strong>ARIA state</strong></td><td>Labels, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-describedby</code>, <code>aria-busy</code>, and validation state communicate semantics; they are not a second Layer state engine.</td></tr>
+        <tr><td><strong>Lifecycle events</strong></td><td><code>mr:layer:beforeopen</code>, <code>mr:layer:open</code>, <code>mr:layer:beforeclose</code>, <code>mr:layer:close</code>, and <code>mr:layer:result</code> are for observation/integration. Promise results remain the workflow API.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Native surfaces and presentation primitives</h2>
+    <p>
+      Layer mode is constrained by the native surface: modal and drawer Layers require a
+      native <code>&lt;dialog&gt;</code>; a popover Layer requires an element with the native
+      <code>popover</code> attribute/API. Markup Refine does not emulate missing top-layer
+      capabilities.
+    </p>
+    <table>
+      <thead><tr><th>Public class</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>.mr-layer</code></td><td>Shared optional surface presentation.</td></tr>
+        <tr><td><code>.mr-layer--modal</code></td><td>Centered dialog presentation.</td></tr>
+        <tr><td><code>.mr-layer--drawer</code></td><td>Edge-attached presentation on the same modal dialog lifecycle.</td></tr>
+        <tr><td><code>.mr-layer--popover</code></td><td>Non-modal native Popover presentation.</td></tr>
+        <tr><td><code>.mr-layer__header</code>, <code>__heading</code>, <code>__title</code>, <code>__description</code>, <code>__body</code>, <code>__actions</code></td><td>Optional content scaffold shared by every Layer mode. These classes never initialize Layer behavior.</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Tooltip source content additionally has optional <code>.mr-tooltip__title</code> and
+      <code>.mr-tooltip__content</code> presentation primitives. Tooltip preview/pinned
+      surface classes are created by the Tooltip runtime; consumers normally author the
+      trigger and source <code>&lt;template&gt;</code>, not those generated surfaces.
+    </p>
+
+    <h2>JavaScript API</h2>
+    <h3>Public exports</h3>
+    <pre data-mr-copyable><code>{`import {
+  initLayers,
+  layers,
+  type Layer,
+  type LayerManager,
+  type LayerMode,
+  type LayerState,
+  type LayerOpenOptions,
+  type LayerCloseOptions,
+  type LayerOutcome,
+  type LayerLifecycleEventDetail,
+  type LayerResultEventDetail,
+} from "${packageMeta.name}/layers";`}</code></pre>
+    <pre data-mr-copyable><code>{javascriptApi}</code></pre>
+    <p>
+      The stable Layer object exposes <code>element</code>, <code>mode</code>,
+      <code>state</code>, <code>trigger</code>, <code>parent</code>, and
+      <code>children</code>, plus <code>open()</code>, <code>close()</code>,
+      <code>accept()</code>, <code>dismiss()</code>, and <code>ask()</code>. The manager
+      adds <code>get()</code>, <code>closest()</code>, <code>open()</code>,
+      <code>ask()</code>, <code>current</code>, and <code>stack</code>.
+    </p>
+
+    <h3>Stable signatures</h3>
+    <pre data-mr-copyable><code>{`initLayers(root?: ParentNode): void
+
+layers.get(target: Element | string): Layer | undefined
+layers.closest(node: Node): Layer | null
+layers.open(target, { trigger?, parent? }): Promise<Layer>
+layers.ask<T, R>(target, { trigger?, parent? }): Promise<LayerOutcome<T, R>>
+layers.current: Layer | null
+layers.stack: readonly Layer[]
+
+layer.open({ trigger?, parent? }): Promise<void>
+layer.close({ restoreFocus? }): Promise<void>
+layer.accept<T>(value: T): Promise<void>
+layer.dismiss<R>(reason?: R): Promise<void>
+layer.ask<T, R>({ trigger?, parent? }): Promise<LayerOutcome<T, R>>`}</code></pre>
+    <p>
+      <code>parent</code> is normally inferred from the trigger/invoker but can be supplied
+      explicitly for orchestration. <code>restoreFocus</code> defaults to Layer-managed focus
+      restoration for dialogs; callers may disable it for specialized close flows.
+    </p>
+
+    <h3>Stable public types</h3>
+    <pre data-mr-copyable><code>{`type LayerMode = "modal" | "drawer" | "popover";
+
+type LayerState = "closed" | "opening" | "open" | "closing";
+
+type LayerOutcome<T, R = unknown> =
+  | { status: "accepted"; value: T }
+  | { status: "dismissed"; reason?: R };
+
+interface LayerOpenOptions {
+  trigger?: HTMLElement | null;
+  parent?: Layer | null;
+}
+
+interface LayerCloseOptions {
+  restoreFocus?: boolean;
+}
+
+interface LayerLifecycleEventDetail {
+  layer: Layer;
+}
+
+interface LayerResultEventDetail<T = unknown, R = unknown> {
+  layer: Layer;
+  outcome: LayerOutcome<T, R>;
+}`}</code></pre>
+    <p>
+      <code>layers.get()</code> lazily registers a declarative Layer when possible, and
+      <code>initLayers(root)</code> is safe to call repeatedly for SSR/partial-rendered
+      subtrees. <code>layers.closest(node)</code> finds the nearest containing registered (or
+      declaratively registerable) Layer.
+    </p>
+
+    <h2>Declarative HTML API</h2>
+    <pre data-mr-copyable><code>{declarativeApi}</code></pre>
+    <p>
+      Prefer native <code>commandfor</code>/<code>command</code> and
+      <code>popovertarget</code> when a control directly owns a native surface. The normal
+      link in the example is the lower-capability path for an essential task; Markup
+      Refine does not hide it before enhancement.
+    </p>
+
+    <h2>Closing and exit motion</h2>
+    <p>
+      A Markup Refine-controlled close does not remove the native surface immediately.
+      The Layer enters <code>closing</code>, exposes the transient
+      <code>data-mr-layer-closing</code> CSS hook, waits for finite CSS transitions or
+      animations running on the Layer surface (and dialog backdrop where supported),
+      and then commits the native close. This keeps animation duration in CSS rather
+      than in a duplicated JavaScript timeout.
+    </p>
+
+    <h2>Backdrop dismissal</h2>
+    <p>
+      A click on the backdrop/outside any active modal or drawer is treated as a global exit
+      from the transient Layer workflow. The Layer manager consumes that click and closes
+      every active Layer in the same document, including nested modal/drawer/popover/Tooltip
+      Layers. This prevents a backdrop click from closing only the top child and also prevents
+      click-through into page content exposed while the stack is closing.
+    </p>
+
+    <h2>Lifecycle events</h2>
+    <p>
+      Lifecycle events bubble from the Layer surface. The four lifecycle events carry
+      <code>detail.layer</code>; <code>mr:layer:result</code> carries
+      <code>detail.layer</code> plus <code>detail.outcome</code>. Use these events to observe or
+      integrate with Layer activity, not as a second state store.
+    </p>
+    <table>
+      <thead><tr><th>Event</th><th>Cancelable</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td><code>mr:layer:beforeopen</code></td><td>Yes</td><td>Veto a programmatic/native opening request before the Layer commits.</td></tr>
+        <tr><td><code>mr:layer:open</code></td><td>No</td><td>Observe settled open state.</td></tr>
+        <tr><td><code>mr:layer:beforeclose</code></td><td>Only where the native close request is cancelable</td><td>Observe/veto a native close request such as dialog cancellation.</td></tr>
+        <tr><td><code>mr:layer:close</code></td><td>No</td><td>Observe settled close state after ownership/focus cleanup.</td></tr>
+        <tr><td><code>mr:layer:result</code></td><td>No</td><td>Observe an accepted/dismissed outcome. Direct callers should normally await <code>ask()</code>.</td></tr>
+      </tbody>
+    </table>
+    <p>
+      A programmatic <code>layer.close()</code> emits <code>mr:layer:beforeclose</code> as a
+      non-cancelable observation. Native dialog <code>requestClose()</code>/Escape reaches a
+      cancelable <code>cancel</code> path, so <code>mr:layer:beforeclose</code> may veto that close
+      request. A direct unconditional <code>dialog.close()</code> happens natively and cannot be
+      retroactively delayed or canceled.
+    </p>
+
+    <h2>Ownership and nested Layers</h2>
+    <p>
+      When a Layer opens, parent ownership is inferred from the actual trigger/invoker: if
+      that trigger lives inside an active Layer, the new Layer becomes its child. Supplying
+      <code>parent</code> explicitly is reserved for orchestration that cannot be represented by
+      the invoker relationship. Closing a parent closes descendants child-first; closing or
+      accepting a child does not complete its parent.
+    </p>
+
+    <h2>Graceful-degradation matrix</h2>
+    <table>
+      <thead><tr><th>Capability/failure</th><th>Stable behavior</th><th>Author fallback</th></tr></thead>
+      <tbody>
+        <tr><td><strong>JavaScript unavailable</strong></td><td>No Markup Refine interception or generated workflow runs.</td><td>Use ordinary links/forms/details/inline content for essential tasks.</td></tr>
+        <tr><td><strong>CSS unavailable</strong></td><td>Layer behavior still uses native dialog/Popover semantics; Markup Refine presentation is simply absent.</td><td>Keep semantic labels, controls, and native close paths in the markup.</td></tr>
+        <tr><td><strong>Dialog API unavailable</strong></td><td>Programmatic modal/drawer opening fails before a Layer is committed; declarative remote links fall back to normal navigation.</td><td>Essential local modal actions need an explicit inline or navigation fallback.</td></tr>
+        <tr><td><strong>Popover API unavailable</strong></td><td>Popover Layer opening fails rather than silently changing interaction modality.</td><td>Use inline/<code>&lt;details&gt;</code> fallback where the content is essential.</td></tr>
+        <tr><td><strong>Initialization fails before commit</strong></td><td>The baseline control remains untouched and may be initialized again later.</td><td>Normal HTML remains usable.</td></tr>
+        <tr><td><strong>Initialization fails after preparation</strong></td><td>Generated/opening state is rolled back; optional remote declarative GET enhancement returns to the original navigation path.</td><td>Do not hide the baseline solely with pre-enhancement CSS.</td></tr>
+        <tr><td><strong>Late initialization</strong></td><td>Registration observes an already-open native dialog/popover state rather than forcibly resetting it.</td><td>No special fallback is required.</td></tr>
+        <tr><td><strong>Remote initial GET fails</strong></td><td>Declaratively enhanced links report an error then navigate to their real <code>href</code>.</td><td>The destination must be a valid standalone page.</td></tr>
+        <tr><td><strong>Remote mutation fails</strong></td><td>The current Layer remains open, emits an error, and does not automatically replay the mutation.</td><td>Application/server UI decides how to retry safely.</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Markup Refine never automatically promotes an unsupported popover to a modal. A
+      change in modality must be an explicit application choice. No generic enhancement-success attribute is part of the public API: an enhancement is
+      committed only when its native/listener operation succeeds, so fallback content
+      never needs to be pre-hidden by a styling marker.
+    </p>
+
+    <h2>Lower-capability Popover example</h2>
+    <pre data-mr-copyable><code>{popoverFallback}</code></pre>
+    <p>
+      Tooltip text is supplementary by contract, so essential meaning must already be in
+      ordinary page content. Interactive popover content that is essential should have an
+      authored inline/disclosure/navigation path like the example above.
+    </p>
+
+    <h2>Custom CSS and Tailwind</h2>
+    <p>
+      Layer behavior depends on <code>data-mr-layer</code> and native semantics, not on
+      Markup Refine presentation classes. Applications may therefore supply their own CSS
+      or Tailwind classes without changing the Layer runtime.
+    </p>
+    <h3>Custom CSS</h3>
+    <pre data-mr-copyable><code>{customCss}</code></pre>
+    <h3>Tailwind</h3>
+    <pre data-mr-copyable><code>{tailwind}</code></pre>
+    <p>Tailwind is not a dependency of the Layer package; this is only a presentation example.</p>
+
+    <h2>Component integration</h2>
+    <ul>
+      <li><strong>Search Tool:</strong> search owns fetching/query/results; Layer owns modal lifecycle, native backdrop/light-dismiss compatibility, and trigger focus restoration.</li>
+      <li><strong>Application Shell:</strong> shell owns navigation/responsive content transfer and disclosure ARIA; Layer owns the transient drawer lifecycle.</li>
+      <li><strong>Tooltips:</strong> transient hint previews remain outside the Layer stack; pinned interactive content becomes a native Popover Layer.</li>
+    </ul>
+
+    <h2>Local nested subinteractions</h2>
+    <p>
+      <code>ask()</code> composes Book → Author-style workflows recursively. A child's
+      accepted/dismissed result completes only that child. The caller explicitly decides
+      whether to update local DOM/state, refresh a specific server fragment, or reload a
+      parent. Parent refresh is never implicit.
+    </p>
+
+    <h2>Remote navigation decision</h2>
+    <p>
+      <strong>Decision: keep</strong> the remote module as the optional focused
+      <code>{packageMeta.name}/layer-navigation</code> export. Its stable scope is only
+      same-origin, HTML-first modal subinteractions that produce the existing
+      <code>LayerOutcome</code>. It does not become a general fragment/router/history
+      framework. Applications needing broad target swapping, navigation/history, polling,
+      or a richer overlay navigation system should use a dedicated server-driven library
+      instead of expanding Layer core.
+    </p>
+    <p>
+      The remote module remains absent from <code>{packageMeta.name}/behaviors</code> and
+      Layer core has no fetch, URL, form, redirect, CSRF, or history dependency.
+    </p>
+    <p>
+      Remote Layer forms include basic same-origin <code>multipart/form-data</code> support so an
+      inner file upload does not unexpectedly navigate away and discard parent Layer state.
+      Validation-time DOM state can be retained explicitly with <code>data-mr-preserve</code> plus
+      a stable <code>id</code>; file inputs are the primary use case because their selected
+      <code>FileList</code> cannot be recreated from returned HTML. This remains basic form
+      submission, not a progress/chunking/resumable-upload subsystem.
+    </p>
+  </main>
+</FullNavigationLayout>

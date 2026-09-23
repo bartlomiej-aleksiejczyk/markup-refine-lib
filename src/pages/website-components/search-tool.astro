@@ -29,27 +29,57 @@ const dynamicSearchSnippet = `<button
     </p>
     <p>
       Use exactly one of <code>data-mr-search-static-url</code> or
-      <code>data-mr-search-dynamic-url</code>. Generated modal parts use
-      <code>mr-search*</code> presentation classes and
-      <code>data-mr-search-part</code> behavior/part hooks. The generated modal is
-      a native <code>&lt;dialog&gt;</code>: Escape closes it, background content is
-      modal/inert while it is open, and focus returns to the trigger on close.
+      <code>data-mr-search-dynamic-url</code>. Generated search parts use
+      <code>mr-search*</code> presentation classes and <code>data-mr-search-part</code>
+      hooks.
+    </p>
+
+    <h2>Layer dependency</h2>
+    <p>
+      Search creates a native <code>&lt;dialog&gt;</code> registered as
+      <code>data-mr-layer="modal"</code> and opens/closes it through the shared Layer API.
+      Layer owns modal lifecycle, Escape/request-close handling, trigger ownership, focus
+      restoration, and light-dismiss compatibility. Search code owns only its query input,
+      loading/data access, result rendering, result selection, status text, and cleanup of the
+      generated search DOM after the Layer closes.
     </p>
     <p>
-      Search is an enhancement-only feature. If a no-JavaScript search path is
-      required, provide a normal search form or link as the fallback.
+      Search-specific CSS may still size and arrange the modal, while generic top-layer/backdrop
+      mechanics come from the Layer primitive. Search remains enhancement-only; provide a normal
+      search form or link when a no-JavaScript search path is required.
     </p>
+
     <h2>Static search</h2>
     <pre data-mr-copyable><code>{staticSearchSnippet}</code></pre>
     <Fragment set:html={staticSearchSnippet} />
+
     <h2>Dynamic search</h2>
     <pre data-mr-copyable><code>{dynamicSearchSnippet}</code></pre>
     <button
-  class="mr-search-trigger"
-  data-mr-search
-  data-mr-search-dynamic-url="/api/search?q="
->
-  Search
-</button>
+      class="mr-search-trigger"
+      data-mr-search
+      data-mr-search-dynamic-url="/api/search?q="
+    >
+      Search
+    </button>
+    <h2>Lower-capability fallback</h2>
+    <p>
+      Search Tool is an enhancement. When search is essential, publish a normal search
+      endpoint as a form or link as well; do not make the generated modal the only route.
+    </p>
+    <pre data-mr-copyable><code>{`<form action="/search" method="get">
+  <label>Search <input name="q"></label>
+  <button>Search</button>
+</form>`}</code></pre>
+
+    <h2>Layer migration note</h2>
+    <p>
+      Existing <code>data-mr-search</code> triggers remain the public integration point.
+      The generated dialog now delegates generic modal lifecycle to Layer core. Code that
+      depended on the old generated dialog's private open/close implementation or manual
+      trigger-focus restoration was never a stable extension point and should use Layer
+      lifecycle events instead.
+    </p>
+
   </main>
 </FullNavigationLayout>

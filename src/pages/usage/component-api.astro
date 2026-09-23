@@ -21,6 +21,27 @@ import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro
     <pre data-mr-copyable><code>{`<button class="mr-button--outlined">Outline</button>
 <button class="mr-button--positive">Save</button>`}</code></pre>
 
+    <h2>Layer presentation primitives</h2>
+    <p>
+      Modal, drawer, and popover Layers may share the same optional content scaffold.
+      The classes below are presentation only; <code>data-mr-layer</code> and native HTML
+      still define behavior.
+    </p>
+    <pre data-mr-copyable><code>{`<header class="mr-layer__header">
+  <div class="mr-layer__heading">
+    <h2 class="mr-layer__title">Title</h2>
+    <p class="mr-layer__description">Supporting text.</p>
+  </div>
+  <button>Close</button>
+</header>
+<div class="mr-layer__body">...</div>
+<footer class="mr-layer__actions">...</footer>`}</code></pre>
+    <p>
+      Tooltip source templates may use <code>mr-tooltip__title</code> and
+      <code>mr-tooltip__content</code>. See <a href="../layer-primitives/">modal/drawer Layers</a>
+      and <a href="../popovers-tooltips/">popovers/tooltips</a> for live examples.
+    </p>
+
     <h2>Behavior is separate</h2>
     <pre data-mr-copyable><code>{`<pre data-mr-copyable><code>npm install example</code></pre>
 

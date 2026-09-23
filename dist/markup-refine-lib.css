@@ -429,6 +429,7 @@
   }
 
   :where(code) {
+    margin-left: 0.5rem;
     padding-bottom: 0;
     display: inline-block;
     vertical-align: middle;

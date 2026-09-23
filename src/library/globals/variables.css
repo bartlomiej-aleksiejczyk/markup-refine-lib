@@ -64,6 +64,68 @@
   --mr-motion-duration-medium: 0.25s;
   --mr-motion-duration-normal: 0.3s;
   --mr-overlay-blur: 3px;
+
+  /* Layer presentation */
+  --mr-layer-surface-inline-size: 36rem;
+  --mr-layer-surface-max-inline-size: calc(
+    100vi - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap)
+  );
+  --mr-layer-surface-max-block-size: calc(
+    100dvb - var(--mr-layer-viewport-gap) - var(--mr-layer-viewport-gap)
+  );
+  --mr-layer-drawer-inline-size: 24rem;
+  --mr-layer-viewport-gap: var(--mr-space-md);
+  --mr-layer-surface-padding: var(--mr-space-lg);
+  --mr-layer-surface-background: var(--mr-color-background);
+  --mr-layer-surface-color: var(--mr-color-text-primary);
+  --mr-layer-surface-border-color: var(--mr-color-background-light-contrast);
+  --mr-layer-surface-border-width: 1px;
+  --mr-layer-surface-radius: var(--mr-radius-large);
+  --mr-layer-backdrop-color: var(--mr-color-overlay);
+  --mr-layer-backdrop-blur: var(--mr-overlay-blur);
+  --mr-layer-motion-duration: var(--mr-motion-duration-medium);
+  --mr-layer-motion-distance: 0.75rem;
+  --mr-layer-motion-scale: 0.98;
+  --mr-layer-motion-easing: ease-out;
+  --mr-layer-popover-max-inline-size: 28rem;
+  --mr-layer-popover-max-block-size: 70dvb;
+  --mr-layer-popover-padding: var(--mr-space-md);
+  --mr-layer-popover-radius: var(--mr-radius-medium);
+  --mr-layer-header-gap: var(--mr-space-md);
+  --mr-layer-section-gap: var(--mr-space-md);
+  --mr-layer-description-gap: var(--mr-space-xs);
+  --mr-layer-actions-gap: var(--mr-space-sm);
+  --mr-layer-actions-padding-block-start: var(--mr-space-md);
+  --mr-layer-actions-border-color: var(--mr-layer-surface-border-color);
+  --mr-layer-actions-border-width: var(--mr-layer-surface-border-width);
+
+  /* Tooltip presentation */
+  --mr-tooltip-min-inline-size: 0rem;
+  --mr-tooltip-inline-size: max-content;
+  --mr-tooltip-max-inline-size: 24rem;
+  --mr-tooltip-max-block-size: var(--mr-layer-popover-max-block-size);
+  --mr-tooltip-padding-block: var(--mr-space-sm);
+  --mr-tooltip-padding-inline: var(--mr-space-md);
+  --mr-tooltip-background: var(--mr-color-main-text-area-darker);
+  --mr-tooltip-color: var(--mr-color-text-primary);
+  --mr-tooltip-border-color: var(--mr-color-primary-lighter);
+  --mr-tooltip-border-width: 1px;
+  --mr-tooltip-radius: var(--mr-radius-medium);
+  --mr-tooltip-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 18%), 0 0.125rem 0.375rem rgb(0 0 0 / 12%);
+  --mr-tooltip-content-gap: var(--mr-space-xs);
+  --mr-tooltip-title-font-weight: 700;
+  --mr-tooltip-motion-duration: var(--mr-motion-duration-fast);
+  --mr-tooltip-motion-distance: 0.25rem;
+  --mr-tooltip-motion-easing: ease-out;
+  --mr-tooltip-pinned-outline-width: 2px;
+  --mr-tooltip-pinned-outline-color: var(--mr-color-primary);
+  --mr-tooltip-pinned-outline-offset: 2px;
+  --mr-tooltip-control-size: 1.5rem;
+  --mr-tooltip-control-gap: var(--mr-space-xs);
+  --mr-tooltip-control-inset: var(--mr-space-xs);
+  --mr-tooltip-pin-progress-track-color: var(--mr-color-secondary-darker);
+  --mr-tooltip-pin-progress-color: var(--mr-tooltip-pinned-outline-color);
+  --mr-tooltip-pin-progress-stroke-width: 2;
 }
 
 @media (prefers-color-scheme: dark) {

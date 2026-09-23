@@ -1,0 +1,241 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const outcomeType = `type LayerOutcome<T, R = unknown> =
+  | { status: "accepted"; value: T }
+  | { status: "dismissed"; reason?: R };`;
+
+const askExample = `type Author = { name: string };
+
+authorButton.addEventListener("click", async () => {
+  const outcome = await layers.ask<Author, "cancel-button">(
+    authorDialog,
+    { trigger: authorButton },
+  );
+
+  if (outcome.status === "accepted") {
+    bookAuthorInput.value = outcome.value.name;
+  }
+});`;
+
+const parentChildModal = `const outcome = await layers.ask<ChildValue>(childDialog, {
+  trigger: openChildButton, // inside the parent modal
+});
+
+if (outcome.status === "accepted") {
+  renderChildValue(outcome.value); // caller owns parent mutation
+}`;
+
+const drawerConfirmation = `const confirmation = await layers.ask<boolean, "cancel">(confirmDialog, {
+  trigger: deleteButton, // inside the open drawer
+});
+
+if (confirmation.status === "accepted" && confirmation.value) {
+  removeLocalItem();
+}`;
+
+const modalPopover = `const choice = await layers.ask<string>(statusPopover, {
+  trigger: statusButton, // inside the open modal
+});
+
+if (choice.status === "accepted") {
+  statusOutput.textContent = choice.value;
+}`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Layer results and local subinteractions</h1>
+    <p>
+      Phase 6 adds semantic completion without adding navigation or HTTP. A Layer can
+      close normally, accept a caller-defined value, or dismiss with an optional reason.
+      Direct workflow composition uses a Promise returned by <code>ask()</code>.
+    </p>
+
+    <h2>Outcome contract</h2>
+    <pre data-mr-copyable><code>{outcomeType}</code></pre>
+    <p>
+      Ordinary user cancellation is data, not an exception. Runtime/programming failures
+      may still reject, but Escape, request-close, light dismiss, or an ordinary
+      <code>close()</code> while an <code>ask()</code> is pending resolve as
+      <code>{`{ status: "dismissed" }`}</code>.
+    </p>
+
+    <h2>Three completion operations</h2>
+    <table>
+      <thead><tr><th>Operation</th><th>Meaning</th><th>Result behavior</th></tr></thead>
+      <tbody>
+        <tr><td><code>close()</code></td><td>Close the surface without declaring success.</td><td>A pending <code>ask()</code> resolves as dismissal with no reason.</td></tr>
+        <tr><td><code>accept(value)</code></td><td>Complete successfully with an opaque caller-defined value.</td><td>Closes, emits <code>mr:layer:result</code>, resolves <code>ask()</code> as accepted.</td></tr>
+        <tr><td><code>dismiss(reason)</code></td><td>Complete without acceptance, optionally explaining why.</td><td>Closes, emits <code>mr:layer:result</code>, resolves <code>ask()</code> as dismissed.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Book → Author local proof of concept</h2>
+    <p>
+      This example has no fetch, router, remote fragment, entity protocol, or parent
+      refresh primitive. The Author Layer returns an opaque object. The caller alone
+      decides to copy its <code>name</code> into the Book form.
+    </p>
+
+    <section data-layer-result-demo>
+      <button type="button" data-demo-action="open-book">Open Book form</button>
+      <output data-demo-status aria-live="polite"></output>
+
+      <dialog
+        class="mr-layer mr-layer--modal"
+        data-mr-layer="modal"
+        data-demo-layer="book"
+        aria-labelledby="layer-result-book-title"
+      >
+        <h2 id="layer-result-book-title">Book</h2>
+        <label>
+          Title
+          <input name="title" value="The Example Book" />
+        </label>
+        <label>
+          Author
+          <input name="author" data-demo-book-author readonly />
+        </label>
+        <div class="mr-group">
+          <button type="button" data-demo-action="create-author">Quick-create author</button>
+          <button type="button" data-demo-action="close-book">Close Book</button>
+        </div>
+      </dialog>
+
+      <dialog
+        class="mr-layer mr-layer--modal"
+        data-mr-layer="modal"
+        data-demo-layer="author"
+        aria-labelledby="layer-result-author-title"
+      >
+        <h2 id="layer-result-author-title">New Author</h2>
+        <label>
+          Name
+          <input name="name" data-demo-author-name value="Ada Example" />
+        </label>
+        <div class="mr-group">
+          <button type="button" data-demo-action="accept-author">Use author</button>
+          <button type="button" data-demo-action="dismiss-author">Cancel</button>
+        </div>
+      </dialog>
+    </section>
+
+    <pre data-mr-copyable><code>{askExample}</code></pre>
+    <p>
+      The Author opener sits inside the active Book Layer, so normal ownership inference
+      makes Book the parent. Accepting or dismissing Author closes only Author. The Book
+      Layer stays open, focus returns to the quick-create button, and only then does the
+      awaiting caller apply an accepted value to its own form.
+    </p>
+
+    <h2>Arbitrary nesting uses the same API</h2>
+    <h3>Parent modal → child modal</h3>
+    <pre data-mr-copyable><code>{parentChildModal}</code></pre>
+
+    <h3>Drawer → confirmation modal</h3>
+    <pre data-mr-copyable><code>{drawerConfirmation}</code></pre>
+
+    <h3>Modal → popover</h3>
+    <pre data-mr-copyable><code>{modalPopover}</code></pre>
+    <p>
+      There is no <code>nestedModal</code>, <code>nestedNestedModal</code>, or special
+      workflow subtype. Parentage comes from the opener (or an explicit
+      <code>parent</code> option), and every child independently produces its own result.
+    </p>
+
+    <h2>Result events are observational</h2>
+    <pre data-mr-copyable><code>{`surface.addEventListener("mr:layer:result", (event) => {
+  console.log(event.detail.layer, event.detail.outcome);
+});`}</code></pre>
+    <p>
+      The event carries the same discriminated outcome and bubbles for diagnostics or
+      integration. Direct parent/child workflow composition should still use the returned
+      Promise. No automatic parent DOM mutation or completion occurs: a child result never implicitly changes parent DOM or completes the parent.
+    </p>
+
+    <h2>Propagation rules</h2>
+    <ul>
+      <li>Accepting/dismissing a child completes only that child's active interaction.</li>
+      <li>The parent stays open unless caller code explicitly closes or completes it.</li>
+      <li>The result value is opaque to Layer core; no IDs, labels, CRUD records, JSON schema, or form model are assumed.</li>
+      <li>Closing a parent still closes owned descendants; a descendant with a pending <code>ask()</code> resolves as dismissed.</li>
+      <li>Parent UI changes happen only in caller code after inspecting the child's result.</li>
+    </ul>
+    <h2>Lower-capability fallback</h2>
+    <p>
+      Nested <code>ask()</code> is an enhancement, not a requirement on the underlying task.
+      A quick-create control for an essential workflow should retain a normal destination
+      that works when JavaScript or native Layer capability is unavailable.
+    </p>
+    <pre data-mr-copyable><code>{`<a href="/authors/new">Create author on the standalone page</a>`}</code></pre>
+
+  </main>
+
+  <script>
+    import { layers } from "../../library/layers/manager";
+
+    type Author = { name: string };
+    type AuthorDismissReason = "cancel-button";
+
+    const demo = document.querySelector<HTMLElement>("[data-layer-result-demo]");
+    if (demo && demo.dataset.layerResultReady !== "true") {
+      demo.dataset.layerResultReady = "true";
+
+      const bookDialog = demo.querySelector<HTMLElement>('[data-demo-layer="book"]');
+      const authorDialog = demo.querySelector<HTMLElement>('[data-demo-layer="author"]');
+      const openBookButton = demo.querySelector<HTMLElement>('[data-demo-action="open-book"]');
+      const createAuthorButton = demo.querySelector<HTMLElement>('[data-demo-action="create-author"]');
+      const closeBookButton = demo.querySelector<HTMLElement>('[data-demo-action="close-book"]');
+      const acceptAuthorButton = demo.querySelector<HTMLElement>('[data-demo-action="accept-author"]');
+      const dismissAuthorButton = demo.querySelector<HTMLElement>('[data-demo-action="dismiss-author"]');
+      const authorNameInput = demo.querySelector<HTMLInputElement>("[data-demo-author-name]");
+      const bookAuthorInput = demo.querySelector<HTMLInputElement>("[data-demo-book-author]");
+      const status = demo.querySelector<HTMLOutputElement>("[data-demo-status]");
+
+      if (
+        bookDialog && authorDialog && openBookButton && createAuthorButton && closeBookButton &&
+        acceptAuthorButton && dismissAuthorButton && authorNameInput && bookAuthorInput && status
+      ) {
+        const bookLayer = layers.get(bookDialog);
+        const authorLayer = layers.get(authorDialog);
+
+        openBookButton.addEventListener("click", () => {
+          if (!bookLayer) return;
+          status.textContent = "";
+          void bookLayer.open({ trigger: openBookButton });
+        });
+
+        closeBookButton.addEventListener("click", () => {
+          void bookLayer?.close();
+        });
+
+        createAuthorButton.addEventListener("click", async () => {
+          if (!authorLayer) return;
+
+          const outcome = await authorLayer.ask<Author, AuthorDismissReason>({
+            trigger: createAuthorButton,
+          });
+
+          if (outcome.status === "accepted") {
+            bookAuthorInput.value = outcome.value.name;
+            status.textContent = `Accepted author: ${outcome.value.name}`;
+          } else {
+            status.textContent = outcome.reason
+              ? `Author dismissed: ${outcome.reason}`
+              : "Author dismissed.";
+          }
+        });
+
+        acceptAuthorButton.addEventListener("click", () => {
+          const value: Author = { name: authorNameInput.value };
+          void authorLayer?.accept(value);
+        });
+
+        dismissAuthorButton.addEventListener("click", () => {
+          void authorLayer?.dismiss<AuthorDismissReason>("cancel-button");
+        });
+      }
+    }
+  </script>
+</FullNavigationLayout>

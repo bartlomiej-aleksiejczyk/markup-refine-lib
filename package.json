@@ -6,7 +6,8 @@
   "license": "Apache-2.0",
   "files": [
     "dist",
-    "NOTICE"
+    "NOTICE",
+    "AI-USAGE.md"
   ],
   "homepage": "https://bartlomiej-aleksiejczyk.github.io/markup-refine-lib/",
   "repository": {
@@ -22,8 +23,7 @@
     "astro:dev": "node src/build/buildDev.js & astro dev --host",
     "astro:build": "astro build && node src/build/buildDocs.js",
     "astro:preview": "astro preview",
-    "release": "node src/build/releaseNewVersion.js",
-    "check:docs": "node scripts/check-generated-docs.mjs"
+    "release": "node src/build/releaseNewVersion.js"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
@@ -50,6 +50,9 @@
     "./components": "./dist/markup-refine-lib-components.css",
     "./layout": "./dist/markup-refine-lib-layout.css",
     "./behaviors": "./dist/markup-refine-lib-behaviors.js",
+    "./layers": "./dist/markup-refine-lib-layers.js",
+    "./tooltips": "./dist/markup-refine-lib-tooltips.js",
+    "./layer-navigation": "./dist/markup-refine-lib-layer-navigation.js",
     "./package.json": "./package.json"
   },
   "sideEffects": [

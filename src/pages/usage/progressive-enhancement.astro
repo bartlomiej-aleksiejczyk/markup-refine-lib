@@ -24,6 +24,10 @@ const tabsExample = `<nav class="mr-nav-tabs" role="tablist" aria-label="Example
       <li>Tabs use <code>aria-selected</code>, roving <code>tabindex</code>, and <code>hidden</code> panels.</li>
       <li>The shell toggle uses <code>aria-expanded</code> and <code>aria-controls</code>.</li>
       <li>Search uses native modal <code>&lt;dialog&gt;</code>.</li>
+      <li>Layer discovery observes native <code>&lt;dialog&gt;</code>/Popover state instead of duplicating it.</li>
+      <li>Tooltip previews use native hint popovers; pinned tooltips become normal non-modal Popover Layers.</li>
+      <li>Layer <code>ask()</code> treats native/ordinary close as dismissal; semantic accepted values remain a JavaScript workflow concern rather than HTML state.</li>
+      <li>Optional remote Layer navigation enhances real <code>href</code>/<code>action</code> targets; without JavaScript those links/forms still navigate or submit normally. Enhanced same-origin multipart forms stay inside the Layer workflow instead of navigating away solely because they contain a file.</li>
     </ul>
 
     <h2>Tabs</h2>
@@ -40,6 +44,8 @@ const tabsExample = `<nav class="mr-nav-tabs" role="tablist" aria-label="Example
         <tr><td>Single-page tabs</td><td>All authored panels remain visible.</td></tr>
         <tr><td>Navigation shell</td><td>Navigation content remains reachable.</td></tr>
         <tr><td>Search</td><td>Provide a normal form/link fallback when no-JS search is required.</td></tr>
+        <tr><td>Tooltip explanation</td><td>Essential meaning remains in normal page content; tooltip text is supplementary only.</td></tr>
+        <tr><td>Remote Layer subinteraction</td><td>The same URL is a complete standalone page, and opted-in forms submit through their real <code>action</code>/<code>method</code>. Multipart forms use native browser submission before enhancement and browser-created <code>FormData</code> after enhancement.</td></tr>
       </tbody>
     </table>
 
@@ -47,6 +53,20 @@ const tabsExample = `<nav class="mr-nav-tabs" role="tablist" aria-label="Example
     <pre data-mr-copyable><code>{`import { initMarkupRefineBehaviors } from "markup-refine-lib/behaviors";
 
 initMarkupRefineBehaviors(container);`}</code></pre>
-    <p>The initializer is SSR-safe and idempotent.</p>
+    <p>The initializer is SSR-safe and idempotent. It registers <code>[data-mr-layer]</code> surfaces and <code>[data-mr-tooltip]</code> triggers in the supplied root.</p>
+    <p>Remote navigation is deliberately excluded. Opt into <code>initLayerNavigation()</code> from <code>markup-refine-lib/layer-navigation</code> only where HTTP enhancement is wanted.</p>
+    <h2>Stable Layer degradation contract</h2>
+    <p>
+      Layer enhancement is capability-gated. Failure at a higher capability level must leave
+      the authored lower-capability task usable rather than hiding it behind partially prepared
+      UI. Markup Refine does not provide a generic “enhanced” marker that authors must style
+      around, and it never auto-promotes an unsupported popover into a modal.
+    </p>
+    <p>
+      See the <a href="../layer-api/">Stable Layer API</a> for the permanent degradation
+      matrix covering no JavaScript, no CSS, unsupported native APIs, initialization failure,
+      late initialization, and remote request failure.
+    </p>
+
   </main>
 </FullNavigationLayout>

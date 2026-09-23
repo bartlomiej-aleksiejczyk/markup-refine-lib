@@ -1,4 +1,5 @@
 import Fuse from "fuse.js";
+import { layers } from "../../layers/manager";
 
 type SearchMode = "static" | "dynamic";
 
@@ -46,32 +47,33 @@ async function openSearch(trigger: HTMLElement) {
     resultCount,
   } = createSearchDialog();
 
-  document.body.appendChild(dialog);
-  dialog.showModal();
+  dialog.ownerDocument.body.appendChild(dialog);
+  const layer = layers.get(dialog);
+  if (!layer) {
+    dialog.remove();
+    throw new TypeError("Markup Refine search could not register its modal Layer.");
+  }
+
+  dialog.addEventListener(
+    "mr:layer:close",
+    () => {
+      dialog.remove();
+    },
+    { once: true },
+  );
+  dismissButton.addEventListener("click", () => {
+    void layer.close();
+  });
+
+  await layer.open({ trigger });
+  if (layer.state !== "open") {
+    dialog.remove();
+    return;
+  }
   input.focus();
 
   let fuse: Fuse<SearchItem> | null = null;
   let loadingFailed = false;
-
-  const close = () => {
-    if (dialog.open) dialog.close();
-  };
-
-  dialog.addEventListener("close", () => {
-    dialog.remove();
-    trigger.focus();
-  }, { once: true });
-  dialog.addEventListener("click", (event) => {
-    if (event.target !== dialog) return;
-    const rect = dialog.getBoundingClientRect();
-    const inside =
-      event.clientX >= rect.left &&
-      event.clientX <= rect.right &&
-      event.clientY >= rect.top &&
-      event.clientY <= rect.bottom;
-    if (!inside) close();
-  });
-  dismissButton.addEventListener("click", close);
 
   if (mode === "static") {
     setLoading(true, searchIcon, spinner);
@@ -294,9 +296,11 @@ function renderHighlightedText(
 
 function createSearchDialog() {
   const dialog = document.createElement("dialog");
-  dialog.className = "mr-search";
+  dialog.className = "mr-layer mr-layer--modal mr-search";
+  dialog.setAttribute("data-mr-layer", "modal");
   dialog.setAttribute("data-mr-search-part", "dialog");
   dialog.setAttribute("aria-label", "Search");
+  dialog.setAttribute("closedby", "any");
 
   const input = document.createElement("input");
   input.className = "mr-search__input";

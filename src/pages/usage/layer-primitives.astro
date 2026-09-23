@@ -1,0 +1,249 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const modalExample = `<button commandfor="settings" command="show-modal">Settings</button>
+
+<dialog id="settings"
+        class="mr-layer mr-layer--modal"
+        data-mr-layer="modal"
+        aria-labelledby="settings-title">
+  <header class="mr-layer__header">
+    <div class="mr-layer__heading">
+      <h2 id="settings-title" class="mr-layer__title">Settings</h2>
+      <p class="mr-layer__description">Change local preferences for this example.</p>
+    </div>
+    <button commandfor="settings" command="request-close" aria-label="Close settings">
+      Close
+    </button>
+  </header>
+
+  <div class="mr-layer__body">
+    <label>
+      Display name
+      <input name="display-name" value="Ada" />
+    </label>
+  </div>
+
+  <footer class="mr-layer__actions">
+    <button commandfor="settings" command="request-close">Cancel</button>
+    <button type="button" class="mr-button--positive">Save example</button>
+  </footer>
+</dialog>`;
+
+const drawerExample = `<button commandfor="navigation" command="show-modal">Menu</button>
+
+<dialog id="navigation"
+        class="mr-layer mr-layer--drawer"
+        data-mr-layer="drawer"
+        aria-labelledby="navigation-title">
+  <header class="mr-layer__header">
+    <div class="mr-layer__heading">
+      <h2 id="navigation-title" class="mr-layer__title">Navigation</h2>
+      <p class="mr-layer__description">A drawer is presentation on the same dialog lifecycle.</p>
+    </div>
+    <button commandfor="navigation" command="request-close">Close</button>
+  </header>
+
+  <div class="mr-layer__body">
+    <nav aria-label="Primary">...</nav>
+  </div>
+</dialog>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1 id="modal-and-drawer-layers">Modal and drawer Layers</h1>
+    <p>
+      Modal and drawer Layers share one native <code>&lt;dialog&gt;</code> lifecycle.
+      <code>data-mr-layer</code> opts into Layer behavior; the
+      <code>mr-layer*</code> classes opt into Markup Refine presentation. The drawer
+      is therefore a visual variant rather than a second overlay state machine.
+    </p>
+
+    <h2>Reusable Layer content primitives</h2>
+    <p>
+      The surface class controls presentation of the top-layer element. The optional
+      <code>mr-layer__*</code> classes arrange authored content inside that surface and work
+      identically in modal, drawer, and popover Layers. None of these classes enable behavior.
+    </p>
+    <table>
+      <thead><tr><th>Class</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>.mr-layer__header</code></td><td>Two-column title/close-control header.</td></tr>
+        <tr><td><code>.mr-layer__heading</code></td><td>Wrapper for title and optional description.</td></tr>
+        <tr><td><code>.mr-layer__title</code></td><td>Removes default heading block margins inside the scaffold.</td></tr>
+        <tr><td><code>.mr-layer__description</code></td><td>Secondary explanatory text under the title.</td></tr>
+        <tr><td><code>.mr-layer__body</code></td><td>Main content region with safe intrinsic sizing.</td></tr>
+        <tr><td><code>.mr-layer__actions</code></td><td>Wrapping end-aligned action row with a visual separator.</td></tr>
+      </tbody>
+    </table>
+    <p>
+      These are presentation primitives, not required DOM structure. Use semantic elements
+      appropriate to the content: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>,
+      <code>&lt;section&gt;</code>, <code>&lt;form&gt;</code>, or ordinary <code>&lt;div&gt;</code>s are all valid.
+    </p>
+
+    <h2>Modal demonstration</h2>
+    <p>
+      <code>showModal()</code> places the dialog in the browser top layer and makes
+      the rest of the containing document inert. Markup Refine does not add a custom
+      focus trap or a separate backdrop element.
+    </p>
+
+    <button commandfor="layer-modal-demo" command="show-modal">Open modal demo</button>
+    <dialog
+      id="layer-modal-demo"
+      class="mr-layer mr-layer--modal"
+      data-mr-layer="modal"
+      aria-labelledby="layer-modal-demo-title"
+    >
+      <header class="mr-layer__header">
+        <div class="mr-layer__heading">
+          <h2 id="layer-modal-demo-title" class="mr-layer__title">Profile settings</h2>
+          <p class="mr-layer__description">This example uses only native HTML plus public Layer presentation classes.</p>
+        </div>
+        <button commandfor="layer-modal-demo" command="request-close" aria-label="Close profile settings">Close</button>
+      </header>
+
+      <div class="mr-layer__body">
+        <label>
+          Display name
+          <input name="layer-demo-name" value="Ada" />
+        </label>
+        <p>
+          The dialog remains natively open while its closing transition runs, then Layer
+          commits the native close.
+        </p>
+      </div>
+
+      <footer class="mr-layer__actions">
+        <button commandfor="layer-modal-demo" command="request-close">Cancel</button>
+        <button type="button" class="mr-button--positive">Save example</button>
+      </footer>
+    </dialog>
+
+    <pre data-mr-copyable><code>{modalExample}</code></pre>
+
+    <h2>Drawer demonstration</h2>
+    <p>
+      A modal drawer is the same native dialog with <code>data-mr-layer="drawer"</code>
+      and <code>mr-layer--drawer</code>. The presentation attaches the surface to the
+      inline-start edge, while open/close, Escape, inertness, focus handling, and the
+      top layer remain native dialog behavior.
+    </p>
+
+    <button commandfor="layer-drawer-demo" command="show-modal">Open drawer demo</button>
+    <dialog
+      id="layer-drawer-demo"
+      class="mr-layer mr-layer--drawer"
+      data-mr-layer="drawer"
+      aria-labelledby="layer-drawer-demo-title"
+    >
+      <header class="mr-layer__header">
+        <div class="mr-layer__heading">
+          <h2 id="layer-drawer-demo-title" class="mr-layer__title">Navigation</h2>
+          <p class="mr-layer__description">Same behavior contract, edge-attached presentation.</p>
+        </div>
+        <button commandfor="layer-drawer-demo" command="request-close">Close</button>
+      </header>
+      <div class="mr-layer__body">
+        <nav aria-label="Layer demo navigation">
+          <ul>
+            <li><a href="#modal-and-drawer-layers">Overview</a></li>
+            <li><a href="#tokens">Tokens</a></li>
+          </ul>
+        </nav>
+      </div>
+    </dialog>
+
+    <pre data-mr-copyable><code>{drawerExample}</code></pre>
+
+    <h2>Native request-close semantics</h2>
+    <p>
+      Escape and <code>command="request-close"</code> use the dialog close-request
+      path. That path fires a cancelable native <code>cancel</code> event. After the
+      request is accepted, Layer keeps the native dialog open, sets
+      <code>data-mr-layer-closing</code>, waits for the real finite CSS exit
+      transitions/animations, and only then commits the native close. Use
+      <code>command="close"</code> only when the action must close unconditionally
+      and intentionally bypass this coordinated exit path.
+    </p>
+    <p>
+      Declarative <code>commandfor</code>/<code>command</code> controls are optional.
+      For browser targets where they are not suitable, call the focused Layer API
+      from ordinary JavaScript instead; the surface markup and Layer lifecycle do not
+      change.
+    </p>
+
+    <pre data-mr-copyable><code>{`import { initLayers, layers } from "markup-refine-lib/layers";
+
+initLayers(document);
+await layers.open("#settings", { trigger: openButton });
+await layers.get("#settings")?.close();`}</code></pre>
+
+    <h2 id="tokens">Presentation tokens</h2>
+    <p>
+      Layer sizing, viewport spacing, surface appearance, content spacing, backdrop, and
+      motion are expressed through <code>--mr-layer-*</code> tokens. Override the tokens
+      rather than replacing the Layer lifecycle.
+    </p>
+    <pre data-mr-copyable><code>{`:root {
+  --mr-layer-surface-inline-size: 42rem;
+  --mr-layer-drawer-inline-size: 20rem;
+  --mr-layer-surface-padding: var(--mr-space-md);
+  --mr-layer-header-gap: var(--mr-space-sm);
+  --mr-layer-section-gap: var(--mr-space-md);
+  --mr-layer-actions-gap: var(--mr-space-sm);
+  --mr-layer-backdrop-blur: 0;
+  --mr-layer-motion-duration: 160ms;
+}`}</code></pre>
+    <p>
+      Markup Refine disables Layer motion when
+      <code>prefers-reduced-motion: reduce</code> is active and switches the Layer
+      surface/backdrop to system colors in <code>forced-colors</code> mode.
+    </p>
+    <p>
+      There is no JavaScript close-delay setting. <code>layer.close()</code> waits for
+      the CSS motion actually running on the Layer surface (and dialog backdrop where
+      supported), so changing <code>--mr-layer-motion-duration</code> or authoring a
+      custom transition automatically changes how long the Layer stays natively open.
+    </p>
+    <pre data-mr-copyable><code>{`/* Custom presentation works too. */
+[data-mr-layer="modal"] {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+[data-mr-layer="modal"][open]:not([data-mr-layer-closing]) {
+  opacity: 1;
+}`}</code></pre>
+
+    <h2>Plain semantic dialog</h2>
+    <p>
+      Layer behavior and Layer presentation are both optional. A local dialog does
+      not need Markup Refine classes, and standard HTML controls such as
+      <code>&lt;form method="dialog"&gt;</code> remain valid.
+    </p>
+    <pre data-mr-copyable><code>{`<dialog id="plain-dialog">
+  <p>Plain native dialog content.</p>
+  <form method="dialog">
+    <button>Close</button>
+  </form>
+</dialog>`}</code></pre>
+
+    <h2>Lower-capability fallback</h2>
+    <p>
+      Essential actions must not exist only behind a Layer invoker. When a settings
+      workflow has a standalone destination, keep that destination as ordinary HTML;
+      Layer enhancement may sit beside it rather than replacing it.
+    </p>
+    <pre data-mr-copyable><code>{`<a href="/settings">Open settings page</a>
+
+<!-- Enhanced browsers may additionally expose the local dialog control. -->
+<button commandfor="settings" command="show-modal">Open settings dialog</button>`}</code></pre>
+    <p>
+      If native modal-dialog capability is unavailable, Markup Refine does not emulate a
+      top layer or focus trap. Use the authored navigation/inline fallback instead.
+    </p>
+  </main>
+</FullNavigationLayout>

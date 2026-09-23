@@ -1,0 +1,480 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const popoverExample = `<button popovertarget="format-help">Formatting help</button>
+
+<div id="format-help"
+     popover="auto"
+     data-mr-layer="popover"
+     class="mr-layer mr-layer--popover"
+     aria-labelledby="format-help-title">
+  <header class="mr-layer__header">
+    <div class="mr-layer__heading">
+      <h2 id="format-help-title" class="mr-layer__title">Formatting help</h2>
+      <p class="mr-layer__description">A native non-modal top-layer surface.</p>
+    </div>
+    <button popovertarget="format-help"
+            popovertargetaction="hide"
+            aria-label="Close formatting help">Close</button>
+  </header>
+
+  <div class="mr-layer__body">
+    <p>Formatting changes presentation without changing the underlying value.</p>
+  </div>
+
+  <footer class="mr-layer__actions">
+    <a href="/formatting">Read the full guide</a>
+  </footer>
+</div>`;
+
+const tooltipExample = `<button type="button" data-mr-tooltip="formatting-term">
+  Formatting
+</button>
+
+<template id="formatting-term">
+  <strong class="mr-tooltip__title">Formatting</strong>
+  <span class="mr-tooltip__content">
+    Formatting changes presentation without changing the underlying value.
+    <button type="button" data-mr-tooltip="semantic-term">Semantic HTML</button>
+    is a related concept.
+  </span>
+</template>
+
+<template id="semantic-term">
+  <strong class="mr-tooltip__title">Semantic HTML</strong>
+  <span class="mr-tooltip__content">
+    Choose elements according to their meaning and native behavior.
+  </span>
+</template>`;
+
+const layeredTooltipExample = `<button type="button" data-mr-tooltip="layered-tooltip-level-1">
+  Layered tooltip demo
+</button>
+
+<template id="layered-tooltip-level-1">
+  <strong class="mr-tooltip__title">Level 1 · HTTP cache</strong>
+  <span class="mr-tooltip__content">
+    This preview becomes interactive after it pins.
+    <button type="button" data-mr-tooltip="layered-tooltip-level-2">
+      Cache-Control
+    </button>
+  </span>
+</template>
+
+<template id="layered-tooltip-level-2">
+  <strong class="mr-tooltip__title">Level 2 · Cache-Control</strong>
+  <span class="mr-tooltip__content">
+    Directives can themselves need explanation.
+    <button type="button" data-mr-tooltip="layered-tooltip-level-3">
+      stale-while-revalidate
+    </button>
+  </span>
+</template>
+
+<template id="layered-tooltip-level-3">
+  <strong class="mr-tooltip__title">Level 3 · stale-while-revalidate</strong>
+  <span class="mr-tooltip__content">
+    A cache may serve a stale response while it revalidates in the background.
+  </span>
+</template>`;
+
+const edgeTooltipExample = `<div class="tooltip-edge-demo">
+  <button type="button" data-mr-tooltip="edge-tooltip">
+    Trigger near the edge
+  </button>
+</div>
+
+<template id="edge-tooltip">
+  <strong class="mr-tooltip__title">Viewport-aware placement</strong>
+  <span class="mr-tooltip__content">
+    The browser tries alternate anchor areas when the preferred position would overflow.
+  </span>
+</template>`;
+
+const tooltipConfig = `import { initTooltips, tooltips } from "markup-refine-lib/tooltips";
+
+tooltips.configure({
+  showDelay: 400,
+  pinDelay: 1600,
+  closeDelay: 250,
+});
+initTooltips(document);`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Popovers and pinned tooltips</h1>
+    <p>
+      Non-modal floating UI uses the native Popover API. Markup Refine adds Layer
+      ownership/lifecycle only when orchestration is useful, and adds a small Tooltip
+      subsystem for delayed preview-to-pinned information surfaces.
+    </p>
+
+    <h2>Choose the smallest primitive</h2>
+    <table>
+      <thead><tr><th>Need</th><th>Use</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Blocking decision or workflow</td><td>Modal Layer</td><td>Native modal <code>&lt;dialog&gt;</code> provides inertness and modal semantics.</td></tr>
+        <tr><td>Blocking transient edge panel</td><td>Drawer Layer</td><td>Same dialog lifecycle, different presentation.</td></tr>
+        <tr><td>Interactive non-modal floating UI with lifecycle/ownership</td><td>Popover Layer</td><td>Native top layer and light dismiss plus Layer hierarchy.</td></tr>
+        <tr><td>Short supplementary hover/focus explanation</td><td>Tooltip preview</td><td>Transient, non-focusable, and intentionally outside <code>layers.stack</code>.</td></tr>
+        <tr><td>Simple disclosure or persistent content</td><td>No Layer</td><td>Prefer inline HTML, <code>&lt;details&gt;</code>, or another native structure.</td></tr>
+        <tr><td>Simple popover with no orchestration needs</td><td>Plain native popover</td><td><code>popover</code>/<code>popovertarget</code> already supply the behavior.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Native Popover Layer demonstration</h2>
+    <p>
+      The same <code>mr-layer__*</code> content primitives used by modal dialogs can be used
+      inside a Popover Layer. The modifier changes the surface presentation; the content
+      scaffold does not know which Layer mode contains it.
+    </p>
+    <button popovertarget="format-help-demo">Open popover demo</button>
+    <div
+      id="format-help-demo"
+      popover="auto"
+      data-mr-layer="popover"
+      class="mr-layer mr-layer--popover"
+      aria-labelledby="format-help-demo-title"
+    >
+      <header class="mr-layer__header">
+        <div class="mr-layer__heading">
+          <h2 id="format-help-demo-title" class="mr-layer__title">Formatting help</h2>
+          <p class="mr-layer__description">Interactive, non-modal, and light-dismissed natively.</p>
+        </div>
+        <button popovertarget="format-help-demo" popovertargetaction="hide" aria-label="Close formatting help">Close</button>
+      </header>
+      <div class="mr-layer__body">
+        <p>Popover content may contain links, buttons, forms, and nested Layer invokers.</p>
+      </div>
+      <footer class="mr-layer__actions">
+        <a href="#tooltip-preview-pinned-layer">See tooltip promotion</a>
+      </footer>
+    </div>
+
+    <pre data-mr-copyable><code>{popoverExample}</code></pre>
+    <p>
+      <code>popover="auto"</code> owns outside-click/Escape light dismiss. The browser
+      also places the surface in the top layer. Markup Refine does not add a z-index
+      stack or a second light-dismiss implementation.
+    </p>
+    <p>
+      Declarative <code>popovertarget</code> is preferred when a button directly owns
+      the popover. Programmatic <code>layers.open(..., &#123; trigger &#125;)</code> uses the
+      same native popover operation and supplies the trigger as the native source.
+    </p>
+
+    <h3>Unstyled native baseline</h3>
+    <pre data-mr-copyable><code>{`<button popovertarget="plain-help">Help</button>
+<div id="plain-help" popover="auto">Native popover, no Markup Refine classes.</div>`}</code></pre>
+    <p>
+      Markup Refine CSS is optional. If no ownership/lifecycle integration is needed,
+      <code>data-mr-layer</code> is optional too.
+    </p>
+
+    <h2 id="tooltip-preview-pinned-layer">Tooltip preview → pinned Layer</h2>
+    <p>
+      Tooltip source markup may use the small <code>mr-tooltip__title</code> and
+      <code>mr-tooltip__content</code> presentation primitives. The runtime clones the same
+      source into both the short-lived preview and the interactive pinned popover. Both render
+      the same authored HTML and share Tooltip box metrics. Preview controls keep their visual
+      styling, but are temporarily inert and
+      hidden from the accessibility tree. Promotion therefore changes behavior and state
+      feedback without deliberately changing the tooltip's content or box dimensions.
+    </p>
+    <pre data-mr-copyable><code>{tooltipExample}</code></pre>
+    <div class="mr-cluster">
+      <button type="button" data-mr-tooltip="formatting-term">Formatting</button>
+      <span>Hover or focus long enough to pin the explanation.</span>
+    </div>
+
+    <template id="formatting-term">
+      <strong class="mr-tooltip__title">Formatting</strong>
+      <span class="mr-tooltip__content">
+        Formatting changes presentation without changing the underlying value.
+        <button type="button" data-mr-tooltip="semantic-term">Semantic HTML</button>
+        is a related concept.
+      </span>
+    </template>
+    <template id="semantic-term">
+      <strong class="mr-tooltip__title">Semantic HTML</strong>
+      <span class="mr-tooltip__content">
+        Choose elements according to their meaning and native behavior.
+      </span>
+    </template>
+
+    <h3>Tooltip presentation primitives</h3>
+    <table>
+      <thead><tr><th>Class</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>.mr-tooltip</code></td><td>Runtime-generated Tooltip surface presentation.</td></tr>
+        <tr><td><code>.mr-tooltip--preview</code></td><td>Runtime-generated native <code>popover="hint"</code> preview, including entry/exit motion.</td></tr>
+        <tr><td><code>.mr-tooltip--pinned</code></td><td>Runtime-generated interactive manual Popover Layer. The default presentation adds a stronger surface shadow plus a size-neutral pinned outline.</td></tr>
+        <tr><td><code>.mr-tooltip__pin-progress</code></td><td>Runtime-generated determinate circular progress ring. It fills over the actual configured <code>pinDelay</code> and reaches 100% when promotion occurs.</td></tr>
+        <tr><td><code>.mr-tooltip__dismiss</code></td><td>Runtime-generated top-right dismiss button available only after pinning.</td></tr>
+        <tr><td><code>.mr-tooltip__title</code></td><td>Optional compact title inside authored Tooltip source content.</td></tr>
+        <tr><td><code>.mr-tooltip__content</code></td><td>Optional body wrapper shared by preview and pinned clones.</td></tr>
+      </tbody>
+    </table>
+
+    <p>The state machine is:</p>
+    <pre><code>{`hidden → waiting → preview → pinned
+                       ↘ hidden
+                                  pinned child → pinned grandchild → …`}</code></pre>
+    <ul>
+      <li>The preview uses <code>popover="hint"</code> and <code>role="tooltip"</code>. Authored HTML is rendered visually unchanged; interactive descendants are temporarily <code>inert</code> and <code>aria-hidden</code>, while the preview exposes a plain-text accessible description through its tooltip label.</li>
+      <li>While the preview's pin timer runs, <code>data-mr-tooltip-pinning</code> exposes a size-neutral circular progress ring in the reserved control slot. The SVG stroke fills linearly over the same <code>pinDelay</code> used by the promotion timer, so 100% means the Tooltip is pinning now.</li>
+      <li>The preview is never registered with Layer core and therefore never enters <code>layers.stack</code>.</li>
+      <li>After <code>pinDelay</code>, an interactive <code>popover="manual"</code> surface is opened as a normal Popover Layer.</li>
+      <li>Pinned content may contain additional <code>data-mr-tooltip</code> triggers; their Layers inherit normal parent/child ownership.</li>
+      <li>Closing a parent Layer closes descendant Layers child-first.</li>
+      <li>Markup Refine does not attach click handlers to tooltip triggers, so ordinary link/button activation remains the author's behavior.</li>
+    </ul>
+    <p>
+      Promotion is visible by default, but it is deliberately size-neutral: the preview
+      reserves a top-right control slot and shows a determinate circular progress ring there while
+      the pin timer is active. The ring fills from empty to complete over the actual configured
+      <code>pinDelay</code>; there is no separate CSS duration that can drift from the pin timer. After promotion that same slot contains the dismiss button, while
+      the pinned outline becomes visible. The tooltip should read as the same surface becoming
+      interactive, not as a second popover replacing it. Programmatic state remains available
+      from <code>tooltip.state</code>.
+    </p>
+    <p>
+      Internally the preview remains a native <code>popover="hint"</code>. The pinned surface
+      is a native <code>popover="manual"</code> controlled by the Tooltip registry. Manual mode
+      is intentional: clicks/selections inside remain stable, while one pointer-down outside
+      the current Tooltip interaction region dismisses the whole active Tooltip stack.
+      <kbd>Escape</kbd> remains topmost-only
+      for keyboard users. <code>showPopover(&#123; source &#125;)</code>
+      is still used, so the browser retains top-layer placement, focus-order integration, and
+      the implicit CSS anchor relationship.
+    </p>
+
+    <h2>Layered tooltip walkthrough</h2>
+    <p>
+      This example intentionally goes three levels deep. Hover or focus the first trigger
+      until its preview promotes. Once the <strong>pinned outline</strong> appears, move into
+      the pinned surface and hover/focus the nested trigger. The child
+      tooltip becomes a child Popover Layer of the pinned parent; pinning it again creates
+      the next level without any special nesting API.
+    </p>
+    <pre data-mr-copyable><code>{layeredTooltipExample}</code></pre>
+    <div class="mr-cluster">
+      <button type="button" data-mr-tooltip="layered-tooltip-level-1">Layered tooltip demo</button>
+      <span>Wait for the pinned outline, then move into the tooltip and continue inward.</span>
+    </div>
+
+    <template id="layered-tooltip-level-1">
+      <strong class="mr-tooltip__title">Level 1 · HTTP cache</strong>
+      <span class="mr-tooltip__content">
+        This preview becomes interactive after it pins.
+        <button type="button" data-mr-tooltip="layered-tooltip-level-2">Cache-Control</button>
+      </span>
+    </template>
+    <template id="layered-tooltip-level-2">
+      <strong class="mr-tooltip__title">Level 2 · Cache-Control</strong>
+      <span class="mr-tooltip__content">
+        Directives can themselves need explanation.
+        <button type="button" data-mr-tooltip="layered-tooltip-level-3">stale-while-revalidate</button>
+      </span>
+    </template>
+    <template id="layered-tooltip-level-3">
+      <strong class="mr-tooltip__title">Level 3 · stale-while-revalidate</strong>
+      <span class="mr-tooltip__content">
+        A cache may serve a stale response while it revalidates in the background.
+      </span>
+    </template>
+    <p>
+      Transient previews render the same nested button HTML you will see after pinning, so
+      promotion does not unexpectedly reflow or replace labels with different markup. The
+      preview controls are inert, so they cannot be focused or activated until the pinned
+      clone opens. Closing a pinned parent closes its pinned descendants child-first through
+      normal Layer ownership.
+    </p>
+
+    <h2>JavaScript timing and API</h2>
+    <pre data-mr-copyable><code>{tooltipConfig}</code></pre>
+    <p>
+      Timing is intentionally JavaScript configuration, not an attribute DSL. Existing
+      Tooltip objects read the current registry configuration when a transition begins.
+      Tooltip <em>visual</em> motion remains CSS-controlled through
+      <code>--mr-tooltip-motion-*</code> tokens.
+    </p>
+    <pre data-mr-copyable><code>{`const trigger = document.querySelector("[data-mr-tooltip='formatting-term']");
+if (trigger instanceof HTMLElement) {
+  tooltips.pin(trigger);       // immediate programmatic promotion
+  console.log(tooltips.get(trigger)?.state);
+}`}</code></pre>
+
+    <h3>Complete public Tooltip API</h3>
+    <pre data-mr-copyable><code>{`import {
+  DEFAULT_TOOLTIP_OPTIONS,
+  initTooltips,
+  tooltips,
+} from "markup-refine-lib/tooltips";
+
+initTooltips(root?: ParentNode);
+tooltips.configure(options);
+tooltips.get(trigger);
+tooltips.closest(node);
+tooltips.pin(trigger);
+tooltips.hideAll();
+
+const tooltip = tooltips.get(trigger);
+tooltip?.show();
+tooltip?.hide();
+tooltip?.pin();
+tooltip?.unpin();
+
+// state: "hidden" | "waiting" | "preview" | "pinned"
+console.log(DEFAULT_TOOLTIP_OPTIONS);`}</code></pre>
+    <p>
+      <code>closest()</code> finds the nearest registered Tooltip for a node, while
+      <code>hideAll()</code> closes previews/pinned tooltip surfaces managed by the registry.
+      The exported defaults are useful when an application wants to override only selected
+      timing values without duplicating the library defaults.
+    </p>
+
+    <h2>Selection, dismissal, pointer, and keyboard behavior</h2>
+    <p>
+      Tooltip text explicitly uses <code>user-select: text</code>. Before pinning, pointer leave
+      from the invoking element immediately cancels the current <code>waiting</code>/<code>preview</code>
+      Tooltip; the preview does not remain open while the pointer travels into it. Once pinned,
+      pointer leave and focus leave no longer dismiss it. This gives a clear rule: transient
+      previews belong to their trigger, while pinned surfaces are stable enough for text
+      selection and interaction.
+    </p>
+    <p>
+      Pinned Tooltips dismiss in three explicit ways: activate the small top-right dismiss
+      button, press <kbd>Escape</kbd>, or pointer-down outside the current Tooltip interaction region. Outside
+      pointer-down is intentionally <strong>whole-tree dismissal</strong>: every active preview
+      and pinned Tooltip in that document closes together. <kbd>Escape</kbd> remains
+      topmost-only, so keyboard users can still unwind nested pinned Tooltips one level at a
+      time. Clicking or selecting inside any active Tooltip surface does not dismiss it.
+    </p>
+    <p>
+      Before pinning, moving the pointer away from the invoking element cancels the current
+      preview immediately, including its pin timer. A pinned ancestor is unaffected when a
+      nested trigger's transient child preview is canceled. Preview surfaces never receive
+      focus. When promoted,
+      <code>role="tooltip"</code> is removed; the pinned surface is a non-modal Popover Layer
+      and the trigger receives an <code>aria-details</code> relationship while it is open.
+    </p>
+
+    <h2>Authoring guidance</h2>
+    <ul>
+      <li>Use tooltips for supplementary explanation, never for the only copy of essential meaning or instructions.</li>
+      <li>Prefer a <code>&lt;template&gt;</code> source for interactive pinned content, especially when it contains IDs, labels, or nested controls.</li>
+      <li>Use naturally focusable triggers when keyboard users need the explanation.</li>
+      <li>Keep preview content concise. Pinned content may be richer, but it remains non-modal.</li>
+      <li>Toasts are intentionally outside this subsystem; notification lifetime and announcement semantics are a separate concern.</li>
+    </ul>
+
+    <h2>Tooltip width</h2>
+    <p>
+      Tooltip width is independent from the invoking element. Markup Refine does not use
+      <code>anchor-size(width)</code> or otherwise copy the trigger width. Configure minimum,
+      preferred, and maximum inline size independently with CSS tokens.
+    </p>
+    <pre data-mr-copyable><code>{`:root {
+  --mr-tooltip-min-inline-size: 12rem;
+  --mr-tooltip-inline-size: 20rem;
+  --mr-tooltip-max-inline-size: 28rem;
+}`}</code></pre>
+    <p>
+      Defaults are <code>0</code>, <code>max-content</code>, and <code>24rem</code>. That keeps
+      short tooltips compact, wraps longer text at the maximum, and still lets the viewport
+      gap cap the used size on narrow screens. Set the tokens per scope or per Tooltip surface.
+    </p>
+
+    <h2>Positioning, viewport edges, and motion</h2>
+    <p>
+      Tooltip and Popover Layer CSS uses the native invoker/anchor relationship. The
+      preferred position is <code>position-area: block-end center</code>. On current anchor-
+      positioning browsers, <code>position-try-fallbacks</code> then asks the browser to try
+      positions above and to either inline side when the preferred placement would overflow
+      the viewport. This handles the common top, bottom, left, right, and corner-edge cases
+      without a JavaScript coordinate engine.
+    </p>
+    <pre data-mr-copyable><code>{`position-area: block-end center;
+position-try-fallbacks:
+  block-start center,
+  block-end inline-start,
+  block-end inline-end,
+  block-start inline-start,
+  block-start inline-end;`}</code></pre>
+    <p>
+      Resize the page to a narrow viewport and try the trigger below. As it approaches the
+      inline edge, the browser can select one of the alternate anchor areas instead of
+      letting the tooltip run off-screen.
+    </p>
+    <pre data-mr-copyable><code>{edgeTooltipExample}</code></pre>
+    <div class="mr-tooltip-edge-demo">
+      <button type="button" data-mr-tooltip="edge-tooltip">Trigger near the edge</button>
+    </div>
+    <template id="edge-tooltip">
+      <strong class="mr-tooltip__title">Viewport-aware placement</strong>
+      <span class="mr-tooltip__content">
+        The browser tries alternate anchor areas when the preferred position would overflow.
+      </span>
+    </template>
+    <p>
+      Markup Refine still has no application-level collision, coordinate, or safe-polygon
+      engine. On older browsers that lack <code>position-try-fallbacks</code>, the tooltip keeps
+      its native popover behavior and viewport-constrained maximum size, but automatic
+      collision flipping is not guaranteed. Before pinning, pointer leave from the trigger
+      remains the deliberate first-line solution for pointer travel; after pinning, the surface
+      persists until explicit or whole-tree outside dismissal.
+    </p>
+    <p>
+      Native hint previews transition with <code>opacity</code>/<code>transform</code> plus
+      discrete <code>display</code>/<code>overlay</code> transitions. Pinned tooltips use the
+      normal Popover Layer transition. The pin-progress ring also uses stepped progress updates under
+      <code>prefers-reduced-motion: reduce</code>. Reduced-motion preferences set surface
+      transitions to zero duration.
+    </p>
+    <pre data-mr-copyable><code>{`:root {
+  --mr-tooltip-motion-duration: 120ms;
+  --mr-tooltip-motion-distance: 0.2rem;
+  --mr-tooltip-content-gap: var(--mr-space-xs);
+  --mr-tooltip-pinned-outline-width: 2px;
+  --mr-tooltip-control-size: 1.5rem;
+  --mr-tooltip-min-inline-size: 12rem;
+  --mr-tooltip-inline-size: 20rem;
+  --mr-tooltip-max-inline-size: 28rem;
+}`}</code></pre>
+
+    <h2>Lower-capability fallback</h2>
+    <p>
+      Popover enhancement must not be the only place for essential information. Prefer
+      ordinary inline content or a native disclosure when the content must remain usable
+      without the Popover API.
+    </p>
+    <pre data-mr-copyable><code>{`<details>
+  <summary>Formatting help</summary>
+  <p>Formatting changes presentation without changing the underlying value.</p>
+</details>`}</code></pre>
+    <p>
+      Tooltip previews use <code>role="tooltip"</code> and are associated with their trigger
+      through <code>aria-describedby</code>. Unsupported Popover capability does not cause an
+      automatic modal promotion.
+    </p>
+  </main>
+
+  <style>
+    .mr-tooltip-edge-demo {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      min-block-size: 8rem;
+      padding: var(--mr-space-md);
+      border: 1px dashed var(--mr-color-background-light-contrast);
+      border-radius: var(--mr-radius-medium);
+    }
+  </style>
+
+  <script>
+    import { tooltips } from "../../library/tooltips/manager";
+    tooltips.configure({ showDelay: 400, pinDelay: 1600, closeDelay: 250 });
+  </script>
+</FullNavigationLayout>

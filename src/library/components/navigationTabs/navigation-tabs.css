@@ -81,7 +81,7 @@
   }
 }
 
-:where(.mr-shell__sidebar) {
+:where(.mr-shell__sidebar, .mr-shell__drawer) {
   :where(.mr-tabs) {
     display: flex;
     background-color: var(--mr-color-secondary-darker);
