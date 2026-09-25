@@ -1,12 +1,81 @@
+import { layers, initLayers } from "./markup-refine-lib-layers.js";
+import { initTooltips } from "./markup-refine-lib-tooltips.js";
+const suppressedPersistence = /* @__PURE__ */ new WeakSet();
 function initClickableItemList(root = document) {
+  handlePersistence(root);
   handleFilters(root);
   handleAutoSelector$1(root);
+}
+function handlePersistence(root) {
+  root.querySelectorAll("ul[data-mr-clickable-list-persist]").forEach((list) => {
+    var _a;
+    if (list.dataset.mrClickablePersistInitialized === "true") return;
+    const persistenceKey = (_a = list.dataset.mrClickableListPersist) == null ? void 0 : _a.trim();
+    if (!persistenceKey) return;
+    list.dataset.mrClickablePersistInitialized = "true";
+    const storage = getLocalStorage(list);
+    if (!storage) return;
+    const details = Array.from(list.querySelectorAll("details"));
+    const persistableDetails = details.filter((detail) => {
+      if (detail.id) return true;
+      console.warn(
+        "Markup Refine clickable-list persistence ignores <details> without a stable id",
+        detail
+      );
+      return false;
+    });
+    const storageKey = `markup-refine:clickable-list:${persistenceKey}`;
+    const storedOpenIds = readOpenDetailIds(storage, storageKey);
+    if (storedOpenIds) {
+      const openIds = new Set(storedOpenIds);
+      persistableDetails.forEach((detail) => {
+        detail.open = openIds.has(detail.id);
+      });
+    }
+    const persist = () => {
+      const openIds = persistableDetails.filter((detail) => detail.open).map((detail) => detail.id);
+      try {
+        storage.setItem(storageKey, JSON.stringify(openIds));
+      } catch {
+      }
+    };
+    persistableDetails.forEach((detail) => {
+      detail.addEventListener("toggle", () => {
+        if (suppressedPersistence.delete(detail)) return;
+        persist();
+      });
+    });
+  });
+}
+function getLocalStorage(list) {
+  var _a;
+  try {
+    return ((_a = list.ownerDocument.defaultView) == null ? void 0 : _a.localStorage) ?? null;
+  } catch {
+    return null;
+  }
+}
+function readOpenDetailIds(storage, storageKey) {
+  try {
+    const raw = storage.getItem(storageKey);
+    if (raw === null) return null;
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed) || parsed.some((value) => typeof value !== "string")) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+function setDetailsOpenWithoutPersisting(details, open) {
+  if (details.open === open) return;
+  suppressedPersistence.add(details);
+  details.open = open;
 }
 function handleFilters(root) {
   root.querySelectorAll("input[data-mr-clickable-list-filter]").forEach((input) => {
     var _a;
     if (input.dataset.mrClickableFilterInitialized === "true") return;
-    const nearbyList = ((_a = input.parentElement) == null ? void 0 : _a.querySelector("[data-mr-clickable-list]")) || (input.nextElementSibling instanceof HTMLElement && input.nextElementSibling.matches("[data-mr-clickable-list]") ? input.nextElementSibling : null);
+    const nearbyList = ((_a = input.parentElement) == null ? void 0 : _a.querySelector(".mr-clickable-list")) || (input.nextElementSibling instanceof HTMLElement && input.nextElementSibling.matches(".mr-clickable-list") ? input.nextElementSibling : null);
     if (!nearbyList) {
       console.warn("No Markup Refine clickable list found near filter input");
       return;
@@ -63,7 +132,7 @@ function filterList(list, rawFilter) {
     const details = entry.li.querySelector("details");
     const show = Boolean(entry.selfMatches || entry.childrenMatch);
     entry.li.hidden = !show;
-    if (details && filterText) details.open = show;
+    if (details && filterText) setDetailsOpenWithoutPersisting(details, show);
     if (entry.selfMatches && nestedList) {
       Array.from(nestedList.children).filter((element) => element instanceof HTMLLIElement).forEach((childLi) => {
         childLi.hidden = false;
@@ -1489,25 +1558,30 @@ async function openSearch(trigger) {
     dismissButton,
     resultCount
   } = createSearchDialog();
-  document.body.appendChild(dialog);
-  dialog.showModal();
+  dialog.ownerDocument.body.appendChild(dialog);
+  const layer = layers.get(dialog);
+  if (!layer) {
+    dialog.remove();
+    throw new TypeError("Markup Refine search could not register its modal Layer.");
+  }
+  dialog.addEventListener(
+    "mr:layer:close",
+    () => {
+      dialog.remove();
+    },
+    { once: true }
+  );
+  dismissButton.addEventListener("click", () => {
+    void layer.close();
+  });
+  await layer.open({ trigger });
+  if (layer.state !== "open") {
+    dialog.remove();
+    return;
+  }
   input.focus();
   let fuse = null;
   let loadingFailed = false;
-  const close = () => {
-    if (dialog.open) dialog.close();
-  };
-  dialog.addEventListener("close", () => {
-    dialog.remove();
-    trigger.focus();
-  }, { once: true });
-  dialog.addEventListener("click", (event) => {
-    if (event.target !== dialog) return;
-    const rect = dialog.getBoundingClientRect();
-    const inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
-    if (!inside) close();
-  });
-  dismissButton.addEventListener("click", close);
   if (mode === "static") {
     setLoading(true, searchIcon, spinner);
     try {
@@ -1677,9 +1751,11 @@ async function openSearch(trigger) {
 }
 function createSearchDialog() {
   const dialog = document.createElement("dialog");
-  dialog.className = "mr-search";
+  dialog.className = "mr-layer mr-layer--modal mr-search";
+  dialog.setAttribute("data-mr-layer", "modal");
   dialog.setAttribute("data-mr-search-part", "dialog");
   dialog.setAttribute("aria-label", "Search");
+  dialog.setAttribute("closedby", "any");
   const input = document.createElement("input");
   input.className = "mr-search__input";
   input.setAttribute("data-mr-search-part", "input");
@@ -1767,42 +1843,87 @@ function initApplicationShell(root = document) {
     const toggle = shell.querySelector('[data-mr-shell-action="toggle"]');
     const dismiss = shell.querySelector('[data-mr-shell-action="dismiss"]');
     const sidebar = shell.querySelector('[data-mr-shell-part="sidebar"]');
-    const overlay = shell.querySelector('[data-mr-shell-part="overlay"]');
-    if (!sidebar || !overlay) return;
+    if (!sidebar) return;
+    const drawer = createDrawerSurface(shell, sidebar, index);
+    const layer = layers.get(drawer);
+    if (!layer) {
+      drawer.remove();
+      return;
+    }
     shell.dataset.mrShellInitialized = "true";
-    shell.dataset.mrState = "closed";
-    overlay.hidden = true;
-    if (!sidebar.id) sidebar.id = `mr-shell-sidebar-${index + 1}`;
     if (toggle) {
       toggle.type = "button";
-      toggle.setAttribute("aria-controls", sidebar.id);
+      toggle.setAttribute("aria-controls", drawer.id);
       toggle.setAttribute("aria-expanded", "false");
     }
     if (dismiss) {
       dismiss.type = "button";
       if (!dismiss.hasAttribute("aria-label")) dismiss.setAttribute("aria-label", "Close navigation");
     }
-    const openSidebar = () => {
-      shell.dataset.mrState = "open";
-      overlay.hidden = false;
-      toggle == null ? void 0 : toggle.setAttribute("aria-expanded", "true");
+    let contentInDrawer = false;
+    const moveNavigationToDrawer = () => {
+      if (contentInDrawer) return;
+      drawer.append(...Array.from(sidebar.childNodes));
+      contentInDrawer = true;
+    };
+    const restoreNavigationToSidebar = () => {
+      if (!contentInDrawer) return;
+      sidebar.append(...Array.from(drawer.childNodes));
+      contentInDrawer = false;
+    };
+    const openDrawer = async () => {
+      moveNavigationToDrawer();
+      await layer.open({ trigger: toggle ?? null });
+      if (layer.state !== "open") {
+        restoreNavigationToSidebar();
+        return;
+      }
       dismiss == null ? void 0 : dismiss.focus();
-      document.addEventListener("keydown", handleEscape);
     };
-    const closeSidebar = (restoreFocus = true) => {
-      shell.dataset.mrState = "closed";
-      overlay.hidden = true;
+    const closeDrawer = (restoreFocus = true) => {
+      void layer.close({ restoreFocus });
+    };
+    drawer.addEventListener("mr:layer:open", () => {
+      toggle == null ? void 0 : toggle.setAttribute("aria-expanded", "true");
+    });
+    drawer.addEventListener("mr:layer:close", () => {
       toggle == null ? void 0 : toggle.setAttribute("aria-expanded", "false");
-      document.removeEventListener("keydown", handleEscape);
-      if (restoreFocus) toggle == null ? void 0 : toggle.focus();
-    };
-    const handleEscape = (event) => {
-      if (event.key === "Escape") closeSidebar();
-    };
-    toggle == null ? void 0 : toggle.addEventListener("click", openSidebar);
-    dismiss == null ? void 0 : dismiss.addEventListener("click", () => closeSidebar());
-    overlay.addEventListener("click", () => closeSidebar());
+      queueMicrotask(restoreNavigationToSidebar);
+    });
+    toggle == null ? void 0 : toggle.addEventListener("click", () => {
+      void openDrawer();
+    });
+    dismiss == null ? void 0 : dismiss.addEventListener("click", () => closeDrawer());
+    const view = shell.ownerDocument.defaultView;
+    view == null ? void 0 : view.addEventListener("resize", () => {
+      if (layer.state !== "open" || isToggleVisible(toggle, view)) return;
+      closeDrawer(false);
+    });
   });
+}
+function createDrawerSurface(shell, sidebar, index) {
+  const drawer = shell.ownerDocument.createElement("dialog");
+  drawer.id = uniqueDrawerId(shell.ownerDocument, index + 1);
+  drawer.className = "mr-layer mr-layer--drawer mr-shell__drawer";
+  drawer.setAttribute("data-mr-layer", "drawer");
+  drawer.setAttribute("data-mr-shell-part", "drawer");
+  drawer.setAttribute("closedby", "any");
+  const labelledBy = sidebar.getAttribute("aria-labelledby");
+  const label = sidebar.getAttribute("aria-label");
+  if (labelledBy) drawer.setAttribute("aria-labelledby", labelledBy);
+  else drawer.setAttribute("aria-label", label || "Navigation");
+  shell.appendChild(drawer);
+  return drawer;
+}
+function uniqueDrawerId(document2, ordinal) {
+  const base = `mr-shell-drawer-${ordinal}`;
+  if (!document2.getElementById(base)) return base;
+  let suffix = 2;
+  while (document2.getElementById(`${base}-${suffix}`)) suffix += 1;
+  return `${base}-${suffix}`;
+}
+function isToggleVisible(toggle, view) {
+  return Boolean(toggle && view.getComputedStyle(toggle).display !== "none");
 }
 function initNavbarComponents(root = document) {
   handleAutoSelector(root);
@@ -1950,6 +2071,8 @@ function makeId(prefix, group, name, index) {
 function initMarkupRefineBehaviors(root) {
   const target = root ?? (typeof document !== "undefined" ? document : null);
   if (!target) return;
+  initLayers(target);
+  initTooltips(target);
   initClickableItemList(target);
   initApplicationShell(target);
   initSearchTool(target);

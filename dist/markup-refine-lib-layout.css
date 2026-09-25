@@ -1,0 +1,64 @@
+@layer mr.tokens, mr.base, mr.components, mr.layout, mr.utilities;
+@layer mr.layout{
+:where(.mr-stack) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mr-stack-gap);
+}
+}
+@layer mr.layout{
+
+:where(.mr-cluster) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mr-cluster-gap);
+  align-items: var(--mr-cluster-align);
+}
+
+:where(.mr-cluster.mr-cluster--around) {
+  justify-content: space-around;
+}
+
+:where(.mr-cluster.mr-cluster--between) {
+  justify-content: space-between;
+}
+
+:where(.mr-cluster.mr-cluster--center) {
+  justify-content: center;
+}
+
+:where(.mr-cluster.mr-cluster--end) {
+  justify-content: end;
+}
+
+:where(.mr-cluster.mr-cluster--fill) {
+  flex-grow: 1;
+}
+}
+@layer mr.layout{
+:where(.mr-inline) {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: var(--mr-inline-gap);
+  align-items: baseline;
+  max-inline-size: 100%;
+}
+}
+@layer mr.layout{
+:where(.mr-grid) {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--mr-grid-min-column-size)), 1fr)
+  );
+  gap: var(--mr-grid-gap);
+}
+}
+@layer mr.layout{
+:where(.mr-container) {
+  box-sizing: border-box;
+  inline-size: min(100%, var(--mr-container-max-width));
+  margin-inline: auto;
+  padding-inline: var(--mr-container-padding-inline);
+}
+}
