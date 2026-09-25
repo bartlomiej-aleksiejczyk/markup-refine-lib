@@ -221,6 +221,50 @@ layerNavigation.ask<T, R>({
       default behavior bundle.
     </p>
 
+    <h3>Public TypeScript types</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>LayerNavigation</code></td><td>Public service shape implemented by <code>layerNavigation</code>.</td></tr>
+        <tr><td><code>LayerNavigationAskOptions</code></td><td>Per-interaction URL, trigger, optional parent/signal, plus per-call configuration overrides.</td></tr>
+        <tr><td><code>LayerNavigationOptions</code></td><td>Stable configuration for fragment/result selectors, validation statuses, redirect/credentials policy, headers, result parsing, and post-render hooks.</td></tr>
+        <tr><td><code>LayerNavigationRedirectMode</code></td><td><code>"error" | "follow"</code>.</td></tr>
+        <tr><td><code>LayerNavigationRequestContext</code></td><td>Context passed to dynamic <code>requestHeaders</code>: URL, method, trigger, form, and submitter.</td></tr>
+        <tr><td><code>LayerNavigationResultContext</code></td><td>Context passed to <code>parseResult</code>: response, parsed document, and result marker.</td></tr>
+        <tr><td><code>LayerNavigationRenderContext</code></td><td>Context passed to <code>onRender</code>: response, fragment, surface, and validation flag.</td></tr>
+        <tr><td><code>LayerNavigationErrorDetail</code></td><td>Detail for <code>mr:layer-navigation:error</code>: error, URL, optional response, and optional surface.</td></tr>
+        <tr><td><code>LayerNavigationResultDetail&lt;T, R&gt;</code></td><td>Detail for <code>mr:layer-navigation:result</code>: Layer outcome plus URL.</td></tr>
+      </tbody>
+    </table>
+    <pre data-mr-copyable><code>{`import type {
+  LayerNavigation,
+  LayerNavigationAskOptions,
+  LayerNavigationErrorDetail,
+  LayerNavigationOptions,
+  LayerNavigationRedirectMode,
+  LayerNavigationRenderContext,
+  LayerNavigationRequestContext,
+  LayerNavigationResultContext,
+  LayerNavigationResultDetail,
+} from "markup-refine-lib/layer-navigation";`}</code></pre>
+
+    <h3>Navigation lifecycle events</h3>
+    <p>
+      Declaratively enhanced links emit bubbling events on the originating link.
+      <code>mr:layer-navigation:result</code> is emitted when the interaction settles and carries
+      <code>LayerNavigationResultDetail</code>. <code>mr:layer-navigation:error</code> carries
+      <code>LayerNavigationErrorDetail</code> when an enhanced request/protocol step fails.
+      Programmatic <code>layerNavigation.ask()</code> returns/rejects directly; it does not require
+      listening for these declarative-link events.
+    </p>
+    <pre data-mr-copyable><code>{`link.addEventListener("mr:layer-navigation:result", (event) => {
+  console.log(event.detail.outcome, event.detail.url);
+});
+
+link.addEventListener("mr:layer-navigation:error", (event) => {
+  console.error(event.detail.error, event.detail.url);
+});`}</code></pre>
+
     <h2>Fragment contract</h2>
     <p>
       By default, fetched HTML must contain exactly the application region intended for the

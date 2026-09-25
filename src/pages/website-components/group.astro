@@ -1,0 +1,30 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Group is deprecated</h1>
+    <p>
+      <code>.group</code> is a historical layout helper and is deprecated. It is no
+      longer a component and is not shipped by the stable CSS bundle.
+    </p>
+    <p>
+      Use <a href="../../usage/layout/"><code>.mr-cluster</code> and the layout primitives</a>
+      for new code.
+    </p>
+
+    <h2>Migration</h2>
+    <pre data-mr-copyable><code>{`<!-- Deprecated -->
+<div class="group group-spaced-between">...</div>
+
+<!-- Stable API -->
+<div class="mr-cluster mr-cluster--between">...</div>`}</code></pre>
+
+    <p>
+      The old Group layout responsibility is covered by <code>.mr-cluster</code>.
+      Historical button-specific presentation that happened to live inside Group is
+      not part of the layout primitive; buttons use normal Markup Refine button styling.
+    </p>
+  </main>
+</FullNavigationLayout>

@@ -42,6 +42,38 @@ import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro
       and <a href="../popovers-tooltips/">popovers/tooltips</a> for live examples.
     </p>
 
+    <h2>Stateful behavior hooks</h2>
+    <p>
+      Behavior configuration belongs in <code>data-mr-*</code> attributes rather than
+      presentation classes. For example, a clickable list can remember native
+      <code>&lt;details&gt;</code> disclosure state with an application-chosen persistence key:
+    </p>
+    <pre data-mr-copyable><code>{`<ul class="mr-clickable-list"
+    data-mr-clickable-list-persist="project-navigation">
+  <li>
+    <details id="project-guides" open>
+      <summary>Guides</summary>
+      <ul>...</ul>
+    </details>
+  </li>
+</ul>`}</code></pre>
+    <p>
+      The behavior stores only open disclosure IDs; the authored <code>open</code> state
+      remains the lower-capability baseline. See the
+      <a href="../../website-components/clickable-item-list/">Clickable Item List</a> page
+      for the complete contract.
+    </p>
+
+    <h2>Authored API versus generated internals</h2>
+    <p>
+      Only classes and <code>data-mr-*</code> hooks documented on the public component pages are
+      authoring API. Some stylesheets contain runtime-generated child classes such as search
+      result parts, copy/reset buttons, or Tooltip SVG progress-ring parts. Those classes exist
+      so Markup Refine can style DOM it creates itself; applications should not author or query
+      them unless a component page explicitly documents that class. Prefer semantic/native
+      state and public behavior hooks over implementation selectors.
+    </p>
+
     <h2>Behavior is separate</h2>
     <pre data-mr-copyable><code>{`<pre data-mr-copyable><code>npm install example</code></pre>
 

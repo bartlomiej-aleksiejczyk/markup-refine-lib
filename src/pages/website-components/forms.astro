@@ -1,5 +1,48 @@
 ---
-import LibraryStyleLayout from "../../astro/layouts/LibraryStyleLayout.astro";
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const formExample = `<form>
+  <label for="profile-name">Name</label>
+  <input id="profile-name" name="name" autocomplete="name" required>
+
+  <label for="profile-role">Role</label>
+  <select id="profile-role" name="role">
+    <option>Developer</option>
+    <option>Designer</option>
+  </select>
+
+  <label for="profile-notes">Notes</label>
+  <textarea id="profile-notes" name="notes"></textarea>
+
+  <button type="submit">Save</button>
+</form>`;
 ---
 
-<LibraryStyleLayout />
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Forms</h1>
+    <p>
+      Form styling is part of the scoped <code>base</code> stylesheet. Native
+      <code>&lt;form&gt;</code>, <code>&lt;fieldset&gt;</code>, labels, inputs, selects, textareas,
+      checkboxes, radios, and file controls are refined only inside a <code>data-mr</code>
+      scope. No wrapper component is required.
+    </p>
+    <pre data-mr-copyable><code>{formExample}</code></pre>
+    <Fragment set:html={formExample} />
+
+    <h2>State and accessibility</h2>
+    <ul>
+      <li>Native <code>disabled</code>, <code>required</code>, validation, focus, and form-submission semantics remain authoritative.</li>
+      <li>Checkbox/radio state uses the browser's native checked state and accent color.</li>
+      <li>File inputs remain normal browser file controls; Markup Refine styles the selector button without replacing it.</li>
+      <li>Use real labels and normal form attributes rather than encoding state in presentation classes.</li>
+    </ul>
+
+    <h2>Related enhancements</h2>
+    <p>
+      For a file input that needs an explicit clear action, see
+      <a href="../resettable-file-input/">Resettable file input</a>. For remote forms inside
+      modal subinteractions, see <a href="../../usage/layer-navigation/">Remote Layer navigation</a>.
+    </p>
+  </main>
+</FullNavigationLayout>

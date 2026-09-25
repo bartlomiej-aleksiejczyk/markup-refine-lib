@@ -1,0 +1,47 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Native HTML reference</h1>
+    <p>
+      The <code>markup-refine-lib/base</code> entry refines native elements only inside a
+      <code>data-mr</code> scope. This page summarizes that semantic surface so consumers do not
+      need to inspect the CSS to discover which elements receive defaults.
+    </p>
+
+    <table>
+      <thead><tr><th>Category</th><th>Native elements / states</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Document structure</td><td><code>body</code>, <code>main</code>, <code>p</code>, <code>footer</code>, <code>hr</code></td><td>Scoped spacing, surfaces, and typography.</td></tr>
+        <tr><td>Headings</td><td><code>h1</code>–<code>h6</code></td><td>Semantic hierarchy is unchanged; CSS only supplies type/spacing.</td></tr>
+        <tr><td>Links</td><td><code>a</code>, hover/focus/visited</td><td>Uses the public link color tokens.</td></tr>
+        <tr><td>Lists</td><td><code>ul</code>, <code>ol</code></td><td>Native list semantics and markers remain intact.</td></tr>
+        <tr><td>Disclosures</td><td><code>details</code>, <code>summary</code>, <code>details[open]</code></td><td>Native disclosure state remains the source of truth.</td></tr>
+        <tr><td>Forms</td><td><code>form</code>, <code>fieldset</code>, <code>label</code>, <code>input</code>, <code>select</code>, <code>textarea</code>, native buttons</td><td>Includes disabled/focus, checkbox/radio, and file-selector presentation.</td></tr>
+        <tr><td>Tables</td><td><code>table</code>, <code>thead</code>, <code>tbody</code>, <code>tr</code>, <code>th</code>, <code>td</code>, <code>caption</code></td><td>Small-screen cells may expose authored <code>data-label</code> text.</td></tr>
+        <tr><td>Code/text</td><td><code>pre</code>, <code>code</code>, <code>blockquote</code>, <code>kbd</code>, <code>small</code>, <code>sub</code>, <code>sup</code></td><td>No JavaScript is required.</td></tr>
+        <tr><td>Images/figures</td><td><code>img</code>, <code>figure</code>, <code>figcaption</code></td><td>Images remain responsive to the available inline size.</td></tr>
+        <tr><td>Embedded/media</td><td><code>iframe</code>, <code>audio</code>, <code>video</code>, <code>map</code></td><td>Basic block sizing/presentation only.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Scope boundary</h2>
+    <p>
+      <code>data-mr-unstyled</code> stops semantic styling for a subtree; a nested
+      <code>data-mr</code> explicitly re-enters the Markup Refine scope. See
+      <a href="../scoped-mode/">Scoped semantic HTML</a> for the isolation contract.
+    </p>
+
+    <h2>Detailed examples</h2>
+    <ul>
+      <li><a href="../../website-components/forms/">Forms</a></li>
+      <li><a href="../../website-components/details/">Details disclosure</a></li>
+      <li><a href="../../website-components/list/">Lists</a></li>
+      <li><a href="../../website-components/table/">Tables</a></li>
+      <li><a href="../../website-components/code-and-preformatted-text/">Code and preformatted text</a></li>
+      <li><a href="../images/">Images, figures, and ASCII images</a></li>
+    </ul>
+  </main>
+</FullNavigationLayout>

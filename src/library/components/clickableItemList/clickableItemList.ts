@@ -5,19 +5,99 @@ type ClickableListEntry = {
   childrenMatch?: boolean;
 };
 
+const suppressedPersistence = new WeakSet<HTMLDetailsElement>();
+
 export function initClickableItemList(root: ParentNode = document) {
+  handlePersistence(root);
   handleFilters(root);
   handleAutoSelector(root);
+}
+
+function handlePersistence(root: ParentNode) {
+  root.querySelectorAll<HTMLUListElement>("ul[data-mr-clickable-list-persist]").forEach((list) => {
+    if (list.dataset.mrClickablePersistInitialized === "true") return;
+
+    const persistenceKey = list.dataset.mrClickableListPersist?.trim();
+    if (!persistenceKey) return;
+
+    list.dataset.mrClickablePersistInitialized = "true";
+
+    const storage = getLocalStorage(list);
+    if (!storage) return;
+
+    const details = Array.from(list.querySelectorAll<HTMLDetailsElement>("details"));
+    const persistableDetails = details.filter((detail) => {
+      if (detail.id) return true;
+      console.warn(
+        "Markup Refine clickable-list persistence ignores <details> without a stable id",
+        detail,
+      );
+      return false;
+    });
+
+    const storageKey = `markup-refine:clickable-list:${persistenceKey}`;
+    const storedOpenIds = readOpenDetailIds(storage, storageKey);
+
+    if (storedOpenIds) {
+      const openIds = new Set(storedOpenIds);
+      persistableDetails.forEach((detail) => {
+        detail.open = openIds.has(detail.id);
+      });
+    }
+
+    const persist = () => {
+      const openIds = persistableDetails.filter((detail) => detail.open).map((detail) => detail.id);
+      try {
+        storage.setItem(storageKey, JSON.stringify(openIds));
+      } catch {
+        // Storage can become unavailable at runtime (privacy policy, quota, sandboxing).
+        // The authored <details open> state remains the graceful fallback.
+      }
+    };
+
+    persistableDetails.forEach((detail) => {
+      detail.addEventListener("toggle", () => {
+        if (suppressedPersistence.delete(detail)) return;
+        persist();
+      });
+    });
+  });
+}
+
+function getLocalStorage(list: HTMLUListElement) {
+  try {
+    return list.ownerDocument.defaultView?.localStorage ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function readOpenDetailIds(storage: Storage, storageKey: string): string[] | null {
+  try {
+    const raw = storage.getItem(storageKey);
+    if (raw === null) return null;
+
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed) || parsed.some((value) => typeof value !== "string")) return null;
+    return parsed as string[];
+  } catch {
+    return null;
+  }
+}
+
+function setDetailsOpenWithoutPersisting(details: HTMLDetailsElement, open: boolean) {
+  if (details.open === open) return;
+  suppressedPersistence.add(details);
+  details.open = open;
 }
 
 function handleFilters(root: ParentNode) {
   root.querySelectorAll<HTMLInputElement>("input[data-mr-clickable-list-filter]").forEach((input) => {
     if (input.dataset.mrClickableFilterInitialized === "true") return;
-
     const nearbyList =
-      input.parentElement?.querySelector<HTMLElement>("[data-mr-clickable-list]") ||
+      input.parentElement?.querySelector<HTMLElement>(".mr-clickable-list") ||
       (input.nextElementSibling instanceof HTMLElement &&
-      input.nextElementSibling.matches("[data-mr-clickable-list]")
+      input.nextElementSibling.matches(".mr-clickable-list")
         ? input.nextElementSibling
         : null);
 
@@ -88,7 +168,7 @@ function filterList(list: HTMLElement, rawFilter: string) {
     const show = Boolean(entry.selfMatches || entry.childrenMatch);
 
     entry.li.hidden = !show;
-    if (details && filterText) details.open = show;
+    if (details && filterText) setDetailsOpenWithoutPersisting(details, show);
 
     if (entry.selfMatches && nestedList) {
       Array.from(nestedList.children)

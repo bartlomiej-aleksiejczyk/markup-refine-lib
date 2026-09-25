@@ -28,6 +28,13 @@ const layerNavigationApi = `import { layerNavigation } from "${packageMeta.name}
     <pre data-mr-copyable><code>{focused}</code></pre>
     <p>Import tokens before base/components/layout when using focused entries standalone.</p>
     <p>
+      The <code>/layout</code> entry contains the stable <code>mr-container</code>,
+      <code>mr-stack</code>, <code>mr-cluster</code>, <code>mr-inline</code>, and
+      <code>mr-grid</code> primitives. The historical <code>.group</code> class is
+      deprecated and is not shipped by the stable CSS entries; its layout role is
+      replaced by <code>.mr-cluster</code>.
+    </p>
+    <p>
       Canonical <code>.mr-layer*</code> modal/drawer presentation is part of the
       <code>components</code> stylesheet; Layer behavior itself remains available from
       the separate JavaScript export below.

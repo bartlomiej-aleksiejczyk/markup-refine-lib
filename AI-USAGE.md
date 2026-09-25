@@ -216,6 +216,33 @@ The initializer is idempotent and safe to call repeatedly.
 
 Do not repeatedly scan the whole document after every partial update when the newly inserted subtree is available.
 
+### Persistent clickable-list disclosure state
+
+Use native `<details>` for nested clickable-list disclosure. If the open/closed state should survive reloads or normal same-origin navigation, opt in with a stable persistence namespace:
+
+```html
+<ul
+  class="mr-clickable-list"
+  data-mr-clickable-list-persist="project-navigation"
+>
+  <li>
+    <details id="project-navigation-guides" open>
+      <summary>Guides</summary>
+      <ul>...</ul>
+    </details>
+  </li>
+</ul>
+```
+
+Rules:
+
+- `data-mr-clickable-list-persist` is the application-chosen storage namespace; do not derive it from DOM position.
+- Every persisted `<details>` needs a stable native `id`.
+- Markup Refine stores only the set of open disclosure IDs in `localStorage`.
+- Authored `open` attributes remain the no-JavaScript / unavailable-storage fallback.
+- URL-derived `aria-current` state and filter text are not persisted.
+- Programmatic disclosure openings used while filtering do not overwrite the saved user disclosure state.
+
 ## 9. Layers: choose native modal, drawer, or popover semantics
 
 Public import:

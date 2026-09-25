@@ -6,7 +6,7 @@
       "tokensCss": "import \"markup-refine-lib/tokens\";",
       "baseCss": "import \"markup-refine-lib/base\";",
       "componentsCss": "import \"markup-refine-lib/components\";",
-      "layoutCss": "import \"markup-refine-lib/layout\";",
+      "layoutCss": "import \"markup-refine-lib/layout\";"
     }
   ]
 }

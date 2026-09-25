@@ -1,1 +1,85 @@
 ---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+import { base } from "astro:config/client";
+
+const titleExample = `<header class="mr-nav-brand">
+  <a href="/">Project name</a>
+</header>`;
+
+const iconExample = `<nav class="mr-cluster" aria-label="Primary">
+  <a class="mr-nav-icon" href="/dashboard" aria-label="Dashboard">
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+      <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
+    </svg>
+  </a>
+</nav>`;
+
+const autoselectExample = `<nav class="mr-nav-tabs" data-mr-nav-tabs-autoselect aria-label="Section navigation">
+  <a href="/docs/">Docs</a>
+  <a href="/docs/api/">API</a>
+  <a href="/docs/examples/">Examples</a>
+</nav>`;
+
+const searchTriggerExample = `<button
+  type="button"
+  class="mr-search-trigger"
+  data-mr-search
+  data-mr-search-static-url="/search-index.json"
+>
+  <span class="mr-search-trigger__label">Search</span>
+</button>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Navigation chrome</h1>
+    <p>
+      These classes provide presentation for navigation titles, icons, and search triggers.
+      They do not create a navigation model or router. Use semantic links/nav landmarks and
+      add Markup Refine behavior hooks only where enhancement is needed.
+    </p>
+
+    <h2>Brand and title</h2>
+    <p>
+      <code>mr-nav-brand</code> is a prominent brand block. <code>mr-nav-title</code> is a
+      compact title intended for top bars such as the Application Shell.
+    </p>
+    <pre data-mr-copyable><code>{titleExample}</code></pre>
+    <div class="mr-nav-brand"><a href={base}>Markup Refine</a></div>
+
+    <h2>Navigation icon</h2>
+    <p>
+      <code>mr-nav-icon</code> provides a square icon treatment. Current-page state should
+      use semantic <code>aria-current="page"</code>, not a selected presentation class.
+    </p>
+    <pre data-mr-copyable><code>{iconExample}</code></pre>
+
+    <h2>Current-URL autoselection</h2>
+    <pre data-mr-copyable><code>{autoselectExample}</code></pre>
+    <p>
+      <code>data-mr-nav-tabs-autoselect</code> compares same-page URLs after normalizing a
+      trailing slash and writes <code>aria-current="page"</code> only when exactly one link
+      matches. Query strings and fragments do not define a separate current page.
+    </p>
+    <p>
+      For interactive single-page tab panels, use the separate
+      <a href="../navigation-tabs/">Navigation tabs</a> behavior, which uses
+      <code>aria-selected</code> rather than <code>aria-current</code>.
+    </p>
+
+    <h2>Search trigger presentation</h2>
+    <pre data-mr-copyable><code>{searchTriggerExample}</code></pre>
+    <p>
+      <code>mr-search-trigger</code> and <code>mr-search-trigger__label</code> are presentation.
+      <code>data-mr-search</code> plus exactly one static/dynamic URL hook enables Search Tool
+      behavior. See <a href="../search-tool/">Search Tool</a> for the full contract.
+    </p>
+
+    <h2>Application Shell sidebar helpers</h2>
+    <p>
+      <code>mr-shell__sidebar-titlebar</code>, <code>mr-shell__sidebar-body</code>, and
+      <code>mr-shell__back</code> are optional presentation helpers for content placed in an
+      Application Shell sidebar/drawer. They do not add behavior on their own.
+    </p>
+  </main>
+</FullNavigationLayout>

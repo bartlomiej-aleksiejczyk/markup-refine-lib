@@ -25,6 +25,29 @@ const autoselectSnippet = `<ul
   <li><a href="/">Home</a></li>
   <li><a href="/docs">Docs</a></li>
 </ul>`;
+
+const persistenceSnippet = `<ul
+  class="mr-clickable-list"
+  data-mr-clickable-list-persist="project-navigation"
+>
+  <li>
+    <details id="project-navigation-guides" open>
+      <summary>Guides</summary>
+      <ul>
+        <li><a href="#persistence-setup">Setup</a></li>
+        <li><a href="#persistence-deploy">Deploy</a></li>
+      </ul>
+    </details>
+  </li>
+  <li>
+    <details id="project-navigation-reference">
+      <summary>Reference</summary>
+      <ul>
+        <li><a href="#persistence-api">API</a></li>
+      </ul>
+    </details>
+  </li>
+</ul>`;
 ---
 
 <FullNavigationLayout>
@@ -36,11 +59,38 @@ const autoselectSnippet = `<ul
       list root, such as when pairing the list with a filter input.
     </p>
     <p>Nested disclosure uses native <code>&lt;details&gt;</code>.</p>
+
     <h2>Filterable list</h2>
     <pre data-mr-copyable><code>{clickableListSnippet}</code></pre>
     <Fragment set:html={clickableListSnippet} />
+
+    <h2>Remember disclosure state across reloads</h2>
+    <p>
+      Add <code>data-mr-clickable-list-persist</code> with a stable storage namespace.
+      Each <code>&lt;details&gt;</code> whose state should be remembered must have a stable
+      <code>id</code>. Markup Refine stores the set of open IDs in
+      <code>localStorage</code>, so the disclosure state survives reloads and normal
+      same-origin navigation.
+    </p>
+    <pre data-mr-copyable><code>{persistenceSnippet}</code></pre>
+    <Fragment set:html={persistenceSnippet} />
+    <p>
+      Try opening/closing the sections above and refresh the page. The authored
+      <code>open</code> attributes remain the no-JavaScript and unavailable-storage
+      fallback. The current-link state is not persisted because
+      <code>data-mr-clickable-list-autoselect</code> derives it from the URL on each load,
+      and filter text remains intentionally transient.
+    </p>
+    <p>
+      Filtering may temporarily open matching disclosures, but those programmatic
+      openings are not written into the persisted disclosure state.
+    </p>
+
     <h2>Current-URL selection</h2>
-    <p>The matching link receives <code>aria-current="page"</code>. No selected presentation class is required by JavaScript.</p>
+    <p>
+      The matching link receives <code>aria-current="page"</code>. No selected
+      presentation class is required by JavaScript.
+    </p>
     <pre data-mr-copyable><code>{autoselectSnippet}</code></pre>
   </main>
 </FullNavigationLayout>

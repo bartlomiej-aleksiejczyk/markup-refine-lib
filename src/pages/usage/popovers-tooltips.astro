@@ -335,6 +335,23 @@ console.log(DEFAULT_TOOLTIP_OPTIONS);`}</code></pre>
       timing values without duplicating the library defaults.
     </p>
 
+    <h3>Public Tooltip types</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>TooltipState</code></td><td><code>"hidden" | "waiting" | "preview" | "pinned"</code>.</td></tr>
+        <tr><td><code>TooltipOptions</code></td><td>Timing configuration: <code>showDelay</code>, <code>pinDelay</code>, and <code>closeDelay</code>.</td></tr>
+        <tr><td><code>Tooltip</code></td><td>Per-trigger controller with <code>trigger</code>, <code>state</code>, <code>show()</code>, <code>hide()</code>, <code>pin()</code>, and <code>unpin()</code>.</td></tr>
+        <tr><td><code>TooltipRegistry</code></td><td>The shape implemented by the exported <code>tooltips</code> registry: configure, lookup, pin, and global hide operations.</td></tr>
+      </tbody>
+    </table>
+    <pre data-mr-copyable><code>{`import type {
+  Tooltip,
+  TooltipOptions,
+  TooltipRegistry,
+  TooltipState,
+} from "markup-refine-lib/tooltips";`}</code></pre>
+
     <h2>Selection, dismissal, pointer, and keyboard behavior</h2>
     <p>
       Tooltip text explicitly uses <code>user-select: text</code>. Before pinning, pointer leave

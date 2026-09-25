@@ -1,0 +1,114 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+import { readFileSync } from "node:fs";
+import { dirname, relative, resolve } from "node:path";
+import { libraryEntries } from "../../library/package-entries.mjs";
+
+const repositoryRoot = process.cwd();
+const stableCssEntry = libraryEntries["markup-refine-lib"];
+if (!stableCssEntry) throw new Error("Stable CSS package entry is missing from libraryEntries");
+
+const visited = new Set<string>();
+const tokenSources = new Map<string, Set<string>>();
+
+function collectCss(filePath: string) {
+  const absolutePath = resolve(filePath);
+  if (visited.has(absolutePath)) return;
+  visited.add(absolutePath);
+
+  const source = readFileSync(absolutePath, "utf8");
+  const sourceName = relative(repositoryRoot, absolutePath).replaceAll("\\", "/");
+
+  for (const match of source.matchAll(/(--mr-[A-Za-z0-9_-]+)\s*:/g)) {
+    const token = match[1];
+    const sources = tokenSources.get(token) ?? new Set<string>();
+    sources.add(sourceName);
+    tokenSources.set(token, sources);
+  }
+
+  for (const match of source.matchAll(/@import\s+["']([^"']+)["']/g)) {
+    collectCss(resolve(dirname(absolutePath), match[1]));
+  }
+}
+
+collectCss(resolve(repositoryRoot, stableCssEntry));
+
+function groupFor(token: string) {
+  const prefixes: Array<[string, string]> = [
+    ["--mr-color-", "Colors"],
+    ["--mr-font-", "Typography"],
+    ["--mr-line-", "Typography"],
+    ["--mr-space-", "Spacing"],
+    ["--mr-radius-", "Radii"],
+    ["--mr-control-", "Controls"],
+    ["--mr-focus-", "Focus"],
+    ["--mr-motion-", "Motion"],
+    ["--mr-layer-", "Layers"],
+    ["--mr-tooltip-", "Tooltips"],
+    ["--mr-shell-", "Application shell"],
+    ["--mr-search-", "Search"],
+    ["--mr-stack-", "Layout"],
+    ["--mr-cluster-", "Layout"],
+    ["--mr-inline-", "Layout"],
+    ["--mr-grid-", "Layout"],
+    ["--mr-container-", "Layout"],
+    ["--mr-button-", "Buttons"],
+  ];
+  return prefixes.find(([prefix]) => token.startsWith(prefix))?.[1] ?? "Other";
+}
+
+const grouped = Array.from(tokenSources.entries())
+  .map(([name, sources]) => ({ name, sources: Array.from(sources).sort(), group: groupFor(name) }))
+  .sort((a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name));
+
+const groups = Array.from(new Set(grouped.map((entry) => entry.group))).map((group) => ({
+  group,
+  tokens: grouped.filter((entry) => entry.group === group),
+}));
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Token reference</h1>
+    <p>
+      CSS custom properties are Markup Refine's public theming API. This reference is generated
+      directly from the stable <code>markup-refine-lib/css</code> source import graph, so it lists
+      tokens that are actually defined by the package rather than a hand-maintained duplicate.
+    </p>
+    <p>
+      Override tokens on the nearest application root or <code>data-mr</code> island. Component
+      tokens inherit normally, so an override may be scoped to one subtree without changing other
+      Markup Refine islands.
+    </p>
+
+    <p><strong>{grouped.length}</strong> stable custom properties are currently defined.</p>
+
+    {groups.map(({ group, tokens }) => (
+      <section>
+        <h2>{group}</h2>
+        <table>
+          <thead>
+            <tr><th>Token</th><th>Defined by</th></tr>
+          </thead>
+          <tbody>
+            {tokens.map((token) => (
+              <tr>
+                <td><code>{token.name}</code></td>
+                <td>{token.sources.map((source) => <><code>{source}</code><br /></>)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    ))}
+
+    <h2>Runtime-only custom properties</h2>
+    <p>
+      A behavior may write an internal custom property without defining it as a theme token. For
+      example, Tooltip pin progress writes <code>--mr-tooltip-pin-delay</code> from the configured
+      JavaScript <code>pinDelay</code> so CSS progress and behavior share one clock. Runtime-only
+      properties are intentionally absent from the generated stable token inventory unless the
+      stable CSS defines them as an author-overridable token.
+    </p>
+  </main>
+</FullNavigationLayout>

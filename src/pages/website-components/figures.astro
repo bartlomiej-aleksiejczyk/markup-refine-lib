@@ -1,0 +1,24 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const example = `<figure>
+  <img src="/chart.png" alt="Quarterly revenue increased from Q1 to Q4">
+  <figcaption>Quarterly revenue, current year.</figcaption>
+</figure>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Figures</h1>
+    <p>
+      Native <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> receive scoped base
+      presentation. Figure contents remain semantic HTML; Markup Refine only supplies spacing,
+      overflow, and caption treatment.
+    </p>
+    <pre data-mr-copyable><code>{example}</code></pre>
+    <p>
+      For image-specific behavior and the opt-in <code>mr-ascii-image</code> presentation, see
+      <a href="../../usage/images/">Images and ASCII images</a>.
+    </p>
+  </main>
+</FullNavigationLayout>

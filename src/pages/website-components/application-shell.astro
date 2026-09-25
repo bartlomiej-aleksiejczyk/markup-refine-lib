@@ -98,6 +98,14 @@ const standaloneTopbar = `<header class="mr-shell" data-mr-shell>
 
     <h2>Standalone top bar</h2>
     <pre data-mr-copyable><code>{standaloneTopbar}</code></pre>
+
+    <h2>Optional shell presentation helpers</h2>
+    <p>
+      <code>mr-shell__toolbar</code> is an optional toolbar region whose responsive transform is
+      normalized by the shell stylesheet. <code>mr-shell__sidebar-section</code> is a compact
+      flex row for controls/content inside either the persistent sidebar or generated drawer.
+      These classes are presentation-only and do not participate in Layer state.
+    </p>
     <h2>Lower-capability fallback</h2>
     <p>
       The authored sidebar is the fallback. It remains ordinary navigation in the document

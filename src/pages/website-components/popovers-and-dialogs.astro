@@ -1,0 +1,23 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Dialogs and popovers</h1>
+    <p>
+      The old component-specific dialog/popover documentation has been superseded by the Layer
+      subsystem. Markup Refine keeps native <code>&lt;dialog&gt;</code> and Popover API state as the
+      browser source of truth and adds a small shared lifecycle around them.
+    </p>
+    <ul>
+      <li><a href="../../usage/layer-primitives/">Modal and drawer Layers</a></li>
+      <li><a href="../../usage/popovers-tooltips/">Popovers and pinned tooltips</a></li>
+      <li><a href="../../usage/layer-api/">Stable Layer API</a></li>
+    </ul>
+    <p>
+      Do not revive old overlay classes or a separate focus/backdrop state machine. Use native
+      dialog/popover markup directly when Layer coordination is unnecessary.
+    </p>
+  </main>
+</FullNavigationLayout>

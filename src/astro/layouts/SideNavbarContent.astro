@@ -14,14 +14,20 @@ import { base } from "astro:config/client";
 
 <div>
   <hr />
-  <ul class="mr-clickable-list" data-mr-clickable-list-autoselect>
+ <input class="mr-shell__sidebar-search" data-mr-clickable-list-filter placeholder="Filter menu...">
+  <ul
+    class="mr-clickable-list"
+    data-mr-clickable-list-autoselect
+    data-mr-clickable-list-persist="documentation-sidebar"
+  >
     <li><a href=`${base}`>Quick start</a></li>
     <li>
-      <details open>
+      <details id="mr-docs-navigation-usage" open>
         <summary><a>Usage</a></summary>
         <ul>
           <li><a href=`${base}usage/scoped-mode/`>Scoped semantic HTML</a></li>
           <li><a href=`${base}usage/theming/`>Theming and tokens</a></li>
+          <li><a href=`${base}usage/token-reference/`>Token reference</a></li>
           <li><a href=`${base}usage/component-api/`>Component API</a></li>
           <li><a href=`${base}usage/layout/`>Layout primitives</a></li>
           <li><a href=`${base}usage/progressive-enhancement/`>Progressive enhancement</a></li>
@@ -32,11 +38,27 @@ import { base } from "astro:config/client";
           <li><a href=`${base}usage/layer-results/`>Layer results</a></li>
           <li><a href=`${base}usage/layer-navigation/`>Remote Layer navigation</a></li>
           <li><a href=`${base}usage/package-exports/`>Package exports</a></li>
+          <li><a href=`${base}usage/migration-1.0/`>Migration to stable API</a></li>
         </ul>
       </details>
     </li>
     <li>
-      <details open>
+      <details id="mr-docs-navigation-native-html" open>
+        <summary><a>Native HTML</a></summary>
+        <ul>
+          <li><a href=`${base}usage/native-html-reference/`>Native HTML reference</a></li>
+          <li><a href=`${base}website-components/forms/`>Forms</a></li>
+          <li><a href=`${base}website-components/details/`>Details</a></li>
+          <li><a href=`${base}website-components/figures/`>Figures</a></li>
+          <li><a href=`${base}website-components/code-and-preformatted-text/`>Code and preformatted text</a></li>
+          <li><a href=`${base}website-components/list/`>Lists</a></li>
+          <li><a href=`${base}website-components/table/`>Tables</a></li>
+          <li><a href=`${base}usage/images/`>Images and ASCII images</a></li>
+        </ul>
+      </details>
+    </li>
+    <li>
+      <details id="mr-docs-navigation-content-components" open>
         <summary><a>Content components</a></summary>
         <ul>
           <li><a href=`${base}website-components/button/`>Button</a></li>
@@ -47,14 +69,16 @@ import { base } from "astro:config/client";
           <li><a href=`${base}website-components/clickable-item-list/`>Clickable item list</a></li>
           <li><a href=`${base}website-components/tree-list-container/`>Tree list container</a></li>
           <li><a href=`${base}website-components/datalist-range-labels/`>Datalist range labels</a></li>
+          <li><a href=`${base}website-components/resettable-file-input/`>Resettable file input</a></li>
         </ul>
       </details>
     </li>
     <li>
-      <details open>
+      <details id="mr-docs-navigation-components" open>
         <summary><a>Navigation components</a></summary>
         <ul>
           <li><a href=`${base}website-components/application-shell/`>Application shell</a></li>
+          <li><a href=`${base}website-components/navigation-bars/`>Navigation chrome</a></li>
           <li><a href=`${base}website-components/navigation-tabs/`>Navigation tabs</a></li>
           <li><a href=`${base}website-components/tabs/`>Tabs</a></li>
           <li><a href=`${base}website-components/search-tool/`>Search tool</a></li>

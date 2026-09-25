@@ -24,13 +24,22 @@ import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro
       <code>dist/*</code> package imports are no longer exported.
     </p>
 
+    <h2>Group deprecation</h2>
+    <p>
+      The historical <code>.group</code> helper is deprecated and no longer ships as
+      a component or compatibility selector. Its layout responsibility moved to the
+      stable <code>.mr-cluster</code> primitive and its namespaced modifiers.
+      See <a href="../layout/">Layout primitives</a> for live examples and the full
+      modifier mapping.
+    </p>
+
     <h2>Common mappings</h2>
     <table>
       <thead><tr><th>Older API</th><th>Stable API</th></tr></thead>
       <tbody>
         <tr><td><code>.card</code></td><td><code>.mr-card</code></td></tr>
         <tr><td><code>.pill</code></td><td><code>.mr-pill</code></td></tr>
-        <tr><td><code>.group</code></td><td><code>.mr-cluster</code></td></tr>
+        <tr><td><code>.group</code> (deprecated/removed)</td><td><code>.mr-cluster</code></td></tr>
         <tr><td><code>.responsive-container</code></td><td><code>.mr-container</code></td></tr>
         <tr><td><code>.stt-component</code></td><td><code>.mr-shell</code></td></tr>
         <tr><td><code>data-copyable-snippet</code></td><td><code>data-mr-copyable</code></td></tr>

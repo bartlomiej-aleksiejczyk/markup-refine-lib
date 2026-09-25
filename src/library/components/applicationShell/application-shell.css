@@ -217,6 +217,10 @@
     align-items: center;
     margin: 0.75rem auto;
   }
+  :where(.mr-shell__sidebar-search) {
+  width: calc(100% - 2rem);
+  margin: 0.75rem auto;
+  }
 }
 
 :where(.mr-shell__sidebar-header) {

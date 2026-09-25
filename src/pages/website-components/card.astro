@@ -6,26 +6,57 @@ const cardSnippet = `<article class="mr-card">
 </article>
 
 <article class="mr-card mr-card--positive">
-  <header>Our Vision</header>
-  <p>Use semantic structure where HTML already describes the part.</p>
+  <header>Ready</header>
+  <p>The operation completed successfully.</p>
 </article>`;
+
+const variants = [
+  ["mr-card--secondary", "Secondary"],
+  ["mr-card--positive", "Positive"],
+  ["mr-card--negative", "Negative"],
+  ["mr-card--warning", "Warning"],
+  ["mr-card--info", "Info"],
+  ["mr-card--help", "Help"],
+];
 ---
 
 <FullNavigationLayout>
-  <main class="mr-container">
+  <main class="mr-container mr-shell__main">
     <h1>Card</h1>
     <p>
       Use <code>mr-card</code> as the component root. A direct semantic
-      <code>&lt;header&gt;</code> is styled automatically, so a header-specific
-      class is normally unnecessary.
+      <code>&lt;header&gt;</code> is styled automatically. Use
+      <code>mr-card__header</code> only when the heading region cannot be authored as a
+      semantic <code>&lt;header&gt;</code>.
     </p>
-    <p>
-      Variants use namespaced modifiers such as <code>mr-card--positive</code>,
-      <code>mr-card--warning</code>, and <code>mr-card--elevated</code>.
-    </p>
+
     <h2>Example usage</h2>
     <pre data-mr-copyable><code>{cardSnippet}</code></pre>
-    <h2>Rendered example</h2>
     <Fragment set:html={cardSnippet} />
+
+    <h2>Semantic variants</h2>
+    <p>
+      The stable component stylesheet ships the following color variants. These are
+      presentation choices only; status meaning still needs to be conveyed by text and, where
+      appropriate, semantic/ARIA state rather than color alone.
+    </p>
+    <div class="mr-grid">
+      {variants.map(([className, label]) => (
+        <article class={`mr-card ${className}`}>
+          <header>{label}</header>
+          <p><code>{className}</code></p>
+        </article>
+      ))}
+    </div>
+
+    <h2>Elevated surface</h2>
+    <p>
+      <code>mr-card--elevated</code> is a separate neutral elevated treatment. It may be used
+      without <code>mr-card</code>, but combining it with <code>mr-card</code> is clearer when the
+      element is conceptually a Card.
+    </p>
+    <article class="mr-card mr-card--elevated">
+      <p>Elevated related content.</p>
+    </article>
   </main>
 </FullNavigationLayout>

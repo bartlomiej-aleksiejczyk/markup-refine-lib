@@ -1,0 +1,26 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const example = `<p>Use <code>npm run check</code> before publishing.</p>
+<pre><code>const value = 42;
+console.log(value);</code></pre>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Code and preformatted text</h1>
+    <p>
+      Scoped base styles provide a monospace treatment for native <code>&lt;code&gt;</code> and
+      <code>&lt;pre&gt;</code>. A code block remains ordinary selectable HTML with horizontal
+      overflow when necessary.
+    </p>
+    <pre data-mr-copyable><code>{example}</code></pre>
+    <p>Use inline <code>code</code> for short tokens and <code>pre &gt; code</code> for blocks.</p>
+
+    <h2>Optional copy enhancement</h2>
+    <p>
+      Add <code>data-mr-copyable</code> to a <code>&lt;pre&gt;</code> when you want the optional
+      copy button. See <a href="../copyable-snippet/">Copyable snippet</a>.
+    </p>
+  </main>
+</FullNavigationLayout>

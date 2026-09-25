@@ -1,11 +1,52 @@
 ---
 import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
 
-const stackExample = `<section class="mr-stack">...</section>`;
-const clusterExample = `<div class="mr-cluster mr-cluster--between">...</div>`;
-const inlineExample = `<span class="mr-inline">...</span>`;
-const gridExample = `<section class="mr-grid">...</section>`;
-const containerExample = `<main class="mr-container">...</main>`;
+const stackExample = `<section class="mr-stack">
+  <article class="mr-card">First item</article>
+  <article class="mr-card">Second item</article>
+  <article class="mr-card">Third item</article>
+</section>`;
+
+const clusterExample = `<div class="mr-cluster mr-cluster--between">
+  <strong>Project status</strong>
+  <div class="mr-cluster">
+    <button>Run checks</button>
+    <button class="mr-button--positive">Deploy</button>
+  </div>
+</div>`;
+
+const inlineExample = `<p>
+  Build
+  <span class="mr-inline">
+    <strong>passed</strong>
+    <a href="#inline-demo">view details</a>
+  </span>
+</p>`;
+
+const gridExample = `<section class="mr-grid">
+  <article class="mr-card">API</article>
+  <article class="mr-card">Worker</article>
+  <article class="mr-card">Database</article>
+</section>`;
+
+const containerExample = `<main class="mr-container">
+  <h2>Bounded content</h2>
+  <p>The container stays centered and gains fluid inline padding.</p>
+</main>`;
+
+const compositionExample = `<main class="mr-container">
+  <section class="mr-stack">
+    <div class="mr-cluster mr-cluster--between">
+      <h2>Services</h2>
+      <button>Add service</button>
+    </div>
+    <div class="mr-grid">
+      <article class="mr-card">API</article>
+      <article class="mr-card">Worker</article>
+      <article class="mr-card">Database</article>
+    </div>
+  </section>
+</main>`;
 ---
 
 <FullNavigationLayout>
@@ -13,34 +54,165 @@ const containerExample = `<main class="mr-container">...</main>`;
     <h1>Layout primitives</h1>
     <p>
       Markup Refine keeps layout deliberately small and intrinsic instead of
-      reproducing an atomic utility framework.
+      reproducing an atomic utility framework. These primitives describe layout
+      relationships and are designed to compose with semantic HTML and components.
     </p>
 
-    <h2>Stack</h2>
-    <p>Vertical flow with <code>--mr-stack-gap</code>.</p>
-    <pre data-mr-copyable><code>{stackExample}</code></pre>
-
-    <h2>Cluster</h2>
-    <p>Wrapping horizontal grouping with optional repeated-use alignment modifiers.</p>
-    <pre data-mr-copyable><code>{clusterExample}</code></pre>
-
-    <h2>Inline</h2>
+    <h2>Live demo</h2>
     <p>
-      An inline-level layout group. Use semantic inline elements directly when no
-      layout group is needed.
+      The examples below are rendered by this Astro page with the same public
+      classes available to consuming applications.
     </p>
-    <pre data-mr-copyable><code>{inlineExample}</code></pre>
 
-    <h2>Grid</h2>
+    <section class="layout-demo mr-stack" aria-label="Layout primitives demonstration">
+      <article class="layout-demo__section mr-stack">
+        <div>
+          <h3>Stack</h3>
+          <p>Vertical flow controlled by <code>--mr-stack-gap</code>.</p>
+        </div>
+        <section class="mr-stack layout-demo__surface" aria-label="Stack example">
+          <article class="mr-card"><strong>First item</strong><br />Stack owns the vertical spacing.</article>
+          <article class="mr-card"><strong>Second item</strong><br />Children do not need margin utilities.</article>
+          <article class="mr-card"><strong>Third item</strong><br />The relationship stays composable.</article>
+        </section>
+        <pre data-mr-copyable><code>{stackExample}</code></pre>
+      </article>
+
+      <article class="layout-demo__section mr-stack">
+        <div>
+          <h3>Cluster</h3>
+          <p>
+            A wrapping horizontal group. Use <code>mr-cluster--between</code>,
+            <code>--center</code>, <code>--end</code>, or <code>--around</code> only when
+            the repeated alignment relationship calls for it.
+          </p>
+        </div>
+        <div class="mr-cluster mr-cluster--between layout-demo__surface" aria-label="Cluster example">
+          <strong>Project status: ready</strong>
+          <div class="mr-cluster">
+            <button>Run checks</button>
+            <button class="mr-button--positive">Deploy</button>
+          </div>
+        </div>
+        <pre data-mr-copyable><code>{clusterExample}</code></pre>
+      </article>
+
+      <article class="layout-demo__section mr-stack" id="inline-demo">
+        <div>
+          <h3>Inline</h3>
+          <p>
+            A non-wrapping inline-level relationship for small groups that should stay
+            inside text flow.
+          </p>
+        </div>
+        <div class="layout-demo__surface">
+          <p>
+            Build
+            <span class="mr-inline">
+              <strong>passed</strong>
+              <a href="#inline-demo">view details</a>
+            </span>
+          </p>
+        </div>
+        <pre data-mr-copyable><code>{inlineExample}</code></pre>
+      </article>
+
+      <article class="layout-demo__section mr-stack">
+        <div>
+          <h3>Grid</h3>
+          <p>
+            Intrinsic auto-fit columns controlled by <code>--mr-grid-min-column-size</code>
+            and <code>--mr-grid-gap</code>. Resize the viewport to see columns collapse
+            without a library breakpoint class.
+          </p>
+        </div>
+        <section class="mr-grid layout-demo__surface" aria-label="Grid example">
+          <article class="mr-card"><strong>API</strong><br />Healthy</article>
+          <article class="mr-card"><strong>Worker</strong><br />Healthy</article>
+          <article class="mr-card"><strong>Database</strong><br />Healthy</article>
+        </section>
+        <pre data-mr-copyable><code>{gridExample}</code></pre>
+      </article>
+
+      <article class="layout-demo__section mr-stack">
+        <div>
+          <h3>Container</h3>
+          <p>
+            Bounded inline size with fluid padding and no dedicated mobile breakpoint.
+          </p>
+        </div>
+        <div class="layout-demo__viewport">
+          <section class="mr-container layout-demo__surface">
+            <h4>Bounded content</h4>
+            <p>The content remains centered and respects the configured maximum width.</p>
+          </section>
+        </div>
+        <pre data-mr-copyable><code>{containerExample}</code></pre>
+      </article>
+
+      <article class="layout-demo__section mr-stack">
+        <div>
+          <h3>Composition</h3>
+          <p>
+            Primitives are most useful together. This example composes Container,
+            Stack, Cluster, and Grid without introducing a page-specific layout system.
+          </p>
+        </div>
+        <section class="layout-demo__viewport">
+          <div class="mr-container">
+            <div class="mr-stack layout-demo__surface">
+              <div class="mr-cluster mr-cluster--between">
+                <h4>Services</h4>
+                <button>Add service</button>
+              </div>
+              <div class="mr-grid">
+                <article class="mr-card">API</article>
+                <article class="mr-card">Worker</article>
+                <article class="mr-card">Database</article>
+              </div>
+            </div>
+          </div>
+        </section>
+        <pre data-mr-copyable><code>{compositionExample}</code></pre>
+      </article>
+    </section>
+
+    <h2>Public primitives</h2>
+    <table>
+      <thead>
+        <tr><th>Primitive</th><th>Purpose</th><th>Main token</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>.mr-stack</code></td><td>Vertical flow</td><td><code>--mr-stack-gap</code></td></tr>
+        <tr><td><code>.mr-cluster</code></td><td>Wrapping horizontal grouping</td><td><code>--mr-cluster-gap</code></td></tr>
+        <tr><td><code>.mr-inline</code></td><td>Non-wrapping inline grouping</td><td><code>--mr-inline-gap</code></td></tr>
+        <tr><td><code>.mr-grid</code></td><td>Intrinsic responsive columns</td><td><code>--mr-grid-min-column-size</code></td></tr>
+        <tr><td><code>.mr-container</code></td><td>Centered bounded content</td><td><code>--mr-container-max-width</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Deprecated Group migration</h2>
     <p>
-      Intrinsic auto-fit columns controlled by <code>--mr-grid-min-column-size</code>
-      and <code>--mr-grid-gap</code>.
+      The historical <code>.group</code> helper is deprecated and no longer ships as a
+      component or stable CSS selector. Its layout responsibility is covered by
+      <code>.mr-cluster</code>. Migrate the old alignment modifiers as follows:
     </p>
-    <pre data-mr-copyable><code>{gridExample}</code></pre>
-
-    <h2>Container</h2>
-    <p>Bounded inline size with fluid padding and no dedicated mobile breakpoint.</p>
-    <pre data-mr-copyable><code>{containerExample}</code></pre>
+    <table>
+      <thead><tr><th>Deprecated</th><th>Use instead</th></tr></thead>
+      <tbody>
+        <tr><td><code>.group</code></td><td><code>.mr-cluster</code></td></tr>
+        <tr><td><code>.group-spaced-around</code></td><td><code>.mr-cluster--around</code></td></tr>
+        <tr><td><code>.group-spaced-between</code></td><td><code>.mr-cluster--between</code></td></tr>
+        <tr><td><code>.group-centered</code></td><td><code>.mr-cluster--center</code></td></tr>
+        <tr><td><code>.group-end</code></td><td><code>.mr-cluster--end</code></td></tr>
+        <tr><td><code>.group-fill</code></td><td><code>.mr-cluster--fill</code></td></tr>
+      </tbody>
+    </table>
+    <p>
+      Group used to mix layout with button-specific presentation. The replacement is
+      intentionally narrower: <code>.mr-cluster</code> owns layout only, while buttons
+      use the normal Markup Refine button styling.
+    </p>
 
     <h2>Admission rule</h2>
     <p>
@@ -50,3 +222,38 @@ const containerExample = `<main class="mr-container">...</main>`;
     </p>
   </main>
 </FullNavigationLayout>
+
+<style>
+  .layout-demo {
+    --mr-stack-gap: var(--mr-space-lg);
+  }
+
+  .layout-demo__section {
+    padding-block: var(--mr-space-md);
+    border-block-end: 1px solid var(--mr-color-secondary-darker);
+  }
+
+  .layout-demo__section:last-child {
+    border-block-end: 0;
+  }
+
+  .layout-demo__surface,
+  .layout-demo__viewport {
+    padding: var(--mr-space-md);
+    border: 1px dashed var(--mr-color-primary-lighter);
+    border-radius: var(--mr-radius-large);
+    background: var(--mr-color-background-light-contrast);
+  }
+
+  .layout-demo__surface :global(.mr-card) {
+    margin-block-end: 0;
+  }
+
+  .layout-demo__viewport {
+    overflow: auto;
+  }
+
+  .layout-demo__viewport > :global(.mr-container) {
+    background: var(--mr-color-background);
+  }
+</style>

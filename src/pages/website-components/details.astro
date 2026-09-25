@@ -1,0 +1,25 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const example = `<details>
+  <summary>Advanced options</summary>
+  <p>Content uses the browser's native disclosure behavior.</p>
+</details>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Details disclosure</h1>
+    <p>
+      Scoped base styles refine native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code>
+      without replacing their disclosure semantics or requiring JavaScript.
+    </p>
+    <pre data-mr-copyable><code>{example}</code></pre>
+    <Fragment set:html={example} />
+    <p>
+      The native <code>open</code> attribute is the source of truth. Components such as
+      <a href="../clickable-item-list/">Clickable Item List</a> may observe native disclosure
+      state, but the underlying element remains usable without enhancement.
+    </p>
+  </main>
+</FullNavigationLayout>

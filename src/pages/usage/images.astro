@@ -1,0 +1,56 @@
+---
+import FullNavigationLayout from "../../astro/layouts/FullNavigationLayout.astro";
+
+const imageExample = `<figure>
+  <img src="/example.jpg" alt="A descriptive alternative text">
+  <figcaption>Native figure and image styling inside a data-mr scope.</figcaption>
+</figure>`;
+
+const asciiExample = `<pre class="mr-ascii-image" aria-label="A small house">
+   /\\
+  /  \\
+ /____\\
+ | [] |
+ |____|
+</pre>`;
+---
+
+<FullNavigationLayout>
+  <main class="mr-container mr-shell__main">
+    <h1>Images, figures, and ASCII images</h1>
+    <p>
+      Ordinary <code>&lt;img&gt;</code>, <code>&lt;figure&gt;</code>, and
+      <code>&lt;figcaption&gt;</code> elements receive scoped semantic styling inside
+      <code>data-mr</code>. Images keep their intrinsic aspect ratio and are capped to the
+      available inline size.
+    </p>
+
+    <h2>Native image and figure</h2>
+    <pre data-mr-copyable><code>{imageExample}</code></pre>
+    <p>
+      Keep meaningful <code>alt</code> text on content images. Decorative images should use
+      an empty <code>alt</code> attribute rather than relying on CSS presentation.
+    </p>
+
+    <h2>ASCII image component</h2>
+    <p>
+      <code>mr-ascii-image</code> is an opt-in presentation class for preformatted ASCII art.
+      It applies a monospace face, compact line-height, and zero letter spacing without adding
+      JavaScript behavior.
+    </p>
+    <pre data-mr-copyable><code>{asciiExample}</code></pre>
+    <pre class="mr-ascii-image" aria-label="A small house">
+{`   /\\
+  /  \\
+ /____\\
+ | [] |
+ |____|`}
+    </pre>
+
+    <h2>Lower-capability behavior</h2>
+    <p>
+      These are CSS-only features. Without Markup Refine CSS the image, figure, caption, and
+      preformatted text remain normal semantic HTML.
+    </p>
+  </main>
+</FullNavigationLayout>
